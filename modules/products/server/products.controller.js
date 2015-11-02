@@ -3,28 +3,36 @@
 /**
  * Module dependencies.
  */
-var path = require('path'),
-  mongoose = require('mongoose'),
-  Article = mongoose.model('Article'),
-  Product = require('./products.model'),
-  errorHandler = require(path.resolve('./modules/core/server/errors.controller'));
+var _ = require('lodash'),
+//  Product = require('./products.model'),
+  rp = require('request-promise'),
+  errorHandler = require('modules/core/server/errors.controller');
+
+var options = {
+    method: 'GET',
+    uri: 'http://localhost:3100/api/product',
+    body: {},
+    json: true // Automatically stringifies the body to JSON
+};
 
 /**
  * Create a product
  */
 exports.create = function (req, res) {
-  var article = new Article(req.body);
-  article.user = req.user;
+  options.method = 'POST';
+  options.body = req.body;
 
-  article.save(function (err) {
-    if (err) {
-      return res.status(400).send({
+  rp(options)
+    .then(function (body) {
+      // POST succeeded...
+      res.json(body);
+    })
+    .catch(function (err) {
+      // POST failed...
+      res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
-      res.json(article);
-    }
-  });
+    });
 };
 
 /**
@@ -38,52 +46,59 @@ exports.read = function (req, res) {
  * Update a article
  */
 exports.update = function (req, res) {
-  var article = req.article;
+  options.method = 'UPDATE';
+  options.body = req.body;
 
-  article.title = req.body.title;
-  article.content = req.body.content;
-
-  article.save(function (err) {
-    if (err) {
-      return res.status(400).send({
+  rp(options)
+    .then(function (body) {
+      // POST succeeded...
+      res.json(body);
+    })
+    .catch(function (err) {
+      // POST failed...
+      res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
-      res.json(article);
-    }
-  });
+    });
 };
 
 /**
  * Delete an article
  */
 exports.delete = function (req, res) {
-  var article = req.article;
+  options.method = 'DELETE';
+  options.body = req.body;
 
-  article.remove(function (err) {
-    if (err) {
-      return res.status(400).send({
+  rp(options)
+    .then(function (body) {
+      // POST succeeded...
+      res.json(body);
+    })
+    .catch(function (err) {
+      // POST failed...
+      res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
-      res.json(article);
-    }
-  });
+    });
 };
 
 /**
- * List of Articles
+ * List of products
  */
 exports.list = function (req, res) {
-  Article.find().sort('-created').populate('user', 'displayName').exec(function (err, articles) {
-    if (err) {
-      return res.status(400).send({
+  options.method = 'GET';
+
+  rp(options)
+    .then(function (body) {
+      // POST succeeded...
+      res.json(body);
+    })
+    .catch(function (err) {
+      // POST failed...
+      res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
-      res.json(articles);
-    }
-  });
+    });
 };
 
 /**
@@ -91,21 +106,12 @@ exports.list = function (req, res) {
  */
 exports.productByID = function (req, res, next, id) {
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  if (!_.isFinite(parseInt(id, 10))) {
     return res.status(400).send({
       message: 'Product id is invalid'
     });
   }
 
-  Article.findById(id).populate('user', 'displayName').exec(function (err, article) {
-    if (err) {
-      return next(err);
-    } else if (!article) {
-      return res.status(404).send({
-        message: 'No article with that identifier has been found'
-      });
-    }
-    req.article = article;
-    next();
-  });
+  options.uri = options.uri + '/' + id;
+  next();
 };
