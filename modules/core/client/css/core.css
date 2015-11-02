@@ -33,3 +33,40 @@ a:hover .header-profile-image {
   padding-top: 11px !important;
   padding-bottom: 11px !important;
 }
+
+.creator-menu {
+  width: 100px;
+  height: 100vh;
+  float: left;
+}
+
+.menu-item {
+  width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+}
+
+.menu-item.overview {
+  background-image: url('../img/home.png');
+}
+
+.menu-item.timeline {
+  background-image: url('../img/lightning.png');
+}
+
+.menu-item.community {
+  background-image: url('../img/community.png');
+}
+
+.menu-item.content-icon {
+  background-image: url('../img/camera.png');
+}
+
+.menu-item.engagement {
+  background-image: url('../img/shopping.png');
+}
+
+.menu-item.social {
+  background-image: url('../img/social.png');
+}
