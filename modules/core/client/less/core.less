@@ -1,6 +1,5 @@
-.content {
-  margin-top: 50px;
-}
+@import "global";
+
 .undecorated-link:hover {
   text-decoration: none;
 }
@@ -35,16 +34,19 @@ a:hover .header-profile-image {
 }
 
 .creator-menu {
-  width: 100px;
+  width: 90px;
   height: 100vh;
+  padding-top: 70px;
   float: left;
+  border-right: 1px solid @sproutup-grey;
 }
 
 .menu-item {
-  width: 40px;
-  height: 40px;
-  background-size: 40px 40px;
+  width: 25px;
+  height: 25px;
+  background-size: 25px 25px;
   background-repeat: no-repeat;
+  margin: 30px 20px;
 }
 
 .menu-item.overview {
@@ -59,7 +61,7 @@ a:hover .header-profile-image {
   background-image: url('../img/community.png');
 }
 
-.menu-item.content-icon {
+.menu-item.content {
   background-image: url('../img/camera.png');
 }
 
@@ -69,4 +71,42 @@ a:hover .header-profile-image {
 
 .menu-item.social {
   background-image: url('../img/social.png');
+}
+
+.menu-link {
+  width: 25px;
+  height: 25px;
+}
+
+.header-wrapper {
+  border-bottom: 1px solid @sproutup-grey;
+  margin-left: 90px;
+  padding-left: 85px;
+  padding-top: 38px;
+}
+
+.header-title {
+  font-size: 18pt;
+  font-weight: 200;
+}
+
+.header-wrapper .stat-text {
+  padding: 7px;
+}
+
+.header-wrapper first {
+  padding-left: 0px
+}
+
+.header-stats {
+  margin-bottom: 8px;
+  margin-top: 52px;
+}
+
+.chart-container {
+  margin-top: 70px;
+  width: 486px !important;
+  height: 243px !important;
+  margin-left: auto;
+  margin-right: auto;
 }
