@@ -1,10 +1,10 @@
 <div class="header-wrapper">
-	<div class="header-title">header</div>
-	<div>
-		<span><strong>1,093</strong> impressions</span>
-		<span>|</span>
-		<span><strong>1,093</strong> impressions</span>
-		<span>|</span>
-		<span><strong>1,093</strong> impressions</span>
+	<div class="header-title">{{vm.item.title}}</div>
+	<div class="header-stats">
+		<span ng-repeat="stat in vm.item.stats">
+			<span class="stat-text" ng-hide="$index === 0">|</span>
+			<span class="stat-text" ng-class="{'first': $index === 0}"><strong>{{ stat.number }}</strong> {{ stat.stat }}</span>
+		</span>
+		
 	</div>
 </div>
