@@ -19,9 +19,11 @@
 			stat: 'Content Views',
 			number: '21,321'
 		}, {
-			stat: 'Engagments',
+			stat: 'Engagements',
 			number: '1,321'
 		}];
+		vm.item.labels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  		vm.item.data = [300, 500, 100];
 	}
 
 })();
