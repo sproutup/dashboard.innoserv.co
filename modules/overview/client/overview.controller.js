@@ -14,16 +14,22 @@
 		vm.item.title = 'Overview';
 		vm.item.stats = [{
 			stat: 'Impressions',
-			number: '12,321'
+			number: '18,321',
+			sref: 'overview.impressions'
 		}, {
 			stat: 'Content Views',
-			number: '21,321'
+			number: '21,321',
+			sref: 'overview.content'
 		}, {
 			stat: 'Engagements',
-			number: '1,321'
+			number: '1,321',
+			sref: 'overview.engagement'
 		}];
-		vm.item.labels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  		vm.item.data = [300, 500, 100];
+	  	vm.item.labels = ["January", "February", "March", "April", "May"];
+	  	vm.item.series = ['Impressions'];
+	  	vm.item.data = [
+			[128, 940, 3910, 10227, 18321]
+		];
 	}
 
 })();
