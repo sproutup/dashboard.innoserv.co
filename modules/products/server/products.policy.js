@@ -15,28 +15,28 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/articles',
+      resources: '/api/products',
       permissions: '*'
     }, {
-      resources: '/api/articles/:articleId',
+      resources: '/api/products/:productId',
       permissions: '*'
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/api/articles',
+      resources: '/api/products',
       permissions: ['get', 'post']
     }, {
-      resources: '/api/articles/:articleId',
+      resources: '/api/products/:productId',
       permissions: ['get']
     }]
   }, {
     roles: ['guest'],
     allows: [{
-      resources: '/api/articles',
+      resources: '/api/products',
       permissions: ['get']
     }, {
-      resources: '/api/articles/:articleId',
+      resources: '/api/products/:productId',
       permissions: ['get']
     }]
   }]);
@@ -49,8 +49,11 @@ exports.isAllowed = function (req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
 
   // If an article is being processed and the current user created it then allow any manipulation
-  if (req.article && req.user && req.article.user.id === req.user.id) {
-    return next();
+  if (req.product && req.user && req.product.user.id === req.user.id) {
+ acl.whatResources('guest', function(err, res){
+  console.log(res);
+});
+   return next();
   }
 
   // Check for user roles
