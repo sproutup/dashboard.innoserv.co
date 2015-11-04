@@ -25,7 +25,7 @@
 			number: '1,321',
 			sref: 'overview.engagement'
 		}];
-	  	vm.item.labels = ["January", "February", "March", "April", "May"];
+	  	vm.item.labels = ['January', 'February', 'March', 'April', 'May'];
 	  	vm.item.series = ['Impressions'];
 	  	vm.item.data = [
 			[128, 940, 3910, 10227, 18321]
