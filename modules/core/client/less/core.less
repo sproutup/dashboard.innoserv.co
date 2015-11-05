@@ -80,7 +80,8 @@ a:hover .header-profile-image {
 
 .header-wrapper {
   border-bottom: 1px solid @sproutup-grey;
-  margin-left: 90px;
+  position: relative;
+  right: 85px;
   padding-left: 85px;
   padding-top: 38px;
 }
@@ -109,7 +110,6 @@ a:hover .header-profile-image {
   height: 243px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 45px;
 }
 
 .line-chart {
@@ -204,10 +204,8 @@ a:hover .header-profile-image {
 .dashboard-container {
   padding-right: 90px;
   max-width: 1700px;
-}
-
-.content-table {
-  margin-left: 190px;
+  margin-left: 90px;
+  padding-left: 85px;
 }
 
 .content-table-icon {
@@ -256,4 +254,56 @@ a:hover .header-profile-image {
 .content-table-icon.blog {
   width: 27px;
   margin-left: 4px;
+}
+
+.timeline-wrapper {
+  position: relative;
+  border-left: 18px solid @sproutup-lightgrey;
+  margin-left: 50px;
+  padding-bottom: 30px;
+}
+
+.event-circle {
+  position: absolute;
+  left: -29.5px;
+  top: 30px;
+  width: 40px;
+  height: 40px;
+  background-color: @sproutup-lightgrey;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.event-circle img {
+  width: 50%;
+  margin-top: 9px;
+}
+
+.event-time {
+  position: absolute;
+  left: -125px;
+  top: 39px;
+  width: 85px;
+  text-align: right;
+  font-weight: 700;
+  letter-spacing: 0.3pt;
+}
+
+.event-info {
+  position: relative;
+  top: 25px;
+  height: 100%;
+}
+
+.event-info div {
+  top: -34px;
+  left: 113px;
+  position: relative;
+}
+
+.event-info img {
+  width: 50px;
+  border-radius: 50%;
+  left: 48px;
+  position: relative;
 }

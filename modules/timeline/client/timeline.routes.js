@@ -5,7 +5,9 @@ angular.module('articles').config(['$stateProvider',
     $stateProvider
       .state('timeline', {
         url: '/timeline',
-        templateUrl: 'modules/timeline/client/timeline.html'
+        templateUrl: 'modules/timeline/client/timeline.html',
+        controller: 'timelineController',
+        controllerAs: 'vm'
       });
   }
 ]);
