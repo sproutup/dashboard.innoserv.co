@@ -10,6 +10,7 @@ function upContentTable() {
         templateUrl: 'modules/core/client/directives/up-content-table.html',
         scope: {
             content: '=',
+            contenttype: '@'
         },
         link: linkFunc,
         controller: UpContentTableController,
@@ -20,7 +21,7 @@ function upContentTable() {
     return directive;
 
     function linkFunc(scope, element, attr, ctrl) {
-        
+
     }    
 }
 

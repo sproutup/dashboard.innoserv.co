@@ -17,7 +17,9 @@ module.exports = {
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
         'public/lib/angular-file-upload/angular-file-upload.min.js',
         'public/lib/Chart.js/Chart.min.js',
-        'public/lib/angular-chart.js/dist/angular-chart.min.js'
+        'public/lib/angular-chart.js/dist/angular-chart.min.js',
+        'public/lib/moment/min/moment.min.js',
+        'public/lib/angular-moment/angular-moment.min.js'
       ]
     },
     css: 'public/dist/application.min.css',

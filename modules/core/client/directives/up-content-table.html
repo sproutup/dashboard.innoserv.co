@@ -2,7 +2,8 @@
 	<thead>
 		<tr>
 			<th></th>
-			<th class="col-md-6">Posts with the most impressions</th>
+			<th class="col-md-6" ng-if="vm.contenttype">{{ vm.contenttype }}</th>
+			<th class="col-md-6" ng-if="!vm.contenttype">Posts with the most impressions</th>
 			<th class="col-md-2">Impressions</th>
 			<th class="col-md-2 hours-watched">Clicks</th>
 			<th class="col-md-2">Purchases</th>
