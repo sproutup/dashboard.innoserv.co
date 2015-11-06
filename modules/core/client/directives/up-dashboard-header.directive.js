@@ -7,7 +7,7 @@ angular
 function upDashboardHeader() {
     var directive = {
         restrict: 'EA',
-        templateUrl: 'modules/core/client/up-dashboard-header.html',
+        templateUrl: 'modules/core/client/directives/up-dashboard-header.html',
         scope: {
             item: '=',
         },
