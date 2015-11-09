@@ -1,5 +1,8 @@
 @import "global";
 
+ul {
+  list-style: none;
+}
 .undecorated-link:hover {
   text-decoration: none;
 }
@@ -84,6 +87,8 @@ a:hover .header-profile-image {
   right: 85px;
   padding-left: 85px;
   padding-top: 38px;
+  margin-right: -230px;
+  padding-right: 230px;
 }
 
 .header-title {
@@ -95,7 +100,7 @@ a:hover .header-profile-image {
   padding: 7px;
 }
 
-.header-wrapper first {
+.header-wrapper .first {
   padding-left: 0px
 }
 
@@ -484,4 +489,60 @@ a:hover .header-profile-image {
 .header-stats .active,  {
   color: @sproutup-blue;
   text-decoration: none;
+}
+
+.engagement-analytics-list {
+  width: 180px;
+  float: left;
+  max-width: 20%;
+}
+
+.engagement-analytics-list div {
+  border-bottom: 1px solid;
+  padding-bottom: 1px;
+  font-weight: 600;
+  padding-left: 5px;
+}
+
+.engagement-analytics-list ul {
+  padding-left: 0px;
+}
+
+.engagement-analytics-list li {
+  margin-bottom: 4px;
+  width: 100%;
+  height: 30px;
+  padding-top: 4.5px;
+  padding-left: 7px;
+}
+
+.engagement-analytics-list li:hover {
+  cursor: pointer;
+}
+
+.engagement-analytics-list .active {
+  background-color: #E3EDF1;
+}
+
+.demographic-table {
+  margin-left: 25%;
+  width: 60%;
+}
+
+.demographic-table tr:first-child {
+  border-bottom: 1px solid;
+  padding-bottom: 2px;
+  height: 21px;
+}
+
+.demographic-table tr {
+  margin-right: -15px;
+  margin-left: -15px;
+  height: 35px;
+  border-bottom: 1px solid @sproutup-lightgrey;
+  min-width: 50%;
+}
+
+.demographic-table .col-md-8 {
+  text-align: right;
 }
