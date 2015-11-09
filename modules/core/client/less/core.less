@@ -203,7 +203,7 @@ a:hover .header-profile-image {
 
 .dashboard-container {
   padding-right: 90px;
-  max-width: 1700px;
+  max-width: 1500px;
   margin-left: 90px;
   padding-left: 85px;
 }
@@ -333,4 +333,141 @@ a:hover .header-profile-image {
 .requests-wrapper div:nth-child(3) {
   position: relative;
   top: 183px;
+}
+
+
+.progress {
+  background-color: white;
+  border: 1px solid @main-text-white;
+  border-radius: 20px;
+  box-shadow: none;
+  height: 12px;
+  margin: 90px 10px 0px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  box-shadow: none;
+  background-color: @sproutup-blue;
+  background-image: none;
+  float: left;
+  height: 100%;
+  transition: width 0.6s ease 0s;
+  width: 0;
+}
+
+.active-trial-status {
+    position: relative;
+    width: 100%;
+    max-width: 120px;
+    height: 20px;
+    text-align: center;
+    font-size: 8pt;
+    font-weight: 700;
+    background-color: #ECEAEA;
+    opacity: .95;
+    float: right;
+    top: 30px;
+    margin-right: 120px;
+}
+
+.active-trial-status.my-trials {
+    background-color: white;
+    width: 90% !important;
+    max-width: 400px !important;
+    margin-left: 20px;
+}
+
+.active-trial-status.bar {
+    width: 40px;
+    background-color: @sproutup-blue;
+    opacity: .4;
+    position: absolute;
+    top: 0px;
+}
+
+.active-trial-status span {
+    color: @sproutup-blue;
+    position: relative;
+    top: 2px;
+}
+
+.days-left-bar {
+    border-radius: 0px !important;
+    height: 20px !important;
+    margin: 0px !important;
+    width: 100%;
+    position: absolute;
+    border: none !important;
+    opacity: .25;
+}
+
+.days-left-bar div {
+    float: right !important;
+}
+
+.trial-overdue div {
+    background-color: @sproutup-red !important;
+}
+
+.trial-overdue {
+    color: @sproutup-red !important;
+}
+
+.trial-user-avatar {
+  width: 60px;
+  border-radius: 50%;
+  margin-right: 30px;
+}
+
+.user-socials img {
+  width: 35px;
+}
+
+.user-socials {
+  position: relative;
+  top: 12px !important;
+}
+
+.user-socials span {
+  margin-right: 12px;
+}
+
+.user-socials .youtube {
+  width: 27px;
+  margin-right: 5px;
+}
+
+.trial-user-info-wrapper {
+  display: inline-block;
+}
+
+.trial-user-name {
+  position: relative;
+  top: 10px !important;
+  left: 4px;
+}
+
+.product-trial-stage-user {
+  margin: 35px 0px;
+}
+
+.product-trial-stage-user .content-table {
+  margin-top: 20px;
+  margin-right: 120px;
+}
+
+.product-trial-stage-user .content-table th {
+    height: 35px;
+}
+
+.ambassador-wrapper {
+  margin: 25px 0px;
+  display: inline-block;
+}
+
+.video-mock {
+  width: 90%;
+  margin-top: 40px;
+  max-width: 1150px;
 }
