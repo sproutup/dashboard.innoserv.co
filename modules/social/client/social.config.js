@@ -3,7 +3,7 @@
 angular.module('social').run(['Menus',
   function (Menus) {
     Menus.addMenuItem('topbar', {
-      state: 'social',
+      state: 'social.impressions',
       class: 'menu-item social',
       roles: ['*'],
       position: 6
