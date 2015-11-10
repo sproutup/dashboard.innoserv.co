@@ -1,15 +1,30 @@
-FROM node:0.12.4
+FROM sproutupco/alpine-node
 
-ENV DEBIAN_FRONTEND noninteractive
+WORKDIR /home/node
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+# update
+RUN apk update
+RUN npm install -g npm@latest
+RUN npm install -g bower
+RUN npm install -g gulp
 
-COPY . /usr/src/app/
-RUN cd /usr/src/app; npm install
+# Install packages
+COPY package.json package.json
+RUN npm install
 
-CMD [ "node", "/usr/src/app/bin/www" ]
+# Manually trigger bower. Why doesnt this work via npm install?
+COPY .bowerrc .bowerrc
+COPY bower.json bower.json
+RUN bower install --config.interactive=false --allow-root
 
-# replace this with your application's default port
-EXPOSE 3000
+COPY config config
+COPY modules modules
+COPY public public
+COPY server.js gulpfile.js ./
+COPY .csslintrc .jshintrc license makefile .slugignore ./
 
+CMD [ "npm", "start" ]
+
+# Port 3000 for server
+# Port 35729 for livereload
+EXPOSE 3000 35729
