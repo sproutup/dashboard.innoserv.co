@@ -43,7 +43,7 @@ start:
 	docker start $(application_name)
 
 run:
-	docker run -d -p 3002:3002 --name $(application_name) --env-file local-env.list $(application_name)
+	docker run -p 9000:9000 -it --rm $(repo)/$(application_name):$(environment_name) /bin/sh
 
 delete: init
 	docker rm $(application_name)
