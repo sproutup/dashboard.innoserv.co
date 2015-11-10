@@ -8,12 +8,13 @@
     </button>
   </div>
   <nav role="navigation">
-    <div data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-class="{ active: $state.includes(item.state) }" class="{{item.class}}">
-      <a data-ui-sref="{{item.state}}">
-        <div class="menu-item"></div>
+    <div class="nav-item-wrapper" data-ng-repeat="item in menu.items | orderBy: 'position'">
+      <a data-ui-sref="{{ item.state }}">
+        <div data-ng-class="{ active: $state.includes(item.state) }" class="{{ item.class }}"></div>
+        <span>{{ item.title }}</span>
       </a>
-      
     </div>
+      
 <!--     <div data-ng-repeat="item in menu.items | orderBy: 'position'" data-ng-class="{ active: $state.includes(item.state) }" class="{{item.class}}">
       <a data-ui-sref="{{item.state}}" data-ng-bind="item.title"></a>
     </div> -->

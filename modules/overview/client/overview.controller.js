@@ -11,7 +11,7 @@
 	function overviewController($scope) {
 		var vm = this;
 		vm.item = {};
-		vm.item.title = 'Overview';
+		vm.item.title = 'Home';
 		vm.item.stats = [{
 			stat: 'Social media impressions',
 			number: '460,321',

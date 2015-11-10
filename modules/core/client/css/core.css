@@ -34,7 +34,7 @@ a:hover .header-profile-image {
   padding-bottom: 11px !important;
 }
 .creator-menu {
-  width: 90px;
+  width: 195px;
   height: 100vh;
   padding-top: 70px;
   float: left;
@@ -46,6 +46,7 @@ a:hover .header-profile-image {
   background-size: 25px 25px;
   background-repeat: no-repeat;
   margin: 30px 20px;
+  display: block;
 }
 .menu-item.overview {
   background-image: url('../img/home.png');
@@ -177,7 +178,7 @@ a:hover .header-profile-image {
 .dashboard-container {
   padding-right: 90px;
   max-width: 1500px;
-  margin-left: 90px;
+  margin-left: 195px;
   padding-left: 85px;
 }
 .content-table-icon {
@@ -493,4 +494,15 @@ a:hover .header-profile-image {
 }
 .instagram-media {
   margin: 30px 0px;
+}
+.nav-item-wrapper {
+  position: relative;
+}
+.nav-item-wrapper span {
+  position: absolute;
+  top: 3px;
+  left: 62px;
+  color: #4a4a4a;
+  font-weight: 700;
+  font-size: 10.2pt;
 }
