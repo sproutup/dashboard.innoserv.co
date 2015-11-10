@@ -13,18 +13,22 @@
 		vm.item = {};
 		vm.item.title = 'Social';
 		vm.item.stats = [{
-			stat: 'Requests',
-			number: '154',
-			sref: 'community.requests'
+			stat: 'Impressions',
+			number: '454,948',
+			sref: 'social.impressions'
 		}, {
-			stat: 'Trials',
+			stat: 'Posts',
 			number: '21',
-			sref: 'community.trials'
-		}, {
-			stat: 'Ambassadors',
-			number: '32',
-			sref: 'community.ambassadors'
+			sref: 'social.posts'
 		}];
+
+		vm.impressions = {};
+		vm.impressions.labels = ['February', 'March', 'April', 'May', 'June', 'July'];
+		vm.impressions.series = ['Potential Reach Total', 'Impressions'];
+		vm.impressions.data = [
+			[45007, 105040, 69102, 70483, 39391, 93938],
+			[10938, 28905, 23394, 19874, 8394, 28048]
+		];
 	}
 
 })();
