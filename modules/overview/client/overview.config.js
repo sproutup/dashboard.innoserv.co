@@ -4,7 +4,7 @@ angular.module('overview').run(['Menus',
   function (Menus) {
     Menus.addMenuItem('topbar', {
       title: 'Home',
-      state: 'overview.impressions',
+      state: 'user.overview.impressions',
       class: 'menu-item overview',
       roles: ['*'],
       position: 1
