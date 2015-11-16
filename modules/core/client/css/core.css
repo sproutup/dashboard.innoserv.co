@@ -37,8 +37,10 @@ a:hover .header-profile-image {
   width: 195px;
   height: 100vh;
   padding-top: 70px;
-  float: left;
+  position: fixed;
   border-right: 1px solid #bfbfbf;
+  left: 0px;
+  padding-left: 15px;
 }
 .menu-item {
   width: 25px;
@@ -519,7 +521,14 @@ a:hover .header-profile-image {
   max-width: 500px;
   background-color: white;
   margin: 20px auto;
-  padding: 20px 0px;
+  padding: 0px;
+}
+.signup-login-header {
+  text-align: center;
+  padding: 40px 10px 0px;
+  font-weight: 300;
+  font-size: 15pt;
+  color: #414141;
 }
 .signup-login-form {
   padding: 15px 0 0;

@@ -6,11 +6,16 @@
 
 <div class="row">
 
+    <div class="signup-login-header">
+        <p>Welcome! Please sign up below.</p>
+    </div>
+
     <div class="signup-login-area">
         <!-- email login -->
         <form name="signupForm" class="signupForm" novalidate>
             <div class="signup-login-form">
                 <div class="signup-login-form--error-message" ng-show="vm.form.error"><i class="fa fa-minus-circle"></i>{{vm.form.error}}</div>
+                
                 <!-- full name -->
                 <input ng-model="vm.form.name" required="" class="form-control form-validate signup-login-input" id="name" type="text" name="yourName" placeholder="Full Name">
                 <div ng-show="signupForm.$submitted || signupForm.yourName.$touched">
@@ -18,15 +23,15 @@
                 </div>
 
                 <!-- company name -->
-                <input ng-model="vm.form.name" required="" class="form-control form-validate signup-login-input" id="name" type="text" name="yourName" placeholder="Company Name">
-                <div ng-show="signupForm.$submitted || signupForm.yourName.$touched">
-                    <div class="signup-login-form--error-message" ng-show="signupForm.yourName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your name</div>
+                <input ng-model="vm.form.companyName" required="" class="form-control form-validate signup-login-input" id="companyName" type="text" name="companyName" placeholder="Company Name">
+                <div ng-show="signupForm.$submitted || signupForm.companyName.$touched">
+                    <div class="signup-login-form--error-message" ng-show="signupForm.companyName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your company's name</div>
                 </div>
 
                 <!-- company website -->
-                <input ng-model="vm.form.name" required="" class="form-control form-validate signup-login-input" id="name" type="text" name="yourName" placeholder="Company Website, e.g. http://www.company.com">
-                <div ng-show="signupForm.$submitted || signupForm.yourName.$touched">
-                    <div class="signup-login-form--error-message" ng-show="signupForm.yourName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your name</div>
+                <input ng-model="vm.form.companyWebsite" required="" class="form-control form-validate signup-login-input" id="companyWebsite" type="text" name="companyWebsite" http-prefix="" placeholder="Company Website, e.g. http://www.company.com">
+                <div ng-show="signupForm.$submitted || signupForm.companyWebsite.$touched">
+                    <div class="signup-login-form--error-message" ng-show="signupForm.companyWebsite.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your company's website</div>
                 </div>
 
                 <!-- email -->
@@ -37,10 +42,10 @@
                 </div>
 
                 <!-- password -->
-                <input ng-model="vm.form.password" required="" ng-minlength="3" class="form-control form-validate signup-login-input" id="password" type="password" name="yourPassword" placeholder="Password">
+                <input ng-model="vm.form.password" required="" ng-minlength="6" class="form-control form-validate signup-login-input" id="password" type="password" name="yourPassword" placeholder="Password">
                 <div ng-show="signupForm.$submitted || signupForm.yourPassword.$touched">
-                    <div class="signup-login-form--error-message" ng-show="signupForm.yourPassword.$error.required"><i class="fa fa-minus-circle"></i>3+ characters would be safer</div>
-                    <div class="signup-login-form--error-message" ng-show="signupForm.yourPassword.$error.minlength"><i class="fa fa-minus-circle"></i>3+ characters would be safer</div>
+                    <div class="signup-login-form--error-message" ng-show="signupForm.yourPassword.$error.required"><i class="fa fa-minus-circle"></i>A password is necessary, no?</div>
+                    <div class="signup-login-form--error-message" ng-show="signupForm.yourPassword.$error.minlength"><i class="fa fa-minus-circle"></i>6 or more characters would be safer</div>
                 </div>
 
                 <button analytics-on="click" analytics-event="Sign Up" analytics-provider="email" ng-disabled="signupForm.$invalid" class="btn btn-lg signup-login-btn" type="submit" ng-click="vm.signup()">Sign up</button>
@@ -48,7 +53,7 @@
         </form>
 
         <!-- footer -->
-        <div class="signup-login-form-footer">Already have a SproutUp account? <a ui-sref="user.login">Log in</a></div>
+        <div class="signup-login-form-footer">Already have a SproutUp account? <a ui-sref="authentication.signin">Log in</a></div>
     </div>
 </div>
 
