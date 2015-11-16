@@ -3,7 +3,7 @@
 angular.module('articles').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('timeline', {
+      .state('user.timeline', {
         url: '/timeline',
         templateUrl: 'modules/timeline/client/timeline.html',
         controller: 'timelineController',

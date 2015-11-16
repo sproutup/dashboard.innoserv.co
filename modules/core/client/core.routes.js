@@ -9,6 +9,11 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
     // Home state routing
     $stateProvider
+      .state('user' ,{
+        url: '',
+        abstract: true,
+        templateUrl: 'modules/core/client/header.view.html'
+      })
       .state('not-found', {
         url: '/not-found',
         templateUrl: 'modules/core/client/404.view.html'

@@ -22,15 +22,15 @@
 		vm.item.stats = [{
 			stat: 'Page views',
 			number: '35,938',
-			sref: 'engagement.page-views'
+			sref: 'user.engagement.page-views'
 		}, {
 			stat: 'Clicks',
 			number: '3520',
-			sref: 'engagement.clicks'
+			sref: 'user.engagement.clicks'
 		}, {
 			stat: 'Purchases',
 			number: '20',
-			sref: 'engagement.purchases'
+			sref: 'user.engagement.purchases'
 		}];
 
 		

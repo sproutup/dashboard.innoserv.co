@@ -15,15 +15,15 @@
 		vm.item.stats = [{
 			stat: 'Requests',
 			number: '154',
-			sref: 'community.requests'
+			sref: 'user.community.requests'
 		}, {
 			stat: 'Trials',
 			number: '21',
-			sref: 'community.trials'
+			sref: 'user.community.trials'
 		}, {
 			stat: 'Ambassadors',
 			number: '32',
-			sref: 'community.ambassadors'
+			sref: 'user.community.ambassadors'
 		}];
 		vm.item.labels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
   		vm.item.data = [300, 500, 100];
