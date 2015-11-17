@@ -44,11 +44,10 @@ a:hover .header-profile-image {
 .creator-menu {
   width: 195px;
   height: 100vh;
-  padding-top: 70px;
   position: fixed;
   border-right: 1px solid #bfbfbf;
   left: 0px;
-  padding-left: 15px;
+  padding-left: 22px;
 }
 
 .menu-item {
@@ -601,15 +600,24 @@ a:hover .header-profile-image {
 
 .nav-item-wrapper {
   position: relative;
+  color: @sproutup-dark-grey !important;
+  font-weight: 500;
+  font-size: 10.2pt;
+  margin-bottom: 15px;
 }
 
-.nav-item-wrapper span {
-  position: absolute;
-  top: 3px;
-  left: 62px;
+.nav-section {
+  padding-top: 70px; 
+}
+
+.creator-name {
+  font-weight: 200;
+  font-size: 13pt;
+}
+
+.nav-item-wrapper a, .nav-item-wrapper a:hover, .nav-item-wrapper a:visited {
   color: @sproutup-dark-grey;
-  font-weight: 700;
-  font-size: 10.2pt;
+  text-decoration: none !important;
 }
 
 .auth-header {

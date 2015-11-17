@@ -8,12 +8,26 @@
     </button>
   </div>
   <nav role="navigation">
-    <div class="nav-item-wrapper" data-ng-repeat="item in menu.items | orderBy: 'position'">
-      <a data-ui-sref="{{ item.state }}">
-        <div data-ng-class="{ active: $state.includes(item.state) }" class="{{ item.class }}"></div>
-        <span>{{ item.title }}</span>
-      </a>
+    <div class="nav-section">
+      <div class="nav-item-wrapper creator-name">Tao Ni</div>
+      <div class="nav-item-wrapper">
+        <a a href="/api/auth/signout" target="_self">Sign Out</a>
+      </div>
+    </div> 
+    <div class="nav-section">
+      <div class="nav-item-wrapper" data-ng-repeat="item in menu.items | orderBy: 'position'">
+        <a data-ui-sref="{{ item.state }}">{{ item.title }}</a>
+      </div>
     </div>
+<!--     <div class="nav-section">
+      <div class="nav-item-wrapper">
+        <a data-ui-sref="">Settings</a>
+      </div>
+      <div class="nav-item-wrapper">
+        <a data-ui-sref="">Settings</a>
+      </div>
+    </div> -->
+       
   </nav>
 </div>
 <div ui-view class="dashboard-container"></div>
