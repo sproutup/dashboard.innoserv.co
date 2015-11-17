@@ -23,19 +23,23 @@
                 </div>
 
                 <!-- company name -->
+                <!-- TODO: company name uniqueness check -->
                 <input ng-model="vm.form.companyName" required="" class="form-control form-validate signup-login-input" id="companyName" type="text" name="companyName" placeholder="Company Name">
                 <div ng-show="signupForm.$submitted || signupForm.companyName.$touched">
                     <div class="signup-login-form--error-message" ng-show="signupForm.companyName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your company's name</div>
                 </div>
 
                 <!-- company website -->
+                <!-- TODO: http-prefix directive -->
                 <input ng-model="vm.form.companyWebsite" required="" class="form-control form-validate signup-login-input" id="companyWebsite" type="text" name="companyWebsite" http-prefix="" placeholder="Company Website, e.g. http://www.company.com">
                 <div ng-show="signupForm.$submitted || signupForm.companyWebsite.$touched">
                     <div class="signup-login-form--error-message" ng-show="signupForm.companyWebsite.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your company's website</div>
                 </div>
 
                 <!-- email -->
-                <input ng-model="vm.form.email" required="" class="form-control form-validate signup-login-input" id="email" type="email" name="yourEmail" placeholder="Company Email – e.g. name@company.com">
+                <!-- TODO: validate email and company website match. If website is http://www.sproutup.co, email has to be tao@sproutup.co -->
+                <!-- TODO: email uniqueness check -->
+                <input ng-model="vm.form.email" required="" class="form-control form-validate signup-login-input" id="email" type="email" name="yourEmail" placeholder="Company Email, e.g. name@company.com">
                 <div ng-show="signupForm.$submitted || signupForm.yourEmail.$touched">
                     <div class="signup-login-form--error-message" ng-show="signupForm.yourEmail.$error.required"><i class="fa fa-minus-circle"></i>Can't sign up without an email</div>
                     <div class="signup-login-form--error-message" ng-show="signupForm.yourEmail.$error.email"><i class="fa fa-minus-circle"></i>Err, you sure the email is valid?</div>
