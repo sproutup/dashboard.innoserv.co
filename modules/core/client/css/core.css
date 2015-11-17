@@ -2,6 +2,10 @@ html {
   overflow-x: -moz-hidden-unscrollable;
   overflow-y: -moz-hidden-unscrollable;
 }
+body {
+  letter-spacing: 0.2pt;
+  font-size: 14px !important;
+}
 ul {
   list-style: none;
 }
@@ -40,11 +44,10 @@ a:hover .header-profile-image {
 .creator-menu {
   width: 195px;
   height: 100vh;
-  padding-top: 70px;
   position: fixed;
   border-right: 1px solid #bfbfbf;
   left: 0px;
-  padding-left: 15px;
+  padding-left: 22px;
 }
 .menu-item {
   width: 25px;
@@ -118,7 +121,6 @@ a:hover .header-profile-image {
 .overview-main-stat {
   text-align: center;
   margin-top: 55px;
-  font-size: 14pt;
   font-weight: 800;
 }
 .overview-card-wrapper {
@@ -196,7 +198,7 @@ a:hover .header-profile-image {
 }
 .content-table td {
   font-size: 13pt;
-  font-weight: 700;
+  font-weight: 500;
 }
 .content-table tbody tr {
   border-bottom: 1px solid #bfbfbf;
@@ -503,14 +505,22 @@ a:hover .header-profile-image {
 }
 .nav-item-wrapper {
   position: relative;
+  color: #4a4a4a !important;
+  font-weight: 500;
+  margin-bottom: 15px;
 }
-.nav-item-wrapper span {
-  position: absolute;
-  top: 3px;
-  left: 62px;
+.nav-section {
+  padding-top: 70px;
+}
+.creator-name {
+  font-weight: 200;
+  font-size: 13pt;
+}
+.nav-item-wrapper a,
+.nav-item-wrapper a:hover,
+.nav-item-wrapper a:visited {
   color: #4a4a4a;
-  font-weight: 700;
-  font-size: 10.2pt;
+  text-decoration: none !important;
 }
 .auth-header {
   background-color: #414141;

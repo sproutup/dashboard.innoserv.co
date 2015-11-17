@@ -17,21 +17,21 @@
                 <div class="signup-login-form--error-message" ng-show="vm.form.error"><i class="fa fa-minus-circle"></i>{{vm.form.error}}</div>
                 
                 <!-- full name -->
-                <input ng-model="vm.form.name" required="" class="form-control form-validate signup-login-input" id="name" type="text" name="yourName" placeholder="Full Name">
+                <input ng-model="vm.form.name" required="" class="form-control form-validate signup-login-input" id="name" type="text" name="yourName" placeholder="Your name">
                 <div ng-show="signupForm.$submitted || signupForm.yourName.$touched">
                     <div class="signup-login-form--error-message" ng-show="signupForm.yourName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your name</div>
                 </div>
 
                 <!-- company name -->
                 <!-- TODO: company name uniqueness check -->
-                <input ng-model="vm.form.companyName" required="" class="form-control form-validate signup-login-input" id="companyName" type="text" name="companyName" placeholder="Company Name">
+                <input ng-model="vm.form.companyName" required="" class="form-control form-validate signup-login-input" id="companyName" type="text" name="companyName" placeholder="Company name">
                 <div ng-show="signupForm.$submitted || signupForm.companyName.$touched">
                     <div class="signup-login-form--error-message" ng-show="signupForm.companyName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your company's name</div>
                 </div>
 
                 <!-- company website -->
                 <!-- TODO: http-prefix directive -->
-                <input ng-model="vm.form.companyWebsite" required="" class="form-control form-validate signup-login-input" id="companyWebsite" type="text" name="companyWebsite" http-prefix="" placeholder="Company Website, e.g. http://www.company.com">
+                <input ng-model="vm.form.companyWebsite" required="" class="form-control form-validate signup-login-input" id="companyWebsite" type="text" name="companyWebsite" http-prefix="" placeholder="Company website, e.g. http://www.company.com">
                 <div ng-show="signupForm.$submitted || signupForm.companyWebsite.$touched">
                     <div class="signup-login-form--error-message" ng-show="signupForm.companyWebsite.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your company's website</div>
                 </div>
@@ -39,17 +39,23 @@
                 <!-- email -->
                 <!-- TODO: validate email and company website match. If website is http://www.sproutup.co, email has to be tao@sproutup.co -->
                 <!-- TODO: email uniqueness check -->
-                <input ng-model="vm.form.email" required="" class="form-control form-validate signup-login-input" id="email" type="email" name="yourEmail" placeholder="Company Email, e.g. name@company.com">
+                <input ng-model="vm.form.email" required="" class="form-control form-validate signup-login-input" id="email" type="email" name="yourEmail" placeholder="Your business email, e.g. you@company.com">
                 <div ng-show="signupForm.$submitted || signupForm.yourEmail.$touched">
                     <div class="signup-login-form--error-message" ng-show="signupForm.yourEmail.$error.required"><i class="fa fa-minus-circle"></i>Can't sign up without an email</div>
                     <div class="signup-login-form--error-message" ng-show="signupForm.yourEmail.$error.email"><i class="fa fa-minus-circle"></i>Err, you sure the email is valid?</div>
                 </div>
 
                 <!-- password -->
-                <input ng-model="vm.form.password" required="" ng-minlength="6" class="form-control form-validate signup-login-input" id="password" type="password" name="yourPassword" placeholder="Password">
+                <input ng-model="vm.form.password" required="" ng-minlength="6" class="form-control form-validate signup-login-input" id="password" type="password" name="yourPassword" placeholder="Enter a password, at least 6 characters">
                 <div ng-show="signupForm.$submitted || signupForm.yourPassword.$touched">
                     <div class="signup-login-form--error-message" ng-show="signupForm.yourPassword.$error.required"><i class="fa fa-minus-circle"></i>A password is necessary, no?</div>
-                    <div class="signup-login-form--error-message" ng-show="signupForm.yourPassword.$error.minlength"><i class="fa fa-minus-circle"></i>6 or more characters would be safer</div>
+                    <div class="signup-login-form--error-message" ng-show="signupForm.yourPassword.$error.minlength"><i class="fa fa-minus-circle"></i>6 or more characters would be safer.</div>
+                </div>
+
+                <!-- confirm password -->
+                <input ng-model="vm.form.password" required="" ng-minlength="6" class="form-control form-validate signup-login-input" id="confirmPassword" type="password" name="confirmYourPassword" placeholder="Please confirm password">
+                <div ng-show="signupForm.$submitted || signupForm.confirmYourPassword.$touched">
+                    <div class="signup-login-form--error-message" ng-show="signupForm.confirmYourPassword.$error.minlength"><i class="fa fa-minus-circle"></i>Passwords don't match, try again?</div>
                 </div>
 
                 <button ng-disabled="signupForm.$invalid" class="btn btn-lg signup-login-btn" type="submit" ng-click="vm.signup()">Sign up</button>
