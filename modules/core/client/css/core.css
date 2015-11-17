@@ -548,6 +548,10 @@ a:hover .header-profile-image {
   color: #777777;
   line-height: 1.5;
 }
+.signup-login-header h2 span {
+  font-weight: 700;
+  color: #65bc25;
+}
 .signup-login-form {
   padding: 15px 0 0;
 }

@@ -48,7 +48,7 @@
                     <div class="signup-login-form--error-message" ng-show="signupForm.yourPassword.$error.minlength"><i class="fa fa-minus-circle"></i>6 or more characters would be safer</div>
                 </div>
 
-                <button analytics-on="click" analytics-event="Sign Up" analytics-provider="email" ng-disabled="signupForm.$invalid" class="btn btn-lg signup-login-btn" type="submit" ng-click="vm.signup()">Sign up</button>
+                <button ng-disabled="signupForm.$invalid" class="btn btn-lg signup-login-btn" type="submit" ng-click="vm.signup()">Sign up</button>
             </div>
         </form>
 
