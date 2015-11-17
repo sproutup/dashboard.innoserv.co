@@ -569,10 +569,7 @@ a:hover .header-profile-image {
 .signup-login-btn {
   width: 90%;
   height: 45px;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 10px;
-  margin-bottom: 0px;
+  margin: 5px 5%;
   font-weight: 400;
   font-size: 12pt;
   background-color: #2996cc;
@@ -621,11 +618,14 @@ a:hover .header-profile-image {
 }
 .signup-login-form-footer p {
   font-weight: 400;
-  font-size: 10pt;
+  font-size: 10.5pt;
   color: #414141;
+  padding: 0px 0px 5px;
+  margin: 0px;
+  text-align: center;
 }
 .signup-login-form-footer p a {
-  color: #1C6798;
+  color: #2996cc;
 }
 input::-moz-placeholder {
   color: #afafaf;
