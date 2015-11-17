@@ -668,3 +668,41 @@ input:-ms-input-placeholder {
 .form-validate.ng-valid.ng-touched {
   border: 1px solid #65bc25;
 }
+.sproutup-btn-lg-main {
+  height: 50px;
+  border: none;
+  font-weight: 700;
+  font-size: 11pt;
+  color: white;
+  background-color: #2996cc;
+  border-radius: 2px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 15px;
+  margin: 0px;
+  -webkit-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+.sproutup-btn-lg-main:hover {
+  background-color: #1885bb;
+  color: white;
+}
+.sproutup-btn-md-main {
+  height: 45px;
+  font-weight: 700;
+  font-size: 11pt;
+  background-color: #2996cc;
+  color: white;
+  border-radius: 2px;
+  padding-top: 11px;
+  margin-right: 6px;
+  margin-bottom: 5px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.sproutup-btn-md-main:hover {
+  color: white;
+  background-color: #1885bb;
+}
