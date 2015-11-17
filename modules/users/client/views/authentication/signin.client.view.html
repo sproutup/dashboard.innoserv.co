@@ -1,30 +1,31 @@
-<div data-ng-controller="AuthenticationController">
-  <h3 class="col-md-12 text-center">Or with your account</h3>
-  <div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
-    <form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
-      <fieldset>
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control"
-               data-ng-model="credentials.username" placeholder="Username">
+<div class="auth-header">
+    <div class="text-center">
+      <img class="auth-header-logo" src="modules/core/client/img/logo-square.png">
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="signup-login-header">
+        <h1>Good to see you again! Please log in.</h1>
+    </div>
+
+    <div class="signup-login-area">
+        <!-- email login -->
+        <form name="loginForm" class="loginForm" novalidate>
+            <div class="signup-login-form">
+                <div ng-show="true">
+                    <div class="signup-login-form--error-message" ng-show="vm.form.error"><i class="fa fa-minus-circle"></i>Err... seems like invalid email or password</div>
+                </div>
+                <input ng-model="vm.form.email" class="form-control signup-login-input" id="email" type="text" required placeholder="Email address">
+                <input ng-model="vm.form.password" class="form-control signup-login-input" id="password" type="password" required placeholder="Password">
+                <button analytics-on="click" analytics-event="Log In" analytics-provider="email" ng-disabled="loginForm.$invalid" ng-click="vm.login()" class="btn btn-lg signup-login-btn" type="submit">Log in</button>
+            </div>
+        </form>
+        <!-- footer -->
+        <div class="signup-login-form-footer">
+            <p><a ui-sref="password.forgot">Forgot password?</a></p>
+            <p>Don't have an account? <a ui-sref="authentication.signup">Sign up</a> here.</p>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" class="form-control"
-               data-ng-model="credentials.password" placeholder="Password">
-        </div>
-        <div class="text-center form-group">
-          <button type="submit" class="btn btn-primary">Sign in</button>
-          &nbsp; or&nbsp;
-          <a data-ui-sref="authentication.signup">Sign up</a>
-        </div>
-        <div class="text-center forgot-password">
-          <a data-ui-sref="password.forgot">Forgot your password?</a>
-        </div>
-        <alert type="danger" data-ng-show="error" class="text-center text-danger">
-          <span data-ng-bind="error"></span>
-        </alert>
-      </fieldset>
-    </form>
-  </div>
+    </div>
 </div>
