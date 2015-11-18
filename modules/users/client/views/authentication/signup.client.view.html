@@ -53,9 +53,10 @@
                 </div>
 
                 <!-- confirm password -->
-                <input ng-model="vm.form.password" required="" ng-minlength="6" class="form-control form-validate signup-login-input" id="confirmPassword" type="password" name="confirmYourPassword" placeholder="Please confirm password">
+                <!-- TODO: check if two passwords match -->
+                <input ng-model="vm.form.confirmPassword" required="" ng-minlength="6" class="form-control form-validate signup-login-input" id="confirmPassword" type="password" name="confirmYourPassword" placeholder="Please confirm password">
                 <div ng-show="signupForm.$submitted || signupForm.confirmYourPassword.$touched">
-                    <div class="signup-login-form--error-message" ng-show="signupForm.confirmYourPassword.$error.minlength"><i class="fa fa-minus-circle"></i>Passwords don't match, try again?</div>
+                    <div class="signup-login-form--error-message" ng-show="signupForm.confirmYourPassword.$error.minlength"><i class="fa fa-minus-circle"></i>Oops, passwords don't match. Try again?</div>
                 </div>
 
                 <button ng-disabled="signupForm.$invalid" class="btn btn-lg signup-login-btn" type="submit" ng-click="vm.signup()">Sign up</button>
