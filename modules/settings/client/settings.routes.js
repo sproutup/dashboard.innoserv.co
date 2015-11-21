@@ -3,7 +3,7 @@
 angular.module('settings').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('user.subscribe', {
+      .state('subscribe', {
         url: '/subscribe',
         templateUrl: 'modules/settings/client/subscribe.html'
       });
