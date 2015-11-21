@@ -1,13 +1,10 @@
 html {
   overflow-x: -moz-hidden-unscrollable;
-  overflow-y: -moz-hidden-unscrollable;
 }
 body {
   letter-spacing: 0.2pt;
   font-size: 14px !important;
-}
-ul {
-  list-style: none;
+  font-family: "lato", Helvetica, Arial, sans-serif;
 }
 .undecorated-link:hover {
   text-decoration: none;
@@ -717,14 +714,14 @@ input:-ms-input-placeholder {
   background-color: #1885bb;
 }
 .main-content {
-  padding: 60px 0px;
+  padding: 20px 0px;
 }
 .legal-title {
   text-align: center;
   font-weight: 300;
   color: #2996cc;
   font-size: 28pt;
-  margin: 40px 20px 20px;
+  margin: 20px;
 }
 .legal-content {
   text-align: left;
@@ -765,10 +762,10 @@ input:-ms-input-placeholder {
   line-height: 1.6;
 }
 .analytics-table {
-  max-width: 640px;
+  max-width: 800px;
 }
 .analytics-table.subscribe {
-  max-width: 900px;
+  max-width: 1200px;
 }
 .analytics-table.subscribe thead .subscribe-plan {
   color: #2996cc !important;
