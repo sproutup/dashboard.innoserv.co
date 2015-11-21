@@ -10,38 +10,12 @@ body {
   font-family: "lato", Helvetica, Arial, sans-serif;
 }
 
-.undecorated-link:hover {
-  text-decoration: none;
-}
-[ng\:cloak],
-[ng-cloak],
-[data-ng-cloak],
-[x-ng-cloak],
-.ng-cloak,
-.x-ng-cloak {
-  display: none !important;
-}
-.ng-invalid.ng-dirty {
-  border-color: #FA787E;
-}
-.ng-valid.ng-dirty {
-  border-color: #78FA89;
-}
-
 .header-profile-image {
   opacity: 0.8;
   height: 28px;
   width: 28px;
   border-radius: 50%;
   margin-right: 5px;
-}
-.open .header-profile-image,
-a:hover .header-profile-image {
-  opacity: 1;
-}
-.user-header-dropdown-toggle {
-  padding-top: 11px !important;
-  padding-bottom: 11px !important;
 }
 
 .creator-menu {
@@ -846,10 +820,6 @@ input:-ms-input-placeholder {
   background-color: @sproutup-blue-hover;
 }
 
-.main-content {
-    padding: 20px 0px;
-}
-
 .legal-title {
     text-align: center;
     font-weight: 300;
@@ -861,7 +831,7 @@ input:-ms-input-placeholder {
 .legal-content {
     text-align: left;
     margin: 20px auto;
-    max-width: 768px;
+    max-width: 850px;
     padding: 0px 20px;
 }
 
@@ -882,7 +852,7 @@ input:-ms-input-placeholder {
 .legal-content p {
     font-weight: 400;
     color: @main-text;
-    font-size: 13pt;
+    font-size: 11pt;
     line-height: 1.6;
 }
 
@@ -898,42 +868,41 @@ input:-ms-input-placeholder {
 
 .legal-content li {
     font-weight: 400;
-    font-size: 13pt;
+    font-size: 11pt;
     margin-bottom: 10px;
     line-height: 1.6;
 }
 
-.analytics-table {
-    max-width: 800px;
+.subscription-table {
+  margin: 0px auto;
+  padding: 10px;
 }
 
-.analytics-table.subscribe {
-  max-width: 1200px;
-}
-
-.analytics-table.subscribe thead .subscribe-plan {
+.subscription-table thead .subscribe-plan {
   color: @sproutup-blue !important;
   font-weight: 700 !important;
 }
 
-.analytics-table.subscribe td form {
+.subscription-table td form {
   margin-top: 10px;
 }
 
-.analytics-table th {
+.subscription-table th {
     color: @main-text-2;
     font-weight: 400;
-    font-size: 12pt;
+    font-size: 11pt;
     padding: 10px !important;
 }
 
-.analytics-table td {
+.subscription-table td {
     color: @main-text;
     font-weight: 400;
-    font-size: 12pt;
+    font-size: 11pt;
     padding: 15px 10px !important;
 }
 
-.analytics-table .leading-column {
-    width: 50%;
+.subscription-table .leading-column {
+    color: @main-text-2 !important;
+    font-weight: 700 !important;
+    font-size: 10.5pt;
 }
