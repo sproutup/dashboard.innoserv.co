@@ -32,4 +32,4 @@ CMD [ "node", "server.js" ]
 
 # Port 3000 for server
 # Port 35729 for livereload
-EXPOSE 3030
+EXPOSE 3000
