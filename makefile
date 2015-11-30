@@ -32,6 +32,9 @@ deploy: push
 create: push
 	$(MAKE) -C target $(environment_name) create
 
+terminate:
+	$(MAKE) -C target $(environment_name) terminate
+
 rebuild: stop delete build run
 
 stop:
