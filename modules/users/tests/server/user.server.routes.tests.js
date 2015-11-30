@@ -3,8 +3,8 @@
 var should = require('should'),
   request = require('supertest'),
   path = require('path'),
-  mongoose = require('mongoose'),
-  User = mongoose.model('User'),
+  dynamoose = require('config/lib/dynamoose'),
+  User = dynamoose.model('User'),
   express = require(path.resolve('./config/lib/express'));
 
 /**
@@ -18,7 +18,7 @@ var app, agent, credentials, user, admin;
 describe('User CRUD tests', function () {
   before(function (done) {
     // Get application
-    app = express.init(mongoose);
+    app = express.init(dynamoose);
     agent = request.agent(app);
 
     done();
