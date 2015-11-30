@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('overview').run(['Menus',
+angular.module('settings').run(['Menus',
   function (Menus) {
     Menus.addMenuItem('topbar', {
-      title: 'Home',
-      state: 'user.overview.impressions',
+      title: 'Settings',
+      state: 'user.subscribe',
       class: 'menu-item overview',
       roles: ['*'],
       position: 1

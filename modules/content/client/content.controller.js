@@ -16,11 +16,11 @@
 		vm.item.stats = [{
 			stat: 'Videos',
 			number: '12',
-			sref: 'content.videos'
+			sref: 'user.content.videos'
 		}, {
 			stat: 'Blogs',
 			number: '8',
-			sref: 'content.blogs'
+			sref: 'user.content.blogs'
 		}];
 
 		loadCallback(ContentService);

@@ -5,9 +5,9 @@
  */
 var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/errors.controller')),
-  mongoose = require('mongoose'),
+  dynamoose = require('config/lib/dynamoose'),
   passport = require('passport'),
-  User = mongoose.model('User');
+  User = dynamoose.model('User');
 
 // URLs for which user can't be redirected on signin
 var noReturnUrls = [

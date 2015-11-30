@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 var should = require('should'),
-  mongoose = require('./config/lib/bookshelf'),
-  User = mongoose.model('User');
+  dynamoose = require('config/lib/dynamoose'),
+  User = dynamoose.model('User');
 
 /**
  * Globals
@@ -49,7 +49,7 @@ describe('User Model Unit Tests:', function () {
 
   describe('Method Save', function () {
     it('should begin with no users', function (done) {
-      User.find({}, function (err, users) {
+      User.scan({}, function (err, users) {
         users.should.have.length(0);
         done();
       });
@@ -342,7 +342,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = 'abc@abc.com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -360,7 +360,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = 'abc+def@abc.com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -378,7 +378,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = 'abc.def@abc.com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -396,7 +396,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = 'abc-def@abc.com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -411,6 +411,6 @@ describe('User Model Unit Tests:', function () {
   });
 
   after(function (done) {
-    User.remove().exec(done);
+    User.delete().exec(done);
   });
 });

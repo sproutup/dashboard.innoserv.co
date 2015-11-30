@@ -4,14 +4,14 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-  mongoose = require('mongoose'),
-  User = mongoose.model('User');
+  dynamoose = require('config/lib/dynamoose'),
+  User = dynamoose.model('User');
 
 /**
  * User middleware
  */
 exports.userByID = function (req, res, next, id) {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  if (!dynamoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
       message: 'User is invalid'
     });

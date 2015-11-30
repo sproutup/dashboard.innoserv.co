@@ -5,6 +5,7 @@
  */
 var config = require('../config'),
   bookshelf = require('./bookshelf'),
+  dynamoose = require('config/lib/dynamoose'),
   redis = require('./redis'),
   express = require('./express'),
   chalk = require('chalk'),
@@ -20,10 +21,10 @@ if (config.seedDB) {
 
 module.exports.loadModels = function loadModels() {
   bookshelf.loadModels();
+  dynamoose.loadModels();
 };
 
 module.exports.init = function init(callback) {
-  
   bookshelf.connect(function (db){
     console.log('bookshelf connected');
     var app = express.init(db);

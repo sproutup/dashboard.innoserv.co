@@ -7,6 +7,7 @@ var _ = require('lodash'),
   defaultAssets = require('./config/assets/default'),
   testAssets = require('./config/assets/test'),
   gulp = require('gulp'),
+  debug = require('gulp-debug'),
   gulpLoadPlugins = require('gulp-load-plugins'),
   runSequence = require('run-sequence'),
   plugins = gulpLoadPlugins(),
@@ -146,29 +147,39 @@ gulp.task('peter', function (done) {
 // Mocha tests task
 gulp.task('mocha', function (done) {
   // Open mongoose connections
-  var mongoose = require('./config/lib/mongoose.js');
+  var dynamoose = require('./config/lib/dynamoose.js');
   var error;
 
-  // Connect mongoose
-  mongoose.connect(function() {
-    // Run the tests
-    gulp.src(testAssets.tests.server)
-      .pipe(plugins.mocha({
-        reporter: 'spec'
-      }))
-      .on('error', function (err) {
-        // If an error occurs, save it
-        error = err;
-      })
-      .on('end', function() {
-        // When the tests are done, disconnect mongoose and pass the error state back to gulp
-        mongoose.disconnect(function() {
-          done(error);
-        });
-      });
-  });
-
+  // Run the tests
+  gulp.src(testAssets.tests.server)
+    .pipe(debug({title: 'mocha:'}))
+    .pipe(plugins.mocha({
+      reporter: 'spec'
+    }))
+    .on('error', function (err) {
+      // If an error occurs, save it
+      error = err;
+    })
+    .on('end', function() {
+      // When the tests are done, disconnect mongoose and pass the error state back to gulp
+    });
 });
+
+var gutil = require('gulp-util');
+
+gulp.task('mocha2', function() {
+    return gulp.src(['modules/users/tests/server/user.server.model.tests.js'],
+          { read: false })
+        .pipe(debug({title: 'mocha:'}))
+        .pipe(plugins.mocha({ reporter: 'spec', 
+          globals: {
+            path: require('app-module-path').addPath(__dirname),
+            should: require('should'),
+            dynamoose: require('./config/lib/dynamoose.js')
+          }}))
+        .on('error', gutil.log);
+});
+
 
 // Karma test runner task
 gulp.task('karma', function (done) {
@@ -210,8 +221,8 @@ gulp.task('test', function(done) {
 });
 
 // Run the project in development mode
-gulp.task('default', function(done) {
-  runSequence('env:dev', 'lint', ['nodemon'], done);
+ gulp.task('default', function(done) {
+  runSequence('env:dev', 'lint', ['nodemon', 'watch'], done);
 });
 
 // Run the project in debug mode

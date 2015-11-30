@@ -7,8 +7,8 @@ var _ = require('lodash'),
   fs = require('fs'),
   path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/errors.controller')),
-  mongoose = require('mongoose'),
-  User = mongoose.model('User');
+  dynamoose = require('config/lib/dynamoose'),
+  User = dynamoose.model('User');
 
 /**
  * Update user details

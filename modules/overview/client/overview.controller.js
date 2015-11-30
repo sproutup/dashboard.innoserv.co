@@ -15,15 +15,15 @@
 		vm.item.stats = [{
 			stat: 'Social media impressions',
 			number: '460,321',
-			sref: 'overview.impressions'
+			sref: 'user.overview.impressions'
 		}, {
 			stat: 'Content views',
 			number: '201,321',
-			sref: 'overview.content'
+			sref: 'user.overview.content'
 		}, {
 			stat: 'Engagements',
 			number: '1,921',
-			sref: 'overview.engagement'
+			sref: 'user.overview.engagement'
 		}];
 
     vm.community = {};

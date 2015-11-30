@@ -15,11 +15,11 @@
 		vm.item.stats = [{
 			stat: 'Impressions',
 			number: '454,948',
-			sref: 'social.impressions'
+			sref: 'user.social.impressions'
 		}, {
 			stat: 'Posts',
 			number: '21',
-			sref: 'social.posts'
+			sref: 'user.social.posts'
 		}];
 
 		vm.impressions = {};

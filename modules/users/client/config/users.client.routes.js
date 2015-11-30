@@ -51,6 +51,10 @@ angular.module('users').config(['$stateProvider',
         url: '/forgot',
         templateUrl: 'modules/users/client/views/password/forgot-password.client.view.html'
       })
+      .state('password.sent', {
+        url: '/sent',
+        templateUrl: 'modules/users/client/views/password/forgot-password-confirmation.client.view.html'
+      })
       .state('password.reset', {
         abstract: true,
         url: '/reset',

@@ -3,8 +3,8 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-  Schema = mongoose.Schema,
+var dynamoose = require('config/lib/dynamoose'),
+  Schema = dynamoose.Schema,
   crypto = require('crypto'),
   validator = require('validator');
 
@@ -106,14 +106,12 @@ var UserSchema = new Schema({
 /**
  * Hook a pre save method to hash the password
  */
-UserSchema.pre('save', function (next) {
+UserSchema.methods.pre = function (next) {
   if (this.password && this.isModified('password') && this.password.length > 6) {
     this.salt = crypto.randomBytes(16).toString('base64');
     this.password = this.hashPassword(this.password);
   }
-
-  next();
-});
+};
 
 /**
  * Create instance method for hashing a password
@@ -155,4 +153,4 @@ UserSchema.statics.findUniqueUsername = function (username, suffix, callback) {
   });
 };
 
-mongoose.model('User', UserSchema);
+dynamoose.model('User', UserSchema);

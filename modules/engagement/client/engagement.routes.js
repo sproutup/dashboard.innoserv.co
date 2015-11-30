@@ -4,26 +4,26 @@
 angular.module('engagement').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('engagement', {
+      .state('user.engagement', {
         url: '',
         abstract: true,
         templateUrl: 'modules/engagement/client/engagement.html',
         controller: 'engagementController',
         controllerAs: 'vm'
       })
-      .state('engagement.page-views', {
+      .state('user.engagement.page-views', {
         url: '/page-views',
         templateUrl: 'modules/engagement/client/engagement-page-views.html',
         controller: 'engagementController',
         controllerAs: 'vm'
       })
-      .state('engagement.clicks', {
+      .state('user.engagement.clicks', {
         url: '/clicks',
         templateUrl: 'modules/engagement/client/engagement-clicks.html',
         controller: 'engagementController',
         controllerAs: 'vm'
       })
-      .state('engagement.purchases', {
+      .state('user.engagement.purchases', {
         url: '/purchases',
         templateUrl: 'modules/engagement/client/engagement-purchases.html',
         controller: 'engagementController',
