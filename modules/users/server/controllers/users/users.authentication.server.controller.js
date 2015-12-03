@@ -4,9 +4,11 @@
  * Module dependencies.
  */
 var path = require('path'),
+  config = require('config/config'),
   errorHandler = require(path.resolve('./modules/core/server/errors.controller')),
   dynamoose = require('dynamoose'),
   passport = require('passport'),
+  sendgrid = require('sendgrid')(config.sendgrid.username, config.sendgrid.pass),
   User = dynamoose.model('User');
 
 // URLs for which user can't be redirected on signin
@@ -14,6 +16,32 @@ var noReturnUrls = [
   '/authentication/signin',
   '/authentication/signup'
 ];
+
+/**
+ * Verification email sent after signup
+ */
+var sendVerificationEmail = function(user) {
+  var email = new sendgrid.Email();
+  email.addTo(user.email);
+  email.subject = 'Welcome to SproutUp. Please verify your email.';
+  email.from = 'noreply@sproutup.co';
+  email.html = '<div></div>';
+  email.addSubstitution(':user', user.displayName);
+
+  email.setFilters({
+    'templates': {
+        'settings': {
+            'enable': 1,
+            'template_id' : '0d97d47d-3d32-499d-9cd9-b5c23c24c592'
+        }
+    }
+  });
+
+  sendgrid.send(email, function(err, json) {
+    if (err) { return console.error('err with email', err); }
+    console.log('email success', json);
+  });
+};
 
 /**
  * Signup
@@ -40,6 +68,8 @@ exports.signup = function (req, res) {
       // Remove sensitive data before login
       user.password = undefined;
       user.salt = undefined;
+
+      sendVerificationEmail(user);
 
       req.login(user, function (err) {
         if (err) {
