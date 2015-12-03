@@ -18,13 +18,13 @@
             <!-- First Name -->
             <input type="text" id="firstName" name="firstName" class="form-control form-validate signup-login-input" ng-model="credentials.firstName" placeholder="First Name" required>
             <div ng-show="userForm.firstName.$submitted || userForm.firstName.$touched">
-              <div class="signup-login-form--error-message" ng-show="userForm.firstName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your name</div>
+              <div class="signup-login-form--error-message" ng-show="userForm.firstName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your first name</div>
             </div>
             
             <!-- Last Name -->
             <input type="text" id="lastName" name="lastName" class="form-control form-validate signup-login-input" ng-model="credentials.lastName" placeholder="Last Name" required>
             <div ng-show="userForm.lastName.$submitted || userForm.lastName.$touched" role="alert">
-              <div class="signup-login-form--error-message" ng-show="userForm.lastName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your name</div>
+              <div class="signup-login-form--error-message" ng-show="userForm.lastName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your last name</div>
             </div>
 
             <!-- Email -->
