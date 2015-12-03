@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('articles').config(['$stateProvider',
+angular.module('timeline').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
       .state('user.timeline', {

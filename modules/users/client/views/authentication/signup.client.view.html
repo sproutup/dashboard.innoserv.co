@@ -1,60 +1,65 @@
 <div ng-controller="AuthenticationController">
-  <h3 class="col-md-12 text-center">Or sign up using your email</h3>
-  <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
-    <form name="userForm" ng-submit="signup(userForm.$valid)" class="signin" novalidate autocomplete="off">
-      <fieldset>
-        <div class="form-group" show-errors>
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="credentials.firstName" placeholder="First Name" required>
-          <div ng-messages="userForm.firstName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">First name is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="credentials.lastName" placeholder="Last Name" required>
-          <div ng-messages="userForm.lastName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Last name is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" class="form-control" ng-model="credentials.email" placeholder="Email" lowercase required>
-          <div ng-messages="userForm.email.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Email address is required.</p>
-            <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" ng-model="credentials.username" placeholder="Username" lowercase required>
-          <div ng-messages="userForm.username.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Username is required.</p>
-          </div>
-        </div>
-        <div class="form-group" show-errors>
-          <label for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" ng-model="credentials.password" placeholder="Password" popover="{{popoverMsg}}" popover-trigger="focus" password-validator required>
-          <div ng-messages="userForm.password.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Password is required.</p>
-            <div ng-repeat="passwordError in passwordErrors">
-              <p class="help-block error-text" ng-show="userForm.password.$error.requirements">{{passwordError}}</p>
+
+  <div class="auth-header">
+    <div class="text-center">
+      <img class="auth-header-logo" src="modules/core/client/img/logo-square.png">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="signup-login-header">
+        <h1>Welcome! Please sign up below.</h1>
+    </div>
+    <div class="signup-login-area">
+      <form name="userForm" ng-submit="signup(userForm.$valid)" class="signin" novalidate autocomplete="off">
+        <fieldset>
+          <div class="signup-login-form" show-errors>
+
+            <!-- First Name -->
+            <input type="text" id="firstName" name="firstName" class="form-control form-validate signup-login-input" ng-model="credentials.firstName" placeholder="First Name" required>
+            <div ng-show="userForm.firstName.$submitted || userForm.firstName.$touched">
+              <div class="signup-login-form--error-message" ng-show="userForm.firstName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your first name</div>
             </div>
+            
+            <!-- Last Name -->
+            <input type="text" id="lastName" name="lastName" class="form-control form-validate signup-login-input" ng-model="credentials.lastName" placeholder="Last Name" required>
+            <div ng-show="userForm.lastName.$submitted || userForm.lastName.$touched" role="alert">
+              <div class="signup-login-form--error-message" ng-show="userForm.lastName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your last name</div>
+            </div>
+
+            <!-- Email -->
+            <input type="email" id="email" name="email" class="form-control form-validate signup-login-input" ng-model="credentials.email" placeholder="Email" lowercase required>
+            <div ng-show="userForm.email.$submitted || userForm.email.$touched" role="alert">
+              <div class="signup-login-form--error-message" ng-show="userForm.email.$error.required"><i class="fa fa-minus-circle"></i>Can't sign up without an email</div>
+              <div class="signup-login-form--error-message" ng-show="userForm.email.$error.email"><i class="fa fa-minus-circle"></i>Err, you sure the email is valid?</div>
+            </div>
+            
+            <!-- Username: To be removed -->
+            <input type="text" id="username" name="username" class="form-control form-validate signup-login-input" ng-model="credentials.username" placeholder="Username" lowercase required>
+
+            <!-- Password -->
+            <input type="password" id="password" name="password" class="form-control form-validate signup-login-input" ng-model="credentials.password" placeholder="Password" required ng-minlength="6">
+            <div ng-show="userForm.password.$submitted || userForm.password.$touched" role="alert">
+              <div class="signup-login-form--error-message" ng-show="userForm.password.$error.required"><i class="fa fa-minus-circle"></i>6+ characters would be safer</div>
+              <div class="signup-login-form--error-message" ng-show="userForm.password.$error.minlength"><i class="fa fa-minus-circle"></i>6+ characters would be safer</div>
+            </div>
+
+            <div class="signup-agreement">
+              <p>By signing up, I agree to SproutUp's <a ui-sref="#" target="_blank">Terms of Service</a> and <a ui-sref="#" target="_blank">Privacy Policy</a>.</p>
+            </div>
+
+            <!-- sign up button -->
+            <button ng-disabled="userForm.$invalid" class="btn btn-lg signup-login-btn" type="submit" ng-click="vm.signup()">Sign up</button>
+
           </div>
-        </div>
-        <div class="form-group" ng-show="!userForm.password.$error.required">
-          <label>Password Requirements</label>
-          <progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></progressbar>
-        </div>
-        <div class="text-center form-group">
-          <button type="submit" class="btn btn-primary">Sign up</button>
-          &nbsp; or&nbsp;
-          <a ui-sref="authentication.signin" class="show-signup">Sign in</a>
-        </div>
-        <div ng-show="error" class="text-center text-danger">
-          <strong ng-bind="error"></strong>
-        </div>
-      </fieldset>
-    </form>
+        </fieldset>
+      </form>
+
+      <!-- footer -->
+      <div class="signup-login-form-footer">
+        <p>Already signed up? <a ui-sref="authentication.signin">Log in</a> here.</p>
+      </div>
+
+    </div>
   </div>
 </div>
