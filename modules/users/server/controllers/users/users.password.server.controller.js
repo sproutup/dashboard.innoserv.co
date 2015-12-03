@@ -5,6 +5,7 @@
  */
 var path = require('path'),
   config = require(path.resolve('./config/config')),
+  sendgrid = require('sendgrid')(config.sendgrid.username, config.sendgrid.pass),
   errorHandler = require(path.resolve('./modules/core/server/errors.controller')),
   dynamoose = require('dynamoose'),
   User = dynamoose.model('User'),
@@ -28,13 +29,13 @@ exports.forgot = function (req, res, next) {
     },
     // Lookup user by username
     function (token, done) {
-      if (req.body.username) {
-        User.findOne({
-          username: req.body.username
-        }, '-salt -password', function (err, user) {
+      if (req.body.email) {
+        User.queryOne({
+          email: req.body.email
+        }, function (err, user) {
           if (!user) {
             return res.status(400).send({
-              message: 'No account with that username has been found'
+              message: 'No account with that email has been found'
             });
           } else if (user.provider !== 'local') {
             return res.status(400).send({
@@ -43,7 +44,6 @@ exports.forgot = function (req, res, next) {
           } else {
             user.resetPasswordToken = token;
             user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-
             user.save(function (err) {
               done(err, token, user);
             });
@@ -55,36 +55,50 @@ exports.forgot = function (req, res, next) {
         });
       }
     },
-    function (token, user, done) {
-      res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
-        name: user.displayName,
-        appName: config.app.title,
-        url: 'http://' + req.headers.host + '/api/auth/reset/' + token
-      }, function (err, emailHTML) {
-        done(err, emailHTML, user);
-      });
-    },
     // If valid email, send reset email using service
     function (emailHTML, user, done) {
-      var mailOptions = {
-        to: user.email,
-        from: config.mailer.from,
-        subject: 'Password Reset',
-        html: emailHTML
-      };
-      smtpTransport.sendMail(mailOptions, function (err) {
-        if (!err) {
-          res.send({
-            message: 'An email has been sent to the provided email with further instructions.'
-          });
-        } else {
-          return res.status(400).send({
-            message: 'Failure sending email'
-          });
-        }
+      var url = 'http://' + req.headers.host + '/api/auth/reset/' + user.resetPasswordToken;
+      var email = new sendgrid.Email();
+      email.addTo(user.email);
+      email.subject = 'Welcome to SproutUp. Please verify your email.';
+      email.from = 'mailer@sproutup.co';
+      email.html = '<div></div>';
+      email.addSubstitution(':user', user.displayName);
+      email.addSubstitution(':url', url);
 
-        done(err);
+      email.setFilters({
+        'templates': {
+          'settings': {
+            'enable': 1,
+            'template_id' : 'd46dbccc-3eb8-4788-9b8a-330d5d3aecdf'
+          }
+        }
       });
+
+      sendgrid.send(email, function(err, json) {
+        if (err) { return console.error('err with email', err); }
+        console.log('email success', json);
+      });
+      
+      // var mailOptions = {
+      //   to: user.email,
+      //   from: config.mailer.from,
+      //   subject: 'Password Reset',
+      //   html: emailHTML
+      // };
+      // smtpTransport.sendMail(mailOptions, function (err) {
+      //   if (!err) {
+      //     res.send({
+      //       message: 'An email has been sent to the provided email with further instructions.'
+      //     });
+      //   } else {
+      //     return res.status(400).send({
+      //       message: 'Failure sending email'
+      //     });
+      //   }
+
+      //   done(err);
+      // });
     }
   ], function (err) {
     if (err) {
@@ -97,11 +111,8 @@ exports.forgot = function (req, res, next) {
  * Reset password GET from email token
  */
 exports.validateResetToken = function (req, res) {
-  User.findOne({
-    resetPasswordToken: req.params.token,
-    resetPasswordExpires: {
-      $gt: Date.now()
-    }
+  User.queryOne({
+    resetPasswordToken: req.params.token
   }, function (err, user) {
     if (!user) {
       return res.redirect('/password/reset/invalid');

@@ -49,6 +49,7 @@ angular.module('users').config(['$stateProvider',
       })
       .state('password.forgot', {
         url: '/forgot',
+        controller: 'PasswordController',
         templateUrl: 'modules/users/client/views/password/forgot-password.client.view.html'
       })
       .state('password.sent', {
