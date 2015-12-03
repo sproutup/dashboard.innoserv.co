@@ -271,17 +271,29 @@ body {
   background-color: white;
   border: 1px solid #f1f1f1;
   border-radius: 20px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
   box-shadow: none;
   height: 12px;
   margin: 90px 10px 0px;
   overflow: hidden;
 }
 .progress-bar {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
   box-shadow: none;
   background-color: #2996cc;
   background-image: none;
   float: left;
   height: 100%;
+  -webkit-transition: width 0.6s ease 0s;
+  -moz-transition: width 0.6s ease 0s;
+  -ms-transition: width 0.6s ease 0s;
+  -o-transition: width 0.6s ease 0s;
   transition: width 0.6s ease 0s;
   width: 0;
 }
@@ -545,8 +557,10 @@ body {
   margin-right: 5%;
   margin-bottom: 5px;
   border-radius: 2px;
-  -webkit-box-shadow: none;
   -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
   box-shadow: none;
   font-size: 11pt;
   font-weight: 400;
@@ -565,6 +579,8 @@ body {
   padding-left: 15px;
   padding-right: 15px;
   -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -597,6 +613,22 @@ body {
   margin: 0px 5%;
   color: #929292;
 }
+.signup-agreement {
+  padding: 10px 0px;
+  text-align: left;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.signup-agreement p {
+  font-weight: 400;
+  font-size: 11pt;
+  color: #414141;
+  padding: 0px;
+  margin: 0px;
+}
+.signup-agreement p a {
+  color: #2996cc;
+}
 .signup-login-form-footer {
   padding: 15px 0px 0px;
   margin-left: 5%;
@@ -604,7 +636,7 @@ body {
 }
 .signup-login-form-footer p {
   font-weight: 400;
-  font-size: 10.5pt;
+  font-size: 11pt;
   color: #414141;
   padding: 0px 0px 5px;
   margin: 0px;
@@ -630,16 +662,18 @@ input:-ms-input-placeholder {
   opacity: 1;
 }
 .form-control {
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-}
-.form-control:focus {
-  box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   -moz-appearance: none;
   -webkit-appearance: none;
+  box-shadow: none;
+}
+.form-control:focus {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  box-shadow: none;
   border-color: #2996cc;
   outline: 0 !important;
 }
@@ -663,6 +697,8 @@ input:-ms-input-placeholder {
   padding-top: 15px;
   margin: 0px;
   -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
   -o-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
 }
@@ -681,6 +717,8 @@ input:-ms-input-placeholder {
   margin-right: 6px;
   margin-bottom: 5px;
   -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
