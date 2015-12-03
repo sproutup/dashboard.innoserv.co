@@ -28,4 +28,12 @@ if(config.db.local === true){
   dynamoose.local();
 }
 
-module.exports = dynamoose;
+// Load the mongoose models
+module.exports.loadModels = function (callback) {
+  // Globbing model files
+  config.files.server.models.forEach(function (modelPath) {
+    require(modelPath);
+  });
+
+  if (callback) callback();
+};

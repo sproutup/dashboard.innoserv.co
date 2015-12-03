@@ -7,8 +7,10 @@ var config = require('../config'),
   express = require('express'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
+  redis = require('config/lib/redis'),
   session = require('express-session'),
-  MongoStore = require('connect-mongo')(session),
+//  MongoStore = require('connect-mongo')(session),
+  RedisStore = require('connect-redis')(session),
   multer = require('multer'),
   favicon = require('serve-favicon'),
   compress = require('compression'),
@@ -118,11 +120,8 @@ module.exports.initSession = function (app, db) {
     cookie: {
       maxAge: config.sessionExpiration
     },
-    key: config.sessionKey,    
-//    store: new MongoStore({
-//      mongooseConnection: db.connection,
-//      collection: config.sessionCollection
-//    })
+    key: config.sessionKey,
+    store: new RedisStore({client: redis})
   }));
 };
 

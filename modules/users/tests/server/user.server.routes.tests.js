@@ -3,9 +3,12 @@
 var should = require('should'),
   request = require('supertest'),
   path = require('path'),
-  dynamoose = require('config/lib/dynamoose'),
-  User = dynamoose.model('User'),
+  dynamoose = require('dynamoose'),
+  dynamooselib = require('config/lib/dynamoose'),
   express = require(path.resolve('./config/lib/express'));
+
+dynamooselib.loadModels();
+var User = dynamoose.model('User');
 
 /**
  * Globals
@@ -20,7 +23,6 @@ describe('User CRUD tests', function () {
     // Get application
     app = express.init(dynamoose);
     agent = request.agent(app);
-
     done();
   });
 
@@ -33,6 +35,7 @@ describe('User CRUD tests', function () {
 
     // Create a new user
     user = new User({
+      id: '123',
       firstName: 'Full',
       lastName: 'Name',
       displayName: 'Full Name',
@@ -55,9 +58,11 @@ describe('User CRUD tests', function () {
       .end(function (signinErr, signinRes) {
         // Handle signin error
         if (signinErr) {
+            console.log('err: ', signinErr);
           return done(signinErr);
         }
 
+console.log('##signin');
         // Save a new article
         agent.get('/api/users')
           .expect(403)
@@ -83,7 +88,6 @@ describe('User CRUD tests', function () {
           if (signinErr) {
             return done(signinErr);
           }
-
           // Save a new article
           agent.get('/api/users')
             .expect(200)
@@ -91,7 +95,7 @@ describe('User CRUD tests', function () {
               if (usersGetErr) {
                 return done(usersGetErr);
               }
-
+console.log('## result: ', usersGetRes);
               usersGetRes.body.should.be.instanceof(Array).and.have.lengthOf(1);
 
               // Call the assertion callback
@@ -102,6 +106,6 @@ describe('User CRUD tests', function () {
   });
 
   afterEach(function (done) {
-    User.remove().exec(done);
+    User.delete().exec(done);
   });
 });

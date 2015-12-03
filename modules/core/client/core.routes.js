@@ -9,6 +9,10 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
     // Home state routing
     $stateProvider
+      .state('home', {
+        url: '/home',
+        templateUrl: 'modules/core/client/home.view.html'
+      })
       .state('user' ,{
         url: '',
         abstract: true,

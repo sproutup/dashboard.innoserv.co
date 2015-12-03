@@ -3,9 +3,12 @@
 /**
  * Module dependencies.
  */
-var dynamoose = require('config/lib/dynamoose'),
+var dynamoose = require('dynamoose'),
   Schema = dynamoose.Schema,
   crypto = require('crypto'),
+  FlakeId = require('flake-idgen'),
+  flakeIdGen = new FlakeId(),
+  intformat = require('biguint-format'),
   validator = require('validator');
 
 /**
@@ -26,6 +29,13 @@ var validateLocalStrategyPassword = function (password) {
  * A Validation function for local strategy email
  */
 var validateLocalStrategyEmail = function (email) {
+  var User = dynamoose.model('User');
+//  User.findEmail(email, function(err, user){
+//    if(user) {
+//      console.log('email exists');
+//      return false;
+//    }
+//  });
   return ((this.provider !== 'local' && !this.updated) || validator.isEmail(email));
 };
 
@@ -33,17 +43,28 @@ var validateLocalStrategyEmail = function (email) {
  * User Schema
  */
 var UserSchema = new Schema({
+  id: {
+    type: String,
+    default: intformat(flakeIdGen.next(), 'dec'),
+    hashKey: true
+  },
+  username: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   firstName: {
     type: String,
     trim: true,
+    required: true,
     default: '',
-    validate: [validateLocalStrategyProperty, 'Please fill in your first name']
+    validate: validateLocalStrategyProperty
   },
   lastName: {
     type: String,
     trim: true,
     default: '',
-    validate: [validateLocalStrategyProperty, 'Please fill in your last name']
+    validate: validateLocalStrategyProperty
   },
   displayName: {
     type: String,
@@ -52,22 +73,23 @@ var UserSchema = new Schema({
   email: {
     type: String,
     trim: true,
-    unique: true,
     default: '',
-    validate: [validateLocalStrategyEmail, 'Please fill a valid email address']
-  },
-  username: {
-    type: String,
-    unique: 'Username already exists',
-    required: 'Please fill in a username',
-    trim: true
+    validate: validateLocalStrategyEmail,
+    index: {
+      global: true,
+      project: true,
+      name: 'emailGlobalIndex'
+    }
   },
   password: {
     type: String,
     default: '',
-    validate: [validateLocalStrategyPassword, 'Password should be longer']
+    validate: validateLocalStrategyPassword
   },
   salt: {
+    type: String
+  },
+  hash: {
     type: String
   },
   profileImageURL: {
@@ -104,16 +126,6 @@ var UserSchema = new Schema({
 });
 
 /**
- * Hook a pre save method to hash the password
- */
-UserSchema.methods.pre = function (next) {
-  if (this.password && this.isModified('password') && this.password.length > 6) {
-    this.salt = crypto.randomBytes(16).toString('base64');
-    this.password = this.hashPassword(this.password);
-  }
-};
-
-/**
  * Create instance method for hashing a password
  */
 UserSchema.methods.hashPassword = function (password) {
@@ -128,7 +140,7 @@ UserSchema.methods.hashPassword = function (password) {
  * Create instance method for authenticating user
  */
 UserSchema.methods.authenticate = function (password) {
-  return this.password === this.hashPassword(password);
+  return this.hash === this.hashPassword(password);
 };
 
 /**
@@ -153,4 +165,35 @@ UserSchema.statics.findUniqueUsername = function (username, suffix, callback) {
   });
 };
 
-dynamoose.model('User', UserSchema);
+UserSchema.statics.findEmail = function (email, callback) {
+  var _this = this;
+
+  _this.query('email').eq(email).limit(1).exec(function(err, user){
+    console.log('user:', user);
+    console.log('err:', err);
+    return true;
+  });
+};
+
+var User = dynamoose.model('User', UserSchema);
+
+/**
+ * Hook a pre save method to hash the password
+ */
+User.pre('save', function(next) {
+  if (this.password && !this.hash) {
+    this.salt = crypto.randomBytes(16).toString('base64');
+    this.hash = this.hashPassword(this.password);
+    this.password = '';
+  }
+
+  // new user check email
+//  if (!this.id){
+//    User.get({email: this.email});
+//  }
+
+  next();
+});
+
+
+

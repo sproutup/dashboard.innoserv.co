@@ -3,14 +3,18 @@
 /**
  * Module dependencies.
  */
+
+var dynamooselib = require('config/lib/dynamoose');
+dynamooselib.loadModels();
+
 var should = require('should'),
-  dynamoose = require('config/lib/dynamoose'),
+  dynamoose = require('dynamoose'),
   User = dynamoose.model('User');
 
 /**
  * Globals
  */
-var user, user2, user3;
+var user, user2, user3, user4;
 
 /**
  * Unit tests
@@ -44,7 +48,16 @@ describe('User Model Unit Tests:', function () {
       password: 'different_password',
       provider: 'local'
     };
-
+    user4 = {
+      firstName: '',
+      lastName: 'Name',
+      displayName: 'Full Name',
+      email: 'test@test.com',
+      username: 'username',
+      password: 'password',
+      provider: 'local'
+    };
+ 
   });
 
   describe('Method Save', function () {
@@ -57,10 +70,9 @@ describe('User Model Unit Tests:', function () {
 
     it('should be able to save without problems', function (done) {
       var _user = new User(user);
-      
       _user.save(function (err) {
         should.not.exist(err);
-        _user.remove(function (err) {
+        _user.delete(function (err) {
           should.not.exist(err);
           done();
         });
@@ -70,11 +82,11 @@ describe('User Model Unit Tests:', function () {
     it('should fail to save an existing user again', function (done) {
       var _user = new User(user);
       var _user2 = new User(user2);
-      
-      _user.save(function () {
-        _user2.save(function (err) {
+
+      User.create(user, function () {
+        User.create(user2, function (err) {
           should.exist(err);
-          _user.remove(function (err) {
+          _user.delete(function (err) {
             should.not.exist(err);
             done();
           });
@@ -83,13 +95,15 @@ describe('User Model Unit Tests:', function () {
     });
 
     it('should be able to show an error when try to save without first name', function (done) {
-      var _user = new User(user);
-
-      _user.firstName = '';
-      _user.save(function (err) {
+      try {
+      User.create(user4, function (err, data) {
         should.exist(err);
         done();
       });
+      } catch(err){
+        should.exist(err);
+        done();
+      }
     });
 
     it('should confirm that saving user model doesnt change the password', function (done) {
@@ -102,7 +116,7 @@ describe('User Model Unit Tests:', function () {
         _user.save(function (err) {
           var passwordAfter = _user.password;
           passwordBefore.should.equal(passwordAfter);
-          _user.remove(function (err) {
+          _user.delete(function (err) {
             should.not.exist(err);
             done();
           });
@@ -118,9 +132,9 @@ describe('User Model Unit Tests:', function () {
         should.not.exist(err);
         _user3.save(function (err) {
           should.not.exist(err);
-          _user3.remove(function (err) {
+          _user3.delete(function (err) {
             should.not.exist(err);
-            _user.remove(function (err) {
+            _user.delete(function (err) {
               should.not.exist(err);
               done();
             });
@@ -136,14 +150,14 @@ describe('User Model Unit Tests:', function () {
       var _user = new User(user);
       var _user3 = new User(user3);
 
-      _user.remove(function (err) {
+      _user.delete(function (err) {
         should.not.exist(err);
         _user.save(function (err) {
           should.not.exist(err);
           _user3.email = _user.email;
           _user3.save(function (err) {
             should.exist(err);
-            _user.remove(function(err) {
+            _user.delete(function(err) {
               should.not.exist(err);
               done();
             });
@@ -162,7 +176,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = '123';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -180,7 +194,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = '123@123';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -198,7 +212,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = '123.com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -216,7 +230,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = '@123.com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -234,7 +248,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = 'abc@abc@abc.com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -252,7 +266,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = 'abc~@#$%^&*()ef=@abc.com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -270,7 +284,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = 'abc def@abc.com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -288,7 +302,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = 'abc\'def@abc.com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -306,7 +320,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = 'abc\"def@abc.com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -324,7 +338,7 @@ describe('User Model Unit Tests:', function () {
       _user.email = 'abcdef@abc..com';
       _user.save(function (err) {
         if (!err) {
-          _user.remove(function (err_remove) {
+          _user.delete(function (err_remove) {
             should.not.exist(err_remove);
             done();
           });
@@ -405,12 +419,16 @@ describe('User Model Unit Tests:', function () {
           done();
         }
       });
-      
     });
 
   });
 
   after(function (done) {
-    User.delete().exec(done);
+    User.$__.table.delete(function(err){
+      done();
+    });
+//    User.delete().exec(done);
+//    dynamoose.models.User.delete('testUser');
+//    done();
   });
 });

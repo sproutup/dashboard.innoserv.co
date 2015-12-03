@@ -6,7 +6,7 @@
 var path = require('path'),
   config = require(path.resolve('./config/config')),
   errorHandler = require(path.resolve('./modules/core/server/errors.controller')),
-  dynamoose = require('config/lib/dynamoose'),
+  dynamoose = require('dynamoose'),
   User = dynamoose.model('User'),
   nodemailer = require('nodemailer'),
   async = require('async'),

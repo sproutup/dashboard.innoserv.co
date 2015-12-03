@@ -146,20 +146,20 @@ gulp.task('peter', function (done) {
 
 // Mocha tests task
 gulp.task('mocha', function (done) {
-  // Open mongoose connections
-  var dynamoose = require('./config/lib/dynamoose.js');
+  require('app-module-path').addPath(__dirname);
+  var dynamoose = require('./config/lib/dynamoose');
+  dynamoose.loadModels();
   var error;
 
   // Run the tests
   gulp.src(testAssets.tests.server)
     .pipe(debug({title: 'mocha:'}))
-    .pipe(plugins.mocha({
-      reporter: 'spec'
-    }))
-    .on('error', function (err) {
-      // If an error occurs, save it
-      error = err;
-    })
+    .pipe(plugins.mocha({ reporter: 'spec',
+      globals: {
+        path: require('app-module-path').addPath(__dirname),
+        should: require('should')
+      }}))
+    .on('error', gutil.log)
     .on('end', function() {
       // When the tests are done, disconnect mongoose and pass the error state back to gulp
     });
@@ -168,16 +168,18 @@ gulp.task('mocha', function (done) {
 var gutil = require('gulp-util');
 
 gulp.task('mocha2', function() {
-    return gulp.src(['modules/users/tests/server/user.server.model.tests.js'],
-          { read: false })
-        .pipe(debug({title: 'mocha:'}))
-        .pipe(plugins.mocha({ reporter: 'spec', 
-          globals: {
-            path: require('app-module-path').addPath(__dirname),
-            should: require('should'),
-            dynamoose: require('./config/lib/dynamoose.js')
-          }}))
-        .on('error', gutil.log);
+  require('app-module-path').addPath(__dirname);
+  var dynamoose = require('./config/lib/dynamoose');
+  dynamoose.loadModels();
+  return gulp.src(['modules/users/tests/server/user.server.model.tests.js'],
+      { read: false })
+    .pipe(debug({title: 'mocha:'}))
+    .pipe(plugins.mocha({ reporter: 'spec',
+      globals: {
+        path: require('app-module-path').addPath(__dirname),
+        should: require('should')
+      }}))
+    .on('error', gutil.log);
 });
 
 

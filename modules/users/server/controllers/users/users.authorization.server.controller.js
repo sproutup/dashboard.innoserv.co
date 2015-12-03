@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-  dynamoose = require('config/lib/dynamoose'),
+  dynamoose = require('dynamoose'),
   User = dynamoose.model('User');
 
 /**

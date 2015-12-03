@@ -5,7 +5,7 @@
  */
 var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/errors.controller')),
-  dynamoose = require('config/lib/dynamoose'),
+  dynamoose = require('dynamoose'),
   passport = require('passport'),
   User = dynamoose.model('User');
 

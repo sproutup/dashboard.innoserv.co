@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var path = require('path'),
-  dynamoose = require('config/lib/dynamoose'),
+  dynamoose = require('dynamoose'),
   User = dynamoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/errors.controller'));
 
@@ -74,7 +74,7 @@ exports.list = function (req, res) {
  * User middleware
  */
 exports.userByID = function (req, res, next, id) {
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  if (!dynamoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
       message: 'User is invalid'
     });
