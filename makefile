@@ -57,6 +57,6 @@ node:
 	AWS_SQS_REGION=us-west-2 \
 	AWS_QUEUE_NAME=testSQS \
 	SENDGRID_USERNAME=sproutup \
-	SENDGRID_PASSWORD='1nter$$Tellar' \
+	SENDGRID_PASSWORD='1nter$Tellar' \
 	npm start
 
