@@ -1,13 +1,15 @@
 'use strict';
 
-angular.module('users').controller('PasswordController', ['$scope', '$stateParams', '$http', '$location', 'Authentication',
-  function ($scope, $stateParams, $http, $location, Authentication) {
-    $scope.authentication = Authentication;
+angular.module('users').controller('PasswordController', ['$scope', '$http', '$location', 'Authentication', '$state', '$stateParams',
+  function ($scope, $http, $location, Authentication, $state, $stateParams) {
+    $scope.authentication = Authentication; 
 
     //If user is signed in then redirect back home
     if ($scope.authentication.user) {
       $location.path('/');
     }
+
+    $scope.emailSent = $stateParams.emailSent;
 
     // Submit forgotten password account id
     $scope.askForPasswordReset = function () {
@@ -17,7 +19,7 @@ angular.module('users').controller('PasswordController', ['$scope', '$stateParam
         // Show user success message and clear form
         $scope.credentials = null;
         $scope.success = response.message;
-
+        $state.go('password.reset.sent', { 'emailSent': response.emailSent });
       }).error(function (response) {
         // Show user error message and clear form
         $scope.credentials = null;

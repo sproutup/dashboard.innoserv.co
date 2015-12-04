@@ -50,7 +50,7 @@ exports.forgot = function (req, res, next) {
         });
       } else {
         return res.status(400).send({
-          message: 'Username field must not be blank'
+          message: 'Email field must not be blank'
         });
       }
     },
@@ -76,7 +76,10 @@ exports.forgot = function (req, res, next) {
 
       sendgrid.send(email, function(err, json) {
         if (err) { return console.error('err with email', err); }
-        console.log('email success', json);
+        res.status(200).send({
+          message: 'An email has been sent to the provided email with further instructions.',
+          emailSent: user.email
+        });
       });
     }
   ], function (err) {
@@ -113,11 +116,10 @@ exports.reset = function (req, res, next) {
   async.waterfall([
 
     function (done) {
-      User.queryOne({
-        resetPasswordToken: req.params.token,
-        resetPasswordExpires: {
-          $gt: Date.now()
-        }
+      var colonIndex = req.params.token.indexOf(':');
+      var userId = req.params.token.substring(0, colonIndex);
+      User.get({
+        id: userId
       }, function (err, user) {
         if (!err && user) {
           if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
@@ -157,12 +159,7 @@ exports.reset = function (req, res, next) {
     },
     // If valid email, send reset email using service
     function (emailHTML, user, done) {
-      var mailOptions = {
-        to: user.email,
-        from: config.mailer.from,
-        subject: 'Your password has been changed',
-        html: emailHTML
-      };
+      // send email to user to let them know their password has been changed
     }
   ], function (err) {
     if (err) {
