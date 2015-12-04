@@ -118,11 +118,7 @@ var UserSchema = new Schema({
   },
   /* For reset password */
   resetPasswordToken: {
-    type: String,
-    index: {
-      global: true,
-      project: true
-    }
+    type: String
   },
   resetPasswordExpires: {
     type: Date
