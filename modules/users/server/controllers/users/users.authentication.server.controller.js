@@ -24,7 +24,8 @@ var sendVerificationEmail = function(user) {
   var email = new sendgrid.Email();
   email.addTo(user.email);
   email.subject = 'Welcome to SproutUp. Please verify your email.';
-  email.from = 'noreply@sproutup.co';
+  email.from = 'mailer@sproutup.co';
+  email.fromname = 'Bot@SproutUp';
   email.html = '<div></div>';
   email.addSubstitution(':user', user.displayName);
 
