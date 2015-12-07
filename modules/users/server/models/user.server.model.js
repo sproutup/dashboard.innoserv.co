@@ -128,20 +128,20 @@ var UserSchema = new Schema({
 /**
  * Create instance method for hashing a password
  */
-UserSchema.methods.hashPassword = function (password) {
+UserSchema.method('hashPassword', function (password) {
   if (this.salt && password) {
     return crypto.pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000, 64).toString('base64');
   } else {
     return password;
   }
-};
+});
 
 /**
  * Create instance method for authenticating user
  */
-UserSchema.methods.authenticate = function (password) {
+UserSchema.method('authenticate', function (password) {
   return this.hash === this.hashPassword(password);
-};
+});
 
 /**
  * Find possible not used username

@@ -14,14 +14,14 @@ module.exports = function () {
       passwordField: 'password'
     },
     function (username, password, done) {
-      User.get({
-        username: username
+      User.queryOne({
+        email: username
       }, function (err, user) {
         if (err) {
-
           return done(err);
         }
-        if (!user || !user.authenticate(password)) {  
+        if (!user ||
+          !user.authenticate(password)) {
           return done(null, false, {
             message: 'Invalid username or password'
           });
