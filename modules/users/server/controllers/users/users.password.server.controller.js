@@ -57,7 +57,7 @@ exports.forgot = function (req, res, next) {
       var url = 'http://' + req.headers.host + '/api/auth/reset/' + token;
       var email = new sendgrid.Email();
       email.addTo(user.email);
-      email.subject = 'Welcome to SproutUp. Please verify your email.';
+      email.subject = 'Here\'s your link to reset your password';
       email.from = 'mailer@sproutup.co';
       email.html = '<div></div>';
       email.addSubstitution(':user', user.displayName);
@@ -154,8 +154,28 @@ exports.reset = function (req, res, next) {
       });
     },
     // If valid email, send reset email using service
-    function (emailHTML, user, done) {
+    function (user, done) {
       // send email to user to let them know their password has been changed
+      var email = new sendgrid.Email();
+      email.addTo(user.email);
+      email.subject = 'Your password has been reset';
+      email.from = 'mailer@sproutup.co';
+      email.html = '<div></div>';
+      email.addSubstitution(':user', user.displayName);
+
+      email.setFilters({
+        'templates': {
+          'settings': {
+            'enable': 1,
+            'template_id' : 'ec65e498-2dd4-4281-bc89-f3e3a9447f80'
+          }
+        }
+      });
+
+      sendgrid.send(email, function(err, json) {
+        if (err) { return console.error('err with email', err); }
+        done(err);
+      });
     }
   ], function (err) {
     if (err) {
