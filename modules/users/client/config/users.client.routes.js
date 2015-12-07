@@ -81,6 +81,21 @@ angular.module('users').config(['$stateProvider',
         url: '/:token',
         controller: 'PasswordController',
         templateUrl: 'modules/users/client/views/password/reset-password.client.view.html'
+      })
+      .state('email', {
+        abstract: true,
+        url: '/email',
+        controller: 'EmailController',
+        template: '<ui-view/>'
+      })
+      .state('email.confirmation', {
+        abstract: true,
+        url: '',
+        template: '<ui-view/>'
+      })
+      .state('email.confirmation.invalid', {
+        url: '/invalid',
+        templateUrl: 'modules/users/client/views/authentication/email-confirmation-invalid.client.view.html'
       });
   }
 ]);

@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO Use papa john style and put this into one object
+
 // Users service used for communicating with the users REST endpoint
 angular.module('users').factory('Users', ['$resource',
   function ($resource) {

@@ -9,7 +9,9 @@ var path = require('path'),
   dynamoose = require('dynamoose'),
   passport = require('passport'),
   sendgrid = require('sendgrid')(config.sendgrid.username, config.sendgrid.pass),
-  User = dynamoose.model('User');
+  User = dynamoose.model('User'),
+  redis = require('config/lib/redis'),
+  crypto = require('crypto');
 
 // URLs for which user can't be redirected on signin
 var noReturnUrls = [
@@ -20,27 +22,35 @@ var noReturnUrls = [
 /**
  * Verification email sent after signup
  */
-var sendVerificationEmail = function(user) {
+var sendVerificationEmail = function(user, callback) {
+  var token;
+  crypto.randomBytes(20, function (err, buffer) {
+    token = buffer.toString('hex');
+  });
+
   var email = new sendgrid.Email();
   email.addTo(user.email);
   email.subject = 'Welcome to SproutUp. Please verify your email.';
   email.from = 'mailer@sproutup.co';
-  email.fromname = 'Bot@SproutUp';
+  email.fromname = 'SproutUp';
   email.html = '<div></div>';
   email.addSubstitution(':user', user.displayName);
+  email.addSubstitution(':token', token);
+  redis.set(token, user);
 
   email.setFilters({
     'templates': {
-        'settings': {
-            'enable': 1,
-            'template_id' : '0d97d47d-3d32-499d-9cd9-b5c23c24c592'
-        }
+      'settings': {
+        'enable': 1,
+        'template_id' : '0d97d47d-3d32-499d-9cd9-b5c23c24c592'
+      }
     }
   });
 
   sendgrid.send(email, function(err, json) {
-    if (err) { return console.error('err with email', err); }
-    console.log('email success', json);
+    if (callback) {
+      callback(err);
+    }
   });
 };
 
@@ -78,6 +88,36 @@ exports.signup = function (req, res) {
         } else {
           res.json(user);
         }
+      });
+    }
+  });
+};
+
+/**
+ * Validate email token
+ */
+exports.validateEmailToken = function (req, res) {
+  redis.get(req.params.token).then(function(result) {
+    if (result) {
+      res.redirect('/email/confirmation/' + req.params.token);
+    } else {
+      return res.redirect('/password/email/invalid');
+    }
+  });
+};
+
+/**
+ * Validate email confirmation
+ */
+exports.resendEmailConfirmation = function (req, res) {
+  sendVerificationEmail(req.user, function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      return res.send({
+        message: 'Email sent successfully'
       });
     }
   });
