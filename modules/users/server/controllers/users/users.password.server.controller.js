@@ -11,6 +11,7 @@ var path = require('path'),
   User = dynamoose.model('User'),
   nodemailer = require('nodemailer'),
   async = require('async'),
+  redis = require('config/lib/redis'),
   crypto = require('crypto');
 
 /**
@@ -40,12 +41,9 @@ exports.forgot = function (req, res, next) {
               message: 'It seems like you signed up using your ' + user.provider + ' account'
             });
           } else {
-            token = user.id + ':' + token;
-            user.resetPasswordToken = token;
-            user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-            user.save(function (err) {
-              done(err, token, user);
-            });
+            token = 'token:' + token;
+            redis.set(token, user.id);
+            done(err, token, user);
           }
         });
       } else {
@@ -55,11 +53,11 @@ exports.forgot = function (req, res, next) {
       }
     },
     // If valid email, send reset email using service
-    function (emailHTML, user, done) {
-      var url = 'http://' + req.headers.host + '/api/auth/reset/' + user.resetPasswordToken;
+    function (token, user, done) {
+      var url = 'http://' + req.headers.host + '/api/auth/reset/' + token;
       var email = new sendgrid.Email();
       email.addTo(user.email);
-      email.subject = 'Welcome to SproutUp. Please verify your email.';
+      email.subject = 'Here\'s your link to reset your password';
       email.from = 'mailer@sproutup.co';
       email.html = '<div></div>';
       email.addSubstitution(':user', user.displayName);
@@ -93,15 +91,12 @@ exports.forgot = function (req, res, next) {
  * Reset password GET from email token
  */
 exports.validateResetToken = function (req, res) {
-  var colonIndex = req.params.token.indexOf(':');
-  var userId = req.params.token.substring(0, colonIndex);
-  User.get({
-    id: userId
-  }, function (err, user) {
-    if (user.resetPasswordToken !== req.params.token) {
+  redis.get(req.params.token).then(function(result) {
+    if (result) {
+      res.redirect('/password/reset/' + req.params.token);
+    } else {
       return res.redirect('/password/reset/invalid');
     }
-    res.redirect('/password/reset/' + req.params.token);
   });
 };
 
@@ -114,52 +109,73 @@ exports.reset = function (req, res, next) {
   var message = null;
 
   async.waterfall([
-
     function (done) {
-      var colonIndex = req.params.token.indexOf(':');
-      var userId = req.params.token.substring(0, colonIndex);
-      User.get({
-        id: userId
-      }, function (err, user) {
-        if (!err && user) {
-          if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
-            user.password = passwordDetails.newPassword;
-            user.resetPasswordToken = undefined;
-            user.resetPasswordExpires = undefined;
+      // Get the token in param and use the value (user.id) to find the user to update 
+      redis.get(req.params.token).then(function(result) {
+        if (result) {
+          User.get({
+            id: result
+          }, function (err, user) {
+            if (!err && user) {
+              if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
+                user.password = passwordDetails.newPassword;
+                user.resetPasswordToken = undefined;
+                user.resetPasswordExpires = undefined;
 
-            user.save(function (err) {
-              if (err) {
-                return res.status(400).send({
-                  message: errorHandler.getErrorMessage(err)
-                });
-              } else {
-                req.login(user, function (err) {
+                user.save(function (err) {
                   if (err) {
-                    res.status(400).send(err);
+                    return res.status(400).send({
+                      message: errorHandler.getErrorMessage(err)
+                    });
                   } else {
-                    // Return authenticated user
-                    res.json(user);
-
-                    done(err, user);
+                    req.login(user, function (err) {
+                      if (err) {
+                        res.status(400).send(err);
+                      } else {
+                        // Return authenticated user
+                        res.json(user);
+                        done(err, user);
+                      }
+                    });
                   }
                 });
+              } else {
+                return res.status(400).send({
+                  message: 'Passwords do not match'
+                });
               }
-            });
-          } else {
-            return res.status(400).send({
-              message: 'Passwords do not match'
-            });
-          }
-        } else {
-          return res.status(400).send({
-            message: 'Password reset token is invalid or has expired.'
+            } else {
+              return res.status(400).send({
+                message: 'Password reset token is invalid or has expired.'
+              });
+            }
           });
         }
       });
     },
     // If valid email, send reset email using service
-    function (emailHTML, user, done) {
+    function (user, done) {
       // send email to user to let them know their password has been changed
+      var email = new sendgrid.Email();
+      email.addTo(user.email);
+      email.subject = 'Your password has been reset';
+      email.from = 'mailer@sproutup.co';
+      email.html = '<div></div>';
+      email.addSubstitution(':user', user.displayName);
+
+      email.setFilters({
+        'templates': {
+          'settings': {
+            'enable': 1,
+            'template_id' : 'ec65e498-2dd4-4281-bc89-f3e3a9447f80'
+          }
+        }
+      });
+
+      sendgrid.send(email, function(err, json) {
+        if (err) { return console.error('err with email', err); }
+        done(err);
+      });
     }
   ], function (err) {
     if (err) {

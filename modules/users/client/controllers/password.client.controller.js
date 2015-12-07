@@ -9,6 +9,7 @@ angular.module('users').controller('PasswordController', ['$scope', '$http', '$l
       $location.path('/');
     }
 
+    // This variable tells us who the email was sent to. It is set in password.server.controller
     $scope.emailSent = $stateParams.emailSent;
 
     // Submit forgotten password account id
