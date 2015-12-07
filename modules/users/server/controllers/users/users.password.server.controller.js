@@ -59,6 +59,7 @@ exports.forgot = function (req, res, next) {
       email.addTo(user.email);
       email.subject = 'Here\'s your link to reset your password';
       email.from = 'mailer@sproutup.co';
+      email.fromname = 'Bot@SproutUp';
       email.html = '<div></div>';
       email.addSubstitution(':user', user.displayName);
       email.addSubstitution(':url', url);
@@ -160,6 +161,7 @@ exports.reset = function (req, res, next) {
       email.addTo(user.email);
       email.subject = 'Your password has been reset';
       email.from = 'mailer@sproutup.co';
+      email.fromname = 'Bot@SproutUp';
       email.html = '<div></div>';
       email.addSubstitution(':user', user.displayName);
 
