@@ -59,7 +59,7 @@ exports.forgot = function (req, res, next) {
       email.addTo(user.email);
       email.subject = ' ';
       email.from = 'mailer@sproutup.co';
-      email.fromname = 'Bot@SproutUp';
+      email.fromname = 'SproutUp';
       email.html = '<div></div>';
       email.addSubstitution(':user', user.displayName);
       email.addSubstitution(':url', url);
