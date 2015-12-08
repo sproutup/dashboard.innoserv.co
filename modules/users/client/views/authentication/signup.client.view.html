@@ -28,14 +28,14 @@
             </div>
 
             <!-- Email -->
-            <input type="email" id="email" name="email" class="form-control form-validate signup-login-input" ng-model="credentials.email" placeholder="Email" lowercase required>
+            <input type="email" id="email" name="email" class="form-control form-validate signup-login-input" ng-model="credentials.email" placeholder="Company email like joe@company.com" lowercase required>
             <div ng-show="userForm.email.$submitted || userForm.email.$touched" role="alert">
               <div class="signup-login-form--error-message" ng-show="userForm.email.$error.required"><i class="fa fa-minus-circle"></i>Can't sign up without an email</div>
               <div class="signup-login-form--error-message" ng-show="userForm.email.$error.email"><i class="fa fa-minus-circle"></i>Err, you sure the email is valid?</div>
             </div>
             
             <!-- Username: To be removed -->
-            <input type="text" id="username" name="username" class="form-control form-validate signup-login-input" ng-model="credentials.username" placeholder="Username" lowercase required>
+            <!-- <input type="text" id="username" name="username" class="form-control form-validate signup-login-input" ng-model="credentials.username" placeholder="Username" lowercase required> -->
 
             <!-- Password -->
             <input type="password" id="password" name="password" class="form-control form-validate signup-login-input" ng-model="credentials.password" placeholder="Password" required ng-minlength="6">
