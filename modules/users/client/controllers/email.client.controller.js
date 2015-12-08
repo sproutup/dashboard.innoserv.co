@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('EmailController', ['$scope', 'Authentication', 'ResendEmailConfirmation', '$http',
-  function ($scope, Authentication, ResendEmailConfirmation, $http) {
+angular.module('users').controller('EmailController', ['$scope', 'Authentication', '$http',
+  function ($scope, Authentication, $http) {
     $scope.authentication = Authentication;
   
     // Send another email confirmation

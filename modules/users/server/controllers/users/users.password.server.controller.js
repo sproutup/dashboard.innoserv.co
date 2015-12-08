@@ -42,7 +42,7 @@ exports.forgot = function (req, res, next) {
             });
           } else {
             token = 'token:' + token;
-            redis.set(token, user.id);
+            redis.set(token, user.id, 'EX', 86400);
             done(err, token, user);
           }
         });
@@ -57,7 +57,7 @@ exports.forgot = function (req, res, next) {
       var url = 'http://' + req.headers.host + '/api/auth/reset/' + token;
       var email = new sendgrid.Email();
       email.addTo(user.email);
-      email.subject = 'Here\'s your link to reset your password';
+      email.subject = ' ';
       email.from = 'mailer@sproutup.co';
       email.fromname = 'Bot@SproutUp';
       email.html = '<div></div>';
@@ -74,8 +74,12 @@ exports.forgot = function (req, res, next) {
       });
 
       sendgrid.send(email, function(err, json) {
-        if (err) { return console.error('err with email', err); }
-        res.status(200).send({
+        if (err) { 
+          return res.status(400).send({
+            message: 'The email failed to send'
+          });
+        }
+        return res.status(200).send({
           message: 'An email has been sent to the provided email with further instructions.',
           emailSent: user.email
         });

@@ -50,7 +50,7 @@ var UserSchema = new Schema({
   },
   username: {
     type: String,
-    required: true,
+    // required: true,
     trim: true,
   },
   firstName: {
@@ -122,6 +122,9 @@ var UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date
+  },
+  emailConfirmed: {
+    type: Boolean
   }
 });
 

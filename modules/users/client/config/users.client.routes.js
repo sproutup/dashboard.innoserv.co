@@ -85,7 +85,6 @@ angular.module('users').config(['$stateProvider',
       .state('email', {
         abstract: true,
         url: '/email',
-        controller: 'EmailController',
         template: '<ui-view/>'
       })
       .state('email.confirmation', {
@@ -93,8 +92,13 @@ angular.module('users').config(['$stateProvider',
         url: '',
         template: '<ui-view/>'
       })
+      .state('email.confirmation.success', {
+        url: '/success',
+        templateUrl: 'modules/users/client/views/authentication/email-confirmation-success.client.view.html'
+      })
       .state('email.confirmation.invalid', {
         url: '/invalid',
+        controller: 'EmailController',
         templateUrl: 'modules/users/client/views/authentication/email-confirmation-invalid.client.view.html'
       });
   }

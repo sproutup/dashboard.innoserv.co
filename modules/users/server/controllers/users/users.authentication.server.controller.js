@@ -22,35 +22,39 @@ var noReturnUrls = [
 /**
  * Verification email sent after signup
  */
-var sendVerificationEmail = function(user, callback) {
+var sendVerificationEmail = function(user, callback, host) {
   var token;
+
   crypto.randomBytes(20, function (err, buffer) {
     token = buffer.toString('hex');
-  });
+    token = 'token:' + token;
 
-  var email = new sendgrid.Email();
-  email.addTo(user.email);
-  email.subject = 'Welcome to SproutUp. Please verify your email.';
-  email.from = 'mailer@sproutup.co';
-  email.fromname = 'SproutUp';
-  email.html = '<div></div>';
-  email.addSubstitution(':user', user.displayName);
-  email.addSubstitution(':token', token);
-  redis.set(token, user);
+    var url = 'http://' + host + '/api/users/email/confirmation/' + token;
+    var email = new sendgrid.Email();
+    email.addTo(user.email);
+    // See how much of these can be in sendgrid
+    email.subject = ' ';
+    email.from = 'mailer@sproutup.co';
+    email.fromname = 'SproutUp';
+    email.html = '<div></div>';
+    email.addSubstitution(':user', user.displayName);
+    email.addSubstitution(':url', url);
+    redis.set(token, user.id, 'EX', 86400);
 
-  email.setFilters({
-    'templates': {
-      'settings': {
-        'enable': 1,
-        'template_id' : '0d97d47d-3d32-499d-9cd9-b5c23c24c592'
+    email.setFilters({
+      'templates': {
+        'settings': {
+          'enable': 1,
+          'template_id' : '0d97d47d-3d32-499d-9cd9-b5c23c24c592'
+        }
       }
-    }
-  });
+    });
 
-  sendgrid.send(email, function(err, json) {
-    if (callback) {
-      callback(err);
-    }
+    sendgrid.send(email, function(err, json) {
+      if (callback) {
+        callback(err);
+      }
+    });
   });
 };
 
@@ -80,7 +84,7 @@ exports.signup = function (req, res) {
       user.password = undefined;
       user.salt = undefined;
 
-      sendVerificationEmail(user);
+      sendVerificationEmail(user, null, req.headers.host);
 
       req.login(user, function (err) {
         if (err) {
@@ -96,12 +100,14 @@ exports.signup = function (req, res) {
 /**
  * Validate email token
  */
-exports.validateEmailToken = function (req, res) {
+exports.validateEmail = function (req, res) {
   redis.get(req.params.token).then(function(result) {
     if (result) {
-      res.redirect('/email/confirmation/' + req.params.token);
+      User.update({ id: result }, { $PUT: { emailConfirmed: true }}, function (err, user) {
+        return res.redirect('/email/success');
+      });
     } else {
-      return res.redirect('/password/email/invalid');
+      return res.redirect('/email/invalid');
     }
   });
 };
@@ -120,7 +126,7 @@ exports.resendEmailConfirmation = function (req, res) {
         message: 'Email sent successfully'
       });
     }
-  });
+  }, req.headers.host);
 };
 
 /**
