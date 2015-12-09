@@ -1,7 +1,7 @@
 <section class="row text-center content">
   <div ng-if="!success">
   	<h3 class="col-md-12">Email token is invalid.</h3>
-  	<a href="" ng-if="!authentication.user">Log in and request a new token</a>
+  	<a href="settings/profile" ng-if="!authentication.user">Log in and request a new token</a>
   	<a href="" class="col-md-12" ng-if="authentication.user" ng-click="emailConfirmation()" style="margin-bottom: 10px">Ask for another email confirmation.</a>
   </div>
   <!-- error message -->

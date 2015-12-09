@@ -3,6 +3,7 @@
 angular.module('users').controller('EditProfileController', ['$scope', '$http', '$location', 'Users', 'Authentication',
   function ($scope, $http, $location, Users, Authentication) {
     $scope.user = Authentication.user;
+    console.log($scope.user);
 
     // Update a user profile
     $scope.updateUserProfile = function (isValid) {
@@ -19,6 +20,16 @@ angular.module('users').controller('EditProfileController', ['$scope', '$http', 
       } else {
         $scope.submitted = true;
       }
+    };
+
+    // Send another email confirmation
+    $scope.emailConfirmation = function() {
+        $http.post('/api/users/email/confirmation').success(function (response) {
+            $scope.message = 'Email sent successfully';
+            $scope.success = true;
+        }).error(function (response) {
+            $scope.message = 'Email failed to send';
+        });
     };
   }
 ]);

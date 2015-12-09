@@ -31,12 +31,11 @@ var sendVerificationEmail = function(user, callback, host) {
 
     var url = 'http://' + host + '/api/users/email/confirmation/' + token;
     var email = new sendgrid.Email();
-    email.addTo(user.email);
-    // See how much of these can be in sendgrid
     email.subject = ' ';
     email.from = 'mailer@sproutup.co';
     email.fromname = 'SproutUp';
     email.html = '<div></div>';
+    email.addTo(user.email);
     email.addSubstitution(':user', user.displayName);
     email.addSubstitution(':url', url);
     redis.set(token, user.id, 'EX', 86400);
@@ -133,7 +132,9 @@ exports.resendEmailConfirmation = function (req, res) {
  * Signin after passport authentication
  */
 exports.signin = function (req, res, next) {
+  console.log('in signin', req.body);
   passport.authenticate('local', function (err, user, info) {
+    console.log('user here', user);
     if (err || !user) {
       res.status(400).send(info);
     } else {
