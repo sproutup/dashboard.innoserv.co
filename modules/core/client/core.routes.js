@@ -11,6 +11,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
     $stateProvider
       .state('home', {
         url: '/home',
+        controller: 'HomeController',
         templateUrl: 'modules/core/client/home.view.html'
       })
       .state('user' ,{

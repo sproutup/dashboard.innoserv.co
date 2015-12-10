@@ -11,7 +11,8 @@
     <div class="nav-section">
       <div class="nav-item-wrapper creator-name">{{authentication.user.displayName}}</div>
       <div class="nav-item-wrapper">
-        <a a href="/api/auth/signout" target="_self">Sign Out</a>
+        <a a href="/api/auth/signout" target="_self" ng-if="authentication.user">Sign Out</a>
+        <a ui-sref="authentication.signin" target="_self" ng-if="!authentication.user">Sign In</a>
       </div>
     </div> 
     <div class="nav-section">
