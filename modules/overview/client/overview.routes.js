@@ -5,14 +5,14 @@ angular.module('overview').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
       .state('user.overview', {
-      	url: '',
+      	url: '/:productSlug',
         abstract: true,
         templateUrl: 'modules/overview/client/overview.html',
         controller: 'overviewController',
         controllerAs: 'vm'
       })
       .state('user.overview.impressions', {
-        url: '/',
+        url: '',
         templateUrl: 'modules/overview/client/overview-impressions.html',
         controller: 'overviewController',
         controllerAs: 'vm'
