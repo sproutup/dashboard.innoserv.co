@@ -20,6 +20,14 @@ body {
   border-right: 1px solid #bfbfbf;
   left: 0px;
   padding-left: 22px;
+  background-color: #4a4a4a;
+  color: white !important;
+}
+.creator-menu a {
+  color: white !important;
+}
+.creator-menu div {
+  color: white !important;
 }
 .menu-item {
   width: 25px;
@@ -669,6 +677,7 @@ input:-ms-input-placeholder {
   -moz-appearance: none;
   -webkit-appearance: none;
   box-shadow: none;
+  border: 1px solid #bababa;
 }
 .form-control:focus {
   -moz-box-shadow: none;
@@ -693,9 +702,9 @@ input:-ms-input-placeholder {
   font-size: 11pt;
   color: white;
   background-color: #2996cc;
-  border-radius: 2px;
-  padding-left: 50px;
-  padding-right: 50px;
+  border-radius: 0px;
+  padding-left: 30px;
+  padding-right: 30px;
   padding-top: 15px;
   margin: 0px;
   -webkit-transition: all 0.1s ease-in-out;
@@ -704,9 +713,17 @@ input:-ms-input-placeholder {
   -o-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
 }
+.sproutup-btn-lg-main.orange {
+  color: white;
+  background-color: #ED7A14;
+}
 .sproutup-btn-lg-main:hover {
   background-color: #1885bb;
   color: white;
+}
+.sproutup-btn-lg-main.orange:hover {
+  color: white;
+  background-color: #dc6903;
 }
 .sproutup-btn-md-main {
   height: 45px;
@@ -716,8 +733,7 @@ input:-ms-input-placeholder {
   color: white;
   border-radius: 2px;
   padding-top: 11px;
-  margin-right: 6px;
-  margin-bottom: 5px;
+  margin: 0px;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -ms-transition: all 0.2s ease-in-out;
@@ -727,6 +743,10 @@ input:-ms-input-placeholder {
 .sproutup-btn-md-main:hover {
   color: white;
   background-color: #1885bb;
+}
+.sproutup-btn-md-main.orange {
+  color: white;
+  background-color: #ED7A14;
 }
 .legal-title {
   text-align: center;
@@ -800,4 +820,88 @@ input:-ms-input-placeholder {
   color: #929292 !important;
   font-weight: 700 !important;
   font-size: 10.5pt;
+}
+.dashboard-product-banner {
+  width: 100%;
+  min-height: 560px;
+  margin-top: 0px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  position: relative;
+}
+.dashboard-product-info-wrapper::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  content: "";
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1));
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1));
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1));
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1));
+  /* Standard syntax */
+}
+.dashboard-product-info-wrapper {
+  padding-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  text-align: center;
+}
+.product-tagline {
+  margin: 0px;
+  padding: 0px 0px 60px;
+}
+.product-tagline p {
+  font-weight: 400;
+  font-size: 16pt;
+}
+.product-tagline h1 {
+  font-weight: 100;
+  font-size: 36pt;
+}
+.dashboard-cta {
+  padding: 0px;
+  z-index: 5;
+}
+.dashboard-signup-input {
+  border: 1px solid #bababa;
+  width: 200px !important;
+  height: 50px;
+  margin: 0px;
+  padding-left: 25px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  font-size: 11pt;
+  font-weight: 700 !important;
+  color: #414141;
+}
+.input-group-addon {
+  padding: 6px 25px;
+  font-size: 11pt;
+  font-weight: 700;
+  color: #414141;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #bababa;
+  border-radius: 0px;
+}
+.dashboard-signup-message {
+  margin: 30px auto;
+  max-width: 400px;
+  padding: 0px 5px;
+}
+.dashboard-signup-message p {
+  font-weight: 300;
+  font-size: 12pt;
+  color: #f1f1f1;
+  line-height: 1.5;
 }
