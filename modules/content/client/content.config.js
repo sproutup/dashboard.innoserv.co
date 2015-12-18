@@ -4,7 +4,7 @@ angular.module('content').run(['Menus',
   function (Menus) {
     Menus.addMenuItem('topbar', {
    	  title: 'Content',
-      state: 'user.content.videos',
+      state: 'user.content',
       class: 'menu-item content',
       roles: ['*'],
       position: 4

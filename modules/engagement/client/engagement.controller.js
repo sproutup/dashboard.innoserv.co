@@ -45,6 +45,11 @@
 	  	vm.purchases.labels = ['January', 'February', 'March', 'April', 'May'];
 	  	vm.purchases.series = ['Purchases'];
 	  	vm.purchases.data = [ [2, 4, 1, 3, 10] ];
+
+	  	vm.options = {
+	  		scaleShowLabels: false,
+	  		scaleFontSize: 0
+	  	};
 	}
 
 })();
