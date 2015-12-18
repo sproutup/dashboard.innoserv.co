@@ -1016,3 +1016,81 @@ input:-ms-input-placeholder {
   margin-right: 3px;
   border: 1px solid #f0f0f0;
 }
+.col-stats {
+  padding: 0px 2px 4px;
+}
+.col-social {
+  padding: 10px 3px;
+}
+.stats-blurb {
+  margin: 0px;
+  padding: 20px;
+}
+.stats-blurb.impressions {
+  background-color: #2996cc;
+}
+.stats-blurb.engagements {
+  background-color: #65bc25;
+}
+.stats-blurb.leads {
+  background-color: #ED7A14;
+}
+.stats-blurb.conversion {
+  background-color: #97a1db;
+}
+.stats-blurb h1 {
+  padding: 0px;
+  margin: 0px;
+  font-size: 24pt;
+  font-weight: 300;
+  color: white;
+}
+.stats-blurb p {
+  padding: 15px 0px 0px;
+  margin: 0px;
+  font-size: 13pt;
+  font-weight: 400;
+  color: white;
+}
+.social-quote {
+  margin: 0px 0px 6px;
+  padding: 20px;
+  background-color: #f6f6f6;
+  border: 1px solid #55ACEE;
+}
+.social-quote-content {
+  font-weight: 700;
+  font-size: 12pt;
+  line-height: 1.5;
+  color: #777777;
+}
+.social-quote-time {
+  font-weight: 400;
+  font-size: 9.5pt;
+  color: #929292;
+  padding-bottom: 10px;
+}
+.social-quote-user-photo {
+  width: 50px;
+  height: 50px;
+  float: left;
+  border-radius: 300px;
+  margin-right: 20px;
+}
+.social-quote-user-twitter {
+  font-weight: 700;
+  font-size: 11pt;
+  padding: 2px 0px 5px;
+  margin: 0px;
+}
+.social-quote-user-twitter a {
+  color: #55ACEE;
+  text-decoration: none !important;
+}
+.social-quote-user {
+  color: #929292;
+  font-weight: 400;
+  font-size: 11pt;
+  padding: 0px;
+  margin: 0px;
+}
