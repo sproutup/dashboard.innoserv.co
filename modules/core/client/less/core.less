@@ -1057,3 +1057,87 @@ input:-ms-input-placeholder {
   line-height: 1.5;
 }
 
+.preview-wrapper {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 0px 10px;
+}
+
+.preview-left-rail {
+  padding: 0px 40px;
+}
+
+.preview-right-rail {
+  padding: 0px 5px;
+}
+
+.preview-video {
+  margin: 10px 0px;
+  background-color: #333;
+  height: 100%;
+  width: 100%;
+  color: @main-text-white;
+}
+
+.preview-video.embedded {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+
+.preview-video.embedded iframe,
+.preview-video.embedded object,
+.preview-video.embedded embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.preview-toc {
+  border-left: 4px solid @sproutup-lightgrey;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 15px; 
+  padding-right: 0px;
+  font-weight: 400;
+  font-size: 10.5pt;
+  margin: 2px 0px;
+  color: @main-text-1;
+}
+
+.preview-toc.active {
+  border-left: 4px solid @sproutup-orange;
+  color: @sproutup-orange;
+  font-weight: 700;
+}
+
+.preview-section-header {
+  font-weight: 300;
+  font-size: 18pt;
+  color: @main-text;
+  margin: 0px 0px 15px;
+  padding: 0px;
+}
+
+.preview-section-description {
+  margin: 0px 0px 25px;
+  padding: 0px; 
+}
+
+.preview-section-description a {
+  font-weight: 700;
+  font-size: 10pt;
+  color: @sproutup-orange;
+}
+
+.label-influencer {
+  background-color: @sproutup-green;
+  padding: 5px 10px;
+  font-weight: 700;
+  font-size: 9.5pt;
+  margin-left: 10px;
+}
