@@ -965,6 +965,9 @@ input:-ms-input-placeholder {
 .preview-section-description {
   margin: 0px 0px 25px;
   padding: 0px;
+  font-weight: 700;
+  font-size: 10pt;
+  color: #777777;
 }
 .preview-section-description a {
   font-weight: 700;
@@ -977,4 +980,7 @@ input:-ms-input-placeholder {
   font-weight: 700;
   font-size: 9.5pt;
   margin-left: 10px;
+}
+.preview-wrapper section {
+  margin-bottom: 40px;
 }
