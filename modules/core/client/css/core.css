@@ -1020,7 +1020,7 @@ input:-ms-input-placeholder {
   padding: 0px 2px 4px;
 }
 .col-social {
-  padding: 10px 3px;
+  padding: 20px 3px 0px;
 }
 .stats-blurb {
   margin: 0px;
@@ -1059,14 +1059,14 @@ input:-ms-input-placeholder {
   border: 1px solid #55ACEE;
 }
 .social-quote-content {
-  font-weight: 700;
-  font-size: 12pt;
+  font-weight: 400;
+  font-size: 12.5pt;
   line-height: 1.5;
-  color: #777777;
+  color: #414141;
 }
 .social-quote-time {
   font-weight: 400;
-  font-size: 9.5pt;
+  font-size: 9pt;
   color: #929292;
   padding-bottom: 10px;
 }
