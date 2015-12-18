@@ -32,7 +32,7 @@ var config = require('config/config'),
  */
 exports.renderIndex = function (req, res) {
   res.render('modules/core/server/index', {
-    user: req.user || null, title: 'hmmm'
+    user: req.user || null, title: 'SproutUp Dashboard for Brands'
   });
 };
 
