@@ -23,6 +23,14 @@
 			sref: 'user.content.blogs'
 		}];
 
+		vm.content = ContentService.getContent();
+
+		vm.chartOptions = {
+	  		scaleShowLabels: false,
+	  		scaleFontSize: 0
+	  	};
+
+
 		loadCallback(ContentService);
 
 	    function loadCallback(content) {

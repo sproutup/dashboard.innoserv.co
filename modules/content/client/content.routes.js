@@ -7,7 +7,7 @@ angular.module('content').config(['$stateProvider',
         url: '/content',
         // abstract: true,
         templateUrl: 'modules/content/client/content.html',
-        controller: 'engagementController',
+        controller: 'contentController',
         controllerAs: 'vm'
       });
       // .state('user.content.videos', {

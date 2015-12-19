@@ -1,39 +1,38 @@
 <!-- <up-dashboard-header item="vm.item"></up-dashboard-header>
 <div ui-view></div> -->
-<div class="content-container">
-	
-	<iframe class="youtube-video" src="https://www.youtube.com/embed/A_0FgRKsqqU" frameborder="0" allowfullscreen></iframe>
+<div class="content-container" ng-repeat="content in vm.content">
+	<iframe class="youtube-video" ng-src="{{ content.url }}" frameborder="0" allowfullscreen></iframe>
 
 	<div class="youtube-user">
-		<img class="trial-user-avatar" src="https://yt3.ggpht.com/-_gNR0XqmaFg/AAAAAAAAAAI/AAAAAAAAAAA/e_l7cL9lvmI/s88-c-k-no/photo.jpg" />
-		<span class="youtube-username">Berkman Center</span>
+		<img class="trial-user-avatar" ng-src="{{ content.user.profileImageURL }}" />
+		<span class="youtube-username">{{ content.user.name }}</span>
 	</div>
 
 	<table>
 		<tr class="row">
 			<td class="col-sm-6 stat-box">
 				<span class="stat-name">Views</span>
-				<span class="stat-number">171,923</span>
-				<canvas id="line" class="chart chart-line" chart-data="vm.clicks.data" chart-labels="vm.clicks.labels" chart-legend="false" chart-series="vm.clicks.series" chart-options="vm.options">
+				<span class="stat-number">{{ content.views }}</span>
+				<canvas id="line" class="chart chart-line" chart-data="content.clicks.data" chart-labels="content.clicks.labels" chart-legend="false" chart-series="content.clicks.series" chart-options="vm.chartOptions">
 			</td>
 			<td class="col-sm-6 stat-box">
 				<span class="stat-name">Minutes Watched</span>
-				<span class="stat-number">71,923</span>
-				<canvas id="line" class="chart chart-line" chart-data="vm.clicks.data" chart-labels="vm.clicks.labels" chart-legend="false" chart-series="vm.clicks.series" chart-options="vm.options">
+				<span class="stat-number">{{ content.minutesWatched }}</span>
+				<canvas id="line" class="chart chart-line" chart-data="content.clicks.data" chart-labels="content.clicks.labels" chart-legend="false" chart-series="content.clicks.series" chart-options="vm.chartOptions">
 			</td>	
 		</tr>
 		<tr class="row">
 			<td class="col-sm-6 stat-box">
 				<span class="stat-name">Likes</span>
-				<span class="stat-number">103</span>
-				<canvas id="line" class="chart chart-line" chart-data="vm.clicks.data" chart-labels="vm.clicks.labels" chart-legend="false" chart-series="vm.clicks.series" chart-options="vm.options">
+				<span class="stat-number">{{ content.likes }}</span>
+				<canvas id="line" class="chart chart-line" chart-data="content.clicks.data" chart-labels="content.clicks.labels" chart-legend="false" chart-series="content.clicks.series" chart-options="vm.chartOptions">
 			</td>
 			<td class="col-sm-6 stat-box">
 				<span class="stat-name">Comments</span>
-				<span class="stat-number">63</span>
-				<canvas id="line" class="chart chart-line" chart-data="vm.clicks.data" chart-labels="vm.clicks.labels" chart-legend="false" chart-series="vm.clicks.series" chart-options="vm.options">
+				<span class="stat-number">{{ content.comments }}</span>
+				<canvas id="line" class="chart chart-line" chart-data="content.clicks.data" chart-labels="content.clicks.labels" chart-legend="false" chart-series="content.clicks.series" chart-options="vm.chartOptions">
 			</td>
 		</tr>
-	</div>
+	</table>
 
 </div>

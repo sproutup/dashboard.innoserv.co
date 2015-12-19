@@ -4,9 +4,16 @@
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
 // Setting HTML5 Location Mode
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
-  function ($locationProvider) {
+angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider', '$sceDelegateProvider',
+  function ($locationProvider, $sceDelegateProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
+
+    $sceDelegateProvider.resourceUrlWhitelist([
+        // Allow same origin resource loads.
+        'self',
+        // Allow loading from our assets domain.  Notice the difference between * and **.
+        'https://www.youtube.com/**'
+    ]); 
   }
 ]);
 
