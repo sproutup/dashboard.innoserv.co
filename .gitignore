@@ -11,7 +11,7 @@ logs
 *.log
 
 # CSS
-*.css
+modules/core/client/css/core.css
 
 # Runtime data
 pids
