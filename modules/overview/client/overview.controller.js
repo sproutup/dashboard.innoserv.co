@@ -6,9 +6,9 @@
 	    .module('overview')
 	    .controller('overviewController', overviewController);
 
-	overviewController.$inject = ['$scope'];
+	overviewController.$inject = ['$scope', 'Authentication'];
 
-	function overviewController($scope) {
+	function overviewController($scope, Authentication) {
 		var vm = this;
 		vm.item = {};
 		vm.item.title = 'Home';
@@ -25,6 +25,8 @@
 			number: '1,921',
 			sref: 'user.overview.engagement'
 		}];
+		
+		vm.user = Authentication.user;
 
     vm.community = {};
     vm.content = {};

@@ -17,7 +17,8 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
       .state('user' ,{
         url: '',
         abstract: true,
-        templateUrl: 'modules/core/client/header.view.html'
+        templateUrl: 'modules/core/client/header.view.html',
+        controller: 'HeaderController'
       })
       .state('not-found', {
         url: '/not-found',

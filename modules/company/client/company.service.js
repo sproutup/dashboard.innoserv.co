@@ -15,6 +15,7 @@ function CompanyService($resource) {
 
   function getCompany () {
     return {
+        id: 1,
         name: 'RocketSkates',
         products: [{
             name: 'R8',
@@ -36,6 +37,7 @@ function CompanyService($resource) {
             urlTwitter: 'https://twitter.com/wacaco_ltd'
         }],
         campaigns: [{
+            id: 1,
             type: 'Product Trial',
             product: {
                 name: 'R10',
@@ -45,6 +47,7 @@ function CompanyService($resource) {
                 slug: 'R10'
             }
         }, {
+            id: 2,
             type: 'Product Trial',
             product: {
                 name: 'R8',

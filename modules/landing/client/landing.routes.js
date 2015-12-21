@@ -16,8 +16,8 @@ angular.module('landing').config(['$stateProvider',
       //   templateUrl: 'modules/engagement/client/engagement-page-views.html'
       // })
       .state('landing.default', {
-        url: '/preview'
-        // templateUrl: 'modules/engagement/client/engagement-page-views.html'
+        url: '/landing',
+        templateUrl: 'modules/landing/client/landing-mock.html'
       })
       .state('landing.mock', {
         url: '/preview/landingMock',
