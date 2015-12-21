@@ -1366,10 +1366,18 @@ input:-ms-input-placeholder {
   padding: 0px;
 }
 
+.product-list-wrapper a {
+  text-decoration: none !important;
+}
+
 .product-list-item {
-  width: 100%;
+  margin: 0px;
+  padding: 5px;
+}
+
+.product-list-item-banner {
   height: 300px;
-  margin-top: 0px;
+  margin: 0px;
   background-position:center;
   background-repeat:no-repeat;
   background-size: cover;
@@ -1377,9 +1385,43 @@ input:-ms-input-placeholder {
   position: relative;
 }
 
-.product-list-info h1 {
+.product-list-item-banner::after{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  content: "";
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.product-list-item-banner p {
+  margin: 0px;
+  padding: 130px 0px 0px;
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  font-weight: 300;
+  font-size: 16pt;
+  color: @main-text-white;
+}
+
+.product-list-header {
+  max-width: 500px;
+  margin: 0px auto;
+  text-align: center;
+}
+
+.product-list-header h1 {
+  padding: 40px 10px 0px;
+  margin: 0px;
   font-weight: 300;
   font-size: 15pt;
-  margin: 20px;
-  padding: 0px;
+  color: @main-text;
+  line-height: 1.5;
+}
+
+.product-list-header h1 span {
+  color: @sproutup-orange;
+  font-weight: 700;
 }
