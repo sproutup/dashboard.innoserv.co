@@ -9,13 +9,13 @@ angular.module('company').config(['$stateProvider',
         template: '<div ui-view></div>'
       })
       .state('company.dashboard', {
-        url: '/:productSlug',
+        url: '/:companyId',
         templateUrl: 'modules/company/client/company.html',
         controller: 'companyController',
         controllerAs: 'vm'
       })
       .state('company.mock', {
-        url: '/products/mock',
+        url: '/:companyId/mock',
         templateUrl: 'modules/company/client/company-mock.html',
         controller: 'companyController',
         controllerAs: 'vm'
