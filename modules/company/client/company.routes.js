@@ -15,7 +15,7 @@ angular.module('company').config(['$stateProvider',
         controllerAs: 'vm'
       })
       .state('user.company.mock', {
-        url: '/producs/mock',
+        url: '/products/mock',
         templateUrl: 'modules/company/client/company-mock.html',
         controller: 'companyController',
         controllerAs: 'vm'
