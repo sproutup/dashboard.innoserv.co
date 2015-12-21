@@ -6,13 +6,17 @@
 	    .module('company')
 	    .controller('companyController', companyController);
 
-	companyController.$inject = ['$scope'];
+	companyController.$inject = ['$scope', 'CompanyService', 'TrialService'];
 
-	function companyController($scope) {
+	function companyController($scope, CompanyService, TrialService) {
 		var vm = this;
-		vm.item = {};
-		vm.item.title = 'Community';
 
+		function init() {
+			vm.company = CompanyService.getCompany();
+			vm.trials = TrialService.getTrials();
+		}
+
+		init();
 	}
 
 })();
