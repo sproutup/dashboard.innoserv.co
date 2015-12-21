@@ -3,18 +3,18 @@
 angular.module('company').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('user.company', {
+      .state('company', {
         url: '/company',
         abstract: true,
         template: '<div ui-view></div>'
       })
-      .state('user.company.dashboard', {
+      .state('company.dashboard', {
         url: '/:productSlug',
         templateUrl: 'modules/company/client/company.html',
         controller: 'companyController',
         controllerAs: 'vm'
       })
-      .state('user.company.mock', {
+      .state('company.mock', {
         url: '/products/mock',
         templateUrl: 'modules/company/client/company-mock.html',
         controller: 'companyController',
