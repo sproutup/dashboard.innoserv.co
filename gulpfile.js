@@ -171,8 +171,7 @@ gulp.task('mocha2', function() {
   require('app-module-path').addPath(__dirname);
   var dynamoose = require('./config/lib/dynamoose');
   dynamoose.loadModels();
-  return gulp.src(['modules/users/tests/server/user.server.model.tests.js'],
-      { read: false })
+  return gulp.src(['modules/users/tests/server/user.server.model.tests.js'], { read: false })
     .pipe(debug({title: 'mocha:'}))
     .pipe(plugins.mocha({ reporter: 'spec',
       globals: {
