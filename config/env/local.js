@@ -7,6 +7,7 @@
 module.exports = {
   db: {
     uri: 'mongodb://localhost/local-dev',
+    local: true,
     options: {
       user: '',
       pass: ''
@@ -22,7 +23,7 @@ module.exports = {
       pool: {
         min: 2,
         max: 10
-      }  
+      }
     },
   }
 };

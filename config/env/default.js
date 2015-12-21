@@ -2,9 +2,9 @@
 
 module.exports = {
   app: {
-    title: 'analytics.sproutup.co',
-    description: 'Analytics server',
-    keywords: 'mysql, redis, express, angularjs, node.js, bookshelf, passport',
+    title: 'creator.sproutup.co',
+    description: 'Creator Server',
+    keywords: 'dynamodb, mysql, redis, express, angularjs, node.js, bookshelf, passport',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
   port: process.env.PORT || 3030,
