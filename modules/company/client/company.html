@@ -11,7 +11,7 @@
 	</div>
 	<div class="product-list-wrapper">
 		<div class="col-sm-6 product-list-item" ng-repeat="campaign in vm.company.campaigns">
-			<a href="#">
+			<a ui-sref="company.campaign({ companyId: vm.company.id, campaignId: campaign.id })">
 				<div class="product-list-item-banner" style="background-image: url('{{ campaign.product.image }}');">
 					<p class="campaign-type">{{ campaign.type }}</p>
 					<p class="product-name">{{ campaign.product.name }}</p>
