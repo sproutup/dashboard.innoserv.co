@@ -45,7 +45,7 @@ function CompanyService($resource) {
                 slug: 'R10'
             }
         }, {
-            type: 'Product Trial',
+            type: 'Video Competition',
             product: {
                 name: 'R8',
                 image: 'http://www.urbanskates.sg/uploads/5/3/5/1/53515067/s344895188113468383_p5_i2_w2560.jpeg',    
