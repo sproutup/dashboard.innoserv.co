@@ -1,7 +1,7 @@
-<up-dashboard-header item="vm.item"></up-dashboard-header>
-<div ui-view></div>
-
-
+<div ng-if="vm.user">
+	<up-dashboard-header item="vm.item"></up-dashboard-header>
+	<div ui-view></div>
+</div>
 <!-- Overview card that we decided not to use for the interim -->
 
 <!-- <div class="overview-card-wrapper">

@@ -10,6 +10,9 @@ public/lib/
 logs
 *.log
 
+# CSS
+modules/core/client/css/core.css
+
 # Runtime data
 pids
 *.pid
