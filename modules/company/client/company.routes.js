@@ -14,10 +14,6 @@ angular.module('company').config(['$stateProvider',
         url: '/:companyId',
         templateUrl: 'modules/company/client/company.html'
       })
-      .state('user.company.mock', {
-        url: '/:companyId/mock',
-        templateUrl: 'modules/company/client/company-mock.html'
-      })
       .state('user.company.campaign', {
         url: '/:companyId/campaign/:campaignId',
         templateUrl: 'modules/company/client/campaign.html'
