@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var path = require('path'),
+  _ = require('lodash'),
   dynamoose = require('dynamoose'),
   User = dynamoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/errors.controller'));
@@ -74,20 +75,17 @@ exports.list = function (req, res) {
  * User middleware
  */
 exports.userByID = function (req, res, next, id) {
-  if (!dynamoose.Types.ObjectId.isValid(id)) {
+  if (!_.isString(id)) {
     return res.status(400).send({
       message: 'User is invalid'
     });
   }
 
-  User.findById(id, '-salt -password').exec(function (err, user) {
-    if (err) {
-      return next(err);
-    } else if (!user) {
-      return next(new Error('Failed to load user ' + id));
-    }
-
+  User.get(id).then(function(user) {
     req.model = user;
     next();
+  })
+  .catch(function(err){
+    return next(err);
   });
 };
