@@ -32,6 +32,16 @@ var CampaignSchema = new Schema({
       throughput: 5 // read and write are both 5
     }
   },
+  productId: {
+    type: String,
+    index: {
+      global: true,
+      rangeKey: 'id',
+      name: 'ProductCampaignIndex',
+      project: true, // ProjectionType: ALL
+      throughput: 5 // read and write are both 5
+    }
+  },
   created: {
     type: Date,
     default: Date.now
