@@ -3,22 +3,22 @@
 angular.module('company').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('company', {
+      .state('user.company', {
         url: '/company',
         abstract: true,
         template: '<div ui-view></div>',
         controller: 'companyController',
         controllerAs: 'vm'
       })
-      .state('company.dashboard', {
+      .state('user.company.dashboard', {
         url: '/:companyId',
         templateUrl: 'modules/company/client/company.html'
       })
-      .state('company.mock', {
+      .state('user.company.mock', {
         url: '/:companyId/mock',
         templateUrl: 'modules/company/client/company-mock.html'
       })
-      .state('company.campaign', {
+      .state('user.company.campaign', {
         url: '/:companyId/campaign/:campaignId',
         templateUrl: 'modules/company/client/campaign.html'
       });

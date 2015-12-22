@@ -9,22 +9,15 @@
 }
 
 .creator-menu {
-  width: 195px;
-  height: 100vh;
+  min-width: 195px;
+  height: 100%;
   position: fixed;
   border-right: 1px solid #bfbfbf;
   top: 0px;
   left: 0px;
-  padding-left: 22px;
+  padding-left: 10px;
+  padding-right: 10px;
   background-color: @sproutup-dark-grey;
-  color: white !important;
-}
-
-.creator-menu a {
-  color: white !important;
-}
-
-.creator-menu div {
   color: white !important;
 }
 
@@ -588,23 +581,57 @@
 
 .nav-item-wrapper {
   position: relative;
-  color: @sproutup-dark-grey !important;
-  font-weight: 500;
   margin-bottom: 15px;
+  margin-left: 15px;
+}
+
+.nav-item-main {
+  font-weight: 700;
+  font-size: 11.5pt;
+  margin-bottom: 20px;
+}
+
+.nav-item-main a {
+  color: @sproutup-grey;
+  text-decoration: none !important;
+}
+
+.nav-item-main a.active {
+  color: @main-text-white;
+  text-decoration: none !important;
+}
+
+.nav-item-main a:focus,
+.nav-item-main a:visited
+.nav-item-main a:active {
+  color: @main-text-white;
+}
+
+.nav-head {
+  padding-top: 70px;
 }
 
 .nav-section {
-  padding-top: 70px; 
+  border-top: 1px solid #5F5F5F;
+  margin-top: 40px;
+  padding-top: 30px; 
 }
 
-.creator-name {
-  font-weight: 200;
-  font-size: 13pt;
-}
-
-.nav-item-wrapper a, .nav-item-wrapper a:hover, .nav-item-wrapper a:visited {
-  color: @sproutup-dark-grey;
+.creator-name a {
+  font-weight: 400;
+  font-size: 10pt;
+  color: @main-text-white;
   text-decoration: none !important;
+}
+
+.creator-name i {
+  padding-left: 12px;
+}
+
+.creator-company {
+  font-weight: 700;
+  font-size: 13pt;
+  color: @main-text-white;
 }
 
 .auth-header {

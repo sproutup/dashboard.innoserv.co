@@ -8,15 +8,27 @@
     </button>
   </div>
   <nav role="navigation">
-    <div class="nav-section">
-      <div class="nav-item-wrapper creator-name">{{authentication.user.displayName}}</div>
-      <div class="nav-item-wrapper">
-        <a a href="/api/auth/signout" target="_self" ng-if="authentication.user">Sign Out</a>
-        <a ui-sref="authentication.signin" target="_self" ng-if="!authentication.user">Sign In</a>
+    <div class="nav-head">
+      <div class="nav-item-wrapper creator-company">Mercedes-Benz</div>
+      <div class="nav-item-wrapper dropdown creator-name" uib-dropdown>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" uib-dropdown-toggle>{{authentication.user.displayName}}<i class="fa fa-angle-down"></i></a>
+        <ul class="dropdown-menu">
+          <li><a href="/api/auth/signout">Log out</a></li>
+        </ul>
       </div>
     </div> 
+
     <div class="nav-section">
-      <div class="nav-item-wrapper" data-ng-repeat="item in menu.items | orderBy: 'position'">
+      <div class="nav-item-wrapper nav-item-main">
+        <a href="#">Campaigns</a>
+      </div>
+      <div class="nav-item-wrapper nav-item-main">
+      <a href="#">Products</a>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-item-wrapper nav-item-main" data-ng-repeat="item in menu.items | orderBy: 'position'">
         <a data-ui-sref="{{ item.state }}">{{ item.title }}</a>
       </div>
     </div>
