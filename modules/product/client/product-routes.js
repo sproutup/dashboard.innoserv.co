@@ -14,7 +14,7 @@ angular.module('product').config(['$stateProvider',
         url: '/:companyId',
         templateUrl: 'modules/product/client/product.html'
       })
-      .state('user.product.dashboard.mock', {
+      .state('user.product.mock', {
         url: '/mock',
         templateUrl: 'modules/product/client/product-mock.html'
       });
