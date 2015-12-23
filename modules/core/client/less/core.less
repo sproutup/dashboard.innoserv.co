@@ -183,7 +183,7 @@
 }
 
 .dashboard-container {
-  margin-left: 250px;
+  margin-left: 240px;
   margin-top: 30px;
 }
 
@@ -1174,6 +1174,20 @@ input:-ms-input-placeholder {
   margin-left: 10px;
 }
 
+.label-campaign {
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 9pt;
+}
+
+.label-campaign.product-trial {
+  background-color: @sproutup-contest;
+}
+
+.label-campaign.video-competition {
+  background-color: @sproutup-green;
+}
+
 .preview-wrapper section {
   margin-bottom: 40px;
 }
@@ -1469,4 +1483,35 @@ input:-ms-input-placeholder {
 .product-table {
   margin-top: 25px;
   margin-right: 25px;
+}
+
+.product-table thead {
+  background-color: @sproutup-verylightgrey;
+}
+
+.product-table thead tr th {
+  padding: 20px;
+  font-weight: 700;
+  font-size: 11pt;
+  color: @main-text-2;
+}
+
+.product-table tbody tr td {
+  padding: 20px;
+  font-weight: 400;
+  font-size: 10pt;
+  color: @main-text;
+}
+
+.product-table tbody tr:hover {
+  background-color: @sproutup-table-hover;
+}
+
+.product-table tbody tr td a {
+  color: @sproutup-blue;
+  font-weight: 700;
+}
+
+.product-table tbody tr td a i {
+  padding-right: 6px;
 }
