@@ -3,9 +3,9 @@
 angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus',
   function ($scope, $state, Authentication, Menus) {
     
-    if (!Authentication.user) {
-      $state.go('landing.default');
-    }
+    // if (!Authentication.user) {
+    //   $state.go('landing.default');
+    // }
 
     // Expose view variables
     $scope.$state = $state;
