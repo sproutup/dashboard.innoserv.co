@@ -1178,7 +1178,6 @@ input:-ms-input-placeholder {
   padding: 8px 12px;
   font-weight: 700;
   font-size: 9pt;
-  margin-left: 10px;
 }
 
 .label-campaign.product-trial {
@@ -1505,5 +1504,14 @@ input:-ms-input-placeholder {
 }
 
 .product-table tbody tr:hover {
-  background-color: rgba(41, 150, 204, 0.1);
+  background-color: @sproutup-table-hover;
+}
+
+.product-table tbody tr td a {
+  color: @sproutup-blue;
+  font-weight: 700;
+}
+
+.product-table tbody tr td a i {
+  padding-right: 6px;
 }
