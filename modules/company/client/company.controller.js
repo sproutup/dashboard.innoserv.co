@@ -56,12 +56,13 @@
                 vm.companies.splice(i, 1);
               }
             }
-          } else {
+          } 
+          // else {
             // test this 
             // vm.company.$remove(function () {
             //   $location.path('user.company');
             // });
-          }
+          // }
         }
 
         function update(isValid) {
@@ -108,5 +109,4 @@
           });
         }
     }
-
 })();
