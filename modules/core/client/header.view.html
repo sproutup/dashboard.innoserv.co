@@ -1,4 +1,4 @@
-<div class="creator-menu" ng-if="authentication.user">
+<div class="creator-menu">
   <div class="navbar-header">
     <button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
       <span class="sr-only">Toggle navigation</span>
@@ -8,13 +8,19 @@
     </button>
   </div>
   <nav role="navigation">
-    <div class="nav-head">
+    <div class="nav-head" ng-if="authentication.user">
       <div class="nav-item-wrapper creator-company">Mercedes-Benz</div>
       <div class="nav-item-wrapper dropdown creator-name" uib-dropdown>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" uib-dropdown-toggle>{{authentication.user.displayName}}<i class="fa fa-angle-down"></i></a>
         <ul class="dropdown-menu">
           <li><a href="/api/auth/signout">Log out</a></li>
         </ul>
+      </div>
+    </div>
+
+    <div class="nav-head" ng-if="!authentication.user">
+      <div class="nav-item-wrapper creator-company">
+          <a href="/authentication/signin">Sign In</a>
       </div>
     </div> 
 
@@ -43,4 +49,5 @@
        
   </nav>
 </div>
-<div ui-view ng-class="{ 'dashboard-container' : authentication.user }"></div>
+
+<div ui-view class="dashboard-container"></div>
