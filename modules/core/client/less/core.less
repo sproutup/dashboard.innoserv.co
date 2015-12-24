@@ -183,8 +183,7 @@
 }
 
 .dashboard-container {
-  margin-left: 240px;
-  margin-top: 30px;
+  margin: 30px 30px 30px 240px;
 }
 
 .content-table-icon {
@@ -878,6 +877,14 @@ input:-ms-input-placeholder {
   background-color: @sproutup-orange-hover;
 }
 
+.form-input-group .sproutup-btn-md-main {
+  margin-right: 8px;
+}
+
+.form-input-group .sproutup-btn-md-main.trash {
+  margin: 0px;
+}
+
 .sproutup-btn-md-main {
   height: 45px;
   font-weight: 700;
@@ -899,6 +906,16 @@ input:-ms-input-placeholder {
   background-color: @sproutup-blue-hover;
 }
 
+.sproutup-btn-md-main.cancel {
+  color: @main-text-1;
+  background-color: @sproutup-superlightgrey;
+  border: 1px solid @sproutup-grey;
+}
+
+.sproutup-btn-md-main.cancel:hover {
+  background-color: white;
+}
+
 .sproutup-btn-md-main.orange {
   color: white;
   background-color: @sproutup-orange;
@@ -911,6 +928,24 @@ input:-ms-input-placeholder {
 
 .sproutup-btn-md-main i {
   padding-right: 12px;
+}
+
+.sproutup-btn-md-main.trash {
+  width: 60px;
+  float: right;
+  font-size: 14pt;
+  padding-top: 9px;
+  color: white;
+  background-color: @sproutup-orange;
+}
+
+.sproutup-btn-md-main.trash i {
+  padding: 0px;
+}
+
+.sproutup-btn-md-main.trash:hover {
+  background-color: @sproutup-orange-hover;
+  color: white;
 }
 
 .legal-title {
@@ -1507,6 +1542,10 @@ input:-ms-input-placeholder {
   background-color: @sproutup-table-hover;
 }
 
+.product-table .product-table-edit {
+  padding-right: 0px;
+}
+
 .product-table tbody tr td a {
   color: @sproutup-blue;
   font-weight: 700;
@@ -1515,3 +1554,108 @@ input:-ms-input-placeholder {
 .product-table tbody tr td a i {
   padding-right: 6px;
 }
+
+.dashboard-section-title {
+  border-bottom: 1px solid @sproutup-grey;
+  font-weight: 300;
+  font-size: 14pt;
+  padding-bottom: 15px;
+  color: @main-text-1;
+  margin-bottom: 20px;
+}
+
+.dashboard-section-title a {
+  color: @sproutup-blue;
+  padding-right: 15px;
+  font-weight: 700;
+}
+
+.form-input {
+  border: 1px solid @form-border;
+  border-radius: 0px;
+  color: @main-text;
+  -moz-transition: all .2s;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  font-size: 11pt;
+  font-weight: 400;
+  height: 50px;
+  margin-bottom: 8px;
+}
+
+.form-input + .fa {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  padding: 0;
+  color: @input-placeholder-text;
+}
+
+.form-input:focus + .fa {
+  color: @sproutup-blue;
+}
+
+.form-input +  .url-prefix {
+  position: relative;
+  top: -47px;
+  left: 16px;
+  padding: 0;
+  color: @sproutup-blue;
+  font-size: 11pt;
+  font-weight: 400;
+}
+
+.form-input.left-feedback {
+  padding-left: 48px;
+}
+
+.form-input.left-feedback {
+    padding-left: 110px;
+}
+
+.form-input-textarea {
+  resize: vertical;
+  border: 1px solid @form-border;
+  min-height: 120px;
+  border-radius: 0px;
+  font-size: 11pt;
+  font-weight: 400;
+  color: @main-text;
+  -moz-transition: all .2s;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.form-input-textarea.no-resize {
+  resize: none;
+}
+
+.form--error-message {
+  color: @sproutup-error-message;
+  text-align: left;
+  font-weight: 400;
+  font-size: 10pt;
+  padding: 0px 0px 15px;
+}
+
+.form--error-message i {
+  padding-right: 5px;
+}
+
+.create-product-wrapper {
+  max-width: 640px;
+}
+
+.form-input-group {
+  margin-bottom: 20px;
+}
+
+.input-group-title {
+  color: @sproutup-blue;
+  font-weight: 400;
+  font-size: 11pt;
+  margin: 0px;
+  padding: 0px 0px 10px;
+}
+
+
