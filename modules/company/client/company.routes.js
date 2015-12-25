@@ -24,7 +24,7 @@ angular.module('company').config(['$stateProvider',
       })
       .state('company.view', {
         url: '/:companyId',
-        templateUrl: 'modules/company/client/company.html'
+        templateUrl: 'modules/company/client/view-company.html'
       });
   }
 ]);

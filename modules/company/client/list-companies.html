@@ -2,6 +2,7 @@
   <div class="page-header">
     <h1>Companies</h1>
   </div>
+  <a ui-sref="company.create" class="btn btn-info">Create New Company</a>
   <div class="list-group">
     <a ng-repeat="company in vm.companies" ui-sref="company.view({ companyId: company.id })" class="list-group-item">
       <small class="list-group-item-text">
