@@ -25,10 +25,6 @@ angular.module('company').config(['$stateProvider',
       .state('company.view', {
         url: '/:companyId',
         templateUrl: 'modules/company/client/company.html'
-      })
-      .state('company.campaign', {
-        url: '/:companyId/campaign/:campaignId',
-        templateUrl: 'modules/company/client/campaign.html'
       });
   }
 ]);
