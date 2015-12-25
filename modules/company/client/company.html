@@ -1,6 +1,7 @@
 <div class="row" ng-init="vm.findOne()">
 	<div class="product-list-header" ng-if="vm.company">
 	    <h1>Welcome, <span>{{ vm.company.name }}</span>! Below are your live campaigns on SproutUp.</h1>
+		<a ui-sref="company.edit({ companyId: vm.company.id })" type="button" class="btn btn-info">Edit {{vm.company.name}}</a>
 	</div>
 	<div class="product-list-wrapper">
 		<div class="col-sm-6 product-list-item" ng-repeat="campaign in vm.campaigns">
