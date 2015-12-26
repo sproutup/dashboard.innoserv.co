@@ -1,14 +1,14 @@
 <div class="row" ng-init="vm.findOne()">
-	<div class="product-list-header" ng-if="vm.company">
+	<div class="campaign-list-header" ng-if="vm.company">
 	    <h1>Welcome, <span>{{ vm.company.name }}</span>! Below are your live campaigns on SproutUp.</h1>
 		<a ui-sref="company.edit({ companyId: vm.company.id })" class="btn btn-info">Edit {{vm.company.name}}</a>
 	</div>
-	<div class="product-list-wrapper">
-		<div class="col-sm-6 product-list-item" ng-repeat="campaign in vm.campaigns">
+	<div class="campaign-list-wrapper">
+		<div class="col-sm-4 campaign-list-item" ng-repeat="campaign in vm.campaigns">
 			<a ui-sref="user.company.campaign({ companyId: vm.company.id, campaignId: campaign.id })">
-				<div class="product-list-item-banner" style="background-image: url('{{ campaign.product.image }}');">
+				<div class="campaign-list-item-banner" style="background-image: url('{{ campaign.product.image }}');">
 					<p class="campaign-type">{{ campaign.type }}</p>
-					<p class="product-name">{{ campaign.product.name }}</p>
+					<p class="campaign-name">{{ campaign.product.name }}</p>
 				</div>
 			</a>
 		</div>
