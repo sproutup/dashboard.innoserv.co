@@ -34,6 +34,6 @@ angular.module('campaign').config(['$stateProvider',
       .state('user.campaign.edit-mock', {
         url: '/:companyId/edit/mock',
         templateUrl: 'modules/campaign/client/edit-campaign-mock.html'
-      })
+      });
   }
 ]);
