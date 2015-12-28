@@ -47,9 +47,9 @@
             </div>
 
             <!-- Confirm password -->
-            <input type="password" id="password" name="confirmPassword" class="form-control form-validate signup-login-input" ng-model="" placeholder="Confirm Password" required>
+            <input type="password" id="password" name="confirmPassword" class="form-control form-validate signup-login-input" placeholder="Confirm Password" required>
             <div ng-show="userForm.confirmPassword.$submitted || userForm.confirmPassword.$touched" role="alert">
-              <div class="signup-login-form--error-message" ng-show="userForm.confirmPassword.$error.required"><i class="fa fa-minus-circle"></i>Password doesn't matter, try again?</div>
+              <div class="signup-login-form--error-message" ng-show="userForm.confirmPassword.$error.required"><i class="fa fa-minus-circle"></i>Passwords don't match, try again?</div>
             </div>
 
             <div class="signup-agreement">
