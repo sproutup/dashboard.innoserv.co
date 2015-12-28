@@ -6,9 +6,9 @@
         .module('campaign')
         .controller('CampaignController', CampaignController);
 
-    CampaignController.$inject = ['$scope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication'];
+    CampaignController.$inject = ['$scope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'TeamService'];
 
-    function CampaignController($scope, TrialService, $state, CampaignService, $location, Authentication) {
+    function CampaignController($scope, TrialService, $state, CampaignService, $location, Authentication, TeamService) {
         var vm = this;
         vm.create = create;
         vm.remove = remove;
@@ -100,7 +100,18 @@
         }
 
         function find() {
-          vm.campaigns = CampaignService.query();
+          TeamService.listByUser().query({
+            userId: Authentication.user.id
+          },function() {
+            Authentication.user.sessionCompany = $scope.myCompanies[0];
+            vm.campaigns = CampaignService.listByCompany().query({
+              companyId: Authentication.user.sessionCompany.companyId
+            }, function() {
+              console.log('coo');
+            }, function(err) {
+              console.log(err);
+            });
+          });
         }
 
         function findOne() {
