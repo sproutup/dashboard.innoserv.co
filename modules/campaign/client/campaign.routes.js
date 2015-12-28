@@ -10,10 +10,6 @@ angular.module('campaign').config(['$stateProvider',
         controller: 'CampaignController',
         controllerAs: 'vm'
       })
-      .state('user.campaign.view', {
-        url: '/:campaignId',
-        templateUrl: 'modules/campaign/client/campaign.html'
-      })
       .state('user.campaign.list', {
         url: 's',
         templateUrl: 'modules/campaign/client/list-campaign.html'
@@ -25,6 +21,10 @@ angular.module('campaign').config(['$stateProvider',
       .state('user.campaign.create', {
         url: '/create',
         templateUrl: 'modules/campaign/client/create-campaign.html'
+      })
+      .state('user.campaign.view', {
+        url: '/:campaignId',
+        templateUrl: 'modules/campaign/client/campaign.html'
       })
       .state('user.campaign.create-mock', {
         url: '/:companyId/create/mock',

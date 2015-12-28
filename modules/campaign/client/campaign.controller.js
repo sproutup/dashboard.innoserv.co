@@ -40,7 +40,7 @@
 
           // Redirect after save
           campaign.$save(function (response) {
-            $location.path('campaign/' + response.id + '/edit');
+            $location.path('campaigns');
 
             // Clear form fields
             vm.description = '';
@@ -97,7 +97,7 @@
         }
 
         function cancel() {
-          $location.path('campaign/' + vm.campaign.id + '/edit');
+          $location.path('campaigns');
         }
 
         function find() {
