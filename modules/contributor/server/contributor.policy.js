@@ -24,9 +24,18 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/contributor',
       permissions: ['get', 'post']
     }, {
-      resources: '/api/campaign/:campaignId/contributor',
+      resources: '/api/campaign/:campaignId/user',
       permissions: ['get']
-    }]
+    }, {
+      resources: '/api/user/:userId/campaign',
+      permissions: ['*']
+    }, {
+      resources: '/api/campaign/:campaignId/user/:userId',
+      permissions: ['*']
+    }, {
+      resources: '/api/user/:userId/campaign/:campaignId',
+      permissions: ['*']
+   }]
   }, {
     roles: ['guest'],
     allows: [{
