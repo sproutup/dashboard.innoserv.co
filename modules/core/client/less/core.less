@@ -1215,6 +1215,12 @@ input:-ms-input-placeholder {
   font-size: 9pt;
 }
 
+.label-campaign-sm {
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 8pt; 
+}
+
 .label-campaign.product-trial {
   background-color: @sproutup-salmon;
 }
@@ -1572,10 +1578,15 @@ input:-ms-input-placeholder {
   font-weight: 700;
 }
 
+.dashboard-section-title span {
+  font-weight: 400;
+}
+
 .form-input {
   border: 1px solid @form-border;
   border-radius: 0px;
   color: @main-text;
+  -o-transition: all .2s;
   -moz-transition: all .2s;
   -webkit-transition: all .2s;
   transition: all .2s;
@@ -1625,6 +1636,7 @@ input:-ms-input-placeholder {
   color: @main-text;
   -moz-transition: all .2s;
   -webkit-transition: all .2s;
+  -o-transition: all .2s;
   transition: all .2s;
 }
 
@@ -1648,6 +1660,10 @@ input:-ms-input-placeholder {
   max-width: 640px;
 }
 
+.create-campaign-wrapper {
+  max-width: 640px;
+}
+
 .form-input-group {
   margin-bottom: 20px;
 }
@@ -1660,4 +1676,26 @@ input:-ms-input-placeholder {
   padding: 0px 0px 10px;
 }
 
+.campaign-type-selector {
+  padding: 0px;
+}
+
+.campaign-type-info {
+  height: 160px;
+  margin: 2px;
+  color: @sproutup-blue;
+  border: 1px solid @sproutup-blue;
+  text-align: center;
+  font-weight: 400;
+  font-size: 11pt;
+  padding: 50px 0px 0px;
+}
+
+.campaign-type-info p i {
+  font-size: 14pt;
+}
+
+.input-group-campaign-type {
+  margin: 15px 0px 0px;
+}
 
