@@ -6,21 +6,25 @@ angular.module('product').config(['$stateProvider',
       .state('user.product', {
         url: '/product',
         abstract: true,
-        template: '<div ui-view></div>'
+        template: '<div ui-view></div>',
+        controller: 'ProductController',
+        controllerAs: 'vm'
       })
-      // list product and mock
       .state('user.product.list', {
-        url: '/:companyId',
-        templateUrl: 'modules/product/client/list-product.html'
+        url: 's',
+        templateUrl: 'modules/product/client/list-products.html'
       })
       .state('user.product.list-mock', {
         url: '/:companyId/mock',
         templateUrl: 'modules/product/client/list-product-mock.html'
       })
-      //create product and mock
       .state('user.product.create', {
-        url: '/:companyId/create',
+        url: '/create',
         templateUrl: 'modules/product/client/create-product.html'
+      })
+      .state('user.product.view', {
+        url: '/:productId',
+        templateUrl: 'modules/product/client/product.html'
       })
       .state('user.product.create-mock', {
         url: '/:companyId/create/mock',
@@ -28,7 +32,7 @@ angular.module('product').config(['$stateProvider',
       })
       //edit product and mock
       .state('user.product.edit', {
-        url: '/:companyId/edit',
+        url: '/:productId/edit',
         templateUrl: 'modules/product/client/edit-product.html'
       })
       .state('user.product.edit-mock', {

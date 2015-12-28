@@ -7,5 +7,18 @@ angular
 ProductService.$inject = ['$resource'];
 
 function ProductService($resource) {
-  return $resource('/api/product/:productId', { productId: '@productId' }, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
+  var service = {
+    listByCompany: listByCompany,
+    products: products
+  };
+
+  return service;
+
+  function products () {
+     return $resource('/api/product/:productId', {productId:'@productId'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
+  }
+
+  function listByCompany () {
+     return $resource('/api/company/:companyId/product', {companyId:'@companyId'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
+  }
 }

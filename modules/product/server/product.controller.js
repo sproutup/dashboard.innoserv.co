@@ -40,6 +40,7 @@ exports.update = function (req, res) {
 
   //For security purposes only merge these parameters
   item.name = req.body.name;
+  item.url = req.body.url;
   item.tagline = req.body.tagline;
   item.description = req.body.description;
 
