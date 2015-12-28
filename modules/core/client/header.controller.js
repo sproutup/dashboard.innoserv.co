@@ -14,11 +14,10 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     // Get the topbar menu
     $scope.menu = Menus.getMenu('topbar');
     
-    $scope.myCompanies = TeamService.listByUser().get({
+    $scope.myCompanies = TeamService.listByUser().query({
       userId: Authentication.user.id
     },function() {
-      console.log('in here', $scope);
-      Authentication.sessionCompany = $scope.myCompanies[0];
+      Authentication.user.sessionCompany = $scope.myCompanies[0];
     });
 
     // Toggle the menu items

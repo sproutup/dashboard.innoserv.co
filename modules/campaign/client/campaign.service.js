@@ -8,7 +8,7 @@ CampaignService.$inject = ['$resource'];
 
 function CampaignService($resource) {
   var service = {
-    listCampaigns: listCampaigns,
+    listByCompany: listByCompany,
     campaigns: campaigns
   };
 
@@ -18,7 +18,7 @@ function CampaignService($resource) {
      return $resource('/api/campaign/:campaignId', {campaignId:'@campaignId'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
   }
 
-  function listCampaigns () {
+  function listByCompany () {
      return $resource('/api/company/:id/campaign', {id:'@id'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
   }
 

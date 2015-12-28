@@ -17,8 +17,4 @@ function TeamService($resource) {
      return $resource('/api/user/:userId/company', {userId:'@userId'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
   }
 
-  function listCampaigns () {
-     return $resource('/api/company/:id/campaign', {id:'@id'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
-  }
-
 }

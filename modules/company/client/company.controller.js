@@ -15,7 +15,6 @@
         vm.update = update;
         vm.find = find;
         vm.findOne = findOne;
-        console.log(CampaignService);
 
         function create(isValid) {
           vm.error = null;
@@ -103,7 +102,7 @@
             $state.go('landing.default');
           });
 
-          var campaigns = CampaignService.listCampaigns().query({
+          var campaigns = CampaignService.listByCompany().query({
             id: $state.params.companyId
           }, function() {
             vm.campaigns = campaigns;

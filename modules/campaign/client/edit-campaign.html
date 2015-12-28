@@ -1,4 +1,4 @@
-<h1 class="dashboard-section-title" ng-init="vm.findOne()"><a ui-sref="user.product.list-mock"><i class="fa fa-angle-left"></i></a>Edit Bebop Drone 2.0</h1>
+<h1 class="dashboard-section-title" ng-init="vm.findOne()"><a ui-sref="user.product.list-mock"><i class="fa fa-angle-left"></i></a>Edit Campaign</h1>
 <div class="create-product-wrapper">
 	<div class="row">
         <div class="col-sm-12 form-input-group">
@@ -14,8 +14,8 @@
         </div>
         <div class="col-sm-12 form-input-group">
         	<a class="btn btn-lg sproutup-btn-md-main" href="#" ng-click="vm.update()">Save</a>
-        	<a class="btn btn-lg sproutup-btn-md-main cancel" href="#">Cancel</a>
-        	<a class="btn btn-lg sproutup-btn-md-main trash" href="#"><i class="fa fa-trash"></i></a>
+        	<a class="btn btn-lg sproutup-btn-md-main cancel" href="#" ng-click="vm.findOne()">Cancel</a>
+        	<a class="btn btn-lg sproutup-btn-md-main trash" href="#" ng-click="vm.remove(vm.campaign)"><i class="fa fa-trash"></i></a>
         </div>
     </div>
 </div>

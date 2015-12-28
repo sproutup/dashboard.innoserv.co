@@ -6,13 +6,14 @@
         .module('campaign')
         .controller('CampaignController', CampaignController);
 
-    CampaignController.$inject = ['$scope', 'TrialService', '$state', 'CampaignService', '$location'];
+    CampaignController.$inject = ['$scope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication'];
 
-    function CampaignController($scope, TrialService, $state, CampaignService, $location) {
+    function CampaignController($scope, TrialService, $state, CampaignService, $location, Authentication) {
         var vm = this;
         vm.create = create;
         vm.remove = remove;
         vm.update = update;
+        vm.cancel = cancel;
         vm.find = find;
         vm.findOne = findOne;
 
@@ -28,12 +29,10 @@
           //   vm.invalid = false;
           // }
 
-          console.log('here');
-
           // Create new campaign object
           var CampaignObj = CampaignService.campaigns();
           var campaign = new CampaignObj({
-            companyId: 6085161590821224448,
+            companyId: Authentication.user.sessionCompany.companyId,
             description: vm.description
           });
 
@@ -51,7 +50,11 @@
 
         function remove(campaign) {
           if (campaign) {
-            campaign.$remove();
+            campaign.$remove({
+              campaignId: campaign.id
+            }, function() {
+              $state.go('user.campaign.list');
+            });
 
             for (var i in vm.companies) {
               if (vm.companies[i] === campaign) {
@@ -81,12 +84,10 @@
           // }
 
           var campaign = vm.campaign;
-          console.log(campaign);
 
           campaign.$update({
             campaignId: $state.params.campaignId
           }, function () {
-            console.log('heres campaign', campaign);
             $location.path('campaign/' + campaign.id + '/edit');
           }, function (errorResponse) {
             console.log(errorResponse);
@@ -94,26 +95,22 @@
           });
         }
 
+        function cancel() {
+          $location.path('campaign/' + vm.campaign.id + '/edit');
+        }
+
         function find() {
           vm.campaigns = CampaignService.query();
         }
 
         function findOne() {
-          console.log($state.params);
           var campaign = CampaignService.campaigns().get({
             campaignId: $state.params.campaignId
           }, function() {
             vm.campaign = campaign;
-            console.log(campaign);
           }, function(err) {
             $state.go('landing.default');
           });
-
-          // var campaigns = CampaignService.listCampaigns().query({
-          //   id: $state.params.campaignId
-          // }, function() {
-          //   vm.campaigns = campaigns;
-          // });
         }
     }
 })();
