@@ -7,30 +7,11 @@
 
 <div class="row campaign-list-wrapper">
 	<div class="col-sm-4 campaign-list-item" ng-repeat="campaign in vm.campaigns">
-		<div class="campaign-list-item-banner" style="background-image: url('https://d30xksqof6w2my.cloudfront.net/ccd20a3d-1a0d-4545-870a-94e1c645ff96_0_admin.jpg?w=1600');">
-			<p class="campaign-type product-trial">Product Trial</p>
-			<p class="campaign-name">Nest Cam</p>
-		</div>
-	</div>
-</div>
-
-<div class="row campaign-list-wrapper">
-	<div class="col-sm-4 campaign-list-item">
-		<div class="campaign-list-item-banner" style="background-image: url('https://d30xksqof6w2my.cloudfront.net/ccd20a3d-1a0d-4545-870a-94e1c645ff96_0_admin.jpg?w=1600');">
-			<p class="campaign-type product-trial">Product Trial</p>
-			<p class="campaign-name">Nest Cam</p>
-		</div>
-	</div>
-	<div class="col-sm-4 campaign-list-item">
-		<div class="campaign-list-item-banner" style="background-image: url('https://d30xksqof6w2my.cloudfront.net/ccd20a3d-1a0d-4545-870a-94e1c645ff96_0_admin.jpg?w=1600');">
-			<p class="campaign-type product-trial">Product Trial</p>
-			<p class="campaign-name">Nest Thermostat</p>
-		</div>
-	</div>
-	<div class="col-sm-4 campaign-list-item">
-		<div class="campaign-list-item-banner" style="background-image: url('https://d30xksqof6w2my.cloudfront.net/ccd20a3d-1a0d-4545-870a-94e1c645ff96_0_admin.jpg?w=1600');">
-			<p class="campaign-type video-contest">Video Contest</p>
-			<p class="campaign-name">Find What Matters Contest</p>
-		</div>
+		<a ui-sref="user.campaign.edit({ campaignId: campaign.id })">
+			<div class="campaign-list-item-banner" style="background-image: url('https://d30xksqof6w2my.cloudfront.net/ccd20a3d-1a0d-4545-870a-94e1c645ff96_0_admin.jpg?w=1600');">
+				<p class="campaign-type product-trial">{{campaign.type}}</p>
+				<p class="campaign-name">Nest Cam</p>
+			</div>
+		</a>
 	</div>
 </div>

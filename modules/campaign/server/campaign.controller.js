@@ -41,6 +41,7 @@ exports.update = function (req, res) {
   //For security purposes only merge these parameters
   item.name = req.body.name;
   item.description = req.body.description;
+  item.type = req.body.type;
 
   item.save().then(function(data){
     res.json(item);

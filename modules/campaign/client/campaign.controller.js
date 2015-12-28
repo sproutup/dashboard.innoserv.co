@@ -33,7 +33,9 @@
           var CampaignObj = CampaignService.campaigns();
           var campaign = new CampaignObj({
             companyId: Authentication.user.sessionCompany.companyId,
-            description: vm.description
+            description: vm.description,
+            type: vm.type,
+            name: vm.name
           });
 
           // Redirect after save
@@ -71,7 +73,6 @@
         }
 
         function update(isValid) {
-          console.log('update being called');
           vm.error = null;
 
           // if (!isValid) {
@@ -88,9 +89,9 @@
           campaign.$update({
             campaignId: $state.params.campaignId
           }, function () {
-            $location.path('campaign/' + campaign.id + '/edit');
+            vm.success = true;
           }, function (errorResponse) {
-            console.log(errorResponse);
+            vm.success = null;
             vm.error = errorResponse.data.message;
           });
         }
@@ -115,6 +116,8 @@
         }
 
         function findOne() {
+          vm.success = false;
+
           var campaign = CampaignService.campaigns().get({
             campaignId: $state.params.campaignId
           }, function() {
