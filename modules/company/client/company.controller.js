@@ -15,6 +15,7 @@
         vm.update = update;
         vm.find = find;
         vm.findOne = findOne;
+        console.log(CampaignService);
 
         function create(isValid) {
           vm.error = null;

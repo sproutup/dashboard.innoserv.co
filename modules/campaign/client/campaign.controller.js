@@ -19,28 +19,30 @@
         function create(isValid) {
           vm.error = null;
 
-          if (!isValid) {
-            vm.invalid = true;
-            $scope.$broadcast('show-errors-check-validity', 'campaignForm');
+          // if (!isValid) {
+          //   vm.invalid = true;
+          //   $scope.$broadcast('show-errors-check-validity', 'campaignForm');
 
-            return false;
-          } else {
-            vm.invalid = false;
-          }
+          //   return false;
+          // } else {
+          //   vm.invalid = false;
+          // }
+
+          console.log('here');
 
           // Create new campaign object
-          var campaign = new CampaignService({
-            name: this.name,
-            url: this.url
+          var CampaignObj = CampaignService.Campaigns();
+          var campaign = new CampaignObj({
+            companyId: 6085161590821224448,
+            description: vm.description
           });
 
           // Redirect after save
           campaign.$save(function (response) {
-            $location.path('campaign/' + response.id);
+            $location.path('campaign/' + response.id + '/edit');
 
             // Clear form fields
-            vm.name = '';
-            vm.url = '';
+            vm.description = '';
           }, function (errorResponse) {
             console.log(errorResponse);
             vm.error = errorResponse.data.message;
@@ -90,11 +92,12 @@
         }
 
         function find() {
-          vm.companies = CampaignService.query();
+          vm.campaigns = CampaignService.query();
         }
 
         function findOne() {
-          var campaign = CampaignService.get({
+          console.log($state.params);
+          var campaign = CampaignService.Campaigns().query({
             campaignId: $state.params.campaignId
           }, function() {
             vm.campaign = campaign;
@@ -102,11 +105,11 @@
             $state.go('landing.default');
           });
 
-          var campaigns = CampaignService.listCampaigns().query({
-            id: $state.params.campaignId
-          }, function() {
-            vm.campaigns = campaigns;
-          });
+          // var campaigns = CampaignService.listCampaigns().query({
+          //   id: $state.params.campaignId
+          // }, function() {
+          //   vm.campaigns = campaigns;
+          // });
         }
     }
 })();

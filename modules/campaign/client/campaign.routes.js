@@ -6,7 +6,9 @@ angular.module('campaign').config(['$stateProvider',
       .state('user.campaign', {
         url: '/campaign',
         abstract: true,
-        template: '<div ui-view></div>'
+        template: '<div ui-view></div>',
+        controller: 'CampaignController',
+        controllerAs: 'vm'
       })
       // list campaign and mock
       .state('user.campaign.list', {
@@ -28,11 +30,11 @@ angular.module('campaign').config(['$stateProvider',
       })
       //edit campaign and mock
       .state('user.campaign.edit', {
-        url: '/:companyId/edit',
+        url: '/:campaignIdId/edit',
         templateUrl: 'modules/campaign/client/edit-campaign.html'
       })
       .state('user.campaign.edit-mock', {
-        url: '/:companyId/edit/mock',
+        url: '/:campaignId/edit/mock',
         templateUrl: 'modules/campaign/client/edit-campaign-mock.html'
       });
   }
