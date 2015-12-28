@@ -103,7 +103,7 @@
           });
 
           var campaigns = CampaignService.listByCompany().query({
-            id: $state.params.companyId
+            companyId: $state.params.companyId
           }, function() {
             vm.campaigns = campaigns;
           });

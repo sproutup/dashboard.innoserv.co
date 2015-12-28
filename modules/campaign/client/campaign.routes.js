@@ -16,7 +16,7 @@ angular.module('campaign').config(['$stateProvider',
       })
       // list campaign and mock
       .state('user.campaign.list', {
-        url: '/:companyId',
+        url: 's',
         templateUrl: 'modules/campaign/client/list-campaign.html'
       })
       .state('user.campaign.list-mock', {

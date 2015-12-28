@@ -6,9 +6,9 @@
         .module('campaign')
         .controller('CampaignController', CampaignController);
 
-    CampaignController.$inject = ['$scope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication'];
+    CampaignController.$inject = ['$scope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'TeamService'];
 
-    function CampaignController($scope, TrialService, $state, CampaignService, $location, Authentication) {
+    function CampaignController($scope, TrialService, $state, CampaignService, $location, Authentication, TeamService) {
         var vm = this;
         vm.create = create;
         vm.remove = remove;
@@ -33,7 +33,9 @@
           var CampaignObj = CampaignService.campaigns();
           var campaign = new CampaignObj({
             companyId: Authentication.user.sessionCompany.companyId,
-            description: vm.description
+            description: vm.description,
+            type: vm.type,
+            name: vm.name
           });
 
           // Redirect after save
@@ -71,7 +73,6 @@
         }
 
         function update(isValid) {
-          console.log('update being called');
           vm.error = null;
 
           // if (!isValid) {
@@ -88,9 +89,9 @@
           campaign.$update({
             campaignId: $state.params.campaignId
           }, function () {
-            $location.path('campaign/' + campaign.id + '/edit');
+            vm.success = true;
           }, function (errorResponse) {
-            console.log(errorResponse);
+            vm.success = null;
             vm.error = errorResponse.data.message;
           });
         }
@@ -100,10 +101,23 @@
         }
 
         function find() {
-          vm.campaigns = CampaignService.query();
+          TeamService.listByUser().query({
+            userId: Authentication.user.id
+          },function() {
+            Authentication.user.sessionCompany = $scope.myCompanies[0];
+            vm.campaigns = CampaignService.listByCompany().query({
+              companyId: Authentication.user.sessionCompany.companyId
+            }, function() {
+              console.log('coo');
+            }, function(err) {
+              console.log(err);
+            });
+          });
         }
 
         function findOne() {
+          vm.success = false;
+
           var campaign = CampaignService.campaigns().get({
             campaignId: $state.params.campaignId
           }, function() {
