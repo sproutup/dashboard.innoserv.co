@@ -9,12 +9,12 @@ CampaignService.$inject = ['$resource'];
 function CampaignService($resource) {
   var service = {
     listCampaigns: listCampaigns,
-    Campaigns: Campaigns
+    campaigns: campaigns
   };
 
   return service;
 
-  function Campaigns () {
+  function campaigns () {
      return $resource('/api/campaign/:campaignId', {campaignId:'@campaignId'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
   }
 

@@ -31,7 +31,7 @@
           console.log('here');
 
           // Create new campaign object
-          var CampaignObj = CampaignService.Campaigns();
+          var CampaignObj = CampaignService.campaigns();
           var campaign = new CampaignObj({
             companyId: 6085161590821224448,
             description: vm.description
@@ -68,23 +68,26 @@
         }
 
         function update(isValid) {
+          console.log('update being called');
           vm.error = null;
 
-          if (!isValid) {
-            vm.invalid = true;
-            $scope.$broadcast('show-errors-check-validity', 'articleForm');
+          // if (!isValid) {
+          //   vm.invalid = true;
+          //   $scope.$broadcast('show-errors-check-validity', 'articleForm');
 
-            return false;
-          } else {
-            vm.invalid = false;
-          }
+          //   return false;
+          // } else {
+          //   vm.invalid = false;
+          // }
 
           var campaign = vm.campaign;
+          console.log(campaign);
 
           campaign.$update({
             campaignId: $state.params.campaignId
           }, function () {
-            $location.path('campaign/' + campaign.id);
+            console.log('heres campaign', campaign);
+            $location.path('campaign/' + campaign.id + '/edit');
           }, function (errorResponse) {
             console.log(errorResponse);
             vm.error = errorResponse.data.message;
@@ -97,10 +100,11 @@
 
         function findOne() {
           console.log($state.params);
-          var campaign = CampaignService.Campaigns().query({
+          var campaign = CampaignService.campaigns().get({
             campaignId: $state.params.campaignId
           }, function() {
             vm.campaign = campaign;
+            console.log(campaign);
           }, function(err) {
             $state.go('landing.default');
           });

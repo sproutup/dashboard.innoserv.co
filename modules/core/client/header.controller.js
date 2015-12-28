@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus',
-  function ($scope, $state, Authentication, Menus) {
+angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus', 'TeamService',
+  function ($scope, $state, Authentication, Menus, TeamService) {
     
     // if (!Authentication.user) {
     //   $state.go('landing.default');
@@ -13,7 +13,13 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
 
     // Get the topbar menu
     $scope.menu = Menus.getMenu('topbar');
-    console.log('here');
+    
+    $scope.myCompanies = TeamService.listByUser().get({
+      userId: Authentication.user.id
+    },function() {
+      console.log('in here', $scope);
+      Authentication.sessionCompany = $scope.myCompanies[0];
+    });
 
     // Toggle the menu items
     $scope.isCollapsed = false;

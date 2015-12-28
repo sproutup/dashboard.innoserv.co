@@ -9,11 +9,11 @@
             <input type="url" class="form-control form-input" placeholder="URL of an awesome product video">
         </div>
         <div class="col-sm-12 form-input-group">
-        	<p class="input-group-title" ng-bind="vm.campaign.description"></p>
-            <textarea class="form-control form-input-textarea" placeholder="Tell users more about this product. What are the cool features? What's the story behind this product?"></textarea>
+        	<p class="input-group-title"></p>
+            <textarea class="form-control form-input-textarea" placeholder="Tell users more about this product. What are the cool features? What's the story behind this product?" ng-model="vm.campaign.description"></textarea>
         </div>
         <div class="col-sm-12 form-input-group">
-        	<a class="btn btn-lg sproutup-btn-md-main" href="#">Save</a>
+        	<a class="btn btn-lg sproutup-btn-md-main" href="#" ng-click="vm.update()">Save</a>
         	<a class="btn btn-lg sproutup-btn-md-main cancel" href="#">Cancel</a>
         	<a class="btn btn-lg sproutup-btn-md-main trash" href="#"><i class="fa fa-trash"></i></a>
         </div>
