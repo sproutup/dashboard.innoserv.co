@@ -34,6 +34,6 @@ angular.module('product').config(['$stateProvider',
       .state('user.product.edit-mock', {
         url: '/:companyId/edit/mock',
         templateUrl: 'modules/product/client/edit-product-mock.html'
-      })
+      });
   }
 ]);

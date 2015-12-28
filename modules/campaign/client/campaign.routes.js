@@ -6,29 +6,34 @@ angular.module('campaign').config(['$stateProvider',
       .state('user.campaign', {
         url: '/campaign',
         abstract: true,
-        template: '<section class="content"><section class="container"><div ui-view></div></section></section>',
-        controller: 'campaignController',
-        controllerAs: 'vm'
+        template: '<div ui-view></div>'
       })
+      // list campaign and mock
       .state('user.campaign.list', {
-        url: '',
-        templateUrl: 'modules/campaign/client/list-campaigns.html'
+        url: '/:companyId',
+        templateUrl: 'modules/campaign/client/list-campaign.html'
       })
+      .state('user.campaign.list-mock', {
+        url: '/:companyId/mock',
+        templateUrl: 'modules/campaign/client/list-campaign-mock.html'
+      })
+      //create campaign and mock
       .state('user.campaign.create', {
-        url: '/create',
+        url: '/:companyId/create',
         templateUrl: 'modules/campaign/client/create-campaign.html'
       })
+      .state('user.campaign.create-mock', {
+        url: '/:companyId/create/mock',
+        templateUrl: 'modules/campaign/client/create-campaign-mock.html'
+      })
+      //edit campaign and mock
       .state('user.campaign.edit', {
-        url: '/:campaignId/edit',
+        url: '/:companyId/edit',
         templateUrl: 'modules/campaign/client/edit-campaign.html'
       })
-      .state('user.campaign.view', {
-        url: '/:campaignId',
-        templateUrl: 'modules/campaign/client/campaign.html'
-      })
-      .state('user.campaign.campaign', {
-        url: '/:campaignId/campaign/:campaignId',
-        templateUrl: 'modules/campaign/client/campaign.html'
+      .state('user.campaign.edit-mock', {
+        url: '/:companyId/edit/mock',
+        templateUrl: 'modules/campaign/client/edit-campaign-mock.html'
       });
   }
 ]);
