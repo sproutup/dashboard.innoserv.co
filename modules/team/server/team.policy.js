@@ -26,6 +26,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/company/:companyId/user',
       permissions: ['get']
+    }, {
+      resources: '/api/user/:userId/company',
+      permissions: ['get']
     }]
   }, {
     roles: ['guest'],
