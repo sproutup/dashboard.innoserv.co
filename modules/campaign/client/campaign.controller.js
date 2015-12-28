@@ -40,7 +40,7 @@
 
           // Redirect after save
           campaign.$save(function (response) {
-            $location.path('campaigns');
+            $location.path('campaign/' + response.id + '/edit');
 
             // Clear form fields
             vm.description = '';
@@ -89,7 +89,7 @@
           campaign.$update({
             campaignId: $state.params.campaignId
           }, function () {
-            vm.success = true;
+            $location.path('campaigns');
           }, function (errorResponse) {
             vm.success = null;
             vm.error = errorResponse.data.message;
