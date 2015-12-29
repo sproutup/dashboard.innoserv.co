@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus', 'TeamService',
-  function ($scope, $state, Authentication, Menus, TeamService) {
+angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus', 'TeamService', 'CompanyService',
+  function ($scope, $state, Authentication, Menus, TeamService, CompanyService) {
     
     // if (!Authentication.user) {
     //   $state.go('landing.default');
@@ -14,16 +14,23 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     // Get the topbar menu
     $scope.menu = Menus.getMenu('topbar');
     
-    $scope.myCompanies = TeamService.listByUser().query({
-      userId: Authentication.user.id
-    },function() {
-      Authentication.user.sessionCompany = $scope.myCompanies[0];
-    });
+    // $scope.myCompanies = TeamService.listByUser().query({
+    //   userId: Authentication.user.id
+    // }, function() {
+    //   console.log($scope.myCompanies);
+    //   Authentication.user.sessionCompany = $scope.myCompanies[0];
+    // });
+
+    $scope.companies = CompanyService.query();
 
     // Toggle the menu items
     $scope.isCollapsed = false;
     $scope.toggleCollapsibleMenu = function () {
       $scope.isCollapsed = !$scope.isCollapsed;
+    };
+
+    $scope.companyChange = function(company) {
+      Authentication.user.sessionCompany = company;
     };
 
     // Collapsing the menu after navigation
