@@ -20,7 +20,8 @@ module.exports = {
         'public/lib/Chart.js/Chart.min.js',
         'public/lib/angular-chart.js/dist/angular-chart.min.js',
         'public/lib/moment/min/moment.min.js',
-        'public/lib/angular-moment/angular-moment.min.js'
+        'public/lib/angular-moment/angular-moment.min.js',
+        'public/lib/angular-cookies/angular-cookies.min.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
