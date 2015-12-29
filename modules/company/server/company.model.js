@@ -54,7 +54,8 @@ CompanySchema.statics.find = function (id) {
         });
       }
       else{
-        return company;
+        var Company = dynamoose.model('Company');
+        return new Company(company);
       }
   })
   .catch(function(err){
@@ -69,6 +70,10 @@ CompanySchema.statics.findBySlug = function (slug) {
 
   return redis.get('company:slug:'+slug)
     .then(function(id){
+      if(!id){
+        return {};
+      }
+
       return _this.find(id);
   })
   .catch(function(err){
@@ -84,16 +89,19 @@ var Company = dynamoose.model('Company', CompanySchema);
  * Hook a pre save method to create the slug
  */
 Company.pre('save', function(next) {
+  var oldSlug = this.slug;
   if (this.name) {
     this.slug = slug(this.name);
   }
 
+  // delete old slug
+  if(!_.isEqual(oldSlug, this.slug)){
+    redis.del('company:slug:' + oldSlug);
+  }
+
+  // add new slug
   redis.set('company:slug:' + this.slug, this.id);
   redis.hmset('company:' + this.id, this);
-  // new user check email
-//  if (!this.id){
-//    User.get({email: this.email});
-//  }
 
   next();
 });
