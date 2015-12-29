@@ -95,7 +95,29 @@ exports.companyByID = function (req, res, next, id) {
     });
   }
 
-  Company.get(id).then(function(company){
+  Company.find(id).then(function(company){
+    if(_.isUndefined(company)){
+      return res.status(400).send({
+        message: 'Company not found'
+      });
+    }
+
+    req.model = company;
+    next();
+  })
+  .catch(function(err){
+    return next(err);
+  });
+};
+
+exports.companyBySlug = function (req, res, next, slug) {
+  if (!_.isString(slug)) {
+    return res.status(400).send({
+      message: 'Company is invalid'
+    });
+  }
+
+  Company.findBySlug(slug).then(function(company){
     if(_.isUndefined(company)){
       return res.status(400).send({
         message: 'Company not found'

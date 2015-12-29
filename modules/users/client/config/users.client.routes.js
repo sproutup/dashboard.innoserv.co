@@ -34,6 +34,11 @@ angular.module('users').config(['$stateProvider',
         url: '/authentication',
         templateUrl: 'modules/users/client/views/authentication/authentication.client.view.html'
       })
+      // this is a temporary url
+      .state('authentication.general-signup', {
+        url: '/general-signup',
+        templateUrl: 'modules/users/client/views/authentication/general-signup.client.view.html'
+      })
       .state('authentication.signup', {
         url: '/signup',
         templateUrl: 'modules/users/client/views/authentication/signup.client.view.html'
