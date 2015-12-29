@@ -18,7 +18,7 @@
     </div>
 
     <div class="nav-head" ng-if="!authentication.user">
-      <div class="nav-item-wrapper creator-company">
+      <div class="nav-item-wrapper nav-item-main">
           <a href="/authentication/signin">Sign In</a>
       </div>
     </div> 
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="nav-section">
+    <div class="nav-section" ng-if="authentication.user">
       <div class="nav-item-wrapper nav-item-main">
         <a href="/api/auth/signout" target="_self">Log out</a>
       </div>
