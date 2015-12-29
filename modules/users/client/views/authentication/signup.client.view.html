@@ -10,12 +10,19 @@
   <div class="row">
     <div class="signup-login-header">
         <h1>Thanks for getting started with SproutUp</h1>
-        <h2>Your email is <span>peter@sproutup.co</span>, and your company is <span class="signup-company-name">SproutUp Co</span> Please fill out the information below to finish signing up.</h2>
+        <h2>Your registered email is <span>peter@sproutup.co</span>, and your company is <span class="signup-company-name">SproutUp Co</span> Please fill out the information below to finish signing up.</h2>
     </div>
     <div class="signup-login-area">
       <form name="userForm" ng-submit="signup(userForm.$valid)" class="signin" novalidate autocomplete="off">
         <fieldset>
           <div class="signup-login-form" show-errors>
+
+            <!-- Email -->
+<!--             <input type="email" id="email" name="email" class="form-control form-validate signup-login-input" ng-model="credentials.email" placeholder="Company email like joe@company.com" lowercase disabled required>
+            <div ng-show="userForm.email.$submitted || userForm.email.$touched" role="alert">
+              <div class="signup-login-form--error-message" ng-show="userForm.email.$error.required"><i class="fa fa-minus-circle"></i>Can't sign up without an email</div>
+              <div class="signup-login-form--error-message" ng-show="userForm.email.$error.email"><i class="fa fa-minus-circle"></i>Err, you sure the email is valid?</div>
+            </div> -->
 
             <!-- First Name -->
             <input type="text" id="firstName" name="firstName" class="form-control form-validate signup-login-input" ng-model="credentials.firstName" placeholder="First Name" required>
@@ -28,13 +35,6 @@
             <div ng-show="userForm.lastName.$submitted || userForm.lastName.$touched" role="alert">
               <div class="signup-login-form--error-message" ng-show="userForm.lastName.$error.required"><i class="fa fa-minus-circle"></i>Please tell us your last name</div>
             </div>
-
-            <!-- Email -->
-            <!-- <input type="email" id="email" name="email" class="form-control form-validate signup-login-input" ng-model="credentials.email" placeholder="Company email like joe@company.com" lowercase required>
-            <div ng-show="userForm.email.$submitted || userForm.email.$touched" role="alert">
-              <div class="signup-login-form--error-message" ng-show="userForm.email.$error.required"><i class="fa fa-minus-circle"></i>Can't sign up without an email</div>
-              <div class="signup-login-form--error-message" ng-show="userForm.email.$error.email"><i class="fa fa-minus-circle"></i>Err, you sure the email is valid?</div>
-            </div> -->
             
             <!-- Username: To be removed -->
             <!-- <input type="text" id="username" name="username" class="form-control form-validate signup-login-input" ng-model="credentials.username" placeholder="Username" lowercase required> -->
