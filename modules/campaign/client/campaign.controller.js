@@ -33,7 +33,7 @@
           var CampaignObj = CampaignService.campaigns();
           var campaign = new CampaignObj({
             companyId: Authentication.user.sessionCompany.companyId,
-            productId: vm.product,
+            productId: vm.product.id,
             description: vm.description,
             type: vm.type,
             name: vm.name
@@ -42,7 +42,6 @@
           // Redirect after save
           campaign.$save(function (response) {
             $location.path('campaign/' + response.id + '/edit');
-
             // Clear form fields
             vm.description = '';
           }, function (errorResponse) {
