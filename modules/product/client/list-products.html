@@ -24,7 +24,7 @@
 				</td> 
 				<td>Category</td> 
 				<td>{{ product.tagline }}</td>
-				<td><a ui-sref="user.campaign.create"><i class="fa fa-plus-circle"></i>START CAMPAIGN</a></td>
+				<td><a ui-sref="user.campaign.create" ng-click="vm.startCampaign(product)"><i class="fa fa-plus-circle"></i>START CAMPAIGN</a></td>
 <!-- 				<td><span class="label label-campaign product-trial">Product Trial</span></td> -->
 			</tr>
 			<!-- <tr data-href="#">
