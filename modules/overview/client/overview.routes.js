@@ -5,7 +5,7 @@ angular.module('overview').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
       .state('user.overview', {
-      	url: '/:productSlug',
+      	url: '/',
         abstract: true,
         templateUrl: 'modules/overview/client/overview.html',
         controller: 'overviewController',

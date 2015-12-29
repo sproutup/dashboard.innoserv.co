@@ -7,7 +7,7 @@ angular.module('products').config(['$stateProvider',
     $stateProvider
       .state('products', {
         abstract: true,
-        url: '/product',
+        url: '/product2',
         template: '<ui-view/>'
       })
       .state('products.list', {

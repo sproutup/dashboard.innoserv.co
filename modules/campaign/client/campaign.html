@@ -1,0 +1,5 @@
+<div ng-init="vm.findOne()">
+	<div>{{ vm.campaign.name }}</div>
+	<div>{{ vm.campaign.type }}</div>
+	<a ui-sref="user.campaign.edit({ campaignId: vm.campaign.id })">edit</a>
+</div>
