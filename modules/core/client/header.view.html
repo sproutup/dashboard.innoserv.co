@@ -10,11 +10,15 @@
   <nav role="navigation">
     <div class="nav-head" ng-if="authentication.user">
       <div class="nav-item-wrapper creator-company">Mercedes-Benz</div>
-      <div class="nav-item-wrapper creator-user">{{authentication.user.displayName}}</div>
+      <div class="nav-item-wrapper creator-user">
+        <a ui-sref='settings.profile'>
+          {{authentication.user.displayName}}
+        </a>
+      </div>
     </div>
 
     <div class="nav-head" ng-if="!authentication.user">
-      <div class="nav-item-wrapper creator-company">
+      <div class="nav-item-wrapper nav-item-main">
           <a href="/authentication/signin">Sign In</a>
       </div>
     </div> 
@@ -34,9 +38,9 @@
       </div>
     </div>
 
-    <div class="nav-section">
+    <div class="nav-section" ng-if="authentication.user">
       <div class="nav-item-wrapper nav-item-main">
-        <a href="/api/auth/signout">Log out</a>
+        <a href="/api/auth/signout" target="_self">Log out</a>
       </div>
     </div>
 <!--     <div class="nav-section">
