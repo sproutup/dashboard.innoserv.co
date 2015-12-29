@@ -4,7 +4,7 @@
   </div>
   <a ui-sref="company.create" class="btn btn-info">Create New Company</a>
   <div class="list-group">
-    <a ng-repeat="company in companies" ui-sref="user.campaigns({ companyId: company.id })" class="list-group-item" ng-click="companyChange(company)">
+    <a ng-repeat="company in companies" class="list-group-item" ng-click="companyChange(company)">
       <small class="list-group-item-text">
         Created on
         <span ng-bind="company.created | date:'mediumDate'"></span>
