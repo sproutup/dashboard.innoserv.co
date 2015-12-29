@@ -17,9 +17,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr >
+			<tr ng-repeat="product in vm.products">
 				<td class="product-table-edit"><a ui-sref="user.product.edit({ productId: product.id })"><i class="fa fa-pencil"></i></a></td>
-				<td ng-repeat="product in vm.products">
+				<td>
 					<a ui-sref="user.product.view({ productId: product.id })">{{ product.name }}</a>
 				</td> 
 				<td>Category</td> 
