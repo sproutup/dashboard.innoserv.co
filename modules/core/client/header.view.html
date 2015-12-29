@@ -16,7 +16,7 @@
       </select>
       <div class="nav-item-wrapper creator-company">{{ company.name }}</div>
       <div class="nav-item-wrapper creator-user">
-        <a ui-sref='user.settings.profile'><img src="modules/core/client/img/default-avatar.png"> {{authentication.user.displayName}}</a>
+        <a ui-sref='user.settings.profile'><img src="modules/core/client/img/default-avatar.png"> {{authentication.user.firstName}}</a>
       </div>
     </div>
 
@@ -33,6 +33,9 @@
       <div class="nav-item-wrapper nav-item-main">
         <a ui-sref="user.product.list">Products</a>
       </div>
+      <div class="nav-item-wrapper nav-item-main">
+        <a ui-sref="#">Company Info</a>
+      </div>
     </div>
 
     <div class="nav-section">
@@ -46,14 +49,6 @@
         <a href="/api/auth/signout" target="_self">Log out</a>
       </div>
     </div>
-<!--     <div class="nav-section">
-      <div class="nav-item-wrapper">
-        <a data-ui-sref="">Settings</a>
-      </div>
-      <div class="nav-item-wrapper">
-        <a data-ui-sref="">Settings</a>
-      </div>
-    </div> -->
        
   </nav>
 </div>
