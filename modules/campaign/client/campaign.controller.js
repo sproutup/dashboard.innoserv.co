@@ -6,9 +6,9 @@
         .module('campaign')
         .controller('CampaignController', CampaignController);
 
-    CampaignController.$inject = ['$scope', '$rootScope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'TeamService', 'ProductService'];
+    CampaignController.$inject = ['$scope', '$rootScope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'TeamService', 'ProductService', '$cookieStore'];
 
-    function CampaignController($scope, $rootScope, TrialService, $state, CampaignService, $location, Authentication, TeamService, ProductService) {
+    function CampaignController($scope, $rootScope, TrialService, $state, CampaignService, $location, Authentication, TeamService, ProductService, $cookieStore) {
         var vm = this;
         vm.create = create;
         vm.remove = remove;
@@ -32,12 +32,15 @@
           // Create new campaign object
           var CampaignObj = CampaignService.campaigns();
           var campaign = new CampaignObj({
-            companyId: Authentication.user.sessionCompany.companyId,
-            productId: vm.product.id,
+            companyId: Authentication.user.sessionCompany.id,
             description: vm.description,
             type: vm.type,
             name: vm.name
           });
+          
+          if (vm.product) {
+            campaign.productId = vm.product.id;
+          }
 
           // Redirect after save
           campaign.$save(function (response) {
@@ -101,18 +104,36 @@
         }
 
         function find() {
-          TeamService.listByUser().query({
-            userId: Authentication.user.id
-          },function() {
-            Authentication.user.sessionCompany = $scope.myCompanies[0];
+          if (Authentication.user.sessionCompany) {
+            makeCall();
+          } else {
+            $scope.$watch(Authentication.user.sessionCompany.id, function() {
+              makeCall();
+            });
+          }
+
+          function makeCall() {
             vm.campaigns = CampaignService.listByCompany().query({
-              companyId: Authentication.user.sessionCompany.companyId
+              companyId: Authentication.user.sessionCompany.id
             }, function() {
               console.log('coo');
             }, function(err) {
               console.log(err);
             });
-          });
+          }
+
+          // TeamService.listByUser().query({
+          //   userId: Authentication.user.id
+          // },function() {
+          //   Authentication.user.sessionCompany = $scope.myCompanies[0];
+          //   vm.campaigns = CampaignService.listByCompany().query({
+          //     companyId: Authentication.user.sessionCompany.companyId
+          //   }, function() {
+          //     console.log('coo');
+          //   }, function(err) {
+          //     console.log(err);
+          //   });
+          // });
         }
 
         function findOne() {
@@ -128,18 +149,38 @@
         }
 
         function findProducts() {
-          TeamService.listByUser().query({
-            userId: Authentication.user.id
-          },function() {
-            Authentication.user.sessionCompany = $scope.myCompanies[0];
+          if (Authentication.user.sessionCompany) {
+            makeCall();
+          } else {
+            $scope.$watch(Authentication.user.sessionCompany.id, function() {
+              makeCall();
+            });
+          }
+
+          function makeCall() {
             vm.products = ProductService.listByCompany().query({
-              companyId: Authentication.user.sessionCompany.companyId
+              companyId: Authentication.user.sessionCompany.id
             }, function() {
               console.log('products found');
             }, function(err) {
               console.log(err);
             });
-          });
+          }
+
+          // the code below will find companies for a normal user
+
+          // TeamService.listByUser().query({
+          //   userId: Authentication.user.id
+          // },function() {
+          //   Authentication.user.sessionCompany = $scope.myCompanies[0];
+          //   vm.products = ProductService.listByCompany().query({
+          //     companyId: Authentication.user.sessionCompany.companyId
+          //   }, function() {
+          //     console.log('products found');
+          //   }, function(err) {
+          //     console.log(err);
+          //   });
+          // });
         }
 
         findProducts();

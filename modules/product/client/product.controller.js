@@ -34,7 +34,7 @@
           // Create new product object
           var ProductObj = ProductService.products();
           var product = new ProductObj({
-            companyId: Authentication.user.sessionCompany.companyId,
+            companyId: Authentication.user.sessionCompany.id,
             name: vm.name,
             description: vm.description,
             tagline: vm.tagline
@@ -103,18 +103,23 @@
         }
 
         function find() {
-          TeamService.listByUser().query({
-            userId: Authentication.user.id
-          },function() {
-            Authentication.user.sessionCompany = $scope.myCompanies[0];
+          if (Authentication.user.sessionCompany) {
+            makeCall();
+          } else {
+            $scope.$watch(Authentication.user.sessionCompany.id, function() {
+              makeCall();
+            });
+          }
+
+          function makeCall() {
             vm.products = ProductService.listByCompany().query({
-              companyId: Authentication.user.sessionCompany.companyId
+              companyId: Authentication.user.sessionCompany.id
             }, function() {
               console.log('products found');
             }, function(err) {
               console.log(err);
             });
-          });
+          }
         }
 
         function findOne() {

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus', 'TeamService', 'CompanyService',
-  function ($scope, $state, Authentication, Menus, TeamService, CompanyService) {
+angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus', 'TeamService', 'CompanyService', '$cookieStore',
+  function ($scope, $state, Authentication, Menus, TeamService, CompanyService, $cookieStore) {
     
     // if (!Authentication.user) {
     //   $state.go('landing.default');
@@ -31,7 +31,18 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
 
     $scope.companyChange = function(company) {
       Authentication.user.sessionCompany = company;
+      $cookieStore.put('sessionCompany', company);
+      window.location.reload();
     };
+
+    var sessionCompany = $cookieStore.get('sessionCompany');
+
+    if (sessionCompany && Authentication.user) {
+        $scope.company = sessionCompany;
+        Authentication.user.sessionCompany = sessionCompany;
+    } else {
+        console.log('you need to select a company');
+    }
 
     // Collapsing the menu after navigation
     $scope.$on('$stateChangeSuccess', function () {
