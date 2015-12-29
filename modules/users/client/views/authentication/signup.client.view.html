@@ -46,12 +46,6 @@
               <div class="signup-login-form--error-message" ng-show="userForm.password.$error.minlength"><i class="fa fa-minus-circle"></i>6+ characters would be safer.</div>
             </div>
 
-            <!-- Confirm password -->
-            <input type="password" id="password" name="confirmPassword" class="form-control form-validate signup-login-input" placeholder="Confirm Password" required>
-            <div ng-show="userForm.confirmPassword.$submitted || userForm.confirmPassword.$touched" role="alert">
-              <div class="signup-login-form--error-message" ng-show="userForm.confirmPassword.$error.required"><i class="fa fa-minus-circle"></i>Passwords don't match, try again?</div>
-            </div>
-
             <div class="signup-agreement">
               <p>By signing up, I agree to SproutUp's <a ui-sref="#" target="_blank">Terms of Service</a> and <a ui-sref="#" target="_blank">Privacy Policy</a>.</p>
             </div>
