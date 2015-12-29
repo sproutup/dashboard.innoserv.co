@@ -17,9 +17,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr data-ui-sref="user.product.view({ productId: product.id })" ng-repeat="product in vm.products">
+			<tr >
 				<td class="product-table-edit"><a ui-sref="user.product.edit({ productId: product.id })"><i class="fa fa-pencil"></i></a></td>
-				<td>{{ product.name }}</td> 
+				<td ng-repeat="product in vm.products">
+					<a ui-sref="user.product.view({ productId: product.id })">{{ product.name }}</a>
+				</td> 
 				<td>Category</td> 
 				<td>{{ product.tagline }}</td>
 				<td><a ui-sref="user.campaign.create"><i class="fa fa-plus-circle"></i>START CAMPAIGN</a></td>
