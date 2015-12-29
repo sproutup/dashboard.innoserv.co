@@ -5,7 +5,7 @@ angular.module('users').config(['$stateProvider',
   function ($stateProvider) {
     // Users state routing
     $stateProvider
-      .state('settings', {
+      .state('user.settings', {
         abstract: true,
         url: '/settings',
         templateUrl: 'modules/users/client/views/settings/settings.client.view.html',
@@ -13,19 +13,19 @@ angular.module('users').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-      .state('settings.profile', {
+      .state('user.settings.profile', {
         url: '/profile',
         templateUrl: 'modules/users/client/views/settings/edit-profile.client.view.html'
       })
-      .state('settings.password', {
+      .state('user.settings.password', {
         url: '/password',
         templateUrl: 'modules/users/client/views/settings/change-password.client.view.html'
       })
-      .state('settings.accounts', {
+      .state('user.settings.accounts', {
         url: '/accounts',
         templateUrl: 'modules/users/client/views/settings/manage-social-accounts.client.view.html'
       })
-      .state('settings.picture', {
+      .state('user.settings.picture', {
         url: '/picture',
         templateUrl: 'modules/users/client/views/settings/change-profile-picture.client.view.html'
       })

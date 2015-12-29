@@ -94,7 +94,7 @@ var UserSchema = new Schema({
   },
   profileImageURL: {
     type: String,
-    default: 'modules/users/client/img/profile/default.png'
+    default: 'modules/core/client/img/default-avatar.png'
   },
   provider: {
     type: String,

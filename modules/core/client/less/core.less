@@ -1605,6 +1605,10 @@ input:-ms-input-placeholder {
   font-weight: 400;
 }
 
+.form-group label {
+  color: @main-text-1;
+}
+
 .form-input {
   border: 1px solid @form-border;
   border-radius: 0px;
@@ -1720,5 +1724,95 @@ input:-ms-input-placeholder {
 
 .input-group-campaign-type {
   margin: 15px 0px 0px;
+}
+
+.tab-set {
+  margin: 20px 0px 30px;
+}
+
+.tab-set-pills li a {
+  color: @main-text-1;
+  font-weight: 400;
+  font-size: 10pt;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  padding: 12px 25px;
+  border-radius: 0px;
+  background-color: @sproutup-verylightgrey;
+}
+
+.tab-set-pills li a:hover {
+  background-color: @sproutup-lightgrey;
+}
+
+.tab-set-pills li.active a, .tab-set-pills li.active a:focus {
+  color: white;
+  background-color: @sproutup-blue;
+}
+
+.tab-set-pills li.active a:hover {
+  color: white;
+  background-color: @sproutup-blue-hover;
+}
+
+.settings-wrapper {
+  max-width: 700px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.col-profile-picture {
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+}
+
+.col-profile-info {
+  margin: 0px;
+  padding: 0px 25px;
+}
+
+.account-settings-profile-picture {
+  margin: 0px 0px 15px;
+  width: 100%;
+  height: auto;
+}
+
+.btn-file {
+  height: 36px;
+  font-weight: 700;
+  font-size: 9pt;
+  background-color: @sproutup-orange;
+  color: white;
+  border-radius: 2px;
+  padding-top: 8px;
+  margin: 0px;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.btn-file:hover {
+  background-color: @sproutup-orange-hover;
+  color: white;
+}
+
+.btn-file.cancel {
+  color: white;
+  background-color: @sproutup-grey;
+}
+
+.btn-file.cancel:hover {
+  color: white;
+  background-color: @sproutup-dark-grey;
+}
+
+.profile-picture-buttons {
+  text-align: center;
 }
 
