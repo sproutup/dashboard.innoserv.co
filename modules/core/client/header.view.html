@@ -9,6 +9,11 @@
   </div>
   <nav role="navigation">
     <div class="nav-head" ng-if="authentication.user">
+      <!-- <select name="mySelect" id="mySelect"
+        ng-options="company.name for company in companies track by company.id"
+        ng-change="companyChange(company)"
+        ng-model="company">
+      </select> -->
       <div class="nav-item-wrapper creator-company">Mercedes-Benz</div>
       <div class="nav-item-wrapper creator-user">
         <a ui-sref='settings.profile'>
