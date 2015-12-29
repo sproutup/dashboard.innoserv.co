@@ -6,9 +6,9 @@
         .module('product')
         .controller('ProductController', ProductController);
 
-    ProductController.$inject = ['$scope', 'TrialService', '$state', 'ProductService', '$location', 'Authentication', 'TeamService'];
+    ProductController.$inject = ['$scope', 'TrialService', '$state', 'ProductService', '$location', 'Authentication', 'TeamService', '$rootScope'];
 
-    function ProductController($scope, TrialService, $state, ProductService, $location, Authentication, TeamService) {
+    function ProductController($scope, TrialService, $state, ProductService, $location, Authentication, TeamService, $rootScope) {
         var vm = this;
         vm.create = create;
         vm.remove = remove;
@@ -17,6 +17,7 @@
         vm.find = find;
         vm.findOne = findOne;
         vm.editProduct = editProduct;
+        vm.startCampaign = startCampaign;
 
         function create(isValid) {
           vm.error = null;
@@ -130,6 +131,10 @@
 
         function editProduct() {
           $state.go('user.product.edit', { productId: $state.params.productId });
+        }
+
+        function startCampaign(product) {
+          $rootScope.startingCampaign = product;
         }
     }
 })();

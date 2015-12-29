@@ -6,9 +6,9 @@
         .module('campaign')
         .controller('CampaignController', CampaignController);
 
-    CampaignController.$inject = ['$scope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'TeamService'];
+    CampaignController.$inject = ['$scope', '$rootScope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'TeamService', 'ProductService'];
 
-    function CampaignController($scope, TrialService, $state, CampaignService, $location, Authentication, TeamService) {
+    function CampaignController($scope, $rootScope, TrialService, $state, CampaignService, $location, Authentication, TeamService, ProductService) {
         var vm = this;
         vm.create = create;
         vm.remove = remove;
@@ -33,6 +33,7 @@
           var CampaignObj = CampaignService.campaigns();
           var campaign = new CampaignObj({
             companyId: Authentication.user.sessionCompany.companyId,
+            productId: vm.product.id,
             description: vm.description,
             type: vm.type,
             name: vm.name
@@ -41,7 +42,6 @@
           // Redirect after save
           campaign.$save(function (response) {
             $location.path('campaign/' + response.id + '/edit');
-
             // Clear form fields
             vm.description = '';
           }, function (errorResponse) {
@@ -125,6 +125,27 @@
           }, function(err) {
             $state.go('landing.default');
           });
+        }
+
+        function findProducts() {
+          TeamService.listByUser().query({
+            userId: Authentication.user.id
+          },function() {
+            Authentication.user.sessionCompany = $scope.myCompanies[0];
+            vm.products = ProductService.listByCompany().query({
+              companyId: Authentication.user.sessionCompany.companyId
+            }, function() {
+              console.log('products found');
+            }, function(err) {
+              console.log(err);
+            });
+          });
+        }
+
+        findProducts();
+
+        if ($rootScope.startingCampaign) {
+          vm.product = $rootScope.startingCampaign;
         }
     }
 })();
