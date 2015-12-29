@@ -45,7 +45,7 @@ var validateLocalStrategyEmail = function (email) {
 var UserSchema = new Schema({
   id: {
     type: String,
-    default: intformat(flakeIdGen.next(), 'dec'),
+    default: function(){ return intformat(flakeIdGen.next(), 'dec'); },
     hashKey: true
   },
   username: {
