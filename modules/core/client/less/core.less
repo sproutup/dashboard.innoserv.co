@@ -601,6 +601,11 @@ body {
 .nav-item-main a {
   color: @sproutup-grey;
   text-decoration: none !important;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
 .nav-item-main a.active {
@@ -608,9 +613,7 @@ body {
   text-decoration: none !important;
 }
 
-.nav-item-main a:focus,
-.nav-item-main a:visited
-.nav-item-main a:active {
+.nav-item-main a:focus, .nav-item-main a:hover, .nav-item-main a:active {
   color: @main-text-white;
 }
 
@@ -644,11 +647,17 @@ body {
 .creator-company {
   font-weight: 700;
   font-size: 13pt;
-  color: @main-text-white;
+  color: @sproutup-grey;
+  text-decoration: none !important;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
-.creator-company i {
-  padding-left: 12px;
+.creator-company:hover, .creator-company:active, .creator-company:focus {
+  color: @main-text-white;
 }
 
 .auth-header {
@@ -1607,6 +1616,10 @@ input:-ms-input-placeholder {
 
 .dashboard-section-title span {
   font-weight: 400;
+}
+
+.dashboard-section-title i {
+  padding-right: 12px;
 }
 
 .form-group {
