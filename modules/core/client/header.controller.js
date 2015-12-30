@@ -44,6 +44,10 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
         console.log('you need to select a company');
     }
 
+    $scope.handleCompanyClick = function() {
+      $state.go('user.companies');
+    };
+
     // Collapsing the menu after navigation
     $scope.$on('$stateChangeSuccess', function () {
       $scope.isCollapsed = false;
