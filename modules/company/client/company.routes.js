@@ -3,6 +3,28 @@
 angular.module('company').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
+      // for users
+      .state('user.company', {
+        url: '/company',
+        abstract: true,
+        templateUrl: 'modules/company/client/settings/settings.html',
+        controller: 'CompanyController',
+        controllerAs: 'vm'
+      })
+      .state('user.company.profile', {
+        url: '/profile',
+        templateUrl: 'modules/company/client/settings/edit-company-profile.html'
+      })
+      .state('user.company.team', {
+        url: '/team',
+        templateUrl: 'modules/company/client/settings/edit-team-member.html'
+      })
+      .state('user.company.billing', {
+        url: '/team',
+        templateUrl: 'modules/company/client/settings/edit-billing.html'
+      })
+
+      // for internal admin 
       .state('company', {
         url: '/admin/company',
         abstract: true,
