@@ -688,7 +688,14 @@ body {
   text-align: center;
 }
 
-.signup-login-header h1 {
+.signup-login-message {
+  max-width: 500px;
+  margin: 0px auto 20px;
+  padding: 0px 15px;
+  text-align: center;  
+}
+
+.signup-login-header h1, .signup-login-message h1 {
   padding: 40px 10px 0px;
   margin: 0px;
   font-weight: 300;
@@ -706,9 +713,23 @@ body {
   line-height: 1.5;
 }
 
+.signup-login-message h2 {
+  padding: 15px 10px 0px;
+  margin: 0px;
+  font-weight: 400;
+  font-size: 11pt;
+  color: @sproutup-salmon;
+  line-height: 1.5;
+}
+
 .signup-login-header h2 span {
   font-weight: 700;
   color: @sproutup-green;
+}
+
+.signup-login-message h2 span {
+  color: @sproutup-red;
+  font-weight: 700;
 }
 
 .signup-company-name {

@@ -36,6 +36,11 @@
               <div class="signup-login-form--error-message" ng-show="userForm.companyUrl.$error.required"><i class="fa fa-minus-circle"></i>A company with no website? Silly.</div>
             </div>
 
+            <!-- TODO: show this message when users enter an existing company -->
+            <div class="signup-login-message">
+              <h2>The company you just entered <span class="signup-company-name">Apple Inc.</span> has already existed. In order to join the team, you must use an email that matches the domain <span>@apple.com</span>.</h2>
+            </div>
+
             <button ng-disabled="userForm.$invalid" class="btn btn-lg signup-login-btn" type="submit" ui-sref="authentication.general-signup-2">Continue</button>
 
           </div>
