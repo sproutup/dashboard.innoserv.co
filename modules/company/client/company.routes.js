@@ -20,7 +20,7 @@ angular.module('company').config(['$stateProvider',
         templateUrl: 'modules/company/client/settings/edit-team-member.html'
       })
       .state('user.company.billing', {
-        url: '/team',
+        url: '/billing',
         templateUrl: 'modules/company/client/settings/edit-billing.html'
       })
 
