@@ -36,7 +36,7 @@
 
           // Redirect after save
           company.$save(function (response) {
-            $location.path('company/' + response.id);
+            $location.path('admin/company/' + response.id);
 
             // Clear form fields
             vm.name = '';
@@ -82,7 +82,7 @@
           company.$update({
             companyId: $state.params.companyId
           }, function () {
-            $location.path('company/' + company.id);
+            $location.path('admin/company/' + company.id);
           }, function (errorResponse) {
             console.log(errorResponse);
             vm.error = errorResponse.data.message;
