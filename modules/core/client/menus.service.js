@@ -170,5 +170,20 @@ angular.module('core').service('Menus', [
     this.addMenu('topbar', {
       roles: ['*']
     });
+
+    //Adding the navbar menu
+    this.addMenu('navbar', {
+      roles: ['*']
+    });
+
+    //Adding the context bar menu
+    this.addMenu('contextbar', {
+      roles: ['*']
+    });
+
+    //Adding the company settings menu
+    this.addMenu('companyInfo', {
+      roles: ['*']
+    });
   }
 ]);

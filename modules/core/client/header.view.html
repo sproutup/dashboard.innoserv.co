@@ -26,7 +26,13 @@
       </div>
     </div> 
 
-    <div class="nav-section">
+    <div class="nav-section" ng-if="navbar.shouldRender(authentication.user);">
+      <div ng-repeat="item in navbar.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
+        <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
+      </div>
+    </div>
+
+    <!--div class="nav-section">
       <div class="nav-item-wrapper nav-item-main">
         <a href="/campaigns">Campaigns</a>
       </div>
@@ -36,7 +42,7 @@
       <div class="nav-item-wrapper nav-item-main">
         <a ui-sref="user.company.profile">Company Info</a>
       </div>
-    </div>
+    </div-->
 
     <div class="nav-section">
       <div class="nav-item-wrapper nav-item-main" data-ng-repeat="item in menu.items | orderBy: 'position'">
@@ -49,7 +55,7 @@
         <a href="/api/auth/signout" target="_self">Log out</a>
       </div>
     </div>
-       
+
   </nav>
 </div>
 
