@@ -688,7 +688,14 @@ body {
   text-align: center;
 }
 
-.signup-login-header h1 {
+.signup-login-message {
+  max-width: 500px;
+  margin: 0px auto 20px;
+  padding: 0px 15px;
+  text-align: center;  
+}
+
+.signup-login-header h1, .signup-login-message h1 {
   padding: 40px 10px 0px;
   margin: 0px;
   font-weight: 300;
@@ -706,9 +713,23 @@ body {
   line-height: 1.5;
 }
 
+.signup-login-message h2 {
+  padding: 15px 10px 0px;
+  margin: 0px;
+  font-weight: 400;
+  font-size: 11pt;
+  color: @sproutup-salmon;
+  line-height: 1.5;
+}
+
 .signup-login-header h2 span {
   font-weight: 700;
   color: @sproutup-green;
+}
+
+.signup-login-message h2 span {
+  color: @sproutup-red;
+  font-weight: 700;
 }
 
 .signup-company-name {
@@ -1570,6 +1591,11 @@ input:-ms-input-placeholder {
   margin-right: 25px;
 }
 
+.settings-wrapper .product-table {
+  margin-top: 15px;
+  margin-right: 0px;
+}
+
 .product-table thead {
   background-color: @sproutup-verylightgrey;
 }
@@ -1603,6 +1629,28 @@ input:-ms-input-placeholder {
 
 .product-table tbody tr td a i {
   padding-right: 6px;
+}
+
+.product-table-header {
+  font-weight: 700;
+  font-size: 12pt;
+  color: @main-text-1;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.product-table-header a {
+  margin-left: 60px;
+  color: @sproutup-blue;  
+  font-size: 10pt;
+}
+
+.product-table-header a:hover {
+  color: @sproutup-blue-hover;
+}
+
+.product-table-header a i {
+  padding-right: 10px;
 }
 
 .dashboard-section-title {
@@ -1756,7 +1804,7 @@ input:-ms-input-placeholder {
 }
 
 .tab-set {
-  margin: 20px 0px 30px;
+  margin: 20px 0px 40px;
 }
 
 .tab-set-pills li a {
@@ -1846,6 +1894,11 @@ input:-ms-input-placeholder {
 }
 
 .col-change-password {
+  margin: 0px;
+  padding: 0px;
+}
+
+.col-company-profile {
   margin: 0px;
   padding: 0px;
 }

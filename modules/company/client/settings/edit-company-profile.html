@@ -1,0 +1,44 @@
+<div class="col-sm-9 col-company-profile">
+    <form name="userForm" class="signin" autocomplete="off">
+      <fieldset>
+
+        <!-- Company name -->
+        <div class="form-group">
+          <label for="companyName">Company Name</label>
+          <input type="text" id="companyName" name="companyName" class="form-control form-validate form-input" placeholder="The official name of your company">
+        </div>
+
+        <!-- Company URL -->
+        <div class="form-group">
+          <label for="companyUrl">Company Website</label>
+          <input type="url" id="companyUrl" name="companyUrl" class="form-control form-validate form-input" placeholder="The official website of your company">
+        </div>
+        
+        <!-- Company address -->
+        <div class="form-group">
+          <label for="companyAddress">Business Address</label>
+          <input type="text" id="companyAddress" name="companyAddress" class="form-control form-validate form-input" placeholder="Business address of your company">
+        </div>
+
+        <!-- Company phone number -->
+        <div class="form-group">
+          <label for="companyPhone">Phone Number</label>
+          <input type="text" id="companyPhone" name="companyPhone" class="form-control form-validate form-input" placeholder="A phone number we can reach you">
+        </div>
+               
+        <!-- TODO: disable Save button unless users change something -->
+        <!-- TODO: link href to save function -->
+        <div class="form-group">
+          <a href="#" class="btn btn-lg sproutup-btn-md-main">Save Changes</a>
+        </div>
+        
+        <!-- TODO: change to SproutUp heads-up message style -->
+        <!-- <div data-ng-show="success" class="text-center text-success">
+          <strong>Profile Saved Successfully</strong>
+        </div>
+        <div data-ng-show="error" class="text-center text-danger">
+          <strong data-ng-bind="error"></strong>
+        </div> -->
+      </fieldset>
+    </form>
+</div>
