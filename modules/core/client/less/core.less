@@ -595,7 +595,12 @@ body {
 .nav-item-main {
   font-weight: 700;
   font-size: 11.5pt;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.nav-item-main.active a {
+  color: @main-text-white;
+  text-decoration: none !important;
 }
 
 .nav-item-main a {
@@ -606,11 +611,6 @@ body {
   -ms-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
-}
-
-.nav-item-main a.active {
-  color: @main-text-white;
-  text-decoration: none !important;
 }
 
 .nav-item-main a:focus, .nav-item-main a:hover, .nav-item-main a:active {

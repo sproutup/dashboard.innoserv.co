@@ -5,7 +5,7 @@ angular.module('campaign').run(['Menus',
     Menus.addMenuItem('navbar', {
       title: 'Campaigns',
       state: 'user.campaign.list',
-      class: 'menu-item campaign',
+      class: 'campaign',
       roles: ['*'],
       position: 1
     });
