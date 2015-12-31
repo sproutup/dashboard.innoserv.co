@@ -26,6 +26,10 @@ angular.module('campaign').config(['$stateProvider',
         url: '/:campaignId',
         templateUrl: 'modules/campaign/client/campaign.html'
       })
+      .state('user.campaign.reports-mock', {
+        url: '/:campaignId/reports',
+        templateUrl: 'modules/campaign/client/campaign-reports-mock.html'
+      })
       .state('user.campaign.create-mock', {
         url: '/:companyId/create/mock',
         templateUrl: 'modules/campaign/client/create-campaign-mock.html'
