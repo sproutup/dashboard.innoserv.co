@@ -6,9 +6,9 @@
         .module('company')
         .controller('CompanyController', CompanyController);
 
-    CompanyController.$inject = ['$scope', 'CompanyService', 'TrialService', '$state', 'CampaignService', '$location'];
+    CompanyController.$inject = ['$scope', 'CompanyService', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication'];
 
-    function CompanyController($scope, CompanyService, TrialService, $state, CampaignService, $location) {
+    function CompanyController($scope, CompanyService, TrialService, $state, CampaignService, $location, Authentication) {
         var vm = this;
         vm.create = create;
         vm.remove = remove;
@@ -95,7 +95,7 @@
 
         function findOne() {
           var company = CompanyService.get({
-            companyId: $state.params.companyId
+            companyId: Authentication.user.sessionCompany.id //$state.params.companyId
           }, function() {
             vm.company = company;
           }, function(err) {
