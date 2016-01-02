@@ -22,10 +22,6 @@ angular.module('landing').config(['$stateProvider',
       .state('landing.mock', {
         url: '/preview/landingMock',
         templateUrl: 'modules/landing/client/landing-mock.html'
-      })
-      .state('landing.confirmation', {
-        url: '/landing/confirmation',
-        templateUrl: 'modules/landing/client/landing-confirmation.html'
       });
   }
 ]);
