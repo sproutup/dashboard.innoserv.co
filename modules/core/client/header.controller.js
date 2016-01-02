@@ -2,18 +2,24 @@
 
 angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus', 'TeamService', 'CompanyService', '$cookieStore',
   function ($scope, $state, Authentication, Menus, TeamService, CompanyService, $cookieStore) {
-    
-    // if (!Authentication.user) {
-    //   $state.go('landing.default');
-    // }
+
+    if (!Authentication.user) {
+      $state.go('landing.default');
+    }
 
     // Expose view variables
     $scope.$state = $state;
     $scope.authentication = Authentication;
 
     // Get the topbar menu
-    $scope.menu = Menus.getMenu('topbar');
-    
+    $scope.topbar = Menus.getMenu('topbar');
+
+    // Get the navbar menu
+    $scope.navbar = Menus.getMenu('navbar');
+
+    // Get the context menu
+    $scope.contextbar = Menus.getMenu('contextbar');
+
     // $scope.myCompanies = TeamService.listByUser().query({
     //   userId: Authentication.user.id
     // }, function() {
@@ -38,10 +44,11 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     var sessionCompany = $cookieStore.get('sessionCompany');
 
     if (sessionCompany && Authentication.user) {
-        $scope.company = sessionCompany;
-        Authentication.user.sessionCompany = sessionCompany;
+      $scope.company = sessionCompany;
+      Authentication.user.sessionCompany = sessionCompany;
     } else {
-        console.log('you need to select a company');
+      console.log('you need to select a company');
+      $state.go('user.companies');
     }
 
     $scope.handleCompanyClick = function() {

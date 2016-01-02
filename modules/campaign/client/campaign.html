@@ -1,5 +1,7 @@
-<div ng-init="vm.findOne()">
-	<div>{{ vm.campaign.name }}</div>
-	<div>{{ vm.campaign.type }}</div>
-	<a ui-sref="user.campaign.edit({ campaignId: vm.campaign.id })">edit</a>
-</div>
+<h1 class="dashboard-section-title" ng-init="vm.findOne()">
+	<a ui-sref="user.campaign.list"><i class="fa fa-angle-left"></i></a>{{ vm.campaign.name }}
+	<div class="dashboard-menu-top">
+		<a class="dashboard-menu-top-item active" ui-sref="user.campaign.reports-mock">Reports</a>
+		<a class="dashboard-menu-top-item" ui-sref="user.campaign.edit({ campaignId: vm.campaign.id })">Configure</a>
+	</div>
+</h1>
