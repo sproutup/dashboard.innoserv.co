@@ -10,6 +10,8 @@ var path = require('path'),
   passport = require('passport'),
   sendgrid = require('sendgrid')(config.sendgrid.username, config.sendgrid.pass),
   User = dynamoose.model('User'),
+  Company = dynamoose.model('Company'),
+  _ = require('lodash'),
   redis = require('config/lib/redis'),
   crypto = require('crypto');
 
@@ -129,10 +131,89 @@ exports.resendEmailConfirmation = function (req, res) {
 };
 
 /**
+ * New verification email after email only signup
+ */
+var sendCompanyVerificationEmail = function(user, callback, host) {
+  var token;
+
+  crypto.randomBytes(20, function (err, buffer) {
+    token = buffer.toString('hex');
+    token = 'token:' + token;
+
+    var url = 'http://' + host + '/email/confirmation/' + token;
+    var email = new sendgrid.Email();
+    email.subject = ' ';
+    email.from = 'mailer@sproutup.co';
+    email.fromname = 'SproutUp';
+    email.html = '<div></div>';
+    email.addTo(user.email);
+    email.addSubstitution(':url', url);
+    email.addSubstitution(':company_name', user.company.name);
+    redis.hmset(token, { 'email': user.email, 'companyId': user.company.id });
+    email.setFilters({
+      'templates': {
+        'settings': {
+          'enable': 1,
+          'template_id' : 'a97ea7cd-fdd9-4c9d-9f32-e6d7793b8fd2'
+        }
+      }
+    });
+
+    sendgrid.send(email, function(err, json) {
+      if (callback) {
+        callback(err);
+      }
+    });
+  });
+};
+
+/**
+ * New confirm email funciton
+ */
+exports.confirmEmail = function (req, res) {
+  sendCompanyVerificationEmail(req.body, function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      return res.send({
+        message: 'Email sent successfully'
+      });
+    }
+  }, req.headers.host);
+};
+
+/**
+ * Clain your company with your email token
+ */
+exports.claimCompany = function (req, res) {
+  redis.hmget(req.body.token, ['email', 'companyId']).then(function(result) {
+    if (result) {
+      console.log('heres the result after hmget', result);
+      Company.find(result[1]).then(function(company) {
+        if(_.isUndefined(company)){
+          return res.status(400).send({
+            message: 'Company not found'
+          });
+        } else {
+          company.userEmail = result[0];
+          // console.log('returning this') 
+          return res.jsonp(company);
+        }
+      });
+      // look up company and return it 
+    } else {
+      return res.redirect('/email/invalid');
+    }
+  });
+
+};
+
+/**
  * Signin after passport authentication
  */
 exports.signin = function (req, res, next) {
-  console.log('in signin', req.body);
   passport.authenticate('local', function (err, user, info) {
     console.log('user here', user);
     if (err || !user) {

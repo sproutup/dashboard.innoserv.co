@@ -29,7 +29,8 @@
           }
 
           // Create new Company object
-          var company = new CompanyService({
+          var CompanyObj = CompanyService.company();
+          var company = new CompanyObj({
             name: this.name,
             url: this.url
           });
@@ -90,11 +91,11 @@
         }
 
         function find() {
-          vm.companies = CompanyService.query();
+          vm.companies = CompanyService.company().query();
         }
 
         function findOne() {
-          var company = CompanyService.get({
+          var company = CompanyService.company().get({
             companyId: $state.params.companyId
           }, function() {
             vm.company = company;

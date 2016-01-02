@@ -16,12 +16,16 @@ angular.module('landing').config(['$stateProvider',
       //   templateUrl: 'modules/engagement/client/engagement-page-views.html'
       // })
       .state('landing.default', {
-        url: '/landing',
-        templateUrl: 'modules/landing/client/landing-mock.html'
+        url: '/c/:companySlug',
+        templateUrl: 'modules/landing/client/landing.html'
       })
       .state('landing.mock', {
         url: '/preview/landingMock',
         templateUrl: 'modules/landing/client/landing-mock.html'
+      })
+      .state('landing.confirmation', {
+        url: '/landing/confirmation',
+        templateUrl: 'modules/landing/client/landing-confirmation.html'
       });
   }
 ]);

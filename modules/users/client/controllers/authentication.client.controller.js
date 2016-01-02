@@ -30,7 +30,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         $scope.authentication.user = response;
 
         // And redirect to the previous or home page
-        $state.go($state.previous.state.name || 'home', $state.previous.params);
+        // Go to confirmation state here
       }).error(function (response) {
         $scope.error = response.message;
       });
@@ -46,6 +46,24 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
       // Effectively call OAuth authentication route:
       $window.location.href = url + (redirect_to ? '?redirect_to=' + encodeURIComponent(redirect_to) : '');
+    };
+
+    $scope.verifyToken = function() {
+      console.log($state.params);
+      var credentials = {
+        token: $state.params.token
+      };
+
+      $http.post('/api/users/email/claim-company', credentials).success(function (response) {
+        // If successful we assign the response to the global user model
+        // $scope.authentication.user = response;
+        console.log(response);
+
+        // And redirect to the previous or home page
+        // $state.go($state.previous.state.name || 'home', $state.previous.params);
+      }).error(function (response) {
+        $scope.error = response.message;
+      });
     };
   }
 ]);
