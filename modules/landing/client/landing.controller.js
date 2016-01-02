@@ -6,20 +6,24 @@
 	    .module('landing')
 	    .controller('landingController', landingController);
 
-	landingController.$inject = ['$scope', '$state', 'CompanyService', '$http'];
+	landingController.$inject = ['$scope', '$state', '$location', 'CompanyService', '$http', 'Authentication'];
 
-	function landingController($scope, $state, CompanyService, $http) {
+	function landingController($scope, $state, $location, CompanyService, $http, Authentication) {
 		var vm = this;
+		vm.authentication = Authentication;
 		vm.getStarted = getStarted;
 
 		vm.company = CompanyService.companyBySlug().get({
 			companySlug: $state.params.companySlug
 		}, function(response) {
+			if (!response.id) {
+				$state.go('authentication.signin');
+			}
 			var index = vm.company.url.indexOf('www.');
 			vm.company.domain = vm.company.url.substring((index + 4), vm.company.url.length);
 		}, function(errorRepsonse) {
 			console.log(errorRepsonse);
-			$state.go('authentication.signup');
+			$state.go('authentication.signin');
 		});
 
 		function getStarted() {
@@ -30,12 +34,10 @@
 				company: vm.company
 			};
 
-			$http.post('/api/auth/confirmEmail', vm.credentials).success(function (response) {
-		      // If successful we assign the response to the global user model
-		      console.log(response);
+			Authentication.emailSentTo = userEmail;
 
-		      // And redirect to the previous or home page
-		      $state.go($state.previous.state.name || 'home', $state.previous.params);
+			$http.post('/api/auth/confirmEmail', vm.credentials).success(function (response) {
+		      $state.go('landing.confirmation');
 		    }).error(function (response) {
 		      $scope.error = response.message;
 		    });
