@@ -204,8 +204,6 @@ exports.signUpAndClaimCompany = function (req, res) {
           item.save(function (err) {
             if (err) {
               res.status(400).send(err);
-            } else {
-              console.log('saved this team obj', item);
             }
           });
         } 
@@ -218,7 +216,6 @@ exports.signUpAndClaimCompany = function (req, res) {
           if (err) {
             res.status(400).send(err);
           } else {
-            console.log('returning user', user);
             sendVerificationEmail(user, null, req.headers.host);
             res.json(user);
           }
