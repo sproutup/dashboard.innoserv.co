@@ -18,6 +18,7 @@ module.exports = function (app) {
   app.route('/api/auth/signup').post(users.signup);
   app.route('/api/auth/sendEmailConfirmation').post(users.sendEmailConfirmation);
   app.route('/api/auth/verifyCompanyToken').post(users.verifyCompanyToken);
+  app.route('/api/auth/signUpAndClaimCompany').post(users.signUpAndClaimCompany);
   app.route('/api/auth/signin').post(users.signin);
   app.route('/api/auth/signout').get(users.signout);
 

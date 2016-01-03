@@ -13,15 +13,27 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       $location.path('/');
     }
 
-    $scope.signup = function () {
+    $scope.signUpAndClaimCompany = function() {
       $scope.credentials.email = $scope.email;
       $scope.credentials.companyId = $scope.company.id;
 
       // This tells the backend that we have a company to claim
       if ($state.params.token) {
         $scope.credentials.token = $state.params.token;
+      } else {
+        $scope.error = 'No token found';
+        return;
       }
 
+      $http.post('/api/auth/signUpAndClaimCompany', $scope.credentials).success(function (response) {
+        $scope.authentication.user = response;
+        $state.go($state.previous.state.name || 'home', $state.previous.params);
+      }).error(function (response) {
+        $scope.error = response.message;
+      });
+    };
+
+    $scope.signup = function () {
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
         $state.go($state.previous.state.name || 'home', $state.previous.params);
