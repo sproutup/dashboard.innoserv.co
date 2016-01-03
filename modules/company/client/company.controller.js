@@ -95,13 +95,25 @@
         }
 
         function findOne() {
-          var company = CompanyService.compnay().get({
-            companyId: Authentication.user.sessionCompany.id
-          }, function() {
-            vm.company = company;
-          }, function(err) {
-            $state.go('landing.default');
-          });
+          var company;
+          if (Authentication.user.sessionCompany) {
+            company = CompanyService.company().get({
+              companyId: Authentication.user.sessionCompany.id
+            }, function() {
+              vm.company = company;
+            }, function(err) {
+              $state.go('landing.default');
+            });
+          } else if ($state.params.companyId) {
+            company = CompanyService.company().get({
+              companyId: $state.params.companyId
+            }, function() {
+              vm.company = company;
+            }, function(err) {
+              $state.go('landing.default');
+            });
+          }
+          
 
           var campaigns = CampaignService.listByCompany().query({
             companyId: $state.params.companyId

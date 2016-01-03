@@ -18,6 +18,7 @@
 		}, function(response) {
 			if (!response.id) {
 				$state.go('authentication.signin');
+				return;
 			}
 			var index = vm.company.url.indexOf('www.');
 			vm.company.domain = vm.company.url.substring((index + 4), vm.company.url.length);
@@ -36,7 +37,7 @@
 
 			Authentication.emailSentTo = userEmail;
 
-			$http.post('/api/auth/confirmEmail', vm.credentials).success(function (response) {
+			$http.post('/api/auth/sendEmailConfirmation', vm.credentials).success(function (response) {
 		      $state.go('landing.confirmation');
 		    }).error(function (response) {
 		      $scope.error = response.message;

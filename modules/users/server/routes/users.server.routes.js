@@ -14,7 +14,6 @@ module.exports = function (app) {
   // Setting up the user email routes
   app.route('/api/users/email/confirmation/:token').get(users.validateEmail);
   app.route('/api/users/email/confirmation').post(users.resendEmailConfirmation);
-  app.route('/api/users/email/claim-company').post(users.claimCompany);
 
   // Finish by binding the user middleware
   app.param('userId', users.userByID);

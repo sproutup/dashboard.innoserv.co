@@ -49,7 +49,7 @@ angular.module('users').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/authentication/general-signup-2.client.view.html'
       })
       .state('authentication.signup', {
-        url: '/signup',
+        url: '/signup/:token',
         templateUrl: 'modules/users/client/views/authentication/signup.client.view.html'
       })
       .state('authentication.signin', {
