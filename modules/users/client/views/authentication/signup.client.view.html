@@ -1,5 +1,4 @@
-<div ng-controller="AuthenticationController">
-
+<div ng-controller="AuthenticationController" ng-init="verifyToken()">
   <div class="auth-header">
     <div class="text-center">
       <img class="auth-header-logo" src="modules/core/client/img/logo-square-orange.png">
@@ -7,13 +6,13 @@
     <hr>
   </div>
 
-  <div class="row">
+  <div class="row" ng-if="!error">
     <div class="signup-login-header">
         <h1>Thanks for getting started with SproutUp</h1>
-        <h2>Your registered email is <span>peter@sproutup.co</span>, and your company is <span class="signup-company-name">SproutUp Co</span> Please fill out the information below to finish signing up.</h2>
+        <h2>Your registered email is <span>{{ email }}</span>, and your company is <span class="signup-company-name">{{ company.name }}</span> Please fill out the information below to finish signing up.</h2>
     </div>
     <div class="signup-login-area">
-      <form name="userForm" ng-submit="signup(userForm.$valid)" class="signin" novalidate autocomplete="off">
+      <form name="userForm" ng-submit="signUpAndClaimCompany(userForm.$valid)" class="signin" novalidate autocomplete="off">
         <fieldset>
           <div class="signup-login-form" show-errors>
 
@@ -51,7 +50,7 @@
             </div>
 
             <!-- sign up button -->
-            <button ng-disabled="userForm.$invalid" class="btn btn-lg signup-login-btn" type="submit" ng-click="vm.signup()">Sign up</button>
+            <button ng-disabled="userForm.$invalid" class="btn btn-lg signup-login-btn" type="submit">Sign up</button>
 
           </div>
         </fieldset>
@@ -62,6 +61,14 @@
         <p>Already signed up? <a ui-sref="authentication.signin">Log in</a> here.</p>
       </div>
 
+    </div>
+  </div>
+  <div class="row" ng-if="error">
+    <div class="signup-login-header">
+        <h1>{{ error }}</h1>
+    </div>
+    <div class="signup-login-form-footer">
+      <p>If you think this is a mistake, please <a href="mailto:tao@sproutup.co" target="_top">email us</a>.</p>
     </div>
   </div>
 </div>

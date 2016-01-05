@@ -31,7 +31,8 @@
           }
 
           // Create new Company object
-          var company = new CompanyService({
+          var CompanyObj = CompanyService.company();
+          var company = new CompanyObj({
             name: this.name,
             url: this.url
           });
@@ -90,17 +91,28 @@
         }
 
         function find() {
-          vm.companies = CompanyService.query();
+          vm.companies = CompanyService.company().query();
         }
 
         function findOne() {
-          var company = CompanyService.get({
-            companyId: Authentication.user.sessionCompany.id 
-          }, function() {
-            vm.company = company;
-          }, function(err) {
-            $state.go('landing.default');
-          });
+          var company;
+          if (Authentication.user.sessionCompany) {
+            company = CompanyService.company().get({
+              companyId: Authentication.user.sessionCompany.id
+            }, function() {
+              vm.company = company;
+            }, function(err) {
+              $state.go('landing.default');
+            });
+          } else if ($state.params.companyId) {
+            company = CompanyService.company().get({
+              companyId: $state.params.companyId
+            }, function() {
+              vm.company = company;
+            }, function(err) {
+              $state.go('landing.default');
+            });
+          }
 
           var campaigns = CampaignService.listByCompany().query({
             companyId: $state.params.companyId
@@ -110,8 +122,9 @@
         }
 
         function findMyCompany() {
-          var company = CompanyService.get({
-            id: Authentication.user.sessionCompany.id 
+          var company = CompanyService.company().get({
+            companyId: Authentication.user.sessionCompany.id
+            //id: Authentication.user.sessionCompany.id
           }, function() {
             vm.company = company;
           }, function(err) {

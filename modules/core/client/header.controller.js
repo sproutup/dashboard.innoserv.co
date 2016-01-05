@@ -27,7 +27,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     //   Authentication.user.sessionCompany = $scope.myCompanies[0];
     // });
 
-    $scope.companies = CompanyService.query();
+    $scope.companies = CompanyService.company().query();
 
     // Toggle the menu items
     $scope.isCollapsed = false;

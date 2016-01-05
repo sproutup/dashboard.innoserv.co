@@ -48,7 +48,6 @@
             // Clear form fields
             vm.description = '';
           }, function (errorResponse) {
-            console.log(errorResponse);
             vm.error = errorResponse.data.message;
           });
         }
@@ -116,7 +115,7 @@
             vm.campaigns = CampaignService.listByCompany().query({
               companyId: Authentication.user.sessionCompany.id
             }, function() {
-              console.log('coo');
+              console.log('campaigns found');
             }, function(err) {
               console.log(err);
             });

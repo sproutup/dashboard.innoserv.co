@@ -10,6 +10,9 @@ var path = require('path'),
   passport = require('passport'),
   sendgrid = require('sendgrid')(config.sendgrid.username, config.sendgrid.pass),
   User = dynamoose.model('User'),
+  Company = dynamoose.model('Company'),
+  Team = dynamoose.model('Team'),
+  _ = require('lodash'),
   redis = require('config/lib/redis'),
   crypto = require('crypto');
 
@@ -21,6 +24,7 @@ var noReturnUrls = [
 
 /**
  * Verification email sent after signup
+ * This will be refactored with new sendgrid function
  */
 var sendVerificationEmail = function(user, callback, host) {
   var token;
@@ -58,6 +62,67 @@ var sendVerificationEmail = function(user, callback, host) {
 };
 
 /**
+ * Claim company verification email after email only signup
+ * This will be refactored with new sendgrid function
+ */
+var sendCompanyVerificationEmail = function(user, callback, host) {
+  var token;
+
+  crypto.randomBytes(20, function (err, buffer) {
+    token = buffer.toString('hex');
+    token = 'Company:join:' + token;
+
+    var url = 'http://' + host + '/authentication/signup/' + token;
+    var email = new sendgrid.Email();
+    email.subject = ' ';
+    email.from = 'mailer@sproutup.co';
+    email.fromname = 'SproutUp';
+    email.html = '<div></div>';
+    email.addTo(user.email);
+    email.addSubstitution(':url', url);
+    email.addSubstitution(':company_name', user.company.name);
+    redis.hmset(token, { 'email': user.email, 'companyId': user.company.id });
+    email.setFilters({
+      'templates': {
+        'settings': {
+          'enable': 1,
+          'template_id' : 'a97ea7cd-fdd9-4c9d-9f32-e6d7793b8fd2'
+        }
+      }
+    });
+
+    sendgrid.send(email, function(err, json) {
+      if (callback) {
+        callback(err);
+      }
+    });
+  });
+};
+
+var saveClaimedCompany = function(token, userId) {
+  redis.hmget(token, ['companyId']).then(function(result) {
+    if (result.length === 1) {
+      var teamObj = {
+        userId: userId,
+        companyId: result[0]
+      };
+
+      var item = new Team(teamObj);
+
+      item.save(function (err) {
+        if (err) {
+          console.log('err saving the team obj');
+        } else {
+          console.log('saved this team obj', item);
+        }
+      });
+    }
+  });
+
+  redis.hdel(token, [ 'email', 'companyId' ]);
+};
+
+/**
  * Signup
  */
 exports.signup = function (req, res) {
@@ -85,12 +150,76 @@ exports.signup = function (req, res) {
 
       sendVerificationEmail(user, null, req.headers.host);
 
+      // If the user is claiming a company, save a team obj, then remove the token
+      if (req.body.token) {
+        saveClaimedCompany(req.body.token, user.id);
+      }
+
       req.login(user, function (err) {
         if (err) {
           res.status(400).send(err);
         } else {
           res.json(user);
         }
+      });
+    }
+  });
+};
+
+/**
+ * Signup and claim a company
+ */
+exports.signUpAndClaimCompany = function (req, res) {
+  // For security measurement we remove the roles from the req.body object
+  delete req.body.roles;
+
+  // Init Variables
+  var user = new User(req.body);
+  var message = null;
+
+  // Add missing user fields
+  user.provider = 'local';
+  user.displayName = user.firstName + ' ' + user.lastName;
+
+  // Save the user
+  user.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      // Remove sensitive data before login
+      user.password = undefined;
+      user.salt = undefined;
+
+      // Save a team obj
+      redis.hmget(req.body.token, ['companyId']).then(function(result) {
+        if (result.length === 1) {
+          var teamObj = {
+            userId: user.id,
+            companyId: result[0]
+          };
+
+          var item = new Team(teamObj);
+          item.save(function (err) {
+            if (err) {
+              res.status(400).send(err);
+            }
+          });
+        } 
+
+        // Remove the token
+        redis.hdel(req.body.token, [ 'email', 'companyId' ]);
+        
+        // Login the user
+        req.login(user, function (err) {
+          if (err) {
+            res.status(400).send(err);
+          } else {
+            sendVerificationEmail(user, null, req.headers.host);
+            res.json(user);
+          }
+        });
       });
     }
   });
@@ -129,12 +258,58 @@ exports.resendEmailConfirmation = function (req, res) {
 };
 
 /**
+ * New confirm email funciton
+ */
+exports.sendEmailConfirmation = function (req, res) {
+  sendCompanyVerificationEmail(req.body, function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      return res.send({
+        message: 'Email sent successfully'
+      });
+    }
+  }, req.headers.host);
+};
+
+/**
+ * Return an email and company id from a company token 
+ */
+exports.verifyCompanyToken = function (req, res) {
+  redis.hmget(req.body.token, ['email', 'companyId']).then(function(result) {
+    if (result) {
+      console.log('heres the result after hmget', result);
+      if (result[1] === null) {
+        return res.status(400).send({
+          message: 'This token is invalid'
+        });
+      }
+      Company.find(result[1]).then(function(company) {
+        if(_.isUndefined(company)){
+          return res.status(400).send({
+            message: 'Company not found'
+          });
+        } else {
+          console.log('about to resspond', company);
+          company.userEmail = result[0];
+          return res.jsonp(company);
+        }
+      });
+      // look up company and return it 
+    } else {
+      return res.redirect('/email/invalid');
+    }
+  });
+
+};
+
+/**
  * Signin after passport authentication
  */
 exports.signin = function (req, res, next) {
-  console.log('in signin', req.body);
   passport.authenticate('local', function (err, user, info) {
-    console.log('user here', user);
     if (err || !user) {
       res.status(400).send(info);
     } else {

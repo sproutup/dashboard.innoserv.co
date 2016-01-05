@@ -49,7 +49,7 @@ angular.module('users').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/authentication/general-signup-2.client.view.html'
       })
       .state('authentication.signup', {
-        url: '/signup',
+        url: '/signup/:token',
         templateUrl: 'modules/users/client/views/authentication/signup.client.view.html'
       })
       .state('authentication.signin', {
@@ -105,6 +105,11 @@ angular.module('users').config(['$stateProvider',
         abstract: true,
         url: '',
         template: '<ui-view/>'
+      })
+      .state('email.confirmation.details', {
+        url: '/confirmation/:token',
+        templateUrl: 'modules/users/client/views/authentication/email-confirmation-details.html',
+        controller: 'AuthenticationController'
       })
       .state('email.confirmation.success', {
         url: '/success',
