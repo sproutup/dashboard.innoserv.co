@@ -35,6 +35,12 @@ var CompanySchema = new Schema({
   slug: {
     type: String
   },
+  address: {
+    type: String
+  },
+  phone: {
+    type: String
+  },
   url: {
     type: String,
     default: '',

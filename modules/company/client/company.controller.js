@@ -10,11 +10,13 @@
 
     function CompanyController($scope, CompanyService, TrialService, $state, CampaignService, $location, Authentication) {
         var vm = this;
+        vm.success = false;
         vm.create = create;
         vm.remove = remove;
         vm.update = update;
         vm.find = find;
         vm.findOne = findOne;
+        vm.findMyCompany = findMyCompany;
 
         function create(isValid) {
           vm.error = null;
@@ -79,10 +81,8 @@
 
           var company = vm.company;
 
-          company.$update({
-            companyId: $state.params.companyId
-          }, function () {
-            $location.path('admin/company/' + company.id);
+          company.$update(function() {
+            vm.success = true;
           }, function (errorResponse) {
             console.log(errorResponse);
             vm.error = errorResponse.data.message;
@@ -95,7 +95,7 @@
 
         function findOne() {
           var company = CompanyService.get({
-            companyId: Authentication.user.sessionCompany.id //$state.params.companyId
+            companyId: Authentication.user.sessionCompany.id 
           }, function() {
             vm.company = company;
           }, function(err) {
@@ -108,5 +108,15 @@
             vm.campaigns = campaigns;
           });
         }
-    }
+
+        function findMyCompany() {
+          var company = CompanyService.get({
+            id: Authentication.user.sessionCompany.id 
+          }, function() {
+            vm.company = company;
+          }, function(err) {
+            $state.go('landing.default');
+          });
+        }
+   }
 })();

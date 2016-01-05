@@ -7,5 +7,5 @@ angular
 CompanyService.$inject = ['$resource'];
 
 function CompanyService($resource) {
-  return $resource('/api/company/:companyId', {companyId: '@companyId'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
+  return $resource('/api/company/:id', {id: '@id'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
 }
