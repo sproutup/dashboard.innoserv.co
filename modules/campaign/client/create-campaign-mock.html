@@ -1,6 +1,6 @@
 <!-- this is a LONG mock file that contains several flows. <section> tag is used to separate them. Remove <section> tag when using in real page -->
 <secion id="choose-template">
-    <h1 class="dashboard-section-title"><a ui-sref="user.product.list-mock"><i class="fa fa-angle-left"></i></a>Create New Campaign</h1>
+    <h1 class="dashboard-section-title"><a href="#"><i class="fa fa-angle-left"></i></a>Create New Campaign</h1>
     <div class="create-campaign-wrapper">
         <h1>&#x1F4A1; Yo, we have some cool ideas for you to start a campaign</h1>
     	
@@ -9,12 +9,14 @@
             <p>Run a <span>Product Trial</span></p>
             <div class="col-sm-4 campaign-template-item">
                 <div class="campaign-template-item-info product-trial">
-                    <p>Basic</p>
+                    <p class="template-title">Basic</p>
+                    <p class="template-description">This is some description about the Basic product trial template</p>
                 </div>
             </div>
             <div class="col-sm-4 campaign-template-item">
                 <div class="campaign-template-item-info product-trial">
-                    <p>Flex</p>
+                    <p class="template-title">Flex</p>
+                    <p class="template-description">This is some description about the Flex product trial template</p>
                 </div>
             </div>
         </div>
@@ -23,12 +25,14 @@
             <p>Start <span>a Video Contest</span></p>
             <div class="col-sm-4 campaign-template-item">
                 <div class="campaign-template-item-info video-contest">
-                    <p>30-Second Video Contest</p>
+                    <p class="template-title">30-Second Video Contest</p>
+                    <p class="template-description">This is some description about the 30-Second Video Contest</p>
                 </div>
             </div>
             <div class="col-sm-4 campaign-template-item">
                 <div class="campaign-template-item-info video-contest">
-                    <p>V-log Contest</p>
+                    <p class="template-title">V-log Contest</p>
+                    <p class="template-description">This is some description about the V-log Contest</p>
                 </div>
             </div>
         </div>
@@ -37,7 +41,8 @@
             <p>Start <span>a Video Contest</span></p>
             <div class="col-sm-4 campaign-template-item">
                 <div class="campaign-template-item-info twitter-contest">
-                    <p>Hashtag Contest</p>
+                    <p class="template-title">Hashtag Contest</p>
+                    <p class="template-description">This is some description about the Hashtagtag Contest</p>
                 </div>
             </div>
         </div>
@@ -71,6 +76,44 @@
                     <p>Do not allow users to keep the products</p>
                     <p>Do not accept paid contnet creation</p>
                     <p>Trial duration is 15 days</p>
+                </div>
+            </div>
+        </div>
+        <!-- component ready -->
+        <div class="new-campaign-component done">
+            <div class="row new-campaign-component-header">
+                <div class="col-sm-1">
+                    <p><i class="fa fa-check-circle"></i><p>
+                </div>
+                <div class="col-sm-11">
+                    <p>Select a product</p>
+                </div>
+            </div>
+            <div class="row new-campaign-component-content">
+                <div class="col-sm-1">
+                    <p><i class="fa fa-pencil"></i><p>
+                </div>
+                <div class="col-sm-11">
+                    <p>Boosted Single Electric Skateboard</p>
+                </div>
+            </div>
+        </div>
+        <!-- component not ready -->
+        <div class="new-campaign-component todo">
+            <div class="row new-campaign-component-header">
+                <div class="col-sm-1">
+                    <p><i class="fa fa-check-circle"></i><p>
+                </div>
+                <div class="col-sm-11">
+                    <p>Select a campaign banner photo</p>
+                </div>
+            </div>
+            <div class="row new-campaign-component-content">
+                <div class="col-sm-1">
+                    <p><p>
+                </div>
+                <div class="col-sm-11">
+                    <p><a class="btn btn-lg sproutup-btn-lg-main grey">Choose a photo</a></p>
                 </div>
             </div>
         </div>
@@ -110,44 +153,6 @@
                             <label class="campaign-question-input-label right">Days</label>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- component ready -->
-        <div class="new-campaign-component done">
-            <div class="row new-campaign-component-header">
-                <div class="col-sm-1">
-                    <p><i class="fa fa-check-circle"></i><p>
-                </div>
-                <div class="col-sm-11">
-                    <p>Select a product</p>
-                </div>
-            </div>
-            <div class="row new-campaign-component-content">
-                <div class="col-sm-1">
-                    <p><i class="fa fa-pencil"></i><p>
-                </div>
-                <div class="col-sm-11">
-                    <p>Boosted Single Electric Skateboard</p>
-                </div>
-            </div>
-        </div>
-        <!-- component not ready -->
-        <div class="new-campaign-component todo">
-            <div class="row new-campaign-component-header">
-                <div class="col-sm-1">
-                    <p><i class="fa fa-check-circle"></i><p>
-                </div>
-                <div class="col-sm-11">
-                    <p>Select a campaign banner photo</p>
-                </div>
-            </div>
-            <div class="row new-campaign-component-content">
-                <div class="col-sm-1">
-                    <p><p>
-                </div>
-                <div class="col-sm-11">
-                    <p><a class="btn btn-lg sproutup-btn-lg-main grey">Choose a photo</a></p>
                 </div>
             </div>
         </div>
