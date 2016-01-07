@@ -2092,8 +2092,8 @@ input:-ms-input-placeholder {
 
 .new-campaign-component-header .sub-header {
   font-size: 9.5pt;
-  font-weight: 300;
-  padding: 0px 0px 20px;
+  font-weight: 400;
+  padding: 10px 0px 0px;
   margin: 0px;
 }
 
@@ -2112,7 +2112,7 @@ input:-ms-input-placeholder {
 .new-campaign-component-content {
   color: @main-text;
   margin: 0px;
-  padding: 25px;
+  padding: 25px 25px 5px;
   background-color: @sproutup-superlightgrey;
   border: 1px solid @sproutup-grey;
 }
@@ -2217,6 +2217,26 @@ input:-ms-input-placeholder {
   bottom: 0;
   content: "";
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)); /* Standard syntax */
+}
+
+.create-campaign-banner h1 span,
+.create-campaign-banner h2 span {
+  font-weight: 400;
+  font-size: 9pt;
+  padding: 0px;
+}
+
+.create-campaign-banner h1 span a,
+.create-campaign-banner h2 span a {
+  color:@sproutup-blue-bright;
+  text-decoration: none !important;
+  padding: 0px;
+}
+
+.create-campaign-banner h1 span a:hover,
+.create-campaign-banner h2 span a:hover {
+  background: none;
+  color: @sproutup-blue-bright;
 }
 
 .create-campaign-banner input {
