@@ -2070,38 +2070,14 @@ input:-ms-input-placeholder {
   background-color: @twitter-blue;
 }
 
-.create-trial-campaign-name.product-trial {
-  color: @sproutup-salmon;
-}
-
-.create-trial-campaign-name.video-contest {
-  color: @sproutup-green;
-}
-
 .new-campaign-component {
-  padding: 20px 25px 10px;
-  margin: 0px 0px 15px;
-}
-
-.create-campaign-wrapper.product-trial .new-campaign-component.done {
-  background-color: @sproutup-salmon;
-}
-
-.create-campaign-wrapper.video-contest .new-campaign-component.done {
-  background-color: @sproutup-green;
-}
-
-.new-campaign-component.todo {
-  background-color: @sproutup-stronger-grey;
-}
-
-.new-campaign-component.edit {
-  background-color: white;
+  margin: 0px 0px 20px;
   padding: 0px;
 }
 
 .new-campaign-component-header {
-  border-bottom: 1px solid @main-text-white;
+  color: @main-text-white;
+  padding: 20px 25px;
   color: @main-text-white;
   margin: 0px;
   min-height: 50px;
@@ -2110,7 +2086,7 @@ input:-ms-input-placeholder {
 .new-campaign-component-header p {
   font-size: 14pt;
   font-weight: 700;
-  padding: 0px 0px 10px;
+  padding: 0px;
   margin: 0px;
 }
 
@@ -2125,23 +2101,28 @@ input:-ms-input-placeholder {
   opacity: 0.55;
 }
 
-.new-campaign-component-header.edit {
+.new-campaign-component-header.done {
+  background-color: @sproutup-green;
+}
+
+.new-campaign-component-header.todo {
   background-color: @sproutup-stronger-grey;
-  border: none;
-  color: @main-text-white;
-  padding: 20px 25px 10px;
 }
 
 .new-campaign-component-content {
-  color: @main-text-white;
-  margin: 20px 0px 10px;
+  color: @main-text;
+  margin: 0px;
+  padding: 25px;
+  background-color: @sproutup-superlightgrey;
+  border: 1px solid @sproutup-grey;
 }
 
 .new-campaign-component-content p {
   font-size: 12pt;
-  font-weight: 400;
+  font-weight: 700;
   padding: 5px 0px;
   margin: 0px;
+  color: @main-text-1;
 }
 
 .new-campaign-component-content img {
@@ -2152,14 +2133,6 @@ input:-ms-input-placeholder {
 
 .new-campaign-component-content p i {
   font-size: 16pt;
-}
-
-.new-campaign-component-content.edit {
-  color: @main-text;
-  margin: 0px;
-  padding: 30px 25px 0px;
-  background-color: @sproutup-superlightgrey;
-  border: 1px solid @sproutup-grey;
 }
 
 .new-campaign-component-header-buttons {
@@ -2224,4 +2197,110 @@ input:-ms-input-placeholder {
   font-weight: 700;
   font-size: 8.5pt;
   color: @main-text-2;
+}
+
+.create-campaign-banner {
+  height: 300px;
+  margin: 0px 0px 20px;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size: cover;
+  color: #fff;
+  position: relative;
+}
+
+.create-campaign-banner::after{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  content: "";
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)); /* Standard syntax */
+}
+
+.create-campaign-banner input {
+  width: 90%;
+  box-shadow: none;
+  background: none;
+  border: none;
+  border-bottom: 1px dashed @main-text-white;
+  margin: 0px 10px;
+  padding: 0px 0px 8px;
+}
+
+.create-campaign-banner input:focus {
+  box-shadow: none;
+  background: none;
+  border: none;
+  border-bottom: 1px dashed @main-text-white;
+  outline: 0 !important;
+}
+
+.create-campaign-banner h1 {
+  margin: 0px;
+  padding: 50px 30px 30px;
+  text-align: left;
+  z-index: 10;
+  position: relative;
+  font-weight: 300;
+  font-size: 24pt;
+  color: @main-text-white;
+}
+
+.create-campaign-banner h1 a {
+  color: @main-text-white;
+  text-decoration: none !important;
+  padding: 5px 10px;
+}
+
+.create-campaign-banner h1 a:hover {
+  background-color: @sproutup-blue;
+}
+
+.create-campaign-banner h2 {
+  margin: 0px;
+  padding: 0px 30px;
+  text-align: left;
+  z-index: 10;
+  position: relative;
+  font-weight: 300;
+  font-size: 14pt;
+  color: @main-text-white;
+}
+
+.create-campaign-banner h2 a {
+  color: @main-text-white;
+  text-decoration: none !important;
+  padding: 5px 10px;
+}
+
+.create-campaign-banner h2 a:hover {
+  background-color: @sproutup-blue;
+}
+
+.create-campaign-banner h3 {
+  margin: 0px;
+  left: 30px;
+  bottom: 40px;
+  text-align: left;
+  z-index: 10;
+  position: absolute;
+  font-weight: 400;
+  font-size: 12pt;
+  color: @main-text-white;
+}
+
+.create-campaign-banner h3 a {
+  color: @main-text-white;
+  text-decoration: none !important;
+  padding: 5px 10px;
+}
+
+.create-campaign-banner h3 a:hover {
+  background-color: @sproutup-blue;
+}
+
+.create-campaign-banner h3 a i {
+  padding-right: 15px;
 }
