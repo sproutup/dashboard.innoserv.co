@@ -1,6 +1,6 @@
 <div class="creator-menu">
   <div class="navbar-header">
-    <button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
+    <button class="navbar-toggle" type="button" data-ng-click="vm.toggleCollapsibleMenu()">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -8,49 +8,30 @@
     </button>
   </div>
   <nav role="navigation">
-    <div class="nav-head" ng-if="authentication.user">
-<!--       <select name="mySelect" id="mySelect"
-        ng-options="company.name for company in companies track by company.id"
-        ng-change="companyChange(company)"
-        ng-model="company">
-      </select> -->
-      <div class="nav-item-wrapper"><a class="creator-company" ng-click="handleCompanyClick()" href="#">{{ company.name }}</a></div>
+    <div class="nav-head" ng-if="vm.authentication.user">
+      <div class="nav-item-wrapper">
+        <a class="creator-company"  ui-sref="user.companies">{{ vm.company.name || 'select company' }}</a>
+      </div>
       <div class="nav-item-wrapper creator-user">
-        <a ui-sref='user.settings.profile'><img src="modules/core/client/img/default-avatar.png"> {{authentication.user.firstName}}</a>
+        <a ui-sref='user.settings.profile'>
+          <img alt="avatar" src="modules/core/client/img/default-avatar.png"> {{ vm.authentication.user.firstName }}
+        </a>
       </div>
     </div>
 
-    <div class="nav-head" ng-if="!authentication.user">
+    <div class="nav-head" ng-if="!vm.authentication.user">
       <div class="nav-item-wrapper nav-item-main">
           <a href="/authentication/signin">Sign In</a>
       </div>
     </div> 
 
-    <div class="nav-section" ng-if="navbar.shouldRender(authentication.user);">
-      <div ng-repeat="item in navbar.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
+    <div class="nav-section" ng-if="vm.navbar.shouldRender(vm.authentication.user);">
+      <div ng-repeat="item in vm.navbar.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
         <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
       </div>
     </div>
 
-    <!--div class="nav-section">
-      <div class="nav-item-wrapper nav-item-main">
-        <a href="/campaigns">Campaigns</a>
-      </div>
-      <div class="nav-item-wrapper nav-item-main">
-        <a ui-sref="user.product.list">Products</a>
-      </div>
-      <div class="nav-item-wrapper nav-item-main">
-        <a ui-sref="user.company.profile">Company Info</a>
-      </div>
-    </div-->
-
-    <!-- <div class="nav-section">
-      <div class="nav-item-wrapper nav-item-main" data-ng-repeat="item in menu.items | orderBy: 'position'">
-        <a data-ui-sref="{{ item.state }}">{{ item.title }}</a>
-      </div>
-    </div> -->
-
-    <div class="nav-section" ng-if="authentication.user">
+    <div class="nav-section" ng-if="vm.authentication.user">
       <div class="nav-item-wrapper nav-item-main">
         <a href="/api/auth/signout" target="_self">Log out</a>
       </div>

@@ -2,24 +2,15 @@
 
 angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus', 'TeamService', 'CompanyService', '$cookieStore',
   function ($scope, $state, Authentication, Menus, TeamService, CompanyService, $cookieStore) {
-
-    if (!Authentication.user) {
-      $state.go('landing.default');
-    }
-
+    var vm = this;
+    vm.toggleCollapsibleMenu = toggleCollapsibleMenu;
     // Expose view variables
-    $scope.$state = $state;
-    $scope.authentication = Authentication;
-
-    // Get the topbar menu
-    $scope.topbar = Menus.getMenu('topbar');
+    vm.$state = $state;
+    vm.authentication = Authentication;
+    vm.isCollapsed = false;
 
     // Get the navbar menu
-    $scope.navbar = Menus.getMenu('navbar');
-
-    // Get the context menu
-    $scope.contextbar = Menus.getMenu('contextbar');
-
+    vm.navbar = Menus.getMenu('navbar');
     // $scope.myCompanies = TeamService.listByUser().query({
     //   userId: Authentication.user.id
     // }, function() {
@@ -27,37 +18,25 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     //   Authentication.user.sessionCompany = $scope.myCompanies[0];
     // });
 
-    $scope.companies = CompanyService.company().query();
+ //   $scope.companies = CompanyService.company().query();
 
     // Toggle the menu items
-    $scope.isCollapsed = false;
-    $scope.toggleCollapsibleMenu = function () {
-      $scope.isCollapsed = !$scope.isCollapsed;
-    };
+    function toggleCollapsibleMenu() {
+      vm.isCollapsed = !vm.isCollapsed;
+    }
 
-    $scope.companyChange = function(company) {
-      Authentication.user.sessionCompany = company;
-      $cookieStore.put('sessionCompany', company);
-      window.location.reload();
-    };
-
-    var sessionCompany = $cookieStore.get('sessionCompany');
-
-    if (sessionCompany && Authentication.user) {
-      $scope.company = sessionCompany;
-      Authentication.user.sessionCompany = sessionCompany;
+    //var sessionCompany = $cookieStore.get('sessionCompany');
+/*    if (Authentication.user) {
+      $scope.company = $scope.companies[0];
+      Authentication.user.sessionCompany = $scope.companies[0];
     } else {
       console.log('you need to select a company');
       $state.go('user.companies');
     }
-
-    $scope.handleCompanyClick = function() {
-      $state.go('user.companies');
-    };
-
+*/
     // Collapsing the menu after navigation
     $scope.$on('$stateChangeSuccess', function () {
-      $scope.isCollapsed = false;
+      vm.isCollapsed = false;
     });
   }
 ]);
