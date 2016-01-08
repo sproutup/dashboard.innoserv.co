@@ -12,7 +12,7 @@
 		var vm = this;
 		vm.authentication = Authentication;
 		vm.getStarted = getStarted;
-
+/*
 		vm.company = CompanyService.companyBySlug().get({
 			companySlug: $state.params.companySlug
 		}, function(response) {
@@ -26,7 +26,7 @@
 			console.log(errorRepsonse);
 			$state.go('authentication.signin');
 		});
-
+*/
 		function getStarted() {
 			var userEmail = String(vm.email + '@' + vm.company.domain);
 

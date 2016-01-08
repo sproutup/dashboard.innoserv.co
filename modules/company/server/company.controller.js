@@ -41,6 +41,8 @@ exports.update = function (req, res) {
   //For security purposes only merge these parameters
   company.name = req.body.name;
   company.url = req.body.url;
+  company.address = req.body.address;
+  company.phone = req.body.phone;
 
   company.save(function (err) {
     if (err) {

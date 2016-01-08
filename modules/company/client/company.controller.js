@@ -10,11 +10,14 @@
 
     function CompanyController($scope, CompanyService, TrialService, $state, CampaignService, $location, Authentication, Menus) {
         var vm = this;
+        vm.success = false;
         vm.create = create;
         vm.remove = remove;
         vm.update = update;
         vm.find = find;
         vm.findOne = findOne;
+        vm.findMyCompany = findMyCompany;
+        vm.authentication = Authentication;
 
         // Get the topbar menu
         vm.companySettings = Menus.getMenu('companySettings');
@@ -25,7 +28,7 @@ console.log('menu:', vm.companySettings);
 
           if (!isValid) {
             vm.invalid = true;
-            $scope.$broadcast('show-errors-check-validity', 'companyForm');
+            //$scope.$broadcast('show-errors-check-validity', 'companyForm');
 
             return false;
           } else {
@@ -61,13 +64,7 @@ console.log('menu:', vm.companySettings);
                 vm.companies.splice(i, 1);
               }
             }
-          } 
-          // else {
-            // test this 
-            // vm.company.$remove(function () {
-            //   $location.path('user.company');
-            // });
-          // }
+          }
         }
 
         function update(isValid) {
@@ -75,7 +72,7 @@ console.log('menu:', vm.companySettings);
 
           if (!isValid) {
             vm.invalid = true;
-            $scope.$broadcast('show-errors-check-validity', 'articleForm');
+            //$scope.$broadcast('show-errors-check-validity', 'articleForm');
 
             return false;
           } else {
@@ -84,10 +81,8 @@ console.log('menu:', vm.companySettings);
 
           var company = vm.company;
 
-          company.$update({
-            companyId: $state.params.companyId
-          }, function () {
-            $location.path('admin/company/' + company.id);
+          company.$update(function() {
+            vm.success = true;
           }, function (errorResponse) {
             console.log(errorResponse);
             vm.error = errorResponse.data.message;
@@ -95,7 +90,13 @@ console.log('menu:', vm.companySettings);
         }
 
         function find() {
-          vm.companies = CompanyService.company().query();
+          CompanyService.company().query(function(data){
+            vm.companies = data;
+          });
+        }
+
+        function select(company) {
+          vm.authentication.setCompany(company);
         }
 
         function findOne() {
@@ -117,7 +118,6 @@ console.log('menu:', vm.companySettings);
               $state.go('landing.default');
             });
           }
-          
 
           var campaigns = CampaignService.listByCompany().query({
             companyId: $state.params.companyId
@@ -125,5 +125,16 @@ console.log('menu:', vm.companySettings);
             vm.campaigns = campaigns;
           });
         }
-    }
+
+        function findMyCompany() {
+          var company = CompanyService.company().get({
+            companyId: Authentication.user.sessionCompany.id
+            //id: Authentication.user.sessionCompany.id
+          }, function() {
+            vm.company = company;
+          }, function(err) {
+            $state.go('landing.default');
+          });
+        }
+   }
 })();

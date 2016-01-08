@@ -177,11 +177,16 @@ angular.module('core').service('Menus', [
     });
 
     //Adding the context bar menu
+    this.addMenu('admin', {
+      roles: ['admin']
+    });
+
+    //Adding the context bar menu
     this.addMenu('contextbar', {
       roles: ['*']
     });
 
-    //Adding the company settings menu
+   //Adding the company settings menu
     this.addMenu('companySettings', {
       roles: ['*']
     });

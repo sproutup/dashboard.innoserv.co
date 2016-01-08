@@ -8,6 +8,19 @@ var Campaign = dynamoose.model('Campaign');
 var errorHandler = require('modules/core/server/errors.controller');
 var _ = require('lodash');
 
+/* const variables */
+var _isTemplate = -10;
+
+exports.dropTable = function (req, res) {
+  Campaign.$__.table.delete(function (err) {
+    if(err) {
+      console.log(err);
+    }
+    delete dynamoose.models.Campaign;
+    res.json({result: 'campaign deleted'});
+  });
+};
+
 /**
  * Show
  */
@@ -31,6 +44,26 @@ exports.create = function (req, res) {
     }
   });
 };
+
+/**
+ * Create Template
+ */
+exports.createTemplate = function (req, res) {
+  var item = new Campaign(req.body);
+
+  item.status = _isTemplate;
+
+  item.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(item);
+    }
+  });
+};
+
 
 /**
  * Update
@@ -98,6 +131,21 @@ exports.listByCompany = function (req, res) {
     });
   });
 };
+
+/**
+ * List only templates
+ */
+exports.listTemplate = function (req, res) {
+  Campaign.query({status: _isTemplate}).exec().then(function(items){
+    res.json(items);
+  })
+  .catch(function(err){
+    return res.status(400).send({
+      message: errorHandler.getErrorMessage(err)
+    });
+  });
+};
+
 
 /**
  * middleware

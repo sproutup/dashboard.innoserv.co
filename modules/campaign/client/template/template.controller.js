@@ -2,13 +2,13 @@
 
 (function() {
 
-    angular
-        .module('campaign')
-        .controller('CampaignController', CampaignController);
+  angular
+    .module('campaign')
+    .controller('TemplateController', TemplateController);
 
-    CampaignController.$inject = ['$scope', '$rootScope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'TeamService', 'ProductService', '$cookieStore'];
+    TemplateController.$inject = ['$scope', '$rootScope', 'TrialService', '$state', 'CampaignService', 'TemplateService', '$location', 'Authentication', 'TeamService', 'ProductService', '$cookieStore'];
 
-    function CampaignController($scope, $rootScope, TrialService, $state, CampaignService, $location, Authentication, TeamService, ProductService, $cookieStore) {
+    function TemplateController($scope, $rootScope, TrialService, $state, CampaignService, TemplateService, $location, Authentication, TeamService, ProductService, $cookieStore) {
         var vm = this;
         vm.create = create;
         vm.remove = remove;
@@ -30,21 +30,17 @@
           }
 
           // Create new campaign object
-          var CampaignObj = CampaignService.campaigns();
-          var campaign = new CampaignObj({
-            companyId: Authentication.company.id,
+          var Template = TemplateService.template();
+          var item = new Template({
+            companyId: Authentication.user.sessionCompany.id,
             description: vm.description,
             type: vm.type,
             name: vm.name
           });
 
-          if (vm.product) {
-            campaign.productId = vm.product.id;
-          }
-
           // Redirect after save
-          campaign.$save(function (response) {
-            $location.path('campaign/' + response.id + '/edit');
+          item.$save(function (response) {
+            $state.go('user.template.list');
             // Clear form fields
             vm.description = '';
           }, function (errorResponse) {
@@ -103,28 +99,13 @@
         }
 
         function find() {
-          //vm.campaigns = CampaignService.campaigns().query({
-          vm.campaigns = CampaignService.listByCompany().query({
-            companyId: Authentication.company.id
+          vm.campaigns = TemplateService.template().query({
           }, function() {
             console.log('campaigns found');
           }, function(err) {
             console.log(err);
           });
         }
-
-          // TeamService.listByUser().query({
-          //   userId: Authentication.user.id
-          // },function() {
-          //   Authentication.user.sessionCompany = $scope.myCompanies[0];
-          //   vm.campaigns = CampaignService.listByCompany().query({
-          //     companyId: Authentication.user.sessionCompany.companyId
-          //   }, function() {
-          //     console.log('coo');
-          //   }, function(err) {
-          //     console.log(err);
-          //   });
-          // });
 
         function findOne() {
           vm.success = false;
@@ -173,10 +154,10 @@
           // });
         }
 
- //       findProducts();
+        findProducts();
 
- //       if ($rootScope.startingCampaign) {
- //         vm.product = $rootScope.startingCampaign;
- //       }
+        if ($rootScope.startingCampaign) {
+          vm.product = $rootScope.startingCampaign;
+        }
     }
 })();

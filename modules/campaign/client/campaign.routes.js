@@ -22,6 +22,10 @@ angular.module('campaign').config(['$stateProvider',
         url: '/create',
         templateUrl: 'modules/campaign/client/create-campaign.html'
       })
+      .state('user.campaign.create-mock', {
+        url: '/create/mock',
+        templateUrl: 'modules/campaign/client/create-campaign-mock.html'
+      })
       .state('user.campaign.view', {
         url: '/:campaignId',
         templateUrl: 'modules/campaign/client/campaign.html'
@@ -29,10 +33,6 @@ angular.module('campaign').config(['$stateProvider',
       .state('user.campaign.reports-mock', {
         url: '/:campaignId/reports',
         templateUrl: 'modules/campaign/client/campaign-reports-mock.html'
-      })
-      .state('user.campaign.create-mock', {
-        url: '/:companyId/create/mock',
-        templateUrl: 'modules/campaign/client/create-campaign-mock.html'
       })
       .state('user.campaign.edit', {
         url: '/:campaignId/edit',
