@@ -32,7 +32,7 @@
           // Create new campaign object
           var CampaignObj = CampaignService.campaigns();
           var campaign = new CampaignObj({
-            companyId: Authentication.company.id,
+            companyId: $scope.company.company.id,
             description: vm.description,
             type: vm.type,
             name: vm.name
@@ -44,7 +44,7 @@
 
           // Redirect after save
           campaign.$save(function (response) {
-            $location.path('campaign/' + response.id + '/edit');
+            $state.go('company.navbar.campaign.list');
             // Clear form fields
             vm.description = '';
           }, function (errorResponse) {
@@ -102,15 +102,24 @@
           $location.path('campaigns');
         }
 
-        function find() {
-          //vm.campaigns = CampaignService.campaigns().query({
-          vm.campaigns = CampaignService.listByCompany().query({
-            companyId: Authentication.company.id
-          }, function() {
-            console.log('campaigns found');
-          }, function(err) {
-            console.log(err);
-          });
+        function find(id) {
+          if ($scope.company.company.id) {
+            makeCall();
+          } else {
+            $scope.$watch('company.company.id', function(val) {
+              if(val) makeCall();
+            });
+          }
+
+          function makeCall() {
+            vm.campaigns = CampaignService.listByCompany().query({
+              companyId: $scope.company.company.id
+            }, function() {
+              console.log('campaigns found');
+            }, function(err) {
+              console.log(err);
+            });
+          }
         }
 
           // TeamService.listByUser().query({

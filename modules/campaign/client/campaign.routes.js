@@ -3,14 +3,14 @@
 angular.module('campaign').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('user.campaign', {
+      .state('company.navbar.campaign', {
         url: '/campaign',
         abstract: true,
         template: '<div ui-view></div>',
         controller: 'CampaignController',
         controllerAs: 'vm'
       })
-      .state('user.campaign.list', {
+      .state('company.navbar.campaign.list', {
         url: 's',
         templateUrl: 'modules/campaign/client/list-campaign.html'
       })
@@ -18,23 +18,23 @@ angular.module('campaign').config(['$stateProvider',
         url: '/list/mock',
         templateUrl: 'modules/campaign/client/list-campaign-mock.html'
       })
-      .state('user.campaign.create', {
+      .state('company.navbar.campaign.create', {
         url: '/create',
         templateUrl: 'modules/campaign/client/create-campaign.html'
       })
-      .state('user.campaign.create-mock', {
+      .state('company.navbar.campaign.create-mock', {
         url: '/create/mock',
         templateUrl: 'modules/campaign/client/create-campaign-mock.html'
       })
-      .state('user.campaign.view', {
+      .state('company.navbar.campaign.view', {
         url: '/:campaignId',
         templateUrl: 'modules/campaign/client/campaign.html'
       })
-      .state('user.campaign.reports-mock', {
+      .state('company.navbar.campaign.reports-mock', {
         url: '/:campaignId/reports',
         templateUrl: 'modules/campaign/client/campaign-reports-mock.html'
       })
-      .state('user.campaign.edit', {
+      .state('company.navbar.campaign.edit', {
         url: '/:campaignId/edit',
         templateUrl: 'modules/campaign/client/edit-campaign.html'
       })

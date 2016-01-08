@@ -14,7 +14,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         controller: 'HomeController',
         templateUrl: 'modules/core/client/home.view.html'
       })
-      .state('user' ,{
+      .state('company.navbar' , {
         url: '',
         abstract: true,
         templateUrl: 'modules/core/client/header.view.html',
