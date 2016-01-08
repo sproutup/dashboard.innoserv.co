@@ -56,6 +56,17 @@ var CampaignSchema = new Schema({
     default: '',
     trim: true,
   },
+  status: {
+    type: Number,
+    default: 0,
+    required: true,
+    index: {
+      global: true,
+      rangeKey: 'type',
+      project: true, // ProjectionType: ALL
+      throughput: 5 // read and write are both 5
+    }
+  },
   type: {
     type: String,
     default: '',
