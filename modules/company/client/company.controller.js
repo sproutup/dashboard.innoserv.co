@@ -6,15 +6,19 @@
         .module('company')
         .controller('CompanyController', CompanyController);
 
-    CompanyController.$inject = ['$scope', 'CompanyService', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication'];
+    CompanyController.$inject = ['$scope', 'CompanyService', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'Menus'];
 
-    function CompanyController($scope, CompanyService, TrialService, $state, CampaignService, $location, Authentication) {
+    function CompanyController($scope, CompanyService, TrialService, $state, CampaignService, $location, Authentication, Menus) {
         var vm = this;
         vm.create = create;
         vm.remove = remove;
         vm.update = update;
         vm.find = find;
         vm.findOne = findOne;
+
+        // Get the topbar menu
+        vm.companySettings = Menus.getMenu('companySettings');
+console.log('menu:', vm.companySettings);
 
         function create(isValid) {
           vm.error = null;

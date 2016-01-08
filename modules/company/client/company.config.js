@@ -9,5 +9,13 @@ angular.module('company').run(['Menus',
       roles: ['*'],
       position: 3
     });
+
+    Menus.addMenuItem('companySettings', {
+      title: 'Edit Company Profile',
+      state: 'user.company.profile',
+      class: '',
+      roles: ['*'],
+      position: 3
+    });
   }
 ]);

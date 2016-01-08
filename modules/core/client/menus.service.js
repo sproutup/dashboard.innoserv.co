@@ -182,7 +182,7 @@ angular.module('core').service('Menus', [
     });
 
     //Adding the company settings menu
-    this.addMenu('companyInfo', {
+    this.addMenu('companySettings', {
       roles: ['*']
     });
   }
