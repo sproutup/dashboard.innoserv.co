@@ -18,7 +18,8 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         url: '',
         abstract: true,
         templateUrl: 'modules/core/client/header.view.html',
-        controller: 'HeaderController'
+        controller: 'HeaderController',
+        controllerAs: 'vm'
       })
       .state('not-found', {
         url: '/not-found',

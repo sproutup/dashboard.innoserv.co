@@ -8,7 +8,6 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     vm.$state = $state;
     vm.authentication = Authentication;
     vm.isCollapsed = false;
-
     // Get the navbar menu
     vm.navbar = Menus.getMenu('navbar');
     // $scope.myCompanies = TeamService.listByUser().query({

@@ -16,7 +16,11 @@ angular.module('users').config(['$stateProvider',
       .state('user.companies', {
         url: '/companies',
         templateUrl: 'modules/company/client/company-settings.html',
-        controller: 'HeaderController'
+        controller: 'CompanyController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        }
       })
       .state('user.settings.profile', {
         url: '/profile',

@@ -32,16 +32,16 @@
           }
 
           // Create new product object
-          var ProductObj = ProductService.products();
-          var product = new ProductObj({
-            companyId: Authentication.user.sessionCompany.id,
+          var Product = ProductService.products();
+          var item = new Product({
+            companyId: Authentication.company.id,
             name: vm.name,
             description: vm.description,
             tagline: vm.tagline
           });
 
           // Redirect after save
-          product.$save(function (response) {
+          item.$save(function (response) {
             $location.path('product/' + response.id + '/edit');
 
             // Clear form fields
@@ -103,23 +103,13 @@
         }
 
         function find() {
-          if (Authentication.user.sessionCompany) {
-            makeCall();
-          } else {
-            $scope.$watch(Authentication.user.sessionCompany.id, function() {
-              makeCall();
-            });
-          }
-
-          function makeCall() {
-            vm.products = ProductService.listByCompany().query({
-              companyId: Authentication.user.sessionCompany.id
-            }, function() {
-              console.log('products found');
-            }, function(err) {
-              console.log(err);
-            });
-          }
+          vm.products = ProductService.listByCompany().query({
+            companyId: Authentication.company.id
+          }, function() {
+            console.log('products found');
+          }, function(err) {
+            console.log(err);
+          });
         }
 
         function findOne() {

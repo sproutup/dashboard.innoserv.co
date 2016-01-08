@@ -6,9 +6,9 @@
         .module('company')
         .controller('CompanyController', CompanyController);
 
-    CompanyController.$inject = ['$scope', 'CompanyService', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication'];
+    CompanyController.$inject = ['CompanyService', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication'];
 
-    function CompanyController($scope, CompanyService, TrialService, $state, CampaignService, $location, Authentication) {
+    function CompanyController(CompanyService, TrialService, $state, CampaignService, $location, Authentication) {
         var vm = this;
         vm.success = false;
         vm.create = create;
@@ -17,13 +17,14 @@
         vm.find = find;
         vm.findOne = findOne;
         vm.findMyCompany = findMyCompany;
+        vm.authentication = Authentication;
 
         function create(isValid) {
           vm.error = null;
 
           if (!isValid) {
             vm.invalid = true;
-            $scope.$broadcast('show-errors-check-validity', 'companyForm');
+            //$scope.$broadcast('show-errors-check-validity', 'companyForm');
 
             return false;
           } else {
@@ -59,13 +60,7 @@
                 vm.companies.splice(i, 1);
               }
             }
-          } 
-          // else {
-            // test this 
-            // vm.company.$remove(function () {
-            //   $location.path('user.company');
-            // });
-          // }
+          }
         }
 
         function update(isValid) {
@@ -73,7 +68,7 @@
 
           if (!isValid) {
             vm.invalid = true;
-            $scope.$broadcast('show-errors-check-validity', 'articleForm');
+            //$scope.$broadcast('show-errors-check-validity', 'articleForm');
 
             return false;
           } else {
@@ -91,7 +86,13 @@
         }
 
         function find() {
-          vm.companies = CompanyService.company().query();
+          CompanyService.company().query(function(data){
+            vm.companies = data;
+          });
+        }
+
+        function select(company) {
+          vm.authentication.setCompany(company);
         }
 
         function findOne() {

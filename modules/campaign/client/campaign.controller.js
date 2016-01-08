@@ -32,12 +32,12 @@
           // Create new campaign object
           var CampaignObj = CampaignService.campaigns();
           var campaign = new CampaignObj({
-            companyId: Authentication.user.sessionCompany.id,
+            companyId: Authentication.company.id,
             description: vm.description,
             type: vm.type,
             name: vm.name
           });
-          
+
           if (vm.product) {
             campaign.productId = vm.product.id;
           }
@@ -103,23 +103,15 @@
         }
 
         function find() {
-          if (Authentication.user.sessionCompany) {
-            makeCall();
-          } else {
-            $scope.$watch(Authentication.user.sessionCompany.id, function() {
-              makeCall();
-            });
-          }
-
-          function makeCall() {
-            vm.campaigns = CampaignService.listByCompany().query({
-              companyId: Authentication.user.sessionCompany.id
-            }, function() {
-              console.log('campaigns found');
-            }, function(err) {
-              console.log(err);
-            });
-          }
+          //vm.campaigns = CampaignService.campaigns().query({
+          vm.campaigns = CampaignService.listByCompany().query({
+            companyId: Authentication.company.id
+          }, function() {
+            console.log('campaigns found');
+          }, function(err) {
+            console.log(err);
+          });
+        }
 
           // TeamService.listByUser().query({
           //   userId: Authentication.user.id
@@ -133,7 +125,6 @@
           //     console.log(err);
           //   });
           // });
-        }
 
         function findOne() {
           vm.success = false;
@@ -182,10 +173,10 @@
           // });
         }
 
-        findProducts();
+ //       findProducts();
 
-        if ($rootScope.startingCampaign) {
-          vm.product = $rootScope.startingCampaign;
-        }
+ //       if ($rootScope.startingCampaign) {
+ //         vm.product = $rootScope.startingCampaign;
+ //       }
     }
 })();

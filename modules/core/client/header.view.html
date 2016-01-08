@@ -10,7 +10,7 @@
   <nav role="navigation">
     <div class="nav-head" ng-if="vm.authentication.user">
       <div class="nav-item-wrapper">
-        <a class="creator-company"  ui-sref="user.companies">{{ vm.company.name || 'select company' }}</a>
+        <a class="creator-company"  ui-sref="user.companies">{{ vm.authentication.company.name || 'select company' }}</a>
       </div>
       <div class="nav-item-wrapper creator-user">
         <a ui-sref='user.settings.profile'>

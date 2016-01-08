@@ -112,13 +112,14 @@ module.exports.initViewEngine = function (app) {
  * Configure Express session
  */
 module.exports.initSession = function (app, db) {
-  // Express MongoDB session storage
+  // Express Redis session storage
   app.use(session({
     saveUninitialized: true,
-    resave: true,
+    resave: false,
     secret: config.sessionSecret,
     cookie: {
-      maxAge: config.sessionExpiration
+      maxAge: config.sessionExpiration,
+      secure: false
     },
     key: config.sessionKey,
     store: new RedisStore({client: redis})
