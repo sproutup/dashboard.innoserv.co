@@ -10,12 +10,12 @@ angular.module('company').run(['Menus',
       position: 3
     });
 
-    Menus.addMenuItem('companySettings', {
+    Menus.addMenuItem('user.company.profile.menu', {
       title: 'Edit Company Profile',
       state: 'user.company.profile',
       class: '',
       roles: ['*'],
-      position: 3
+      position: 1
     });
   }
 ]);

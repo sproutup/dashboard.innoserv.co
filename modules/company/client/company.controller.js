@@ -17,11 +17,13 @@
         vm.find = find;
         vm.findOne = findOne;
         vm.findMyCompany = findMyCompany;
+        vm.findByStateParam = findByStateParam;
         vm.authentication = Authentication;
+        vm.company = {};
 
         // Get the topbar menu
-        vm.companySettings = Menus.getMenu('companySettings');
-console.log('menu:', vm.companySettings);
+        vm.menu = Menus.getMenu('user.company.profile.menu');
+console.log('menu:', vm.menu);
 
         function create(isValid) {
           vm.error = null;
@@ -93,6 +95,14 @@ console.log('menu:', vm.companySettings);
           CompanyService.company().query(function(data){
             vm.companies = data;
           });
+        }
+
+        function findByStateParam() {
+          console.log('find by state');
+          vm.company1 = CompanyService.companyBySlug()
+            .get({companySlug: $state.params.companySlug}, function(data){
+              vm.company = data;
+            });
         }
 
         function select(company) {

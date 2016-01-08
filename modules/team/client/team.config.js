@@ -2,7 +2,7 @@
 
 angular.module('team').run(['Menus',
   function (Menus) {
-    Menus.addMenuItem('companySettings', {
+    Menus.addMenuItem('user.company.profile.menu', {
       title: 'Team Members',
       state: 'user.team.settings',
       class: '',

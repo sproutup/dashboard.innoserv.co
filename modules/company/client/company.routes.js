@@ -3,7 +3,13 @@
 angular.module('company').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      // for users
+      .state('company', {
+        url: '/com/:companySlug',
+        abstract: true,
+        template: '<section ng-init="company.findByStateParam()"><div ui-view></div></section>',
+        controller: 'CompanyController',
+        controllerAs: 'company'
+      })
       .state('user.company', {
         url: '/company',
         abstract: true,
@@ -15,17 +21,8 @@ angular.module('company').config(['$stateProvider',
         url: '/profile',
         templateUrl: 'modules/company/client/settings/edit-company-profile.html'
       })
-      .state('user.company.team', {
-        url: '/team',
-        templateUrl: 'modules/company/client/settings/edit-team-member.html'
-      })
-      .state('user.company.billing', {
-        url: '/billing',
-        templateUrl: 'modules/company/client/settings/edit-billing.html'
-      })
-
       // for internal admin 
-      .state('company', {
+      .state('companyxxx', {
         url: '/admin/company',
         abstract: true,
         template: '<section class="content"><section class="container"><div ui-view></div></section></section>',

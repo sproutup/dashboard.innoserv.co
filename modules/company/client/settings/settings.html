@@ -1,9 +1,18 @@
 <section>
-  <h1 class="dashboard-section-title"><i class="fa fa-university"></i>Company Info</h1>
+  <h1 class="dashboard-section-title"><i class="fa fa-university"></i>Company Info
+    <a ui-sref="user.campaign.list"><i class="fa fa-angle-left"></i></a>{{ vm.authentication.company.name }}
+    <div class="dashboard-menu-top" ng-if="vm.menu.shouldRender(vm.authentication.user);">
+      <a class="dashboard-menu-top-item active" ui-sref="user.campaign.reports-mock">Reports</a>
+      <a class="dashboard-menu-top-item" ui-sref="user.campaign.edit({ campaignId: vm.campaign.id })">Configure</a>
+      <a ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-bind="item.title" ui-sref="{{item.state}}" ng-if="item.shouldRender(vm.authentication.user);" ng-class="{ active: $state.includes(item.state) }" class="{{item.class}} dashboard-menu-top-item">
+        {{item.title}}
+      </a>
+    </div>
+  </h1>
 
-  <div class="tab-set" ng-if="companySettings.shouldRender(authentication.user);">
+  <div class="tab-set" ng-if="vm.menu.shouldRender(vm.authentication.user);">
     <ul class="nav nav-pills tab-set-pills">
-      <div ng-repeat="item in companySettings.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
+      <div ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
         <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
       </div>
     </ul>
