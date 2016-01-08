@@ -855,170 +855,6 @@ body {
   color: @sproutup-orange;
 }
 
-input::-moz-placeholder {
-    color: @input-placeholder-text;
-    opacity: 1;
-}
-
-input:-moz-placeholder {
-    color: @input-placeholder-text;
-    opacity: 1;
-}
-
-input::-webkit-input-placeholder {
-    color: @input-placeholder-text;
-    opacity: 1;
-}
-
-input:-ms-input-placeholder {
-    color: @input-placeholder-text;
-    opacity: 1;
-}
-
-.form-control {
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    box-shadow: none;
-    border: 1px solid @form-border;
-}
-
-.form-control:focus {
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    box-shadow: none;
-    border-color: @sproutup-blue;
-    outline: 0 !important;
-}
-
-.form-validate.ng-invalid.ng-touched {
-    border: 1px solid @sproutup-error-message;
-    color: @sproutup-orange;
-}
-
-.form-validate.ng-valid.ng-touched {
-    border: 1px solid @sproutup-green;
-}
-
-// sproutup buttons
-.sproutup-btn-lg-main {
-    height: 50px;
-    border: none;
-    font-weight: 700;
-    font-size: 11pt;
-    color: white;
-    background-color: @sproutup-blue;
-    border-radius: 0px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 15px;
-    margin: 0px;
-    -webkit-transition: all .1s ease-in-out;
-    -moz-transition: all .1s ease-in-out;
-    -ms-transition: all .1s ease-in-out;
-    -o-transition: all .1s ease-in-out;
-    transition: all .1s ease-in-out;
-}
-
-.sproutup-btn-lg-main.orange {
-  color: white;
-  background-color: @sproutup-orange;
-}
-
-.sproutup-btn-lg-main:hover {
-    background-color: @sproutup-blue-hover;
-    color: white;
-}
-
-.sproutup-btn-lg-main.orange:hover {
-  color: white;
-  background-color: @sproutup-orange-hover;
-}
-
-.sproutup-btn-lg-main.grey {
-  color: @main-text;
-  background-color: @sproutup-lightgrey;
-}
-
-.sproutup-btn-lg-main.grey:hover {
-  color: @main-text;
-  background-color: white;
-}
-
-.form-input-group .sproutup-btn-md-main {
-  margin-right: 8px;
-}
-
-.form-input-group .sproutup-btn-md-main.trash {
-  margin: 0px;
-}
-
-.sproutup-btn-md-main {
-  height: 45px;
-  font-weight: 700;
-  font-size: 11pt;
-  background-color: @sproutup-blue;
-  color: white;
-  border-radius: 2px;
-  padding-top: 11px;
-  margin: 0px;
-  -webkit-transition: all .2s ease-in-out;
-  -moz-transition: all .2s ease-in-out;
-  -ms-transition: all .2s ease-in-out;
-  -o-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
-}
-
-.sproutup-btn-md-main:hover {
-  color: white;
-  background-color: @sproutup-blue-hover;
-}
-
-.sproutup-btn-md-main.cancel {
-  color: @main-text-1;
-  background-color: @sproutup-superlightgrey;
-  border: 1px solid @sproutup-grey;
-}
-
-.sproutup-btn-md-main.cancel:hover {
-  background-color: white;
-}
-
-.sproutup-btn-md-main.orange {
-  color: white;
-  background-color: @sproutup-orange;
-}
-
-.sproutup-btn-md-main.orange:hover {
-  color: white;
-  background-color: @sproutup-orange-hover;
-}
-
-.sproutup-btn-md-main i {
-  padding-right: 12px;
-}
-
-.sproutup-btn-md-main.trash {
-  width: 60px;
-  float: right;
-  font-size: 14pt;
-  padding-top: 9px;
-  color: white;
-  background-color: @sproutup-orange;
-}
-
-.sproutup-btn-md-main.trash i {
-  padding: 0px;
-}
-
-.sproutup-btn-md-main.trash:hover {
-  background-color: @sproutup-orange-hover;
-  color: white;
-}
-
 .legal-title {
     text-align: center;
     font-weight: 300;
@@ -1781,6 +1617,7 @@ input:-ms-input-placeholder {
   -webkit-transition: all .2s;
   -o-transition: all .2s;
   transition: all .2s;
+  margin-bottom: 10px;
 }
 
 .form-input-textarea.no-resize {
@@ -2344,4 +2181,487 @@ input:-ms-input-placeholder {
 
 .create-campaign-banner h3 a i {
   padding-right: 15px;
+}
+
+// theme
+.theme-docs-page {
+  padding: 0px 0px 50px;
+}
+
+.theme-docs-sidebar.affix {
+  position: fixed;
+}
+
+.theme-docs-sidenav {
+  margin: 40px 20px;
+}
+
+.theme-docs-sidenav li a {
+  padding: 6px 20px;
+  font-size: 10pt;
+  font-weight: 700;
+  color:@main-text-1;
+}
+
+.theme-docs-sidenav li a:hover {
+  color: @sproutup-blue;
+  background-color: transparent;
+  border-left: 2px solid @sproutup-blue;
+  padding-left: 18px;
+}
+
+.theme-docs-section {
+  margin-left: 40px;
+  margin-bottom: 30px;
+}
+
+.theme-docs-header {
+  margin: 0px;
+  padding: 30px 0px 10px;
+}
+
+.theme-docs-header a {
+  color: @sproutup-blue;
+  text-decoration: none !important;
+}
+
+.theme-docs-subheader {
+  margin: 0px;
+  padding: 20px 0px;
+  font-weight: 700;
+  font-size: 16pt;
+  color: @main-text-1;
+}
+
+.theme-docs-subheader i {
+  padding-right: 15px;
+}
+
+.sproutup-table {
+  margin-top: 20px;
+}
+
+.sproutup-table thead {
+  background-color: @sproutup-verylightgrey;
+}
+
+.sproutup-table thead tr th {
+  padding: 20px;
+  font-weight: 700;
+  font-size: 11pt;
+  color: @main-text-2;
+}
+
+.sproutup-table tbody tr td {
+  padding: 20px;
+  font-weight: 400;
+  font-size: 11pt;
+  color: @main-text;
+}
+
+.sproutup-table tbody tr:hover {
+  background-color: @sproutup-table-hover;
+}
+
+.sproutup-table tbody tr td a {
+  color: @sproutup-blue;
+  font-weight: 700;
+}
+
+.sproutup-table tbody tr td a i {
+  padding-right: 6px;
+}
+
+.sproutup-heading {
+  padding: 5px 0px;
+}
+
+.sproutup-heading.thin {
+  font-weight: 100;
+}
+
+.sproutup-heading.light {
+  font-weight: 300;
+}
+
+.sproutup-heading.regular {
+  font-weight: 400;
+}
+
+.sproutup-heading.strong {
+  font-weight: 700;
+}
+
+.sproutup-paragraph {
+  padding: 5px 0px;
+}
+
+.sproutup-paragraph.regular {
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 12pt;
+}
+
+.sproutup-paragraph.strong {
+  font-weight: 700;
+  line-height: 1.5;
+  font-size: 12pt;
+}
+
+.sproutup-paragraph span {
+  color: @sproutup-blue;
+}
+
+input::-moz-placeholder {
+    color: @input-placeholder-text;
+    opacity: 1;
+}
+
+input:-moz-placeholder {
+    color: @input-placeholder-text;
+    opacity: 1;
+}
+
+input::-webkit-input-placeholder {
+    color: @input-placeholder-text;
+    opacity: 1;
+}
+
+input:-ms-input-placeholder {
+    color: @input-placeholder-text;
+    opacity: 1;
+}
+
+.form-control {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: 1px solid @form-border;
+}
+
+.form-control:focus {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    box-shadow: none;
+    border-color: @sproutup-blue;
+    outline: 0 !important;
+}
+
+.form-validate.ng-invalid.ng-touched {
+    border: 1px solid @sproutup-error-message;
+    color: @sproutup-orange;
+}
+
+.form-validate.ng-valid.ng-touched {
+    border: 1px solid @sproutup-green;
+}
+
+.form-input-group .sproutup-btn-md-main {
+  margin-right: 8px;
+}
+
+.form-input-group .sproutup-btn-md-main.trash {
+  margin: 0px;
+}
+
+// sproutup buttons
+.sproutup-btn-lg-main {
+    height: 50px;
+    border: none;
+    font-weight: 700;
+    font-size: 11pt;
+    color: white;
+    background-color: @sproutup-blue;
+    border-radius: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    margin: 0px;
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -ms-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+}
+
+.sproutup-btn-lg-main.orange {
+  color: white;
+  background-color: @sproutup-orange;
+}
+
+.sproutup-btn-lg-main.red {
+  color: white;
+  background-color: @sproutup-red;
+}
+
+.sproutup-btn-lg-main:hover {
+    background-color: @sproutup-blue-hover;
+    color: white;
+}
+
+.sproutup-btn-lg-main.orange:hover {
+  color: white;
+  background-color: @sproutup-orange-hover;
+}
+
+.sproutup-btn-lg-main.red:hover {
+  color: white;
+  background-color: @sproutup-red-hover;
+}
+
+.sproutup-btn-lg-main.grey {
+  color: @main-text;
+  background-color: @sproutup-lightgrey;
+}
+
+.sproutup-btn-lg-main.grey:hover {
+  color: @main-text;
+  background-color: white;
+}
+
+.sproutup-btn-md-main {
+  height: 45px;
+  font-weight: 700;
+  font-size: 11pt;
+  background-color: @sproutup-blue;
+  color: white;
+  border-radius: 2px;
+  padding-top: 11px;
+  margin: 0px;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+.sproutup-btn-md-main:hover {
+  color: white;
+  background-color: @sproutup-blue-hover;
+}
+
+.sproutup-btn-md-main.cancel {
+  color: @main-text-1;
+  background-color: @sproutup-superlightgrey;
+  border: 1px solid @sproutup-grey;
+}
+
+.sproutup-btn-md-main.cancel:hover {
+  background-color: white;
+}
+
+.sproutup-btn-md-main.orange {
+  color: white;
+  background-color: @sproutup-orange;
+}
+
+.sproutup-btn-md-main.orange:hover {
+  color: white;
+  background-color: @sproutup-orange-hover;
+}
+
+.sproutup-btn-md-main i {
+  padding-right: 12px;
+}
+
+.sproutup-btn-md-main.trash {
+  width: 60px;
+  float: right;
+  font-size: 14pt;
+  padding-top: 9px;
+  color: white;
+  background-color: @sproutup-orange;
+}
+
+.sproutup-btn-md-main.trash i {
+  padding: 0px;
+}
+
+.sproutup-btn-md-main.trash:hover {
+  background-color: @sproutup-orange-hover;
+  color: white;
+}
+
+.form-inline {
+  margin-bottom: 8px;
+}
+
+.theme-docs-palette-wrapper {
+  padding: 0px;
+  text-align: center;
+}
+
+.theme-docs-palette {
+  padding: 40px 5px;
+  font-weight: 700;
+  font-size: 11pt;
+  margin: 0px;
+  border: 1px solid white;
+}
+
+.theme-docs-palette span {
+  padding-top: 15px;
+  display: block;
+}
+
+.theme-docs-palette.blue {
+  background-color: @sproutup-blue;
+  color: white;
+}
+
+.theme-docs-palette.muted-blue {
+  background-color: @sproutup-blue-muted;
+  color: white;
+}
+
+.theme-docs-palette.orange {
+  background-color: @sproutup-orange;
+  color: white;
+}
+
+.theme-docs-palette.green {
+  background-color: @sproutup-green;
+  color: white;
+}
+
+.theme-docs-palette.green-muted {
+  background-color: @sproutup-green-muted;
+  color: white;
+}
+
+.theme-docs-palette.salmon {
+  background-color: @sproutup-salmon;
+  color: white;
+}
+
+.theme-docs-palette.red {
+  background-color: @sproutup-red;
+  color: white;
+}
+
+.theme-docs-palette.gold {
+  background-color: @sproutup-gold;
+  color: white;
+}
+
+.theme-docs-palette.darkgold {
+  background-color: @sproutup-darkgold;
+  color: white;
+}
+
+.theme-docs-palette.cyan {
+  background-color: @sproutup-cyan;
+  color: white;
+}
+
+.theme-docs-palette.purple {
+  background-color: @sproutup-purple;
+  color: white;
+}
+
+.theme-docs-palette.lightpurple {
+  background-color: @sproutup-lightpurple;
+  color: white;
+}
+
+.theme-docs-palette.discount {
+  background-color: @sproutup-discount;
+  color: white;
+}
+
+.theme-docs-palette.darkblue {
+  background-color: @sproutup-blue-dark;
+  color: white;
+}
+
+.theme-docs-palette.paperwhite {
+  background-color: @sproutup-paperwhite;
+  color: black;
+}
+
+.theme-docs-palette.grey {
+  background-color: @sproutup-grey;
+  color: white;
+}
+
+.theme-docs-palette.darkgrey {
+  background-color: @sproutup-dark-grey;
+  color: white;
+}
+
+.theme-docs-palette.grey-hover {
+  background-color: @sproutup-grey-hover;
+  color: white;
+}
+
+.theme-docs-palette.stronger-grey {
+  background-color: @sproutup-stronger-grey;
+  color: white;
+}
+
+.theme-docs-palette.lightgrey {
+  background-color: @sproutup-lightgrey;
+  color: black;
+}
+
+.theme-docs-palette.lightergrey {
+  background-color: @sproutup-lightergrey;
+  color: black;
+}
+
+.theme-docs-palette.verylightgrey {
+  background-color: @sproutup-verylightgrey;
+  color: black;
+}
+
+.theme-docs-palette.superlightgrey {
+  background-color: @sproutup-superlightgrey;
+  color: black;
+}
+
+.theme-docs-palette.footer {
+  background-color: @sproutup-footer;
+  color: white;
+}
+
+.theme-docs-palette.footer {
+  background-color: @sproutup-footer;
+  color: white;
+}
+
+.theme-docs-palette.error {
+  background-color: @sproutup-error-message;
+  color: white;
+}
+
+.theme-docs-palette-grid {
+  margin: 0px 0px 30px;
+}
+
+h3[class="main-text"] {
+  color: @main-text;
+}
+
+h3[class="main-text-1"] {
+  color: @main-text-1;
+}
+
+h3[class="main-text-2"] {
+  color: @main-text-2;
+}
+
+h3[class="main-text-3"] {
+  color: @main-text-3;
+}
+
+h3[class="secondary-text"] {
+  color: @secondary-text;
+}
+
+h3[class="placeholder"] {
+  color: @input-placeholder-text;
 }
