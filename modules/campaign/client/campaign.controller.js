@@ -102,7 +102,7 @@
           $location.path('campaigns');
         }
 
-        function find(id) {
+        function find() {
           if ($scope.company.company.id) {
             makeCall();
           } else {
