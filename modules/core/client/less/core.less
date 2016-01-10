@@ -592,7 +592,7 @@ body {
 
 .nav-item-wrapper {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   margin-left: 15px;
 }
 
@@ -636,6 +636,11 @@ body {
   font-size: 10pt;
   color: @main-text-white;
   text-decoration: none !important;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
 
 .creator-user a img {
@@ -644,11 +649,15 @@ body {
   margin-right: 12px;
 }
 
+.creator-user a:hover, .creator-user a:active, .creator-user a:focus {
+  color: white;
+}
+
 .creator-name i {
   padding-left: 12px;
 }
 
-.creator-company {
+.creator-company a {
   font-weight: 700;
   font-size: 13pt;
   color: @main-text-white;
@@ -660,8 +669,8 @@ body {
   transition: all .2s ease-in-out;
 }
 
-.creator-company:hover, .creator-company:active, .creator-company:focus {
-  color: @main-text-white;
+.creator-company a:hover, .creator-company a:active, .creator-company a:focus {
+  color: white;
 }
 
 .auth-header {
@@ -2050,13 +2059,6 @@ body {
   color: @main-text-1;
 }
 
-.input-group-addon {
-  padding: 0px 15px;
-  font-weight: 700;
-  font-size: 8.5pt;
-  color: @main-text-2;
-}
-
 .create-campaign-banner {
   height: 300px;
   margin: 0px 0px 20px;
@@ -2184,6 +2186,17 @@ body {
 }
 
 // theme
+
+.mocks-header {
+  text-align: center;
+  padding: 10px;
+  background-color: @sproutup-footer;
+  margin: 0px;
+}
+
+.mocks-header a {
+  color: white;
+}
 
 .theme-docs-index-page {
   padding: 30px 20px;

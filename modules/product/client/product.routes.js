@@ -14,10 +14,6 @@ angular.module('product').config(['$stateProvider',
         url: 's',
         templateUrl: 'modules/product/client/list-products.html'
       })
-      .state('user.product.list-mock', {
-        url: '/:companyId/mock',
-        templateUrl: 'modules/product/client/list-product-mock.html'
-      })
       .state('user.product.create', {
         url: '/create',
         templateUrl: 'modules/product/client/create-product.html'
@@ -26,18 +22,9 @@ angular.module('product').config(['$stateProvider',
         url: '/:productId',
         templateUrl: 'modules/product/client/product.html'
       })
-      .state('user.product.create-mock', {
-        url: '/:companyId/create/mock',
-        templateUrl: 'modules/product/client/create-product-mock.html'
-      })
-      //edit product and mock
       .state('user.product.edit', {
         url: '/:productId/edit',
         templateUrl: 'modules/product/client/edit-product.html'
-      })
-      .state('user.product.edit-mock', {
-        url: '/:companyId/edit/mock',
-        templateUrl: 'modules/product/client/edit-product-mock.html'
       });
   }
 ]);

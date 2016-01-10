@@ -9,8 +9,8 @@
   </div>
   <nav role="navigation">
     <div class="nav-head" ng-if="vm.authentication.user">
-      <div class="nav-item-wrapper">
-        <a class="creator-company"  ui-sref="company.navbar.company.list">{{ company.company.name || 'select company' }}</a>
+      <div class="nav-item-wrapper creator-company">
+        <a ui-sref="company.navbar.company.list">{{ company.company.name || 'select company' }}</a>
       </div>
       <div class="nav-item-wrapper creator-user">
         <a ui-sref='user.settings.profile'>
@@ -23,7 +23,7 @@
       <div class="nav-item-wrapper nav-item-main">
           <a href="/authentication/signin">Sign In</a>
       </div>
-    </div> 
+    </div>
 
     <div class="nav-section" ng-if="vm.navbar.shouldRender(vm.authentication.user);">
       <div ng-repeat="item in vm.navbar.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
