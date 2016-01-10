@@ -10,14 +10,23 @@ angular.module('company').config(['$stateProvider',
         controller: 'CompanyController',
         controllerAs: 'company'
       })
-      .state('user.company', {
+      .state('company.navbar.company', {
+        url: '/company',
+        templateUrl: 'modules/company/client/company-settings.html',
+        controller: 'CompanyController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        }
+      })
+     .state('companyxx', {
         url: '/company',
         abstract: true,
         templateUrl: 'modules/company/client/settings/settings.html',
         controller: 'CompanyController',
         controllerAs: 'vm'
       })
-      .state('user.company.profile', {
+      .state('com.profile', {
         url: '/profile',
         templateUrl: 'modules/company/client/settings/edit-company-profile.html'
       })

@@ -57,7 +57,7 @@
             campaign.$remove({
               campaignId: campaign.id
             }, function() {
-              $state.go('user.campaign.list');
+              $state.go('company.navbar.campaign.list');
             });
 
             for (var i in vm.companies) {
@@ -65,13 +65,7 @@
                 vm.companies.splice(i, 1);
               }
             }
-          } 
-          // else {
-            // test this 
-            // vm.campaign.$remove(function () {
-            //   $location.path('user.campaign');
-            // });
-          // }
+          }
         }
 
         function update(isValid) {
@@ -102,7 +96,7 @@
           $location.path('campaigns');
         }
 
-        function find(id) {
+        function find() {
           if ($scope.company.company.id) {
             makeCall();
           } else {
