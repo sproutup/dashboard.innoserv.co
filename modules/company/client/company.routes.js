@@ -19,7 +19,11 @@ angular.module('company').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-     .state('companyxx', {
+      .state('company.navbar.company.create', {
+        url: '/create',
+        templateUrl: 'modules/company/client/admin/create-company.html'
+      })
+      .state('companyxx', {
         url: '/company',
         abstract: true,
         templateUrl: 'modules/company/client/settings/settings.html',
@@ -41,10 +45,6 @@ angular.module('company').config(['$stateProvider',
       .state('company.list', {
         url: '',
         templateUrl: 'modules/company/client/admin/list-companies.html'
-      })
-      .state('company.create', {
-        url: '/create',
-        templateUrl: 'modules/company/client/admin/create-company.html'
       })
       .state('company.edit', {
         url: '/:companyId/edit',

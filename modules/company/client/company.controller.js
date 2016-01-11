@@ -23,11 +23,11 @@
 
         // Get the topbar menu
         vm.menu = Menus.getMenu('user.company.profile.menu');
-console.log('menu:', vm.menu);
 
         function create(isValid) {
           vm.error = null;
 
+          console.log('company create');
           if (!isValid) {
             vm.invalid = true;
             //$scope.$broadcast('show-errors-check-validity', 'companyForm');
@@ -46,7 +46,8 @@ console.log('menu:', vm.menu);
 
           // Redirect after save
           company.$save(function (response) {
-            $location.path('admin/company/' + response.id);
+            //$location.path('admin/company/' + response.id);
+            $state.go('company.navbar.company');
 
             // Clear form fields
             vm.name = '';
