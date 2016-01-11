@@ -5,9 +5,6 @@
 public/lib/
 .bower-*/
 
-# Google jwt
-google.json
-
 # Logs
 logs
 *.log

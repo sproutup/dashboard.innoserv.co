@@ -1,13 +1,14 @@
 'use strict';
 
 var google = require('googleapis');
+var config = require('config/config');
 var calendar = google.calendar('v3');
 /* global -Promise */
 var Promise = require('bluebird');
-var key = require('google.json');
 var scope1 = 'https://www.googleapis.com/auth/calendar';
 var scope2 = 'https://www.googleapis.com/auth/calendar.readonly';
-var jwtClient = new google.auth.JWT(key.client_email, null, key.private_key, [scope1, scope2], null);
+
+var jwtClient = new google.auth.JWT(config.google.jwt.client_email, null, config.google.jwt.private_key, [scope1, scope2], null);
 var testEvent;
 
 Promise.promisifyAll(calendar.calendars);

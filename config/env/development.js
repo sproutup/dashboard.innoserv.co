@@ -52,7 +52,11 @@ module.exports = {
   google: {
     clientID: process.env.GOOGLE_ID || 'APP_ID',
     clientSecret: process.env.GOOGLE_SECRET || 'APP_SECRET',
-    callbackURL: '/api/auth/google/callback'
+    callbackURL: '/api/auth/google/callback',
+    jwt: {
+      client_email: process.env.GOOGLE_JWT_CLIENT_EMAIL,
+      private_key: process.env.GOOGLE_JWT_PRIVATE_KEY
+    }
   },
   linkedin: {
     clientID: process.env.LINKEDIN_ID || 'APP_ID',
