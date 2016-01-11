@@ -91,7 +91,7 @@
         product.$update({
           productId: $state.params.productId
         }, function () {
-          $location.path('products');
+          $state.go('company.navbar.product.list');
         }, function (errorResponse) {
           vm.success = null;
           vm.error = errorResponse.data.message;
