@@ -39,6 +39,10 @@ angular.module('theme').config(['$stateProvider',
         url: '/navbar',
         templateUrl: 'modules/theme/client/mocks/navbar.view.html'
       })
+      .state('theme.mocks.top-navbar', {
+        url: '/top-navbar',
+        templateUrl: 'modules/theme/client/mocks/top-navbar.view.html'
+      })
       .state('theme.mocks.create-campaign', {
         url: '/create-campaign',
         templateUrl: 'modules/theme/client/mocks/create-campaign.view.html'
