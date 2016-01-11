@@ -1,5 +1,4 @@
 <section ng-init="vm.find()">
-  {{company.company.name}}
   <div class="page-header">
     <h1>Team</h1>
   </div>
@@ -10,8 +9,8 @@
         Created on
         <span ng-bind="item.created | date:'mediumDate'"></span>
       </small>
-      <h4 class="list-group-item-heading" ng-bind="item.userId"></h4>
-      <p class="list-group-item-text" ng-bind="item.companyId"></p>
+      <h4 class="list-group-item-heading" ng-bind="item.displayName"></h4>
+      <p class="list-group-item-text" ng-bind="item.email"></p>
     </a>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.team.$resolved && !vm.team.length">
