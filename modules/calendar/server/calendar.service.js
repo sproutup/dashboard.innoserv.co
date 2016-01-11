@@ -7,8 +7,9 @@ var calendar = google.calendar('v3');
 var Promise = require('bluebird');
 var scope1 = 'https://www.googleapis.com/auth/calendar';
 var scope2 = 'https://www.googleapis.com/auth/calendar.readonly';
+var jwtKey = config.google.jwt.private_key.replace(/\\n/g, '\n');
 
-var jwtClient = new google.auth.JWT(config.google.jwt.client_email, null, config.google.jwt.private_key, [scope1, scope2], null);
+var jwtClient = new google.auth.JWT(config.google.jwt.client_email, null, jwtKey, [scope1, scope2], null);
 var testEvent;
 
 Promise.promisifyAll(calendar.calendars);
