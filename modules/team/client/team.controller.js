@@ -89,6 +89,19 @@
         }
 
         function find() {
+          if (!$scope.company.company.id) {
+            $scope.$watch('company.company.id', function(val) {
+              if(val) find();
+            });
+            return;
+          }
+
+          TeamService.listByCompany().query({companyId: $scope.company.company.id}, function(data){
+            vm.team = data;
+          });
+        }
+
+       function findAll() {
           TeamService.team().query(function(data){
             vm.team = data;
           });
