@@ -2,9 +2,9 @@
 
 angular.module('team').run(['Menus',
   function (Menus) {
-    Menus.addMenuItem('user.company.profile.menu', {
+    Menus.addMenuItem('company.settings.menu', {
       title: 'Team Members',
-      state: 'user.team.settings',
+      state: 'company.navbar.settings.team.list',
       class: '',
       roles: ['*'],
       position: 2

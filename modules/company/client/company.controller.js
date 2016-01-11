@@ -19,10 +19,11 @@
         vm.findMyCompany = findMyCompany;
         vm.findByStateParam = findByStateParam;
         vm.authentication = Authentication;
+        vm.state = $state;
         vm.company = {};
 
         // Get the topbar menu
-        vm.menu = Menus.getMenu('user.company.profile.menu');
+        vm.menu = Menus.getMenu('company.settings.menu');
 
         function create(isValid) {
           vm.error = null;
@@ -47,7 +48,7 @@
           // Redirect after save
           company.$save(function (response) {
             //$location.path('admin/company/' + response.id);
-            $state.go('company.navbar.company');
+            $state.go('company.navbar.list');
 
             // Clear form fields
             vm.name = '';
