@@ -7,9 +7,7 @@ var calendar = google.calendar('v3');
 var Promise = require('bluebird');
 var scope1 = 'https://www.googleapis.com/auth/calendar';
 var scope2 = 'https://www.googleapis.com/auth/calendar.readonly';
-var jwtKey = config.google.jwt.private_key.replace(/\\n/g, '\n');
-
-var jwtClient = new google.auth.JWT(config.google.jwt.client_email, null, jwtKey, [scope1, scope2], null);
+var jwt = require('config/lib/google');
 var testEvent;
 
 Promise.promisifyAll(calendar.calendars);
@@ -17,21 +15,9 @@ Promise.promisifyAll(calendar.events);
 
 var CalendarService = function(){};
 
-CalendarService.init = function() {
-  jwtClient.authorize(function(err, tokens) {
-    if (err) {
-      console.log('err initing CalendarService', err);
-    } else {
-      console.log('success initing CalendarService');
-    }
-  });
-};
-
-CalendarService.init();
-
 CalendarService.insertEvent = function(calendarId, event) {
   return calendar.events
-    .insertAsync({ auth: jwtClient, calendarId: calendarId, resource: event })
+    .insertAsync({ auth: jwt.client, calendarId: calendarId, resource: event })
     .then(function(result){ 
       console.log('inserted event: ', result[0]);
       return result; 
@@ -44,7 +30,7 @@ CalendarService.insertEvent = function(calendarId, event) {
 
 CalendarService.getEvent = function(calendarId, eventId) {
   return calendar.events
-    .getAsync({ auth: jwtClient, calendarId: calendarId, eventId: eventId })
+    .getAsync({ auth: jwt.client, calendarId: calendarId, eventId: eventId })
     .then(function(result){ 
       console.log('event: ', result[0]);
       return result; 
@@ -57,7 +43,7 @@ CalendarService.getEvent = function(calendarId, eventId) {
 
 CalendarService.listEvents = function(calendarId) {
   return calendar.events
-    .listAsync({ auth: jwtClient, calendarId: calendarId })
+    .listAsync({ auth: jwt.client, calendarId: calendarId })
     .then(function(result){ 
       console.log('events: ', result[0].items.length);
       return result[0]; 
@@ -70,7 +56,7 @@ CalendarService.listEvents = function(calendarId) {
 
 CalendarService.updateEvent = function(calendarId, event) {
   return calendar.events
-    .updateAsync({ auth: jwtClient, calendarId: calendarId, eventId: event.id, resource: event })
+    .updateAsync({ auth: jwt.client, calendarId: calendarId, eventId: event.id, resource: event })
     .then(function(result){ 
       console.log('updated event: ', result[0]);
       return result; 
@@ -83,7 +69,7 @@ CalendarService.updateEvent = function(calendarId, event) {
 
 CalendarService.deleteEvent = function(calendarId, eventId) {
   return calendar.events
-    .deleteAsync({ auth: jwtClient, calendarId: calendarId, eventId: eventId })
+    .deleteAsync({ auth: jwt.client, calendarId: calendarId, eventId: eventId })
     .then(function(result){ 
       console.log('deleted an event');
       return result; 
@@ -96,7 +82,7 @@ CalendarService.deleteEvent = function(calendarId, eventId) {
 
 CalendarService.getCalendar = function(calendarId) {
   return calendar.calendars
-    .getAsync({ auth: jwtClient, calendarId: calendarId })
+    .getAsync({ auth: jwt.client, calendarId: calendarId })
     .then(function(result){
       console.log('calendar: ', result[0]);
       return result; 
