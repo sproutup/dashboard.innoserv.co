@@ -1,0 +1,47 @@
+<div class="auth-header">
+  <div class="text-center">
+    <img class="auth-header-logo" src="modules/core/client/img/logo-square-orange.png">
+  </div>
+  <hr>
+</div>
+
+<div class="row">
+  <div class="signup-login-header">
+      <h1>Thanks for getting started with SproutUp</h1>
+      <h2>Your registered email is <span>peter@sproutup.co</span>, and your company is <span class="signup-company-name">SproutUp Co</span> Please fill out the information below to finish signing up.</h2>
+  </div>
+  <div class="signup-login-area">
+    <form name="userForm" class="signin" novalidate autocomplete="off">
+      <fieldset>
+        <div class="signup-login-form" show-errors>
+
+          <!-- First Name -->
+          <input type="text" id="firstName" name="firstName" class="form-control form-validate signup-login-input" placeholder="First Name" required>
+          <div>
+            <div class="signup-login-form--error-message"><i class="fa fa-minus-circle"></i>Please tell us your first name.</div>
+          </div>
+
+          <!-- Last Name -->
+          <input type="text" id="lastName" name="lastName" class="form-control form-validate signup-login-input" placeholder="Last Name" required>
+
+          <!-- Password -->
+          <input type="password" id="password" name="password" class="form-control form-validate signup-login-input" placeholder="Create a password" required ng-minlength="6">
+
+          <div class="signup-agreement">
+            <p>By signing up, I agree to SproutUp's <a ui-sref="#" target="_blank">Terms of Service</a> and <a ui-sref="#" target="_blank">Privacy Policy</a>.</p>
+          </div>
+
+          <!-- sign up button -->
+          <button class="btn btn-lg signup-login-btn" type="submit">Sign up</button>
+
+        </div>
+      </fieldset>
+    </form>
+
+    <!-- footer -->
+    <div class="signup-login-form-footer">
+      <p>Already signed up? <a href="#">Log in</a> here.</p>
+    </div>
+
+  </div>
+</div>

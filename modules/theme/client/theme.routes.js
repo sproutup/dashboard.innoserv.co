@@ -20,7 +20,36 @@ angular.module('theme').config(['$stateProvider',
       })
       .state('theme.mocks', {
         url: '/mocks',
-        templateUrl: 'modules/theme/client/mocks.view.html'
+        abstract: true,
+        template: '<ui-view/>'
+      })
+      .state('theme.mocks.signup', {
+        url: '/signup',
+        templateUrl: 'modules/theme/client/mocks/signup.view.html'
+      })
+      .state('theme.mocks.signin', {
+        url: '/signin',
+        templateUrl: 'modules/theme/client/mocks/signin.view.html'
+      })
+      .state('theme.mocks.landing', {
+        url: '/landing',
+        templateUrl: 'modules/theme/client/mocks/landing.view.html'
+      })
+      .state('theme.mocks.navbar', {
+        url: '/navbar',
+        templateUrl: 'modules/theme/client/mocks/navbar.view.html'
+      })
+      .state('theme.mocks.create-campaign', {
+        url: '/create-campaign',
+        templateUrl: 'modules/theme/client/mocks/create-campaign.view.html'
+      })
+      .state('theme.mocks.create-product', {
+        url: '/create-product',
+        templateUrl: 'modules/theme/client/mocks/create-product.view.html'
+      })
+      .state('theme.mocks.list-product', {
+        url: '/list-product',
+        templateUrl: 'modules/theme/client/mocks/list-product.view.html'
       });
   }
 ]);
