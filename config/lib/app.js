@@ -6,6 +6,7 @@
 var config = require('../config'),
   bookshelf = require('./bookshelf'),
   dynamoose = require('config/lib/dynamoose'),
+  google = require('config/lib/google'),
   redis = require('./redis'),
   express = require('./express'),
   chalk = require('chalk'),
@@ -30,6 +31,10 @@ module.exports.init = function init(callback) {
     var app = express.init(db);
 
     if(callback) callback(app, db, config);
+  });
+
+  google.connect(function() {
+    console.log('google jwt connected');
   });
 };
 
