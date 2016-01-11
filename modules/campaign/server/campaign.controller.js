@@ -140,6 +140,7 @@ exports.listTemplate = function (req, res) {
     res.json(items);
   })
   .catch(function(err){
+    console.log(err);
     return res.status(400).send({
       message: errorHandler.getErrorMessage(err)
     });

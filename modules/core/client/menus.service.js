@@ -186,6 +186,11 @@ angular.module('core').service('Menus', [
       roles: ['*']
     });
 
+    //Adding the campaign menu
+    this.addMenu('company.campaign.menu', {
+      roles: ['*']
+    });
+
     //Adding the company profile menu
     this.addMenu('company.settings.menu', {
       roles: ['*']

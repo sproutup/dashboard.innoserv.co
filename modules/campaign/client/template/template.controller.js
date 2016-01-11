@@ -16,6 +16,12 @@
         vm.cancel = cancel;
         vm.find = find;
         vm.findOne = findOne;
+        vm.types = [
+          { id: 'trial', 
+            name: 'Product Trial'},
+          { id: 'contents',
+            name: 'Video Contest'}
+        ];
 
         function create(isValid) {
           vm.error = null;
@@ -32,7 +38,7 @@
           // Create new campaign object
           var Template = TemplateService.template();
           var item = new Template({
-            companyId: Authentication.user.sessionCompany.id,
+            companyId: $scope.company.company.id,
             description: vm.description,
             type: vm.type,
             name: vm.name
@@ -40,7 +46,7 @@
 
           // Redirect after save
           item.$save(function (response) {
-            $state.go('user.template.list');
+            $state.go('company.navbar.template.list');
             // Clear form fields
             vm.description = '';
           }, function (errorResponse) {
@@ -87,7 +93,7 @@
           campaign.$update({
             campaignId: $state.params.campaignId
           }, function () {
-            $location.path('campaigns');
+            $state.go('company.navbar.template.list');
           }, function (errorResponse) {
             vm.success = null;
             vm.error = errorResponse.data.message;
@@ -95,7 +101,7 @@
         }
 
         function cancel() {
-          $location.path('campaigns');
+          $state.go('company.navbar.template.list');
         }
 
         function find() {
@@ -117,47 +123,6 @@
           }, function(err) {
             $state.go('landing.default');
           });
-        }
-
-        function findProducts() {
-          if (Authentication.user.sessionCompany) {
-            makeCall();
-          } else {
-            $scope.$watch(Authentication.user.sessionCompany.id, function() {
-              makeCall();
-            });
-          }
-
-          function makeCall() {
-            vm.products = ProductService.listByCompany().query({
-              companyId: Authentication.user.sessionCompany.id
-            }, function() {
-              console.log('products found');
-            }, function(err) {
-              console.log(err);
-            });
-          }
-
-          // the code below will find companies for a normal user
-
-          // TeamService.listByUser().query({
-          //   userId: Authentication.user.id
-          // },function() {
-          //   Authentication.user.sessionCompany = $scope.myCompanies[0];
-          //   vm.products = ProductService.listByCompany().query({
-          //     companyId: Authentication.user.sessionCompany.companyId
-          //   }, function() {
-          //     console.log('products found');
-          //   }, function(err) {
-          //     console.log(err);
-          //   });
-          // });
-        }
-
-        findProducts();
-
-        if ($rootScope.startingCampaign) {
-          vm.product = $rootScope.startingCampaign;
         }
     }
 })();

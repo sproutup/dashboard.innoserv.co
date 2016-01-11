@@ -6,9 +6,9 @@
         .module('campaign')
         .controller('CampaignController', CampaignController);
 
-    CampaignController.$inject = ['$scope', '$rootScope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'TeamService', 'ProductService', '$cookieStore'];
+    CampaignController.$inject = ['$scope', '$rootScope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$cookieStore'];
 
-    function CampaignController($scope, $rootScope, TrialService, $state, CampaignService, $location, Authentication, TeamService, ProductService, $cookieStore) {
+    function CampaignController($scope, $rootScope, TrialService, $state, CampaignService, $location, Authentication, Menus, ProductService, $cookieStore) {
         var vm = this;
         vm.create = create;
         vm.remove = remove;
@@ -16,6 +16,9 @@
         vm.cancel = cancel;
         vm.find = find;
         vm.findOne = findOne;
+
+        // Get the topbar menu
+        vm.menu = Menus.getMenu('company.campaign.menu');
 
         function create(isValid) {
           vm.error = null;

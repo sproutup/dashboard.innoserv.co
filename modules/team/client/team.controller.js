@@ -90,8 +90,11 @@
 
         function find() {
           if (!$scope.company.company.id) {
-            $scope.$watch('company.company.id', function(val) {
-              if(val) find();
+            var listener = $scope.$watch('company.company.id', function(val) {
+              if(val) {
+                listener();
+                find();
+              }
             });
             return;
           }
