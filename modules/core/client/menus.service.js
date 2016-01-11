@@ -187,7 +187,7 @@ angular.module('core').service('Menus', [
     });
 
     //Adding the company profile menu
-    this.addMenu('user.company.profile.menu', {
+    this.addMenu('company.settings.menu', {
       roles: ['*']
     });
   }

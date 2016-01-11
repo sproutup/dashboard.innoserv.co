@@ -39,6 +39,10 @@ angular.module('theme').config(['$stateProvider',
         url: '/navbar',
         templateUrl: 'modules/theme/client/mocks/navbar.view.html'
       })
+      .state('theme.mocks.top-navbar', {
+        url: '/top-navbar',
+        templateUrl: 'modules/theme/client/mocks/top-navbar.view.html'
+      })
       .state('theme.mocks.create-campaign', {
         url: '/create-campaign',
         templateUrl: 'modules/theme/client/mocks/create-campaign.view.html'
@@ -50,6 +54,10 @@ angular.module('theme').config(['$stateProvider',
       .state('theme.mocks.list-product', {
         url: '/list-product',
         templateUrl: 'modules/theme/client/mocks/list-product.view.html'
+      })
+      .state('theme.mocks.list-team-member', {
+        url: '/list-team-member',
+        templateUrl: 'modules/theme/client/mocks/list-team-member.view.html'
       });
   }
 ]);

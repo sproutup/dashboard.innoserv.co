@@ -1,37 +1,12 @@
 <section>
   <h1 class="dashboard-section-title"><i class="fa fa-university"></i>Company Info
-    <a ui-sref="user.campaign.list"><i class="fa fa-angle-left"></i></a>{{ vm.authentication.company.name }}
-    <div class="dashboard-menu-top" ng-if="vm.menu.shouldRender(vm.authentication.user);">
-      <a class="dashboard-menu-top-item active" ui-sref="user.campaign.reports-mock">Reports</a>
-      <a class="dashboard-menu-top-item" ui-sref="user.campaign.edit({ campaignId: vm.campaign.id })">Configure</a>
-      <a ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-bind="item.title" ui-sref="{{item.state}}" ng-if="item.shouldRender(vm.authentication.user);" ng-class="{ active: $state.includes(item.state) }" class="{{item.class}} dashboard-menu-top-item">
+    <i class="fa"></i>{{ vm.authentication.company.name }}
+      <div class="dashboard-menu-top">
+      <a class="dashboard-menu-top-item" ng-repeat="item in company.menu.items | orderBy: 'position'" ui-sref="{{item.state}}" ng-if="item.shouldRender(company.authentication.user);" ng-switch="item.type" ng-class="{ active: company.state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
         {{item.title}}
       </a>
     </div>
   </h1>
-
-  <div class="tab-set" ng-if="vm.menu.shouldRender(vm.authentication.user);">
-    <ul class="nav nav-pills tab-set-pills">
-      <div ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
-        <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
-      </div>
-    </ul>
-  </div>
-
-  <div class="tab-set">
-    <ul class="nav nav-pills tab-set-pills">
-      <li data-ui-sref-active="active">
-        <a data-ui-sref="user.company.profile">Edit Company Profile</a>
-      </li>
-      <li data-ui-sref-active="active">
-        <a data-ui-sref="user.company.team">Team Members</a>
-      </li>
-      <!--li data-ui-sref-active="active">
-        <a data-ui-sref="user.company.billing">Billing</a>
-      </li-->
-    </ul>
-  </div>
-
   <div class="row settings-wrapper">
       <div data-ui-view></div>
   </div>

@@ -10,8 +10,8 @@ angular.module('company').config(['$stateProvider',
         controller: 'CompanyController',
         controllerAs: 'company'
       })
-      .state('company.navbar.company', {
-        url: '/company',
+      .state('company.navbar.list', {
+        url: '/select',
         templateUrl: 'modules/company/client/company-settings.html',
         controller: 'CompanyController',
         controllerAs: 'vm',
@@ -23,15 +23,13 @@ angular.module('company').config(['$stateProvider',
         url: '/create',
         templateUrl: 'modules/company/client/admin/create-company.html'
       })
-      .state('companyxx', {
-        url: '/company',
+      .state('company.navbar.settings', {
+        url: '/settings',
         abstract: true,
         templateUrl: 'modules/company/client/settings/settings.html',
-        controller: 'CompanyController',
-        controllerAs: 'vm'
       })
-      .state('com.profile', {
-        url: '/profile',
+      .state('company.navbar.settings.profile', {
+        url: '',
         templateUrl: 'modules/company/client/settings/edit-company-profile.html'
       })
       // for internal admin 
