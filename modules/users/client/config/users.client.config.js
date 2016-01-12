@@ -1,5 +1,25 @@
 'use strict';
 
+angular.module('users').run(['Menus',
+  function (Menus) {
+    Menus.addMenuItem('company.user.settings.menu', {
+      title: 'Profile',
+      state: 'company.navbar.user.profile',
+      class: '',
+      roles: ['*'],
+      position: 10
+    });
+
+    Menus.addMenuItem('company.user.settings.menu', {
+      title: 'Password',
+      state: 'company.navbar.user.password',
+      class: '',
+      roles: ['*'],
+      position: 20
+    });
+  }
+]);
+
 // Config HTTP Error Handling
 angular.module('users').config(['$httpProvider',
   function ($httpProvider) {

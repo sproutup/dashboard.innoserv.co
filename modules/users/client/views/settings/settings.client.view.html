@@ -1,20 +1,12 @@
-<section data-ng-controller="SettingsController">
-  <h1 class="dashboard-section-title"><i class="fa fa-user"></i>Account Settings</h1>
+<section>
+  <h1 class="dashboard-section-title"><i class="fa fa-user"></i>Account Settings
+    <div class="dashboard-menu-top">
+      <a class="dashboard-menu-top-item" ng-repeat="item in vm.menu.items | orderBy: 'position'" ui-sref="{{item.state}}" ng-if="item.shouldRender(company.authentication.user);" ng-switch="item.type" ng-class="{ active: company.state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
+        {{item.title}}
+      </a>
+    </div>
+  </h1>
 
-  <div class="tab-set">
-    <ul class="nav nav-pills tab-set-pills">
-      <li data-ui-sref-active="active">
-        <a data-ui-sref="user.settings.profile">Edit Profile</a>
-      </li>
-      <li data-ui-sref-active="active" data-ng-show="user.provider === 'local'">
-        <a data-ui-sref="user.settings.password">Change Password</a>
-      </li>
-      <!-- <li data-ui-sref-active="active">
-        <a data-ui-sref="user.settings.accounts">Manage Social Accounts</a>
-      </li> -->
-    </ul>
-  </div>
-  
   <div class="row settings-wrapper">
       <div data-ui-view></div>
   </div>
