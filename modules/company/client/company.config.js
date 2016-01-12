@@ -6,12 +6,12 @@ angular.module('company').run(['Menus',
       title: 'Company Info',
       state: 'company.navbar.settings.profile',
       class: '',
-      roles: ['*'],
+      roles: ['user', 'admin'],
       position: 3
     });
 
     Menus.addMenuItem('company.settings.menu', {
-      title: 'Edit Company Profile',
+      title: 'Profile',
       state: 'company.navbar.settings.profile',
       class: '',
       roles: ['*'],
