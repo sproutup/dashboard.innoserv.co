@@ -88,6 +88,22 @@
       <textarea class="form-control form-input-textarea"></textarea>
       <p class="sproutup-paragraph regular">Add <code>.no-resize</code> for non-resizable text area.</p>
       <textarea class="form-control form-input-textarea no-resize"></textarea>
+      <h2 class="theme-docs-subheader"><i class="fa fa-tag"></i>Form with validation</h2>
+      <form name="form" class="css-form" novalidate>
+        Name: <input class="form-control form-validate form-input" type="text" ng-model="user.name" name="uName" required="" /> 
+        <div ng-show="form.$submitted || form.uName.$touched">
+          <div class="form--error-message" ng-show="form.uName.$error.required"><i class="fa fa-minus-circle"></i>Tell us your name.</div>
+        </div>
+        <br />
+        E-mail: <input class="form-control form-validate form-input" type="email" ng-model="user.email" name="uEmail" required="" />
+        <div ng-show="form.$submitted || form.uEmail.$touched">
+          <span class="form--error-message" ng-show="form.uEmail.$error.required"><i class="fa fa-minus-circle"></i>Tell us your email.</span>
+          <span class="form--error-message" ng-show="form.uEmail.$error.email"><i class="fa fa-minus-circle"></i>This is not a valid email.</span>
+        </div>
+        <div ng-if="vm.valid">The form is valid.</div>
+        <br />
+        <input type="submit" ng-click="vm.updateForm(form.$valid)" value="Save" />
+      </form>
     </div>
     <div class="theme-docs-section">
       <h1 id="Buttons" class="theme-docs-header"><a name="buttons">Buttons</a></h1>
