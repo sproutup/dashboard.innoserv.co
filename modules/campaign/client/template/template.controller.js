@@ -15,7 +15,9 @@
         vm.update = update;
         vm.cancel = cancel;
         vm.find = find;
+        vm.load = load;
         vm.findOne = findOne;
+        vm.item = {};
         vm.types = [
           { id: 'trial', 
             name: 'Product Trial'},
@@ -110,6 +112,18 @@
             console.log('campaigns found');
           }, function(err) {
             console.log(err);
+          });
+        }
+
+        function load() {
+          vm.success = false;
+
+          CampaignService.campaigns().get({
+            campaignId: $state.params.templateId
+          }, function(val) {
+            vm.item = val;
+          }, function(err) {
+            $state.go('landing.default');
           });
         }
 

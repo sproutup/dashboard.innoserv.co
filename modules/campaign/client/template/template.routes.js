@@ -10,11 +10,25 @@ angular.module('campaign').config(['$stateProvider',
         controller: 'TemplateController',
         controllerAs: 'vm'
       })
+      .state('company.navbar.t', {
+        url: '/t/:templateId',
+        abstract: true,
+        template: '<section ng-init="template.load()"><div ui-view></div></section>',
+        controller: 'TemplateController',
+        controllerAs: 'template'
+      })
       .state('company.navbar.template.list', {
         url: 's',
         templateUrl: 'modules/campaign/client/template/list-template.view.html',
         data: {
           roles: ['admin']
+        }
+      })
+      .state('company.navbar.template.select', {
+        url: '/select',
+        templateUrl: 'modules/campaign/client/template/select-template.view.html',
+        data: {
+          roles: ['user', 'admin']
         }
       })
       .state('company.navbar.template.create', {

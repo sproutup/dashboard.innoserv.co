@@ -25,6 +25,29 @@ angular.module('campaign').config(['$stateProvider',
       .state('company.navbar.campaign.edit', {
         url: '/:campaignId/edit',
         templateUrl: 'modules/campaign/client/edit-campaign.html'
+      })
+      .state('company.navbar.t.campaign', {
+        url: '',
+        abstract: true,
+        template: '<div ui-view></div>',
+        controller: 'CampaignController',
+        controllerAs: 'vm'
+      })
+      .state('company.navbar.t.campaign.trial', {
+        url: '/trial',
+        template: '<ui-view></ui-view>'
+      })
+      .state('company.navbar.t.campaign.trial.create', {
+        url: '/create',
+        templateUrl: 'modules/campaign/client/trial/create.view.html'
+      })
+      .state('company.navbar.t.campaign.contest', {
+        url: '/contest',
+        template: '<ui-view></ui-view>'
+      })
+      .state('company.navbar.t.campaign.contest.create', {
+        url: '/create',
+        templateUrl: 'modules/campaign/client/contest/create.view.html'
       });
   }
 ]);

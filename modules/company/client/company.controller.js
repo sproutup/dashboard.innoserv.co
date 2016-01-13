@@ -101,7 +101,7 @@
 
         function findByStateParam() {
           console.log('find by state');
-          vm.company1 = CompanyService.companyBySlug()
+          CompanyService.companyBySlug()
             .get({companySlug: $state.params.companySlug}, function(data){
               vm.company = data;
             });

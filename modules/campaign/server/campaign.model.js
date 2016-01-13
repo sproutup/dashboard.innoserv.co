@@ -26,7 +26,7 @@ var CampaignSchema = new Schema({
     required: true,
     index: {
       global: true,
-      rangeKey: 'id',
+      rangeKey: 'status',
       name: 'CompanyCampaignIndex',
       project: true, // ProjectionType: ALL
       throughput: 5 // read and write are both 5
