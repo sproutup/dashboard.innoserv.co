@@ -18,7 +18,7 @@ var CalendarService = function(){};
 CalendarService.insertEvent = function(calendarId, event) {
   return calendar.events
     .insertAsync({ auth: jwt.client, calendarId: calendarId, resource: event })
-    .then(function(result){ 
+    .then(function(result){
       console.log('inserted event: ', result[0]);
       return result[0];
   })
@@ -31,9 +31,9 @@ CalendarService.insertEvent = function(calendarId, event) {
 CalendarService.getEvent = function(calendarId, eventId) {
   return calendar.events
     .getAsync({ auth: jwt.client, calendarId: calendarId, eventId: eventId })
-    .then(function(result){ 
-      console.log('event: ', result[0]);
-      return result; 
+    .then(function(result){
+      console.log('event: ', result);
+      return result;
   })
   .catch(function(err) {
     console.log('get err: ', err);
@@ -42,14 +42,15 @@ CalendarService.getEvent = function(calendarId, eventId) {
 };
 
 CalendarService.listEvents = function(calendarId) {
+  // console.log(jwt.client);
   return calendar.events
     .listAsync({ auth: jwt.client, calendarId: calendarId })
-    .then(function(result){ 
-      console.log('events: ', result[0].items.length);
-      return result[0]; 
+    .then(function(result){
+      console.log('events: ', result);
+      return result.items;
   })
   .catch(function(err) {
-    console.log('err: ', err.errors[0].message);
+    console.log('err: ', err);
     throw err;
   });
 };
@@ -57,9 +58,9 @@ CalendarService.listEvents = function(calendarId) {
 CalendarService.updateEvent = function(calendarId, event) {
   return calendar.events
     .updateAsync({ auth: jwt.client, calendarId: calendarId, eventId: event.id, resource: event })
-    .then(function(result){ 
+    .then(function(result){
       console.log('updated event: ', result[0]);
-      return result; 
+      return result;
   })
   .catch(function(err) {
     console.log('update err: ', err.errors[0].message);
@@ -70,9 +71,9 @@ CalendarService.updateEvent = function(calendarId, event) {
 CalendarService.deleteEvent = function(calendarId, eventId) {
   return calendar.events
     .deleteAsync({ auth: jwt.client, calendarId: calendarId, eventId: eventId })
-    .then(function(result){ 
+    .then(function(result){
       console.log('deleted an event');
-      return result; 
+      return result;
   })
   .catch(function(err) {
     console.log('delete err: ', err.errors[0].message);
@@ -85,7 +86,7 @@ CalendarService.getCalendar = function(calendarId) {
     .getAsync({ auth: jwt.client, calendarId: calendarId })
     .then(function(result){
       console.log('calendar: ', result[0]);
-      return result; 
+      return result;
   })
   .catch(function(err) {
     console.log('err: ', err.errors[0].message);

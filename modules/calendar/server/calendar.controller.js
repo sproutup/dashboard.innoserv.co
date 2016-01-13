@@ -49,7 +49,7 @@ exports.listEvents = function (req, res) {
 exports.getEvent = function (req, res) {
   Calendar.getEvent(config.google.calendar.id, req.params.eventId)
     .then(function(result) {
-      res.json(result[0]);
+      res.json(result);
     })
     .catch(function(err) {
       if (err) {

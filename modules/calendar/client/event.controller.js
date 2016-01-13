@@ -81,8 +81,8 @@
     }
 
     function find() {
-      var eventsObj = CalendarService.events().get(function() {
-        vm.events = eventsObj.items;
+      var eventsObj = CalendarService.events().query(function() {
+        vm.events = eventsObj;
       }, function(err) {
         console.log(err);
       });
