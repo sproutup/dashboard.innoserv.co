@@ -56,6 +56,9 @@ module.exports = {
     jwt: {
       client_email: process.env.GOOGLE_JWT_CLIENT_EMAIL,
       private_key: process.env.GOOGLE_JWT_PRIVATE_KEY
+    },
+    calendar: {
+      id: 'thomas@sproutup.co'
     }
   },
   linkedin: {

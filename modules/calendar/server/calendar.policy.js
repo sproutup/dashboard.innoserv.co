@@ -15,28 +15,28 @@ exports.invokeRolesPolicies = function () {
   acl.allow([{
     roles: ['admin'],
     allows: [{
-      resources: '/api/calendar/:calendarId/event',
+      resources: '/api/calendar/event',
       permissions: ['*']
     }, {
-      resources: '/api/calendar/:calendarId/event/:eventId',
+      resources: '/api/calendar/event/:eventId',
       permissions: ['*']
     }]
   }, {
     roles: ['user'],
     allows: [{
-      resources: '/api/calendar/:calendarId/event',
+      resources: '/api/calendar/event',
       permissions: ['*']
     }, {
-      resources: '/api/calendar/:calendarId/event/:eventId',
+      resources: '/api/calendar/event/:eventId',
       permissions: ['*']
     }]
   }, {
     roles: ['guest'],
     allows: [{
-      resources: '/api/calendar/:calendarId/event',
+      resources: '/api/calendar/event',
       permissions: ['*']
     }, {
-      resources: '/api/calendar/:calendarId/event/:eventId',
+      resources: '/api/calendar/event/:eventId',
       permissions: ['*']
     }]
   }]);

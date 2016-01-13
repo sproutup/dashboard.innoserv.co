@@ -20,10 +20,10 @@ CalendarService.insertEvent = function(calendarId, event) {
     .insertAsync({ auth: jwt.client, calendarId: calendarId, resource: event })
     .then(function(result){ 
       console.log('inserted event: ', result[0]);
-      return result; 
+      return result[0];
   })
   .catch(function(err) {
-    console.log('err: ', err.errors[0].message);
+    console.log('err: ', err);
     throw err;
   });
 };
