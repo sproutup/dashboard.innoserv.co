@@ -38,6 +38,20 @@ angular.module('campaign').config(['$stateProvider',
           roles: ['admin']
         }
       })
+      .state('company.navbar.template.trialcreate', {
+        url: '/trial/create',
+        templateUrl: 'modules/campaign/client/template/create-trial-template.view.html',
+        data: {
+          roles: ['admin']
+        }
+      })
+      .state('company.navbar.template.contestcreate', {
+        url: '/contest/create',
+        templateUrl: 'modules/campaign/client/template/create-contest-template.view.html',
+        data: {
+          roles: ['admin']
+        }
+      })
       .state('company.navbar.template.view', {
         url: '/:campaignId',
         templateUrl: 'modules/campaign/client/template/template.html'

@@ -6,15 +6,53 @@
       Create New Template
     </a>
   </div>
-</div>
+  <div class="create-campaign-wrapper">
+    <!-- product trial -->
+      <div class="row campaign-template-list product-trial">
+      <p><span>Product Trial</span></p>
+  <div class="col-sm-12">
+     <a ui-sref="company.navbar.template.trialcreate" class="btn btn-lg sproutup-btn-md-main orange">
+      <i class="fa fa-plus-circle"></i>
+      Create New Trial
+    </a>
+  </div>
+        <div class="col-sm-4 campaign-template-item" ng-repeat="item in vm.campaigns | filter: {type:'trial', status: -10}">
+          <a ui-sref='company.navbar.t.campaign.trial.create({templateId: item.id})'>
+            <div class="campaign-template-item-info product-trial">
+              <p class="template-title">{{item.name}}</p>
+              <p class="template-description">{{item.description}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
 
-<div class="row campaign-list-wrapper">
-  <div class="col-sm-4 campaign-list-item" ng-repeat="campaign in vm.campaigns">
-  <a ui-sref="company.navbar.template.edit({ campaignId: campaign.id })">
-    <div class="campaign-list-item-banner" style="background-image: url('https://d30xksqof6w2my.cloudfront.net/ccd20a3d-1a0d-4545-870a-94e1c645ff96_0_admin.jpg?w=1600');">
-      <p class="campaign-type product-trial">{{campaign.type}}</p>
-        <p class="campaign-name">{{campaign.name}}</p>
-    </div>
-  </a>
+      <!-- video contest -->
+     <div class="row campaign-template-list video-contest">
+        <p><span>Contest</span></p>
+   <div class="col-sm-12">
+     <a ui-sref="company.navbar.template.contestcreate" class="btn btn-lg sproutup-btn-md-main orange">
+      <i class="fa fa-plus-circle"></i>
+      Create New Contest
+    </a>
+  </div>
+        <div class="col-sm-4 campaign-template-item" ng-repeat="item in vm.campaigns | filter: {type:'contest', status: -10}">
+          <a ui-sref='company.navbar.t.campaign.contest.create({templateId: item.id})'>
+            <div class="campaign-template-item-info video-contest">
+              <p class="template-title">{{item.name}}</p>
+              <p class="template-description">{{item.description}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+     <!-- sweepstakes -->
+     <!--div class="row campaign-template-list twitter-contest">
+         <p>Simple <span>Sweepstakes</span> make customers feel loved! &#x1F496;</p>
+         <div class="col-sm-4 campaign-template-item">
+             <div class="campaign-template-item-info twitter-contest">
+                 <p class="template-title">Sweepstakes</p>
+                 <p class="template-description">Run exciting sweepstakes contest to engage and grow your customers</p>
+             </div>
+         </div>
+     </div-->
   </div>
 </div>

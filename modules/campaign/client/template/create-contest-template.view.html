@@ -1,7 +1,7 @@
-<h1 class="dashboard-section-title"><a ui-sref="company.navbar.template.list"><i class="fa fa-angle-left"></i></a>Create New Campaign Template</h1>
-<div class="create-product-wrapper" ng-init="vm.type='trial'">
+<h1 class="dashboard-section-title"><a ui-sref="company.navbar.template.list"><i class="fa fa-angle-left"></i></a>Create New Contest Template</h1>
+<div class="create-product-wrapper" ng-init="vm.type='contest'">
   <div class="row">
-    <form name="campaignForm" class="form-horizontal" ng-submit="vm.create(campaignForm.$valid)" novalidate>
+    <form name="campaignForm" class="form-horizontal" ng-submit="vm.create(campaignForm.$valid, 'contest')" novalidate>
       <fieldset>
         <div class="col-sm-12 form-input-group">
           <p class="input-group-title">Basic Information</p>
