@@ -122,7 +122,8 @@ exports.list = function (req, res) {
  * List by company
  */
 exports.listByCompany = function (req, res) {
-  Campaign.query({companyId: req.model.id}).exec().then(function(items){
+  console.log('list by company');
+  Campaign.query('companyId').eq(req.model.id).where('status').eq(0).exec().then(function(items){
     res.json(items);
   })
   .catch(function(err){

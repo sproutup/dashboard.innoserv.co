@@ -6,11 +6,12 @@
         .module('campaign')
         .controller('CampaignController', CampaignController);
 
-    CampaignController.$inject = ['$scope', '$rootScope', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$cookieStore'];
+    CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService'];
 
-    function CampaignController($scope, $rootScope, TrialService, $state, CampaignService, $location, Authentication, Menus, ProductService, $cookieStore) {
+    function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService) {
         var vm = this;
         vm.create = create;
+        vm.initTemplate = initTemplate;
         vm.remove = remove;
         vm.update = update;
         vm.cancel = cancel;
@@ -33,27 +34,55 @@
           }
 
           // Create new campaign object
-          var CampaignObj = CampaignService.campaigns();
+/*          var CampaignObj = CampaignService.campaigns();
           var campaign = new CampaignObj({
             companyId: $scope.company.company.id,
             description: vm.description,
             type: vm.type,
             name: vm.name
-          });
+          }); */
 
           if (vm.product) {
-            campaign.productId = vm.product.id;
+            vm.item.productId = vm.product.id;
           }
 
           // Redirect after save
-          campaign.$save(function (response) {
+          vm.item.$save(function (response) {
+            vm.item = {};
             $state.go('company.navbar.campaign.list');
             // Clear form fields
-            vm.description = '';
           }, function (errorResponse) {
             vm.error = errorResponse.data.message;
           });
         }
+
+        function initTemplate() {
+          vm.error = null;
+          console.log('init template');
+
+          if (!$scope.template.item.id) {
+            console.log('wait for template');
+            var listener = $scope.$watch('template.item.id', function(val) {
+              if(val) {
+                listener();
+                initTemplate();
+              }
+            });
+            return;
+          }
+
+          console.log('template loaded...!');
+          // Create new campaign object
+          var Campaign = CampaignService.campaigns();
+          vm.item = new Campaign({
+            companyId: $scope.company.company.id,
+            description: $scope.template.item.description,
+            type: $scope.template.item.type,
+            name: $scope.template.item.name,
+            status: 0
+          });
+        }
+
 
         function remove(campaign) {
           if (campaign) {
