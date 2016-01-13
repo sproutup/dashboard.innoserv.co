@@ -88,7 +88,7 @@
           campaign.$update({
             campaignId: $state.params.campaignId
           }, function () {
-            $location.path('campaigns');
+           $state.go('company.navbar.campaign.view');
           }, function (errorResponse) {
             vm.success = null;
             vm.error = errorResponse.data.message;
@@ -96,7 +96,7 @@
         }
 
         function cancel() {
-          $location.path('campaigns');
+          $state.go('company.navbar.campaign.list');
         }
 
         function find() {

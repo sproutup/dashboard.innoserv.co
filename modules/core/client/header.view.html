@@ -13,7 +13,7 @@
         <a ui-sref="company.navbar.list">{{ company.company.name || 'select company' }}</a>
       </div>
       <div class="nav-item-wrapper creator-user">
-        <a ui-sref='user.settings.profile'>
+        <a ui-sref='company.navbar.user.profile'>
           <img alt="avatar" src="modules/core/client/img/default-avatar.png"> {{ vm.authentication.user.firstName }}
         </a>
       </div>
@@ -25,8 +25,8 @@
       </div>
     </div>
 
-    <div class="nav-section" ng-if="vm.navbar.shouldRender(vm.authentication.user);">
-      <div ng-repeat="item in vm.navbar.items | orderBy: 'position'" ng-if="item.shouldRender(authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
+    <div class="nav-section" ng-if="vm.navbar.shouldRender(company.authentication.user);">
+      <div ng-repeat="item in vm.navbar.items | orderBy: 'position'" ng-if="item.shouldRender(company.authentication.user);" ng-switch="item.type" ng-class="{ active: $state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
         <a ui-sref="{{item.state}}" ng-bind="item.title"></a>
       </div>
     </div>

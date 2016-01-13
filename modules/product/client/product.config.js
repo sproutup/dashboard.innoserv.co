@@ -6,7 +6,7 @@ angular.module('product').run(['Menus',
       title: 'Products',
       state: 'company.navbar.product.list',
       class: '',
-      roles: ['*'],
+      roles: ['user', 'admin'],
       position: 2
     });
   }

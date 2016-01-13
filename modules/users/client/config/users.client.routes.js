@@ -5,27 +5,29 @@ angular.module('users').config(['$stateProvider',
   function ($stateProvider) {
     // Users state routing
     $stateProvider
-      .state('user.settings', {
+      .state('company.navbar.user', {
         abstract: true,
-        url: '/settings',
+        url: '/user',
         templateUrl: 'modules/users/client/views/settings/settings.client.view.html',
+        controller: 'SettingsController',
+        controllerAs: 'vm',
         data: {
           roles: ['user', 'admin']
         }
       })
-      .state('user.settings.profile', {
+      .state('company.navbar.user.profile', {
         url: '/profile',
         templateUrl: 'modules/users/client/views/settings/edit-profile.client.view.html'
       })
-      .state('user.settings.password', {
+      .state('company.navbar.user.password', {
         url: '/password',
         templateUrl: 'modules/users/client/views/settings/change-password.client.view.html'
       })
-      .state('user.settings.accounts', {
+      .state('company.navbar.user.accounts', {
         url: '/accounts',
         templateUrl: 'modules/users/client/views/settings/manage-social-accounts.client.view.html'
       })
-      .state('user.settings.picture', {
+      .state('company.navbar.user.picture', {
         url: '/picture',
         templateUrl: 'modules/users/client/views/settings/change-profile-picture.client.view.html'
       })

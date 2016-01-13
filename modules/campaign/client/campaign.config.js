@@ -6,7 +6,7 @@ angular.module('campaign').run(['Menus',
       title: 'Campaigns',
       state: 'company.navbar.campaign.list',
       class: 'campaign',
-      roles: ['*'],
+      roles: ['user', 'admin'],
       position: 1
     });
   }

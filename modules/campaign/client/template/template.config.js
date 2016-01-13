@@ -3,7 +3,7 @@
 angular.module('campaign').run(['Menus',
   function (Menus) {
     Menus.addMenuItem('company.campaign.menu', {
-      title: 'Templates',
+      title: 'Manage Templates',
       state: 'company.navbar.template.list',
       class: 'campaign',
       roles: ['admin'],
@@ -11,4 +11,3 @@ angular.module('campaign').run(['Menus',
     });
   }
 ]);
-
