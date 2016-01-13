@@ -58,7 +58,7 @@ module.exports = {
       private_key: process.env.GOOGLE_JWT_PRIVATE_KEY
     },
     calendar: {
-      id: 'thomas@sproutup.co'
+      id: process.env.GOOGLE_CALENDAR_ID
     }
   },
   linkedin: {
