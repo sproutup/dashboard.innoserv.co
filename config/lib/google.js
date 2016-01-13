@@ -15,7 +15,7 @@ module.exports.connect = function (cb) {
     if (err) {
       console.log(chalk.red('err authorizing the google jwt', err));
     } else {
-      console.log('success authorizing the google jwt in google.js');
+      console.log(chalk.green('success authorizing the google jwt in google.js'));
     }
   });
 };
