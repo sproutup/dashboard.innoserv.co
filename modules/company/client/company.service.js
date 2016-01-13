@@ -16,10 +16,10 @@ function CompanyService($resource) {
 
   function company () {
     //return $resource('/api/company/:companyId', {companyId: '@id'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
-    return $resource('/api/company/:companyId', {companyId: '@id'} );
+    return $resource('/api/company/:companyId', { companyId: '@id' }, { 'update': { method:'PUT' } } );
   }
 
   function companyBySlug () {
-    return $resource('/api/company/slug/:companySlug', {companySlug:'@slug'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
+    return $resource('/api/company/slug/:companySlug', { companySlug:'@slug' }, { 'update': { method:'PUT' }, 'query': { method:'GET', isArray:true } } );
   }
 }
