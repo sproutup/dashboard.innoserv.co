@@ -6,7 +6,7 @@ angular.module('calendar').run(['Menus',
       title: 'Calendar',
       state: 'company.navbar.calendar.event.list',
       class: '',
-      roles: ['*'],
+      roles: ['admin'],
       position: 4
     });
   }
