@@ -48,7 +48,7 @@
           // Redirect after save
           company.$save(function (response) {
             //$location.path('admin/company/' + response.id);
-            $state.go('company.navbar.list');
+            $state.go('admincompany.list');
 
             // Clear form fields
             vm.name = '';
@@ -83,9 +83,7 @@
             vm.invalid = false;
           }
 
-          var company = vm.company;
-
-          company.$update(function() {
+          vm.company.$update(function() {
             vm.success = true;
           }, function (errorResponse) {
             console.log(errorResponse);
@@ -112,30 +110,11 @@
         }
 
         function findOne() {
-          var company;
-          if (Authentication.user.sessionCompany) {
-            company = CompanyService.company().get({
-              companyId: Authentication.user.sessionCompany.id
-            }, function() {
-              vm.company = company;
-            }, function(err) {
-              $state.go('landing.default');
+          console.log('find one');
+          vm.company = CompanyService.company()
+            .get({companyId: $state.params.companyId}, function(data){
+              //vm.company = data;
             });
-          } else if ($state.params.companyId) {
-            company = CompanyService.company().get({
-              companyId: $state.params.companyId
-            }, function() {
-              vm.company = company;
-            }, function(err) {
-              $state.go('landing.default');
-            });
-          }
-
-          var campaigns = CampaignService.listByCompany().query({
-            companyId: $state.params.companyId
-          }, function() {
-            vm.campaigns = campaigns;
-          });
         }
 
         function findMyCompany() {

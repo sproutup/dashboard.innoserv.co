@@ -33,22 +33,22 @@ angular.module('company').config(['$stateProvider',
         templateUrl: 'modules/company/client/settings/edit-company-profile.html'
       })
       // for internal admin 
-      .state('companyxxx', {
+      .state('admincompany', {
         url: '/admin/company',
         abstract: true,
         template: '<section class="content"><section class="container"><div ui-view></div></section></section>',
         controller: 'CompanyController',
         controllerAs: 'vm'
       })
-      .state('company.list', {
+      .state('admincompany.list', {
         url: '',
         templateUrl: 'modules/company/client/admin/list-companies.html'
       })
-      .state('company.edit', {
+      .state('admincompany.edit', {
         url: '/:companyId/edit',
         templateUrl: 'modules/company/client/admin/edit-company.html'
       })
-      .state('company.view', {
+      .state('admincompany.view', {
         url: '/:companyId',
         templateUrl: 'modules/company/client/admin/view-company.html'
       });
