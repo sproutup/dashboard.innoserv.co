@@ -23,14 +23,13 @@
 
         function create(isValid) {
           vm.error = null;
+          console.log(isValid);
 
           if (!isValid) {
-            vm.invalid = true;
+            console.log('not valid');
             $scope.$broadcast('show-errors-check-validity', 'campaignForm');
 
             return false;
-          } else {
-            vm.invalid = false;
           }
 
           // Create new campaign object
