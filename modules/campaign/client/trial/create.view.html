@@ -19,62 +19,55 @@
       <h2><input type="text" ng-model="vm.item.description" placeholder="A short description of your campaign"></h2>
       <h3><a href="#"><i class="fa fa-camera"></i>Choose an awesome banner</a></h3>
     </div>
-      <!-- component ready -->
-      <div class="new-campaign-component">
-          <div class="row new-campaign-component-header done">
-              <div class="col-sm-1">
-                  <p><i class="fa fa-check-circle"></i><p>
-              </div>
-              <div class="col-sm-11">
-                  <p>Campaign setup</p>
-              </div>
-          </div>
-          <div class="row new-campaign-component-content">
-              <div class="col-sm-1">
-                  <p><i class="fa fa-pencil"></i><p>
-              </div>
-              <div class="col-sm-11">
-                <ul>
-                  <li>Do not allow users to keep the products</li>
-                  <li>Do not accept paid contnet creation</li>
-                  <li>Trial duration is 15 days</li>
-                </ul>
-              </div>
-          </div>
+    <!-- component ready -->
+    <div class="new-campaign-component">
+      <div class="row new-campaign-component-header done">
+        <div class="col-sm-1">
+          <p><i class="fa fa-check-circle"></i><p>
+        </div>
+        <div class="col-sm-11">
+          <p>Campaign setup</p>
+        </div>
       </div>
-      <!-- editing a component -->
-      <div class="new-campaign-component">
-          <div class="row new-campaign-component-header todo">
-              <div class="col-sm-6">
-                  <p>Campaign setup</p>
-              </div>
-          </div>
-          <div class="row new-campaign-component-content">
-              <div class="col-sm-12">
-                  <div class="campaign-question-wrapper">
-                      <p>Do you allow influencers to keep products after content creation?</p>
-                      <div class="btn-group" role="group">
-                          <a type="button" class="btn btn-lg sproutup-btn-lg-main">Yes</a>
-                          <a type="button" class="btn btn-lg sproutup-btn-lg-main active">No</a>
-                      </div>
-                  </div>
-                  <div class="campaign-question-wrapper">
-                      <p>Do you accept requests for paid content creation?</p>
-                      <div class="btn-group" role="group">
-                          <a type="button" class="btn btn-lg sproutup-btn-lg-main">Yes</a>
-                          <a type="button" class="btn btn-lg sproutup-btn-lg-main active">No</a>
-                      </div>
-                  </div>
-                  <div class="campaign-question-wrapper">
-                      <p>How many days do you want influencrs to try the products for?</p>
-                      <div class="form-inline">
-                          <input type="text" class="form-control form-validate form-input small">
-                          <label class="campaign-question-input-label right">Days</label>
-                      </div>
-                  </div>
-              </div>
-          </div>
+      <div class="row new-campaign-component-content">
+        <div class="col-sm-1">
+          <p><i class="fa fa-pencil"></i><p>
+        </div>
+        <div class="col-sm-11">
+          <ul>
+            <li>Do not allow users to keep the products</li>
+            <li>Do not accept paid contnet creation</li>
+            <li>Trial duration is 15 days</li>
+          </ul>
+        </div>
       </div>
+    </div>
+    <!-- editing a component -->
+    <div class="new-campaign-component">
+      <div class="row new-campaign-component-header todo">
+        <div class="col-sm-6">
+          <p>Campaign setup</p>
+        </div>
+      </div>
+      <div class="row new-campaign-component-content">
+        <div class="col-sm-12">
+          <div class="campaign-question-wrapper">
+            <p>Do you allow influencers to keep products after content creation?</p>
+            <up-switch optionfalse="No" optiontrue="Yep" selected="vm.keepProducts"></up-switch>
+          </div>
+          <div class="campaign-question-wrapper">
+            <p>Do you accept requests for paid content creation?</p>
+            <up-switch optionfalse="No" optiontrue="Yep" selected="vm.paidCreation"></up-switch>
+          </div>
+          <div class="campaign-question-wrapper">
+            <p>How many days do you want influencrs to try the products for?</p>
+            <div class="form-inline">
+              <input type="text" class="form-control form-validate form-input small">
+              <label class="campaign-question-input-label right">Days</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
