@@ -29,12 +29,9 @@
           vm.error = null;
 
           if (!isValid) {
-            vm.invalid = true;
             $scope.$broadcast('show-errors-check-validity', 'campaignForm');
 
             return false;
-          } else {
-            vm.invalid = false;
           }
 
           // Create new campaign object
