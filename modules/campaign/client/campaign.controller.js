@@ -60,7 +60,8 @@
           }
         }
 
-        // Redirect after save
+        // null the id so we don't overwrite the template
+        vm.item.id = null;
         vm.item.$save(function (response) {
           vm.item = {};
           $state.go('company.navbar.campaign.list');
@@ -90,8 +91,6 @@
         var Campaign = CampaignService.campaigns();
         vm.item = new Campaign($scope.template.item);
         vm.item.companyId = $scope.company.company.id;
-        // null the id so we don't overwrite the template
-        vm.item.id = null;
         vm.item.status = 0;
       }
 
