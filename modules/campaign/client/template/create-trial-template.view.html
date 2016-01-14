@@ -5,11 +5,7 @@
       <fieldset class="col-sm-12 form-input-group">
         <div>
           <p class="input-group-title">Basic Information</p>
-          <input type="text" class="form-control form-input" placeholder="Pick a name for your campaign" ng-model="vm.name">
-          <input type="text" class="form-control form-input" placeholder="Type" ng-model="vm.type" name="type" required>
-          <div role="alert" ng-if="campaignForm.type.$touched || campaignForm.$submitted">
-            <p class="form--error-message" ng-show="campaignForm.type.$error.required"><i class="fa fa-minus-circle"></i>Type is required.</p>
-          </div>
+          <input type="text" class="form-control form-input" placeholder="Pick a name for your trial campaign" ng-model="vm.name">
           <input type="text" class="form-control form-input" placeholder="Tagline" ng-model="vm.tagline" name="tagline">
           <input type="text" class="form-control form-input" placeholder="Hashtag" ng-model="vm.hashtag" name="hashtag">
         </div>
