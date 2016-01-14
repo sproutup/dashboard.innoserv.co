@@ -1,58 +1,61 @@
 <h1 class="dashboard-section-title" ng-init="vm.find()"><i class="fa fa-file-text-o"></i>Manage Campaign Templates</h1>
+
+<!-- trial template -->
 <div class="row">
   <div class="col-sm-12">
-    <a ui-sref="company.navbar.template.create" class="btn btn-lg sproutup-btn-md-main orange">
+    <a ui-sref="company.navbar.template.trialcreate" class="btn btn-lg sproutup-btn-md-main orange">
       <i class="fa fa-plus-circle"></i>
-      Create New Template
+      Create Trial Template
     </a>
   </div>
-  <div class="create-campaign-wrapper">
-    <!-- product trial -->
-      <div class="row campaign-template-list product-trial">
-      <p><span>Product Trial</span></p>
-  <div class="col-sm-12">
-     <a ui-sref="company.navbar.template.trialcreate" class="btn btn-lg sproutup-btn-md-main orange">
-      <i class="fa fa-plus-circle"></i>
-      Create New Trial
-    </a>
-  </div>
-        <div class="col-sm-4 campaign-template-item" ng-repeat="item in vm.campaigns | filter: {type:'trial', status: -10}">
-          <a ui-sref='company.navbar.t.campaign.trial.create({templateId: item.id})'>
-            <div class="campaign-template-item-info product-trial">
-              <p class="template-title">{{item.name}}</p>
-              <p class="template-description">{{item.description}}</p>
-            </div>
-          </a>
-        </div>
-      </div>
+</div>
 
-      <!-- video contest -->
-     <div class="row campaign-template-list video-contest">
-        <p><span>Contest</span></p>
-   <div class="col-sm-12">
-     <a ui-sref="company.navbar.template.contestcreate" class="btn btn-lg sproutup-btn-md-main orange">
+<div class="product-table table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Template Name</th>
+        <th>Template Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in vm.campaigns | filter: {type:'trial', status: -10}">
+        <td class="product-table-edit"><a ui-sref='company.navbar.t.campaign.trial.create({templateId: item.id})'><i class="fa fa-pencil"></i></a></td>
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr>
+
+<!-- contest template -->
+<div class="row">
+  <div class="col-sm-12">
+    <a ui-sref="company.navbar.template.contestcreate" class="btn btn-lg sproutup-btn-md-main orange">
       <i class="fa fa-plus-circle"></i>
-      Create New Contest
+      Create Contest Template
     </a>
   </div>
-        <div class="col-sm-4 campaign-template-item" ng-repeat="item in vm.campaigns | filter: {type:'contest', status: -10}">
-          <a ui-sref='company.navbar.t.campaign.contest.create({templateId: item.id})'>
-            <div class="campaign-template-item-info video-contest">
-              <p class="template-title">{{item.name}}</p>
-              <p class="template-description">{{item.description}}</p>
-            </div>
-          </a>
-        </div>
-      </div>
-     <!-- sweepstakes -->
-     <!--div class="row campaign-template-list twitter-contest">
-         <p>Simple <span>Sweepstakes</span> make customers feel loved! &#x1F496;</p>
-         <div class="col-sm-4 campaign-template-item">
-             <div class="campaign-template-item-info twitter-contest">
-                 <p class="template-title">Sweepstakes</p>
-                 <p class="template-description">Run exciting sweepstakes contest to engage and grow your customers</p>
-             </div>
-         </div>
-     </div-->
-  </div>
+</div>
+
+<div class="product-table table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Template Name</th>
+        <th>Template Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in vm.campaigns | filter: {type:'contest', status: -10}">
+        <td class="product-table-edit"><a ui-sref='company.navbar.t.campaign.contest.create({templateId: item.id})'><i class="fa fa-pencil"></i></a></td>
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
