@@ -22,14 +22,14 @@
         </div>
 
 
-        <h2><input type="text" ng-model="vm.item.description" placeholder="A short description of your campaign"></h2>
+        <h2><input type="text" ng-model="vm.item.tagline" placeholder="A short tagline for your campaign"></h2>
         <h3><a href="#"><i class="fa fa-camera"></i>Choose an awesome banner</a></h3>
       </div>
       <!-- component ready -->
-      <div class="new-campaign-component">
+<!--       <div class="new-campaign-component">
         <div class="row new-campaign-component-header done">
           <div class="col-sm-1">
-            <p><i class="fa fa-check-circle"></i><p>
+            <p><i class="fa fa-check-circle"></i></p>
           </div>
           <div class="col-sm-11">
             <p>Campaign setup</p>
@@ -37,7 +37,7 @@
         </div>
         <div class="row new-campaign-component-content">
           <div class="col-sm-1">
-            <p><i class="fa fa-pencil"></i><p>
+            <p><i class="fa fa-pencil"></i></p>
           </div>
           <div class="col-sm-11">
             <ul>
@@ -47,7 +47,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- editing a component -->
       <div class="new-campaign-component">
         <div class="row new-campaign-component-header todo">
@@ -56,25 +56,71 @@
           </div>
         </div>
         <div class="row new-campaign-component-content">
-          <div class="col-sm-12">
+          <div>
+            <p class="input-group-title">Hashtag</p>
+            <input type="text" class="form-control form-input" placeholder="Hashtag" ng-model="vm.item.hashtag" name="hashtag">
+          </div>
+          <div>
+            <p class="input-group-title">Description</p>
+            <textarea class="form-control form-input-textarea" placeholder="Tell users more about this product trial. What can they expect? What's the story behind this product?" ng-model="vm.item.description"></textarea>
+          </div>
+          <div>
+            <p class="input-group-title">Instructions</p>
+            <textarea ng-model="vm.item.instructions" class="form-control form-input-textarea" placeholder="Let us know any instructions you have for trial users."></textarea>
+          </div>
+          <div class="campaign-question-wrapper">
+            <p class="input-group-title">Which social platforms would you like us to optimize your campaign for?</p>
+            <up-multi-switch options="vm.socialOptions"></up-multi-switch>
+          </div>
+          <div class="campaign-question-wrapper">
+            <p class="input-group-title">How many people would you like to reach?</p>
+            <div class="form-inline">
+              <input ng-model="vm.item.target" type="text" class="form-control form-validate form-input small">
+              <label class="campaign-question-input-label right">People</label>
+            </div>
+          </div>
+          <div class="campaign-question-wrapper">
+            <p class="input-group-title">When will the campaign start?</p>
+            <div class="form-inline">
+              <input ng-model="vm.item.start" type="text" class="form-control form-validate form-input small" placeholder="MM/DD/YYYY" style="width: 130px;">
+            </div>
+          </div>
+          <div class="campaign-question-wrapper">
+            <p class="input-group-title">End?</p>
+            <div class="form-inline">
+              <input ng-model="vm.item.end" type="text" class="form-control form-validate form-input small" placeholder="MM/DD/YYYY" style="width: 130px;">
+            </div>
+          </div>
+        </div>
+        <div class="new-campaign-component">
+          <div class="row new-campaign-component-header todo">
+            <div class="col-sm-6">
+              <p>Trial setup</p>
+            </div>
+          </div>
+          <div class="row new-campaign-component-content">
             <div class="campaign-question-wrapper">
-              <p>Do you allow influencers to keep products after content creation?</p>
-              <up-switch optionfalse="No" optiontrue="Yep" selected="vm.keepProducts"></up-switch>
+              <p class="input-group-title">Do you allow influencers to keep products after content creation?</p>
+              <up-switch optionfalse="No" optiontrue="Yep" selected="vm.item.trial.keepProduct"></up-switch>
             </div>
             <div class="campaign-question-wrapper">
-              <p>Do you accept requests for paid content creation?</p>
-              <up-switch optionfalse="No" optiontrue="Yep" selected="vm.paidCreation"></up-switch>
+              <p class="input-group-title">Do you accept requests for paid content creation?</p>
+              <up-switch optionfalse="No" optiontrue="Yep" selected="vm.item.trial.paidContent"></up-switch>
             </div>
             <div class="campaign-question-wrapper">
-              <p>How many days do you want influencrs to try the products for?</p>
+              <p class="input-group-title">How many days do you want influencrs to try the products for?</p>
               <div class="form-inline">
-                <input type="text" class="form-control form-validate form-input small">
+                <input ng-model="vm.item.trial.duration" type="text" class="form-control form-validate form-input small">
                 <label class="campaign-question-input-label right">Days</label>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <input class="btn btn-lg sproutup-btn-md-main" type="submit">
+      <a class="btn btn-lg sproutup-btn-md-main cancel" href="#" ng-click="vm.cancel()">Cancel</a>
     </div>
   </form>
 </div>
