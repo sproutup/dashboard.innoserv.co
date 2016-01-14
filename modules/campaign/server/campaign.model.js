@@ -51,7 +51,22 @@ var CampaignSchema = new Schema({
     default: '',
     trim: true,
   },
+  tagline: {
+    type: String,
+    default: '',
+    trim: true,
+  },
+  hashtag: {
+    type: String,
+    default: '',
+    trim: true,
+  },
   description: {
+    type: String,
+    default: '',
+    trim: true,
+  },
+  instructions: {
     type: String,
     default: '',
     trim: true,
@@ -67,6 +82,10 @@ var CampaignSchema = new Schema({
       throughput: 5 // read and write are both 5
     }
   },
+  target: {
+    type: Number,
+    default: 0
+  },
   type: {
     type: String,
     default: '',
@@ -77,6 +96,18 @@ var CampaignSchema = new Schema({
   },
   end: {
     type: Date
+  },
+  typeOfContent : {
+    type: [String] // yt, tw, ig etc..
+  },
+  trial: { // trial specific information
+    paidContent: Boolean, // Accept request for paid content
+    keepProduct: Boolean, // Allow "CERTAIN" (not all) influencers to keep product
+    duration: Number // How many days can influencers try the products
+  },
+  contest: { // contest specific information
+    maxNbrOfContributors: Number // Maximum number of entries to be accepted
+    // todo define perks/rewards for the contest
   }
 });
 
