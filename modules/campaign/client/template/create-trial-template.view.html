@@ -2,20 +2,64 @@
 <div class="create-product-wrapper" ng-init="vm.type='trial'">
   <div class="row">
     <form name="campaignForm" class="form-horizontal" ng-submit="vm.create(campaignForm.$valid)" novalidate>
-      <fieldset>
-        <div class="col-sm-12 form-input-group">
+      <fieldset class="col-sm-12 form-input-group">
+        <div>
           <p class="input-group-title">Basic Information</p>
           <input type="text" class="form-control form-input" placeholder="Pick a name for your campaign" ng-model="vm.name">
-          <input type="text" class="form-control form-input" placeholder="Type of campaign" ng-model="vm.type" name="type" required>
+          <input type="text" class="form-control form-input" placeholder="Type" ng-model="vm.type" name="type" required>
           <div role="alert" ng-if="campaignForm.type.$touched || campaignForm.$submitted">
-            <p class="form--error-message" ng-show="campaignForm.type.$error.required"><i class="fa fa-minus-circle"></i>Campaign type is required.</p>
+            <p class="form--error-message" ng-show="campaignForm.type.$error.required"><i class="fa fa-minus-circle"></i>Type is required.</p>
           </div>
+          <input type="text" class="form-control form-input" placeholder="Tagline" ng-model="vm.tagline" name="tagline">
+          <input type="text" class="form-control form-input" placeholder="Hashtag" ng-model="vm.hashtag" name="hashtag">
         </div>
-        <div class="col-sm-12 form-input-group">
+        <div>
           <p class="input-group-title">Description</p>
           <textarea class="form-control form-input-textarea" placeholder="Tell users more about this product. What are the cool features? What's the story behind this product?" ng-model="vm.description"></textarea>
         </div>
-        <div class="col-sm-12 form-input-group">
+        <div>
+          <p class="input-group-title">Instructions</p>
+          <textarea ng-model="vm.instructions" class="form-control form-input-textarea" placeholder="Let us know any instructions you have for trial users."></textarea>
+        </div>
+        <div class="campaign-question-wrapper">
+          <p>Do you allow influencers to keep products after content creation?</p>
+          <up-switch optionfalse="No" optiontrue="Yep" selected="vm.keepProduct"></up-switch>
+        </div>
+        <div class="campaign-question-wrapper">
+          <p>Do you accept requests for paid content creation?</p>
+          <up-switch optionfalse="No" optiontrue="Yep" selected="vm.paidContent"></up-switch>
+        </div>
+        <div class="campaign-question-wrapper">
+          <p>Which social platforms would you like us to optimize your campaign for?</p>
+          <up-multi-switch options="vm.socialOptions"></up-switch>
+        </div>
+        <div class="campaign-question-wrapper">
+          <p>How many days do you want influencrs to try the products for?</p>
+          <div class="form-inline">
+            <input ng-model="vm.duration" type="text" class="form-control form-validate form-input small">
+            <label class="campaign-question-input-label right">Days</label>
+          </div>
+        </div>
+        <div class="campaign-question-wrapper">
+          <p>How many people would you like to reach?</p>
+          <div class="form-inline">
+            <input ng-model="vm.target" type="text" class="form-control form-validate form-input small">
+            <label class="campaign-question-input-label right">People</label>
+          </div>
+        </div>
+        <div class="campaign-question-wrapper">
+          <p>When will the campaign start?</p>
+          <div class="form-inline">
+            <input ng-model="vm.start" type="text" class="form-control form-validate form-input small" placeholder="MM/DD/YYYY" style="width: 130px;">
+          </div>
+        </div>
+        <div class="campaign-question-wrapper">
+          <p>End?</p>
+          <div class="form-inline">
+            <input ng-model="vm.end" type="text" class="form-control form-validate form-input small" placeholder="MM/DD/YYYY" style="width: 130px;">
+          </div>
+        </div>
+        <div>
           <input class="btn btn-lg sproutup-btn-md-main" type="submit">
           <a class="btn btn-lg sproutup-btn-md-main cancel" href="#" ng-click="vm.cancel()">Cancel</a>
         </div>

@@ -24,6 +24,14 @@
           { id: 'contents',
             name: 'Video Contest'}
         ];
+        vm.socialOptions = [
+          {  title: 'Twitter',
+             type: 'tw' },
+          {  title: 'Instagram',
+             type: 'ig' },
+          {  title: 'YouTube',
+             type: 'yt' }
+        ];
 
         function create(isValid) {
           vm.error = null;
@@ -34,17 +42,42 @@
             return false;
           }
 
-          // Create new campaign object
+          // Create typeOfContent array
+          var typeOfContent = [];
+          for (var s = 0; s < vm.socialOptions.length; s++) {
+            if (vm.socialOptions[s].type) {
+              typeOfContent.push(vm.socialOptions[s].type);
+            }
+          }
+
+          // Create new template
           var Template = TemplateService.template();
           var item = new Template({
             companyId: $scope.company.company.id,
+            productId: vm.productId,
+            name: vm.name,
+            tagline: vm.tagline,
+            hashtag: vm.hashtag,
             description: vm.description,
+            instructions: vm.instructions,
+            target: vm.target,
             type: vm.type,
-            name: vm.name
+            start: vm.start,
+            end: vm.end,
+            typeOfContent: typeOfContent,
+            trial: {
+              paidContent: vm.paidContent,
+              keepProduct: vm.keepProduct,
+              duration: vm.duration
+            },
+            contest: {
+              maxNbrOfContributors: vm.maxNbrOfContributors
+            }
           });
 
           // Redirect after save
           item.$save(function (response) {
+            console.log('created this: ', response);
             $state.go('company.navbar.template.list');
             // Clear form fields
             vm.description = '';
