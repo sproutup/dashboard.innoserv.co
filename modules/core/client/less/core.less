@@ -1370,17 +1370,41 @@ body {
 }
 
 .campaign-list-wrapper {
-  margin: 40px 0px;
-  padding: 0px
+  margin: 0px;
+  padding: 40px 0px 0px;
+}
+
+.campaign-list-wrapper h4 {
+  margin: 0px 0px 20px;
+  font-weight: 700;
+}
+
+.campaign-list-wrapper h4 i {
+  padding-right: 12px;
+}
+
+.campaign-list-wrapper.active h4 {
+  color: @sproutup-green;
+}
+
+.campaign-list-wrapper.past h4 {
+  color: @main-text-2;
+}
+
+.campaign-list-wrapper.draft h4 {
+  color: @sproutup-orange;
 }
 
 .campaign-list-item {
-  margin: 0px;
-  padding: 0px 5px;
+  margin-bottom: 20px;
+}
+
+.campaign-list-wrapper a {
+  text-decoration: none !important;
 }
 
 .campaign-list-item-banner {
-  height: 300px;
+  height: 200px;
   margin: 0px;
   background-position:center;
   background-repeat:no-repeat;
@@ -1420,33 +1444,63 @@ body {
 }
 
 .campaign-type {
-  margin: 15px;
-  padding: 8px 16px;
+  padding: 25px 20px 15px;
   text-align: left;
   z-index: 10;
-  position: absolute;
+  position: relative;
+}
+
+.campaign-type .label {
   font-weight: 700;
   font-size: 10pt;
   color: @main-text-white;
+  border-radius: 2px;
+  padding: 8px 12px;
 }
 
-.campaign-type.product-trial {
+.campaign-type.product-trial .label {
   background-color: @sproutup-salmon;
 }
 
-.campaign-type.video-contest {
+.campaign-type.video-contest .label {
   background-color: @sproutup-green;
 }
 
 .campaign-name {
   margin: 0px;
-  padding: 125px 0px 0px;
-  text-align: center;
+  padding: 0px 20px 15px;
+  text-align: left;
   z-index: 10;
   position: relative;
   font-weight: 400;
   font-size: 12pt;
   color: @main-text-white;
+  line-height: 1.5;
+}
+
+.campaign-description {
+  margin: 0px;
+  padding: 0px 20px 0px;
+  text-align: left;
+  z-index: 10;
+  position: relative;
+  font-weight: 300;
+  font-size: 10pt;
+  color: @main-text-white;
+  line-height: 1.5;
+}
+
+.campaign-kpi {
+  font-size: 15pt;
+  font-weight: 700;
+}
+
+.campaign-list-wrapper.active .campaign-kpi {
+  color: @sproutup-green;
+}
+
+.campaign-list-wrapper.past .campaign-kpi {
+  color: @main-text-2;
 }
 
 .product-table {
@@ -1475,6 +1529,13 @@ body {
   font-weight: 400;
   font-size: 10pt;
   color: @main-text;
+  vertical-align: middle;
+}
+
+.product-table tbody tr td[class="campaign-kpi"] {
+  padding: 20px;
+  font-weight: 700;
+  font-size: 15pt;
 }
 
 .product-table tbody tr:hover {
