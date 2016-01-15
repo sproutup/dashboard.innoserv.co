@@ -29,7 +29,7 @@
       <tbody>
         <tr ng-repeat="campaign in vm.campaigns">
           <td class="product-table-edit"><a ui-sref="company.navbar.campaign.view({ campaignId: campaign.id })"><i class="fa fa-pencil"></i></a></td>
-          <td><span class="label label-campaign product-trial">{{campaign.type}}</span></td>
+          <td><span ng-class="campaign.type" class="label label-campaign">{{campaign.type}}</span></td>
           <td>{{campaign.name}}</td>
           <td class="campaign-kpi"></td>
           <td class="campaign-kpi"></td>
