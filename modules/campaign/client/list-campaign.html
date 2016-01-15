@@ -12,13 +12,31 @@
   </div>
 </div>
 
-<div class="row campaign-list-wrapper">
-  <div class="col-sm-4 campaign-list-item" ng-repeat="campaign in vm.campaigns">
-    <a ui-sref="company.navbar.campaign.view({ campaignId: campaign.id })">
-      <div class="campaign-list-item-banner" style="background-image: url('https://d30xksqof6w2my.cloudfront.net/ccd20a3d-1a0d-4545-870a-94e1c645ff96_0_admin.jpg?w=1600');">
-        <p class="campaign-type product-trial">{{campaign.type}}</p>
-        <p class="campaign-name">{{campaign.name}}</p>
-      </div>
-    </a>
+<div class="campaign-list-wrapper draft">
+  <h4><i class="fa fa-circle"></i>Draft Campaigns</h4>
+  <div class="product-table table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Campaign</th>
+          <th>Requests</th>
+          <th>Reach</th>
+          <th>Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="campaign in vm.campaigns">
+          <td class="product-table-edit"><a ui-sref="company.navbar.campaign.view({ campaignId: campaign.id })"><i class="fa fa-pencil"></i></a></td>
+          <td><span class="label label-campaign product-trial">{{campaign.type}}</span></td>
+          <td>{{campaign.name}}</td>
+          <td class="campaign-kpi"></td>
+          <td class="campaign-kpi"></td>
+          <td class="campaign-kpi"></td>
+        </tr>
+        <tr>
+      </tbody>
+    </table>
   </div>
 </div>
