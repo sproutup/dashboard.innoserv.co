@@ -73,8 +73,8 @@
         vm.error = null;
         console.log('init template');
 
-        if (!$scope.template.item.id) {
-          var listener = $scope.$watch('template.item.id', function(val) {
+        if (!$scope.template.item.type) {
+          var listener = $scope.$watch('template.item.type', function(val) {
             if(val) {
               listener();
               initTemplate();
