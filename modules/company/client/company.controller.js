@@ -102,6 +102,9 @@
           CompanyService.companyBySlug()
             .get({companySlug: $state.params.companySlug}, function(data){
               vm.company = data;
+              var index = vm.company.url.indexOf('www.');
+              vm.company.domain = vm.company.url.substring((index + 4), vm.company.url.length);
+              console.log('domain', vm.company.domain);
             });
         }
 
