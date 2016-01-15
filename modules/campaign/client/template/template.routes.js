@@ -62,6 +62,20 @@ angular.module('campaign').config(['$stateProvider',
         data: {
           roles: ['admin']
         }
+      })
+      .state('company.navbar.template.trialedit', {
+        url: '/:campaignId/trial-edit',
+        templateUrl: 'modules/campaign/client/template/edit-trial-template.html',
+        data: {
+          roles: ['admin']
+        }
+      })
+      .state('company.navbar.template.contestedit', {
+        url: '/:campaignId/contest-edit',
+        templateUrl: 'modules/campaign/client/template/edit-contest-template.html',
+        data: {
+          roles: ['admin']
+        }
       });
   }
 ]);

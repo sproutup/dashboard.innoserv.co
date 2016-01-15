@@ -21,7 +21,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="item in vm.campaigns | filter: {type:'trial', status: -10}">
-        <td class="product-table-edit"><a ui-sref='company.navbar.t.campaign.trial.create({templateId: item.id})'><i class="fa fa-pencil"></i></a></td>
+        <td class="product-table-edit"><a ui-sref='company.navbar.template.{{ item.type }}edit({ campaignId: item.id })'><i class="fa fa-pencil"></i></a></td>
         <td>{{item.name}}</td>
         <td>{{item.description}}</td>
       </tr>
@@ -52,7 +52,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="item in vm.campaigns | filter: {type:'contest', status: -10}">
-        <td class="product-table-edit"><a ui-sref='company.navbar.t.campaign.contest.create({templateId: item.id})'><i class="fa fa-pencil"></i></a></td>
+        <td class="product-table-edit"><a ui-sref='company.navbar.template.{{ item.type }}edit({ campaignId: item.id })'><i class="fa fa-pencil"></i></a></td>
         <td>{{item.name}}</td>
         <td>{{item.description}}</td>
       </tr>

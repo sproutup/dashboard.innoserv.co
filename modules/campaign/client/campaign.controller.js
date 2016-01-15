@@ -73,8 +73,8 @@
         vm.error = null;
         console.log('init template');
 
-        if (!$scope.template.item.id) {
-          var listener = $scope.$watch('template.item.id', function(val) {
+        if (!$scope.template.item.type) {
+          var listener = $scope.$watch('template.item.type', function(val) {
             if(val) {
               listener();
               initTemplate();
@@ -121,12 +121,10 @@
           vm.invalid = false;
         }
 
-        var campaign = vm.campaign;
-
-        campaign.$update({
+        vm.item.$update({
           campaignId: $state.params.campaignId
         }, function () {
-         $state.go('company.navbar.campaign.view');
+         $state.go('company.navbar.campaign.list');
         }, function (errorResponse) {
           vm.success = null;
           vm.error = errorResponse.data.message;
@@ -176,7 +174,7 @@
         var campaign = CampaignService.campaigns().get({
           campaignId: $state.params.campaignId
         }, function() {
-          vm.campaign = campaign;
+          vm.item = campaign;
         }, function(err) {
           $state.go('landing.default');
         });

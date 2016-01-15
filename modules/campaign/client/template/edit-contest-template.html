@@ -1,7 +1,7 @@
-<h1 class="dashboard-section-title"><a ui-sref="company.navbar.template.list"><i class="fa fa-angle-left"></i></a>Create New Contest Template</h1>
+<h1 class="dashboard-section-title"><a ui-sref="company.navbar.template.list" ng-init="vm.findOne()"><i class="fa fa-angle-left"></i></a>Edit a Contest Template</h1>
 <div class="create-product-wrapper" ng-init="vm.item.type='contest'">
   <div class="row">
-    <form name="campaignForm" class="form-horizontal" ng-submit="vm.create(campaignForm.$valid)" novalidate>
+    <form name="campaignForm" class="form-horizontal" ng-submit="vm.update(campaignForm.$valid)" novalidate>
       <fieldset class="col-sm-12 form-input-group">
         <div>
           <p class="input-group-title">Basic Information</p>
@@ -50,6 +50,7 @@
         <div>
           <input class="btn btn-lg sproutup-btn-md-main" type="submit">
           <a class="btn btn-lg sproutup-btn-md-main cancel" href="#" ng-click="vm.cancel()">Cancel</a>
+          <a class="btn btn-lg sproutup-btn-md-main trash" href="#" ng-click="vm.remove(vm.item)"><i class="fa fa-trash"></i></a>
         </div>
       </fieldset>
     </form>
