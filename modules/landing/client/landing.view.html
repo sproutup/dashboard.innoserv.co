@@ -1,0 +1,26 @@
+<div class="dashboard-product-banner" ng-init="" style="background-image: url('https://d30xksqof6w2my.cloudfront.net/564efc2f-199a-4f1c-9b1a-38b6780b151d_0_admin.jpg?w=1600');" ng-if="company.company.domain">
+  <div class="dashboard-product-info-wrapper">
+    <div class="col-sm-12">
+      <div class="product-tagline">
+        <p>SproutUp is built by passionate souls who love awesome brands such as</p>
+        <h1>{{company.company.name}}</h1>
+      </div>
+      <div class="dashboard-cta">
+        <form class="form-inline">
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control dashboard-signup-input"placeholder="Your email account" ng-model="vm.email">
+              <div class="input-group-addon">@{{company.company.domain}}</div>
+              </div>
+            </div>
+            <a type="submit" class="btn btn-lg sproutup-btn-lg-main orange" ng-click="vm.getStarted()">Get Started</a>
+          </div>
+        </form>
+      </div>
+      <div class="dashboard-signup-message">
+        <p>SproutUp is absolutely free to jump start. Scroll down and check out what have happened.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
