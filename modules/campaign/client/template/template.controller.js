@@ -68,19 +68,19 @@
           });
         }
 
-        function remove(campaign) {
-          if (campaign) {
-            campaign.$remove({
-              campaignId: campaign.id
+        function remove(item) {
+          if (item) {
+            item.$remove({
+              campaignId: item.id
             }, function() {
-              $state.go('user.campaign.list');
+              $state.go('company.navbar.template.list');
             });
 
-            for (var i in vm.companies) {
-              if (vm.companies[i] === campaign) {
-                vm.companies.splice(i, 1);
-              }
-            }
+            // for (var i in vm.companies) {
+            //   if (vm.companies[i] === campaign) {
+            //     vm.companies.splice(i, 1);
+            //   }
+            // }
           } 
           // else {
             // test this 
@@ -102,9 +102,7 @@
             vm.invalid = false;
           }
 
-          var campaign = vm.campaign;
-
-          campaign.$update({
+          vm.item.$update({
             campaignId: $state.params.campaignId
           }, function () {
             $state.go('company.navbar.template.list');
@@ -152,7 +150,7 @@
           var campaign = CampaignService.campaigns().get({
             campaignId: $state.params.campaignId
           }, function() {
-            vm.campaign = campaign;
+            vm.item = campaign;
           }, function(err) {
             $state.go('landing.default');
           });
