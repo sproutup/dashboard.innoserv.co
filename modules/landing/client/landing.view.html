@@ -9,7 +9,7 @@
         <form class="form-inline">
           <div class="form-group">
             <div class="input-group">
-              <input type="text" class="form-control dashboard-signup-input"placeholder="Your email account" ng-model="vm.email">
+              <input type="text" class="form-control dashboard-signup-input"placeholder="Your email account" ng-model="vm.email" unique-email="{{company.company.domain}}">
               <div class="input-group-addon">@{{company.company.domain}}</div>
               </div>
             </div>
