@@ -99,6 +99,42 @@ var sendCompanyVerificationEmail = function(user, callback, host) {
   });
 };
 
+/**
+ * Email Verification
+ */
+var sendJoinVerificationEmail = function(user, callback, host) {
+  var token;
+
+  crypto.randomBytes(20, function (err, buffer) {
+    token = buffer.toString('hex');
+
+    var url = 'http://' + host + '/authentication/signup/' + token;
+    var email = new sendgrid.Email();
+    email.subject = ' ';
+    email.from = 'mailer@sproutup.co';
+    email.fromname = 'SproutUp';
+    email.html = '<div></div>';
+    email.addTo(user.email);
+    email.addSubstitution(':url', url);
+    redis.hmset('join:user:' + token, { 'email': user.email });
+    email.setFilters({
+      'templates': {
+        'settings': {
+          'enable': 1,
+          'template_id' : 'a97ea7cd-fdd9-4c9d-9f32-e6d7793b8fd2'
+        }
+      }
+    });
+
+    sendgrid.send(email, function(err, json) {
+      if (callback) {
+        callback(err);
+      }
+    });
+  });
+};
+
+
 var saveClaimedCompany = function(token, userId) {
   redis.hmget(token, ['companyId']).then(function(result) {
     if (result.length === 1) {
@@ -226,6 +262,23 @@ exports.signUpAndClaimCompany = function (req, res) {
 };
 
 /**
+ * Check if email is available
+ */
+exports.emailIsAvailable = function (req, res) {
+  var email = req.body.email.toLowerCase();
+  User.queryOne('email').eq(email).exec().then(function(result) {
+    if (result) {
+      return res.json({result: 0});
+    } else {
+      return res.json({result: 1});
+    }
+  })
+  .catch(function(err){
+    console.log(err);
+  });
+};
+
+/**
  * Validate email token
  */
 exports.validateEmail = function (req, res) {
@@ -245,6 +298,23 @@ exports.validateEmail = function (req, res) {
  */
 exports.resendEmailConfirmation = function (req, res) {
   sendVerificationEmail(req.user, function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      return res.send({
+        message: 'Email sent successfully'
+      });
+    }
+  }, req.headers.host);
+};
+
+/**
+ * Join from home page
+ */
+exports.join = function (req, res) {
+  sendJoinVerificationEmail(req.body, function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -333,7 +403,7 @@ exports.signin = function (req, res, next) {
  */
 exports.signout = function (req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('/authentication/signin');
 };
 
 /**

@@ -16,11 +16,15 @@ module.exports = function (app) {
 
   // Setting up the users authentication api
   app.route('/api/auth/signup').post(users.signup);
+  app.route('/api/auth/join').post(users.join);
   app.route('/api/auth/sendEmailConfirmation').post(users.sendEmailConfirmation);
   app.route('/api/auth/verifyCompanyToken').post(users.verifyCompanyToken);
   app.route('/api/auth/signUpAndClaimCompany').post(users.signUpAndClaimCompany);
   app.route('/api/auth/signin').post(users.signin);
   app.route('/api/auth/signout').get(users.signout);
+
+  // validation
+  app.route('/api/auth/validate/email').post(users.emailIsAvailable);
 
   // Setting the facebook oauth routes
   app.route('/api/auth/facebook').get(users.oauthCall('facebook', {

@@ -27,7 +27,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
       $http.post('/api/auth/signUpAndClaimCompany', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
-        $state.go($state.previous.state.name || 'home', $state.previous.params);
+        $state.go($state.previous.state.name || 'company.navbar.home', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });
@@ -36,7 +36,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     $scope.signup = function () {
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
-        $state.go($state.previous.state.name || 'home', $state.previous.params);
+        $state.go($state.previous.state.name || 'company.navbar.home', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });
@@ -45,7 +45,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     $scope.signin = function () {
       $http.post('/api/auth/signin', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
-        $state.go($state.previous.state.name || 'home', $state.previous.params);
+        $state.go($state.previous.state.name || 'company.navbar.home', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });
