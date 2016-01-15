@@ -138,6 +138,7 @@
             vm.item.status = 0;
             vm.item.name = '';
             vm.item.description = '';
+            vm.item.tagline = '';
           }, function(err) {
             $state.go('landing.default');
           });
