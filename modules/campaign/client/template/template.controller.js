@@ -139,6 +139,8 @@
             vm.item.name = '';
             vm.item.description = '';
             vm.item.tagline = '';
+            vm.item.start = '';
+            vm.item.end = '';
           }, function(err) {
             $state.go('landing.default');
           });
