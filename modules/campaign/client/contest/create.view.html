@@ -101,7 +101,7 @@
               </div>
               <div class="input-group">
                 <div class="input-group-addon">To</div>
-                <input ng-model="vm.item.start" type="text" class="form-control form-validate form-input medium" placeholder="MM/DD/YYYY">
+                <input ng-model="vm.item.end" type="text" class="form-control form-validate form-input medium" placeholder="MM/DD/YYYY">
               </div>
             </div>
           </div>
@@ -115,11 +115,13 @@
         </div>
       </div>
       <div class="row new-campaign-component-content">
-        <div class="campaign-question-wrapper">
-          <p class="input-group-title">What's the maximum number of contirbutors for this contest, if any?</p>
-          <div class="form-inline">
-            <input ng-model="vm.item.contest.maxNbrOfContributors" type="text" class="form-control form-validate form-input small">
-            <label class="campaign-question-input-label right">People</label>
+        <div class="col-sm-12">
+          <div class="campaign-question-wrapper">
+            <p class="input-group-title">What's the maximum number of contirbutors for this contest, if any?</p>
+            <div class="form-inline">
+              <input ng-model="vm.item.contest.maxNbrOfContributors" type="text" class="form-control form-validate form-input small">
+              <label class="campaign-question-input-label right">People</label>
+            </div>
           </div>
         </div>
       </div>
