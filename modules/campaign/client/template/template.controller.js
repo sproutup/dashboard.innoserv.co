@@ -42,7 +42,7 @@
             return false;
           }
 
-          // Create typeOfContent array
+          // Hack for creating typeOfContent array
           var typeOfContent = [];
           for (var s = 0; s < vm.socialOptions.length; s++) {
             if (vm.socialOptions[s].type) {
@@ -52,35 +52,17 @@
 
           // Create new template
           var Template = TemplateService.template();
-          var item = new Template({
-            companyId: $scope.company.company.id,
-            productId: vm.productId,
-            name: vm.name,
-            tagline: vm.tagline,
-            hashtag: vm.hashtag,
-            description: vm.description,
-            instructions: vm.instructions,
-            target: vm.target,
-            type: vm.type,
-            start: vm.start,
-            end: vm.end,
-            typeOfContent: typeOfContent,
-            trial: {
-              paidContent: vm.paidContent,
-              keepProduct: vm.keepProduct,
-              duration: vm.duration
-            },
-            contest: {
-              maxNbrOfContributors: vm.maxNbrOfContributors
-            }
-          });
+          var item = new Template(vm.item);
+          item.companyId = $scope.company.company.id;
+          item.productId = vm.productId;
+          item.typeOfContent = typeOfContent;
 
           // Redirect after save
           item.$save(function (response) {
             console.log('created this: ', response);
             $state.go('company.navbar.template.list');
             // Clear form fields
-            vm.description = '';
+          vm.description = '';
           }, function (errorResponse) {
             vm.error = errorResponse.data.message;
           });
@@ -152,6 +134,10 @@
             campaignId: $state.params.templateId
           }, function(val) {
             vm.item = val;
+            vm.item.id = null;
+            vm.item.status = 0;
+            vm.item.name = '';
+            vm.item.description = '';
           }, function(err) {
             $state.go('landing.default');
           });
