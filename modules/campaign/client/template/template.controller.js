@@ -10,6 +10,7 @@
 
     function TemplateController($scope, $rootScope, TrialService, $state, CampaignService, TemplateService, $location, Authentication, TeamService, ProductService, $cookieStore) {
         var vm = this;
+        vm.init = init;
         vm.create = create;
         vm.remove = remove;
         vm.update = update;
@@ -32,6 +33,11 @@
           {  title: 'YouTube',
              type: 'yt' }
         ];
+
+        function init(type) {
+          vm.item = {};
+          vm.item.type = type;
+        }
 
         function create(isValid) {
           vm.error = null;
@@ -146,6 +152,7 @@
 
         function findOne() {
           vm.success = false;
+          vm.item = {};
 
           var campaign = CampaignService.campaigns().get({
             campaignId: $state.params.campaignId
