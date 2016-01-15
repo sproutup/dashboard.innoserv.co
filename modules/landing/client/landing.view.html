@@ -9,11 +9,11 @@
         <form class="form-inline">
           <div class="form-group">
             <div class="input-group">
-              <input type="text" class="form-control dashboard-signup-input"placeholder="Your email account" ng-model="vm.email" unique-email="{{company.company.domain}}">
+              <input type="text" class="form-control dashboard-signup-input" placeholder="Your email account" ng-model="vm.email" unique-email="{{company.company.domain}}" required>
               <div class="input-group-addon">@{{company.company.domain}}</div>
               </div>
             </div>
-            <a type="submit" class="btn btn-lg sproutup-btn-lg-main orange" ng-click="vm.getStarted()">Get Started</a>
+            <button type="submit" ng-disabled="form.$invalid" class="btn btn-lg sproutup-btn-lg-main orange" ng-click="vm.getStarted()">Get Started</button>
           </div>
         </form>
         <div class="dashboard-signup-message">
