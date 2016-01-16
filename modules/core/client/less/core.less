@@ -1380,7 +1380,7 @@ body {
 }
 
 .campaign-list-wrapper h4 i {
-  padding-right: 12px;
+  margin-right: 12px;
 }
 
 .campaign-list-wrapper.active h4 {
@@ -2572,7 +2572,7 @@ input:-ms-input-placeholder {
   background-color: @sproutup-blue;
   color: white;
   border-radius: 2px;
-  padding-top: 11px;
+  //padding-top: 11px;
   margin: 0px;
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
@@ -2828,4 +2828,25 @@ h3[class="placeholder"] {
   padding: 0px;
   margin: 0px;
   font-size: 11pt;
+}
+
+.empty-state-wrapper {
+  border: 1px solid @sproutup-grey;
+  padding: 40px;
+  text-align: center;
+  margin: 10px 0px 40px;
+}
+
+.empty-state-wrapper h2 {
+  font-weight: 300;
+  color: @main-text;
+  margin-bottom: 20px;
+}
+
+.empty-state-wrapper p {
+  font-weight: 400;
+  color: @input-placeholder-text;
+  font-size: 13pt;
+  margin-bottom: 30px;
+  line-height: 1.6;
 }
