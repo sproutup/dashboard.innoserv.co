@@ -12,10 +12,11 @@
            </div>
             <button type="submit" ng-disabled="form.$invalid" class="btn btn-lg sproutup-btn-lg-main orange" ng-click="vm.getStarted()">Get Started</button>
           </div>
-
-          <div ng-show="form.email.$pending.uniqueemail">Checking if this email is available...</div>
-          <div ng-show="form.email.$error.uniqueemail">This email is already taken!</div>
         </form>
+        <div ng-show="form.email.$error.uniqueemail" class="dashboard-signup-error">
+          <!-- <p ng-show="form.email.$pending.uniqueemail">Checking if this email is available...</p> -->
+          <p>&#x1F613; This email is already taken!</p>
+        </div>
       </div>
       <div class="dashboard-signup-message">
         <p>SproutUp is absolutely free to jump start. Scroll down and check out what have happened.</p>
@@ -23,4 +24,3 @@
     </div>
   </div>
 </div>
-
