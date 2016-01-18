@@ -34,7 +34,7 @@
       // Create new product object
       var Product = ProductService.products();
       var item = new Product({
-        companyId: Authentication.company.id,
+        companyId: $scope.company.company.id,
         name: vm.name,
         description: vm.description,
         tagline: vm.tagline
@@ -42,7 +42,7 @@
 
       // Redirect after save
       item.$save(function (response) {
-        $location.path('product/' + response.id + '/edit');
+        $state.go('company.navbar.product.list');
 
         // Clear form fields
         vm.description = '';
