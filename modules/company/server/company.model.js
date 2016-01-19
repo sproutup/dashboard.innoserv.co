@@ -33,8 +33,13 @@ var CompanySchema = new Schema({
     required: true
   },
   slug: {
-    type: String
-  },
+    type: String,
+    index: {
+      global: true,
+      project: true,
+      name: 'index_company_slug'
+    }
+ },
   address: {
     type: String
   },
@@ -74,13 +79,17 @@ CompanySchema.statics.find = function (id) {
 CompanySchema.statics.findBySlug = function (slug) {
   var _this = this;
 
-  return redis.get('company:slug:'+slug)
-    .then(function(id){
-      if(!id){
-        return {};
+  return redis.hgetall('company:slug:'+slug)
+    .then(function(val){
+      if(!val){
+        return _this.queryOne('slug').eq(slug).exec().then(function(company){
+          redis.hmset('company:slug:'+company.slug, company);
+          return company;
+        });
       }
 
-      return _this.find(id);
+      console.log('cache hit');
+      return val;
   })
   .catch(function(err){
     console.log(err);
@@ -106,7 +115,7 @@ Company.pre('save', function(next) {
   }
 
   // add new slug
-  redis.set('company:slug:' + this.slug, this.id);
+  redis.hmset('company:slug:' + this.slug, this);
   redis.hmset('company:' + this.id, this);
 
   next();
