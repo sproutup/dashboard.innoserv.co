@@ -62,6 +62,10 @@ angular.module('theme').config(['$stateProvider',
       .state('theme.mocks.list-team-member', {
         url: '/list-team-member',
         templateUrl: 'modules/theme/client/mocks/list-team-member.view.html'
+      })
+      .state('theme.mocks.hud', {
+        url: '/hud',
+        templateUrl: 'modules/theme/client/mocks/hud.view.html'
       });
   }
 ]);
