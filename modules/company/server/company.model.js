@@ -81,7 +81,7 @@ CompanySchema.statics.findBySlug = function (slug) {
 
   return redis.hgetall('company:slug:'+slug)
     .then(function(val){
-      if(!val){
+      if(_.isEmpty(val)){
         return _this.queryOne('slug').eq(slug).exec().then(function(company){
           redis.hmset('company:slug:'+company.slug, company);
           return company;
@@ -120,5 +120,3 @@ Company.pre('save', function(next) {
 
   next();
 });
-
-
