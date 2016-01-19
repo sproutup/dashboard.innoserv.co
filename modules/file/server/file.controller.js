@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var dynamoose = require('dynamoose');
-var File = dynamoose.model('File');
+var FileModel = dynamoose.model('File');
 var errorHandler = require('modules/core/server/errors.controller');
 var _ = require('lodash');
 
@@ -20,7 +20,7 @@ exports.read = function (req, res) {
  * Create
  */
 exports.create = function (req, res) {
-  var item = new File(req.body);
+  var item = new FileModel(req.body);
 
   item.save(function (err) {
     if (err) {
@@ -85,7 +85,7 @@ exports.list = function (req, res) {
       console.log('deleted');
     }); */
 
-  File.scan().exec().then(function(items){
+  FileModel.scan().exec().then(function(items){
     res.json(items);
   })
   .catch(function(err){
@@ -99,7 +99,7 @@ exports.list = function (req, res) {
  * List by user
  */
 exports.listByUser = function (req, res) {
-  File.query({userId: req.model.id}).exec().then(function(items){
+  FileModel.query({userId: req.model.id}).exec().then(function(items){
     res.json(items);
   })
   .catch(function(err){
@@ -119,7 +119,7 @@ exports.findByID = function (req, res, next, id) {
     });
   }
 
-  File.get(id).then(function(item){
+  FileModel.get(id).then(function(item){
     if(_.isUndefined(item)){
       return res.status(400).send({
         message: 'file not found'
