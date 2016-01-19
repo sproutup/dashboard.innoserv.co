@@ -3,26 +3,26 @@
 angular.module('file').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('user.file', {
+      .state('company.navbar.file', {
         url: '/file',
         abstract: true,
         template: '<div ui-view></div>',
         controller: 'FileController',
         controllerAs: 'vm'
       })
-      .state('user.file.list', {
+      .state('company.navbar.file.list', {
         url: 's',
         templateUrl: 'modules/file/client/list.html'
       })
-     .state('user.file.create', {
+     .state('company.navbar.file.create', {
         url: '/create',
         templateUrl: 'modules/file/client/create.html'
       })
-      .state('user.file.view', {
+      .state('company.navbar.file.view', {
         url: '/:fileId',
         templateUrl: 'modules/file/client/file.html'
       })
-      .state('user.file.edit', {
+      .state('company.navbar.file.edit', {
         url: '/:fileId/edit',
         templateUrl: 'modules/file/client/edit.html'
       });
