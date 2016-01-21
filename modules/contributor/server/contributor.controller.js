@@ -5,6 +5,7 @@
  */
 var dynamoose = require('dynamoose');
 var Contributor = dynamoose.model('Contributor');
+var Campaign = dynamoose.model('Campaign');
 var errorHandler = require('modules/core/server/errors.controller');
 var _ = require('lodash');
 
@@ -112,9 +113,14 @@ exports.listByCampaign = function (req, res) {
  */
 exports.listByUser = function (req, res) {
   Contributor.query({userId: req.params.userId}).exec().then(function(items){
+    var query = _.map(items, function(val){ return {id: val.campaignId}; });
+    return Campaign.batchGet(query);
+  })
+  .then(function(items){
     res.json(items);
   })
   .catch(function(err){
+    console.log(err);
     return res.status(400).send({
       message: errorHandler.getErrorMessage(err)
     });

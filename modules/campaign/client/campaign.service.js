@@ -9,7 +9,8 @@ CampaignService.$inject = ['$resource'];
 function CampaignService($resource) {
   var service = {
     listByCompany: listByCompany,
-    campaigns: campaigns
+    campaigns: campaigns,
+    contributors: contributors
   };
 
   return service;
@@ -20,6 +21,10 @@ function CampaignService($resource) {
 
   function listByCompany () {
      return $resource('/api/company/:companyId/campaign', {companyId:'@companyId'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
+  }
+
+  function contributors () {
+     return $resource('/api/campaign/:campaignId/user', { companyId:'@id' }, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
   }
 
 }
