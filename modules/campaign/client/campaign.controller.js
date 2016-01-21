@@ -83,7 +83,7 @@
           return;
         }
 
-        console.log('template loaded...!');
+        console.log('template loaded...!', $scope.template);
         // We may want to hook up socialOptions to vm.item.socialOptions here
         // Create new campaign object
         var Campaign = CampaignService.campaigns();
@@ -170,11 +170,23 @@
 
       function findOne() {
         vm.success = false;
+        vm.item = {};
+        findContributors();
 
-        var campaign = CampaignService.campaigns().get({
+        CampaignService.campaigns().get({
           campaignId: $state.params.campaignId
-        }, function() {
-          vm.item = campaign;
+        }, function(res) {
+          vm.item = res;
+        }, function(err) {
+          $state.go('landing.default');
+        });
+      }
+
+      function findContributors() {
+        CampaignService.contributors().query({
+          campaignId: $state.params.campaignId
+        }, function(res) {
+          vm.contributors = res;
         }, function(err) {
           $state.go('landing.default');
         });
