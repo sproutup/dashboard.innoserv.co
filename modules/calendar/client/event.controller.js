@@ -6,9 +6,9 @@
     .module('calendar')
     .controller('EventController', EventController);
 
-  EventController.$inject = ['$scope', '$state', 'CalendarService', 'Authentication'];
+  EventController.$inject = ['$scope', '$state', 'CalendarService', 'Authentication', '$modal'];
 
-  function EventController($scope, $state, CalendarService, Authentication) {
+  function EventController($scope, $state, CalendarService, Authentication, $modal) {
     var vm = this;
     vm.create = create;
     vm.remove = remove;
@@ -16,6 +16,7 @@
     vm.cancel = cancel;
     vm.find = find;
     vm.findOne = findOne;
+    vm.openModal = openModal;
 
     function create(isValid) {
       vm.error = null;
@@ -43,6 +44,7 @@
 
 
       item.$save(function (response) {
+        console.log(response);
         $state.go('company.navbar.calendar.event.view', { eventId: response.id });
         // Clear form fields
         vm.startTime = '';
@@ -114,6 +116,23 @@
         $state.go('company.navbar.calendar.event.view', { eventId: eventId });
       }, function(err) {
         console.log(err);
+      });
+    }
+
+    function openModal(item) {
+      var modalInstance = $modal.open({
+        templateUrl: 'modules/core/client/delete-confirmation.html',
+        controller: 'DeleteController',
+        controllerAs: 'vm',
+        resolve: {
+          message: function() { return 'Deleting an event is pretty hard core. Hope you are sure about this.'; }
+        }
+      });
+
+      modalInstance.result.then(function () {
+        remove(item);
+      }, function () {
+        console.log('Modal dismissed at: ' + new Date());
       });
     }
   }
