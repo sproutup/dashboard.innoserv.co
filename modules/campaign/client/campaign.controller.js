@@ -6,9 +6,9 @@
       .module('campaign')
       .controller('CampaignController', CampaignController);
 
-    CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService'];
+    CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$modal'];
 
-    function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService) {
+    function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal) {
       var vm = this;
       vm.create = create;
       vm.initTemplate = initTemplate;
@@ -17,6 +17,7 @@
       vm.cancel = cancel;
       vm.find = find;
       vm.findOne = findOne;
+      vm.openModal = openModal;
       vm.socialOptions = [
         {  title: 'Twitter',
            type: 'tw' },
@@ -225,6 +226,23 @@
         //     console.log(err);
         //   });
         // });
+      }
+
+      function openModal(item) {
+        var modalInstance = $modal.open({
+          templateUrl: 'modules/core/client/delete-confirmation.html',
+          controller: 'DeleteController',
+          controllerAs: 'vm',
+          resolve: {
+            message: function() { return 'Deleting a campaign is risky business.'; }
+          }
+        });
+
+        modalInstance.result.then(function () {
+          remove(item);
+        }, function () {
+          console.log('Modal dismissed at: ' + new Date());
+        });
       }
 
 //       findProducts();
