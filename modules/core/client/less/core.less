@@ -2405,7 +2405,7 @@ body {
   vertical-align: middle;
 }
 
-.sproutup-table tbody tr:hover {
+.sproutup-table .table-hover tbody tr:hover {
   background-color: @sproutup-table-hover;
 }
 
@@ -2704,8 +2704,74 @@ input:-ms-input-placeholder {
   border-bottom: 1px solid @form-border;
 }
 
+.dashboard-side-panel-section h4 .total-reach {
+  color: @sproutup-green;
+  font-weight: 700;
+  margin-left: 15px;
+}
+
 .dashboard-side-panel-section-body {
   padding: 10px 0px 0px;
+}
+
+.dashboard-side-panel-section-body .sproutup-table {
+  margin-top: 10px;
+}
+
+.dashboard-side-panel-section-body .sproutup-table .social-network-icon {
+  width: 10%;
+}
+
+.dashboard-side-panel-section-body .sproutup-table .social-network-icon img {
+  border-radius: 100px;
+  width: 28px;
+  height: 28px;
+}
+
+.dashboard-side-panel-section-body .sproutup-table thead tr th {
+  padding: 15px;
+}
+
+.dashboard-side-panel-section-body .sproutup-table tbody tr td {
+  padding: 15px;
+  font-size: 10pt;
+  color: @main-text;
+}
+
+.dashboard-side-panel-section-body .sproutup-table .stat-col-header {
+  text-align: right;
+}
+
+.dashboard-side-panel-section-body .sproutup-table .stat-col-data {
+  font-size: 12pt;
+  font-weight: 700;
+  color: @main-text-lighter;
+  text-align: right;
+}
+
+.dashboard-side-panel-section-body .sproutup-table .request-reach {
+  font-size: 13pt;
+  font-weight: 700;
+  color: @sproutup-green;
+  text-align: right;
+}
+
+.dashboard-side-panel-paragraph {
+  font-size: 11.5pt;
+  font-weight: 400;
+  padding: 8px 0px;
+  margin: 0px;
+  line-height: 1.6;
+  color: @main-text;
+}
+
+.dashboard-side-panel-fineprint {
+  font-size: 9.5pt;
+  font-weight: 400;
+  padding: 8px 0px;
+  margin: 0px;
+  line-height: 1.6;
+  color: @main-text-light;
 }
 
 .product-trial-item--detail {
