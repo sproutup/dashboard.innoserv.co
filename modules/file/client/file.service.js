@@ -71,7 +71,7 @@ function FileService($resource, $http, $q, $filter, FileUpload) {
 
   function sha256(file){
     var deferred = $q.defer();
-    var sha256 = CryptoJS.algo.SHA256.create();
+    var SHA256 = CryptoJS.algo.SHA256.create();
     var size = file.size;
     var offset = 0;
     var chunkSize = 1048576*10; // 1Mb * 5
@@ -88,7 +88,7 @@ function FileService($resource, $http, $q, $filter, FileUpload) {
         var endTime = +new Date();
         console.log('hashed', file.name, 'in', endTime - startTime, 'ms', reader.result.byteLength, 'len');
         var wordarray = CryptoJS.lib.WordArray.create(reader.result);
-        sha256.update(wordarray);
+        SHA256.update(wordarray);
       }
 
       // Update offset for next chunk
@@ -109,7 +109,7 @@ function FileService($resource, $http, $q, $filter, FileUpload) {
       } else {
         // Report digest
         console.log('hashChunk - finished');
-        file.hash = sha256.finalize().toString(CryptoJS.enc.Hex);
+        file.hash = SHA256.finalize().toString(CryptoJS.enc.Hex);
         deferred.resolve(file);
       }
     };
