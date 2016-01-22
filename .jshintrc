@@ -23,7 +23,8 @@
   "globals": { // Globals variables.
     "angular": true,
     "io": true,
-    "ApplicationConfiguration": true
+    "ApplicationConfiguration": true,
+    "CryptoJS": true
   },
   "predef": [ // Extra globals.
     "inject",

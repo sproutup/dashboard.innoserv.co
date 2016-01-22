@@ -44,12 +44,24 @@ var FileSchema = new Schema({
     default: '',
     trim: true
   },
+  key: {
+    type: String,
+    default: '',
+    trim: true
+  },
   type: {
     type: String,
     default: '',
     trim: true
   },
-  length: {
+  url: {
+    type: String,
+    default: '',
+//    get: function(value){return value + 'test.jpg';},
+//    set: function(value){return '';},
+    trim: true
+  },
+  size: {
     type: Number,
     default: 0
   }

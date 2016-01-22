@@ -1,21 +1,23 @@
 'use strict';
 
-(function() {
+//(function() {
 
-  angular
-    .module('file')
-    .controller('FileController', FileController);
+angular
+  .module('file')
+  .controller('FileController', FileController);
 
-  FileController.$inject = ['$scope', '$state', 'FileService', '$location', 'Authentication'];
+FileController.$inject = ['$scope', '$state', 'FileService', '$location', 'Authentication', '$timeout'];
 
- function FileController($scope, $state, FileService, $location, Authentication) {
-   var vm = this;
-   vm.create = create;
-   vm.remove = remove;
-   vm.update = update;
-   vm.cancel = cancel;
-   vm.find = find;
-   vm.findOne = findOne;
+function FileController($scope, $state, FileService, $location, Authentication, $timeout) {
+  var vm = this;
+  vm.create = create;
+  vm.remove = remove;
+  vm.update = update;
+  vm.cancel = cancel;
+  vm.find = find;
+  vm.findOne = findOne;
+  vm.upload = upload;
+  vm.file = null;
 
   function create(isValid) {
     vm.error = null;
@@ -50,27 +52,87 @@
     });
   }
 
-        function remove(file) {
-          if (file) {
-            file.$remove({
-              fileId: file.id
-            }, function() {
-              $state.go('user.file.list');
-            });
+  function remove(file) {
+    if (file) {
+      file.$remove({
+        fileId: file.id
+      }, function() {
+        $state.go('company.navbar.file.list');
+      });
 
-            for (var i in vm.files) {
-              if (vm.files[i] === file) {
-                vm.files.splice(i, 1);
-              }
-            }
-          } 
-          // else {
-            // test this 
-            // vm.product.$remove(function () {
-            //   $location.path('user.product');
-            // });
-          // }
+      for (var i in vm.files) {
+        if (vm.files[i] === file) {
+          vm.files.splice(i, 1);
         }
+      }
+    }
+  }
+
+  function generateThumb(file) {
+    if (file !== null) {
+      console.log('set thumbnail...found file of type: ' + file.type);
+      if (file.type.indexOf('image') > -1) {
+        console.log('set thumbnail...reader supported');
+        $timeout(function() {
+          console.log('set thumbnail...timeout entered');
+          var fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+          fileReader.onload = function(e) {
+            $timeout(function() {
+              console.log('set thumbnail url');
+              file.dataUrl = e.target.result;
+            });
+          };
+        });
+      }
+      else
+      if (file.type.indexOf('video') > -1) {
+        console.log('set thumbnail...reader supported');
+        file.dataUrl = '/assets/images/video-thumbnail.png';
+      }
+    }
+  }
+
+  function upload(file){
+    console.log('file: ', file);
+    vm.file = file;
+    generateThumb(file);
+    FileService.authenticate(file).then(function (result) {
+      console.log('signature returned');
+      FileService.upload(result.file, result.data).then(
+        function(result){
+          console.log('upload returned', result);
+
+          // Create new product object
+          var File = FileService.files();
+          var item = new File({
+            userId: Authentication.user.id,
+            name: file.name,
+            size: file.size,
+            bucket: result.bucket,
+            type: result.file.type,
+            key: result.key,
+            url: result.url + '/' + result.key
+          });
+
+          // Redirect after save
+          item.$save(function (response) {
+            console.log('file saved', response);
+          }, function (errorResponse) {
+            console.log(errorResponse);
+            vm.error = errorResponse.data.message;
+          });
+        },
+        function (error) {
+            // todo handle error
+        },
+        function (progress) {
+            console.log('progress: ', progress);
+            file.progress = progress.progress;
+        }
+      );
+    });
+  }
 
   function update(isValid) {
     vm.error = null;
@@ -126,4 +188,4 @@
 
 }
 
-})();
+//})();

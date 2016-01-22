@@ -27,6 +27,9 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/file',
       permissions: ['get', 'post']
     }, {
+      resources: '/api/file/signature',
+      permissions: ['*']
+    }, {
       resources: '/api/file/:fileId',
       permissions: ['*']
     }, {

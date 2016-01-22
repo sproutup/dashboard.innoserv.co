@@ -3,6 +3,7 @@
     <h1>Add File</h1>
   </div>
   <div class="col-md-12">
+    <up-file-upload user="vm.user"></up-file-upload>
     <form name="fileForm" class="form-horizontal" ng-submit="vm.create(fileForm.$valid)" novalidate>
       <fieldset>
         <div class="form-group" show-errors>

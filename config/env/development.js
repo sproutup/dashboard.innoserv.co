@@ -24,6 +24,15 @@ module.exports = {
   app: {
     title: defaultEnvConfig.app.title + ' - Development Environment'
   },
+  aws: {
+    accessKeyID: process.env.AWS_ACCESS_KEY_ID || 'ToDo',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || 'ToDo',
+    s3: {
+      region: process.env.AWS_S3_REGION || 'PUT YOUR REGION',
+      bucket: process.env.AWS_S3_BUCKET || 'PUT YOUR BUCKET',
+      imageFolder: process.env.AWS_S3_IMAGE_FOLDER || 'PUT YOUR FOLDER'
+    }
+  },
   knex: {
     client: 'mysql',
     connection: {
