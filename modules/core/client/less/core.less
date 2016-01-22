@@ -2545,6 +2545,11 @@ input:-ms-input-placeholder {
   width: 79%;
 }
 
+.dashboard-body-header {
+  margin: 0px;
+  padding: 0px 0px 15px;
+}
+
 .dashboard-body-title {
   margin: 0px;
   padding: 0px 0px 10px;
@@ -2556,7 +2561,7 @@ input:-ms-input-placeholder {
 
 .dashboard-body-subtitle {
   margin: 0px;
-  padding: 0px 0px 25px;
+  padding: 0px 0px 10px;
   color: @main-text-1;
   font-weight: 400;
   font-size: 11pt;
@@ -2607,8 +2612,12 @@ input:-ms-input-placeholder {
 }
 
 .sproutup-table .request-detail-link {
-  font-size: 10pt;
-  text-align: center;
+  font-size: 9.5pt;
+  text-align: right;
+}
+
+.sproutup-table .request-detail-link i {
+  margin-left: 7px;
 }
 
 .label-request-status {
@@ -2624,6 +2633,18 @@ input:-ms-input-placeholder {
 
 .label-request-status.recommended {
   background-color: @sproutup-green;
+}
+
+.label-request-status.approved {
+  background-color: @sproutup-green;
+}
+
+.label-request-status.pending {
+  background-color: @sproutup-green-muted;
+}
+
+.label-request-status.completed {
+  background-color: @sproutup-gold;
 }
 
 // sproutup buttons
@@ -3002,7 +3023,7 @@ h3[class="placeholder"] {
   height: 50px;
   padding-top: 14px;
   color: @sproutup-blue;
-  background-color: transparent;
+  background-color: @sproutup-superlightgrey;
   border-color: transparent;
 }
 
