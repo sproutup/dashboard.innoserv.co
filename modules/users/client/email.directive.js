@@ -25,7 +25,10 @@ function EmailDirective($q, $timeout, $http) {
       var def = $q.defer();
       var email = modelValue;
 
-      if(attr.uniqueEmail) email = email + '@' + attr.uniqueEmail;
+      if(attr.uniqueEmail) {
+        console.log('email domain: ', attr.uniqueEmail);
+        email = email + '@' + attr.uniqueEmail;
+      }
 
       $http.post('/api/auth/validate/email', {email: email}).success(function (response) {
         if(response.result === 1){
@@ -38,21 +41,8 @@ function EmailDirective($q, $timeout, $http) {
         def.reject();
       });
 
-/*      $timeout(function() {
-        // Mock a delayed response
-        if (usernames.indexOf(modelValue) === -1) {
-          // The username is available
-          console.log('not found');
-          def.resolve();
-        } else {
-          console.log('found');
-          def.reject();
-        }
-      }, 2000); */
-
       return def.promise;
     };
-
   }
 }
 
