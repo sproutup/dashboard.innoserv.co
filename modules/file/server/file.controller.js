@@ -5,6 +5,7 @@
  */
 var dynamoose = require('dynamoose');
 var FileModel = dynamoose.model('File');
+var S3Service = require('./s3.service');
 var errorHandler = require('modules/core/server/errors.controller');
 var _ = require('lodash');
 
@@ -14,6 +15,15 @@ var _ = require('lodash');
 exports.read = function (req, res) {
 
   res.json(req.model);
+};
+
+
+/**
+ * Authorize file upload to S3
+ */
+exports.signature = function (req, res) {
+  var signature = S3Service.getSignature(req.body, req.user);
+  res.json(signature);
 };
 
 /**

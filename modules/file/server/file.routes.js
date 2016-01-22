@@ -12,6 +12,10 @@ module.exports = function (app) {
     .get(ctrl.list)
     .post(ctrl.create);
 
+  // collection routes
+  app.route('/api/file/signature').all(policy.isAllowed)
+    .post(ctrl.signature);
+
   // Single routes
   app.route('/api/file/:fileId').all(policy.isAllowed)
     .get(ctrl.read)
