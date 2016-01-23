@@ -7,13 +7,13 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
     // Get an eventual error defined in the URL query string:
     $scope.error = $location.search().err;
-
+    
     // If user is signed in then redirect back home
     if ($scope.authentication.user) {
       $location.path('/');
     }
 
-    $scope.signUpAndClaimCompany = function() {
+    $scope.signUpAndJoinCompany = function() {
       $scope.credentials.email = $scope.email;
       $scope.credentials.companyId = $scope.company.id;
 
@@ -25,7 +25,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         return;
       }
 
-      $http.post('/api/auth/signUpAndClaimCompany', $scope.credentials).success(function (response) {
+      $http.post('/api/auth/signUpAndJoinCompany', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
         $state.go($state.previous.state.name || 'company.navbar.home', $state.previous.params);
       }).error(function (response) {
@@ -36,7 +36,17 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     $scope.signup = function () {
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
-        $state.go($state.previous.state.name || 'company.navbar.home', $state.previous.params);
+        // If there's a new company, save it, otherwise go to company.navbar.list
+        if ($scope.newCompany) {
+          $http.post('/api/company', $scope.company).success(function (company) {
+            $state.go('company.navbar.list', { companySlug: company.slug });
+          }).error(function (response) {
+            $scope.error = response.message;
+            $state.go('company.navbar.home');
+          });
+        } else {
+          $state.go('company.navbar.list', { companySlug: $scope.company.slug });
+        }
       }).error(function (response) {
         $scope.error = response.message;
       });
@@ -63,17 +73,25 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       $window.location.href = url + (redirect_to ? '?redirect_to=' + encodeURIComponent(redirect_to) : '');
     };
 
+    $scope.initCompany = function() {
+      $scope.companyInit = true;
+      $scope.newCompany = true;
+    };
+
     $scope.verifyToken = function() {
       var credentials = {
         token: $state.params.token
       };
+      $scope.company = {};
 
-      $http.post('/api/auth/verifyCompanyToken', credentials).success(function (response) {
-        $scope.email = response.userEmail;
-        $scope.company = {
-          id: response.id,
-          name: response.name
-        };
+      $http.post('/api/auth/verifyToken', credentials).success(function (response) {
+        if (response[1]) {
+          $scope.company.id = response[1];
+          $scope.company.name = response[2];
+          $scope.company.slug = response[3];
+          $scope.companyInit = true;
+        }
+        $scope.email = response[0];
       }).error(function (errorResponse) {
         $scope.error = errorResponse.message;
       });

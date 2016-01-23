@@ -9,6 +9,7 @@ var path = require('path'),
   dynamoose = require('dynamoose'),
   passport = require('passport'),
   sendgrid = require('sendgrid')(config.sendgrid.username, config.sendgrid.pass),
+  sendgridService = require(path.resolve('./modules/sendgrid/server/sendgrid.service')),
   User = dynamoose.model('User'),
   Company = dynamoose.model('Company'),
   Team = dynamoose.model('Team'),
@@ -26,12 +27,11 @@ var noReturnUrls = [
  * Verification email sent after signup
  * This will be refactored with new sendgrid function
  */
-var sendVerificationEmail = function(user, callback, host) {
+var signedUpEmail = function(user, callback, host) {
   var token;
 
   crypto.randomBytes(20, function (err, buffer) {
     token = buffer.toString('hex');
-    token = 'token:' + token;
 
     var url = 'http://' + host + '/api/users/email/confirmation/' + token;
     var email = new sendgrid.Email();
@@ -43,15 +43,8 @@ var sendVerificationEmail = function(user, callback, host) {
     email.addSubstitution(':user', user.displayName);
     email.addSubstitution(':url', url);
     redis.set(token, user.id, 'EX', 86400);
-
-    email.setFilters({
-      'templates': {
-        'settings': {
-          'enable': 1,
-          'template_id' : '0d97d47d-3d32-499d-9cd9-b5c23c24c592'
-        }
-      }
-    });
+    // TODO -- pass in the email and the template, instead of the email, template and the url 
+    sendgridService.send(user.email, '0d97d47d-3d32-499d-9cd9-b5c23c24c592', url);
 
     sendgrid.send(email, function(err, json) {
       if (callback) {
@@ -62,47 +55,32 @@ var sendVerificationEmail = function(user, callback, host) {
 };
 
 /**
- * Claim company verification email after email only signup
- * This will be refactored with new sendgrid function
+ * Join company verification email after email only signup
  */
-var sendCompanyVerificationEmail = function(user, callback, host) {
+var companyVerificationEmail = function(user, callback, host) {
   var token;
 
   crypto.randomBytes(20, function (err, buffer) {
     token = buffer.toString('hex');
-    token = 'Company:join:' + token;
 
     var url = 'http://' + host + '/authentication/signup/' + token;
     var email = new sendgrid.Email();
-    email.subject = ' ';
+    email.subject = 'Finish Joining ' + user.company.name + ' on SproutUp';
     email.from = 'mailer@sproutup.co';
     email.fromname = 'SproutUp';
     email.html = '<div></div>';
     email.addTo(user.email);
     email.addSubstitution(':url', url);
     email.addSubstitution(':company_name', user.company.name);
-    redis.hmset(token, { 'email': user.email, 'companyId': user.company.id });
-    email.setFilters({
-      'templates': {
-        'settings': {
-          'enable': 1,
-          'template_id' : 'a97ea7cd-fdd9-4c9d-9f32-e6d7793b8fd2'
-        }
-      }
-    });
-
-    sendgrid.send(email, function(err, json) {
-      if (callback) {
-        callback(err);
-      }
-    });
+    redis.hmset(token, {'email': user.email, 'companyId': user.company.id, 'companyName': user.company.name, 'companySlug': user.company.slug });
+    sendgridService.send(email, 'a97ea7cd-fdd9-4c9d-9f32-e6d7793b8fd2', url, callback);
   });
 };
 
 /**
  * Email Verification
  */
-var sendJoinVerificationEmail = function(user, callback, host) {
+var emailVerificationEmail = function(user, callback, host) {
   var token;
 
   crypto.randomBytes(20, function (err, buffer) {
@@ -110,30 +88,16 @@ var sendJoinVerificationEmail = function(user, callback, host) {
 
     var url = 'http://' + host + '/authentication/signup/' + token;
     var email = new sendgrid.Email();
-    email.subject = ' ';
+    email.subject = 'One Step to Finish Signing Up';
     email.from = 'mailer@sproutup.co';
     email.fromname = 'SproutUp';
     email.html = '<div></div>';
     email.addTo(user.email);
     email.addSubstitution(':url', url);
-    redis.hmset('join:user:' + token, { 'email': user.email });
-    email.setFilters({
-      'templates': {
-        'settings': {
-          'enable': 1,
-          'template_id' : 'a97ea7cd-fdd9-4c9d-9f32-e6d7793b8fd2'
-        }
-      }
-    });
-
-    sendgrid.send(email, function(err, json) {
-      if (callback) {
-        callback(err);
-      }
-    });
+    redis.hmset(token, { 'email': user.email });
+    sendgridService.send(email, '585fc344-09d7-4bcc-b969-863b70f9b7dc', url, callback);
   });
 };
-
 
 var saveClaimedCompany = function(token, userId) {
   redis.hmget(token, ['companyId']).then(function(result) {
@@ -184,7 +148,7 @@ exports.signup = function (req, res) {
       user.password = undefined;
       user.salt = undefined;
 
-      sendVerificationEmail(user, null, req.headers.host);
+      signedUpEmail(user, null, req.headers.host);
 
       // If the user is claiming a company, save a team obj, then remove the token
       if (req.body.token) {
@@ -205,7 +169,7 @@ exports.signup = function (req, res) {
 /**
  * Signup and claim a company
  */
-exports.signUpAndClaimCompany = function (req, res) {
+exports.signUpAndJoinCompany = function (req, res) {
   // For security measurement we remove the roles from the req.body object
   delete req.body.roles;
 
@@ -252,7 +216,7 @@ exports.signUpAndClaimCompany = function (req, res) {
           if (err) {
             res.status(400).send(err);
           } else {
-            sendVerificationEmail(user, null, req.headers.host);
+            signedUpEmail(user, null, req.headers.host);
             res.json(user);
           }
         });
@@ -297,7 +261,7 @@ exports.validateEmail = function (req, res) {
  * Validate email confirmation
  */
 exports.resendEmailConfirmation = function (req, res) {
-  sendVerificationEmail(req.user, function(err) {
+  signedUpEmail(req.user, function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -314,7 +278,7 @@ exports.resendEmailConfirmation = function (req, res) {
  * Join from home page
  */
 exports.join = function (req, res) {
-  sendJoinVerificationEmail(req.body, function(err) {
+  emailVerificationEmail(req.body, function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -331,7 +295,7 @@ exports.join = function (req, res) {
  * New confirm email funciton
  */
 exports.sendEmailConfirmation = function (req, res) {
-  sendCompanyVerificationEmail(req.body, function(err) {
+  companyVerificationEmail(req.body, function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -347,29 +311,14 @@ exports.sendEmailConfirmation = function (req, res) {
 /**
  * Return an email and company id from a company token 
  */
-exports.verifyCompanyToken = function (req, res) {
-  redis.hmget(req.body.token, ['email', 'companyId']).then(function(result) {
-    if (result) {
-      console.log('heres the result after hmget', result);
-      if (result[1] === null) {
-        return res.status(400).send({
-          message: 'This token is invalid'
-        });
-      }
-      Company.find(result[1]).then(function(company) {
-        if(_.isUndefined(company)){
-          return res.status(400).send({
-            message: 'Company not found'
-          });
-        } else {
-          console.log('about to resspond', company);
-          company.userEmail = result[0];
-          return res.jsonp(company);
-        }
+exports.verifyToken = function (req, res) {
+  redis.hmget(req.body.token, ['email', 'companyId', 'companyName', 'companySlug']).then(function(result) {
+    if (result[0] === null) {
+      return res.status(400).send({
+        message: 'This token is invalid'
       });
-      // look up company and return it 
     } else {
-      return res.redirect('/email/invalid');
+      return res.jsonp(result);
     }
   });
 

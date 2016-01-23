@@ -9,7 +9,7 @@ var sendgrid = require('sendgrid')(config.sendgrid.username, config.sendgrid.pas
 /**
  * Service for all sendgrid emails
  */
-exports.sendEmail = function(email, template, url) {
+exports.send = function(email, template, url, callback) {
   if (email) {
     email.setFilters({
       'templates': {
@@ -21,7 +21,11 @@ exports.sendEmail = function(email, template, url) {
     });
 
     if (config.sendgrid && config.sendgrid.local) {
-      console.log('We didn\'t send an email. Here are the url we would\'ve put in it: ', url);
+      console.log('We didn\'t send an email. Here\'s the url we would\'ve put in it: ', url);
+      console.log('Here\'s the template we would\'ve used: ', template);
+      if (callback) {
+        callback();
+      }
     } else {
       sendgrid.send(email, function(err, json) {
         if (err) {
