@@ -126,39 +126,127 @@
   <div class="dashboard-side-panel">
     <div class="dashboard-side-panel-wrapper">
       <div class="dashboard-side-panel-close">
-        <button href="#" class="btn sproutup-btn-xs"><i class="fa fa-times"></i></button>
+        <button class="btn sproutup-btn-xs"><i class="fa fa-times"></i></button>
       </div>
       <div class="dashboard-side-panel-header">
-        <p>Kevin the Tech Ninja</p>
+        <p>Kevin the Tech Ninja<sup class="label label-influencer">Influencer</sup></p>
+        <button class="btn sproutup-btn-sm aqua" data-toggle="modal" data-target="#myModal"><i class="fa fa-commenting"></i>Send message</button>
       </div>
+      <!-- section: trial status management -->
       <div class="dashboard-side-panel-section">
         <h4>Product Trial</h4>
         <div class="dashboard-side-panel-section-body">
           <div class="product-trial-item--detail">
             <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Requested on Jan 15, 2016</div>
-            <div class="product-trial-item--status-desc"><span class="label label-info">Why</span>This is why I requested this product. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
+            <div class="product-trial-item--status-desc">
+              <p><span class="label label-info">Why</span>This is why I requested this product. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+              <p><span class="label label-info">Reward</span>I'd love <strong>$100</strong> as reward.</p>
+            </div>
           </div>
           <div class="product-trial-item--detail">
             <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>What you say?</div>
             <div class="product-trial-item--status-desc"><button class="btn sproutup-btn-sm aqua">YES to Kevin the Tech Ninja</button></div>
           </div>
           <div class="product-trial-item--detail">
-            <div class="product-trial-item--status current"><i class="fa fa-question-circle"></i>Approved on Jan 16, 2016</div>
+            <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Approved on Jan 16, 2016</div>
             <div class="product-trial-item--status-desc"><span class="label label-info">Shipping</span>Please ship product as soon as you can.</div>
             <div class="product-trial-item--shipping">
               <div class="name">Kevin the Tech Ninja</div>
-              <div class="address">10605 Concord St</div>
-              <div class="address">Kensington, MD 20895</div>
-              <div class="address">(540) 558-8770</div>
+              <div class="address">10605 Concord St, Kensington, MD 20895</div>
+              <div class="address phone">(540) 558-8770</div>
               <div class="address"><a href="mailto:kevin@gmail.com">kevin@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="product-trial-item--detail">
+            <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Have you shipped the product?</div>
+            <div class="product-trial-item--status-desc"><button class="btn sproutup-btn-sm aqua">YES! En route.</button></div>
+          </div>
+          <div class="product-trial-item--detail">
+            <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped on Jan 19, 2016</div>
+            <div class="product-trial-item--status-desc">Awesome! Kevin the Tech Ninja is very excited!</div>
+          </div>
+          <div class="product-trial-item--detail">
+            <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Completed on Feb 20, 2016</div>
+            <div class="product-trial-item--status-desc">Hooray, Kevin the Tech Ninja has posted a video! <a href="#">Check it out!</a></div>
+          </div>
+          <div class="product-trial-item--detail">
+            <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Have you received the product back?</div>
+            <div class="product-trial-item--status-desc">
+              <button class="btn sproutup-btn-sm aqua">YES!</button>
+              <button class="btn sproutup-btn-sm grey">No. Send a reminder.</button>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- section: short bio -->
       <div class="dashboard-side-panel-section">
-        <h4>Profile</h4>
+        <h4>Short Bio</h4>
         <div class="dashboard-side-panel-section-body">
-          Show user profile here...
+          <div class="dashboard-side-panel-paragraph">I'm a guy that loves technology. I'm really a normal person, love to hang with friends, spend time with family and also make dope videos!</div>
+        </div>
+      </div>
+
+      <!-- section: reach -->
+      <div class="dashboard-side-panel-section">
+        <h4>Social Reach<span class="total-reach">203,943</span></h4>
+        <div class="dashboard-side-panel-section-body">
+          <div class="dashboard-side-panel-fineprint">Social Reach is a great indicator of the user's potential impact on promoting your product.</div>
+          <div class="sproutup-table">
+            <table class="table table-hover">
+              <tbody>
+                <tr>
+                  <td class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/youtube.png"></td>
+                  <td><a href="#" target="_blank">YouTube</a></td>
+                  <td class="request-reach">67,392</td>
+                </tr>
+                <tr>
+                  <td class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/twitter.png"></td>
+                  <td><a href="#" target="_blank">Twitter</a></td>
+                  <td class="request-reach">27,392</td>
+                </tr>
+                <tr>
+                  <td class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/instagram.png"></td>
+                  <td><a href="#" target="_blank">Instagram</a></td>
+                  <td class="request-reach">97,392</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- section: track record -->
+      <div class="dashboard-side-panel-section">
+        <h4>Track Record</h4>
+        <div class="dashboard-side-panel-section-body">
+          <div class="dashboard-side-panel-fineprint">Below are previous contributions from Kevin the Tech Ninja.</div>
+          <div class="sproutup-table table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th class="stat-col-header"><a href="#" uib-popover="Number of times people view this content" popover-trigger="mouseenter">Impressions</a></th>
+                  <th class="stat-col-header"><a href="#" uib-popover="Number of referral page visits this content has generated." popover-trigger="mouseenter">Conversion</a></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/youtube.png"></td>
+                  <td><a href="#" target="_blank">Parrot Bebop Review</a></td>
+                  <td class="stat-col-data">27,392</td>
+                  <td class="stat-col-data">1,293</td>
+                </tr>
+                <tr>
+                  <td class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/youtube.png"></td>
+                  <td><a href="#" target="_blank">Boosted First Experience</a></td>
+                  <td class="stat-col-data">27,392</td>
+                  <td class="stat-col-data">1,293</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
