@@ -87,9 +87,11 @@ CompanySchema.statics.findBySlug = function (slug) {
           return company;
         });
       }
-
-      console.log('cache hit');
-      return val;
+      else{
+        console.log('cache hit');
+        var Company = dynamoose.model('Company');
+        return new Company(val);
+      }
   })
   .catch(function(err){
     console.log(err);
