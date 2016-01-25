@@ -13,6 +13,20 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       $location.path('/');
     }
 
+    var saveTeamObject = function(userId, companyId) {
+      var teamObj = {
+        userId: userId,
+        companyId: companyId
+      };
+
+      $http.post('/api/team', teamObj).success(function (team) {
+        $scope.success = true;
+      }).error(function (response) {
+        // TODO display message with error message
+        $scope.error = response.message;
+      });
+    };
+
     $scope.signUpAndJoinCompany = function() {
       $scope.credentials.email = $scope.email;
       $scope.credentials.companyId = $scope.company.id;
@@ -36,16 +50,19 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     $scope.signup = function () {
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
-        // If there's a new company, save it, otherwise go to company.navbar.list
+
+        // If there's a new company, save it, otherwise save a team object
         if ($scope.newCompany) {
           $http.post('/api/company', $scope.company).success(function (company) {
             $state.go('company.navbar.list', { companySlug: company.slug });
+            // TODO save team object here
           }).error(function (response) {
             $scope.error = response.message;
             $state.go('company.navbar.home');
           });
         } else {
           $state.go('company.navbar.list', { companySlug: $scope.company.slug });
+          saveTeamObject($scope.authentication.user.id, $scope.company.id);
         }
       }).error(function (response) {
         $scope.error = response.message;
