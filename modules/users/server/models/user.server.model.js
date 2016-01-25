@@ -188,7 +188,7 @@ var User = dynamoose.model('User', UserSchema);
  * Hook a pre save method to hash the password
  */
 User.pre('save', function(next) {
-  if (this.password && !this.hash) {
+  if (this.password) {
     this.salt = crypto.randomBytes(16).toString('base64');
     this.hash = this.hashPassword(this.password);
     this.password = '';
