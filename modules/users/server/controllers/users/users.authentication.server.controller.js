@@ -45,12 +45,6 @@ var signedUpEmail = function(user, callback, host) {
     redis.set(token, user.id, 'EX', 86400);
     // TODO -- pass in the email and the template, instead of the email, template and the url 
     sendgridService.send(email, '7a6240b6-7a2a-4fc2-aed7-d4a6a52cb880', url);
-
-    sendgrid.send(email, function(err, json) {
-      if (callback) {
-        callback(err);
-      }
-    });
   });
 };
 
