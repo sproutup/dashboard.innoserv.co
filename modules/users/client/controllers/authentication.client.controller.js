@@ -35,7 +35,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         if ($scope.newCompany) {
           $http.post('/api/company', $scope.company).success(function (company) {
             $state.go('company.navbar.list', { companySlug: company.slug });
-            // TODO save team object here
+            saveTeamObject($scope.authentication.user.id, company.id);
           }).error(function (response) {
             $scope.error = response.message;
             $state.go('company.navbar.home');
