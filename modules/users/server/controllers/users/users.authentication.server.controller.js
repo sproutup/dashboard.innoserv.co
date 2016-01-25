@@ -35,7 +35,7 @@ var signedUpEmail = function(user, callback, host) {
 
     var url = 'http://' + host + '/api/users/email/confirmation/' + token;
     var email = new sendgrid.Email();
-    email.subject = ' ';
+    email.subject = 'Amazing.';
     email.from = 'mailer@sproutup.co';
     email.fromname = 'SproutUp';
     email.html = '<div></div>';
@@ -44,7 +44,7 @@ var signedUpEmail = function(user, callback, host) {
     email.addSubstitution(':url', url);
     redis.set(token, user.id, 'EX', 86400);
     // TODO -- pass in the email and the template, instead of the email, template and the url 
-    sendgridService.send(email, '0d97d47d-3d32-499d-9cd9-b5c23c24c592', url);
+    sendgridService.send(email, '7a6240b6-7a2a-4fc2-aed7-d4a6a52cb880', url);
 
     sendgrid.send(email, function(err, json) {
       if (callback) {
