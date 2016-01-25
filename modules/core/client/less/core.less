@@ -1499,7 +1499,6 @@ body {
 }
 
 .product-table tbody tr td[class="campaign-kpi"] {
-  padding: 20px;
   font-weight: 700;
   font-size: 15pt;
 }
@@ -1695,7 +1694,7 @@ body {
 }
 
 .dashboard-body-wrapper {
-  padding: 15px 0px;
+  padding: 0px;
 }
 
 .dashboard-body-wrapper.team-member {
@@ -2518,6 +2517,19 @@ input:-ms-input-placeholder {
 .dashboard-body-header {
   margin: 0px;
   padding: 0px 0px 15px;
+}
+
+.dashboard-body-header .label-campaign-status {
+  font-size: 8pt;
+  margin-right: 6px;
+}
+
+.dashboard-body-header .label-campaign-status.active {
+  background-color: @sproutup-green;
+}
+
+.dashboard-body-header .label-campaign-status.completed {
+  background-color: @sproutup-gold;
 }
 
 .dashboard-body-title {
@@ -3518,4 +3530,56 @@ h3[class="placeholder"] {
   -o-transition: width 0.6s ease 0s;
   transition: width 0.6s ease 0s;
   width: 0;
+}
+
+.contest-winner-selection a {
+  text-decoration: none !important;
+  margin: 0px 2px;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  font-size: 11pt;
+}
+
+.contest-winner-selection a i {
+  border-radius: 100px;
+  padding: 10px !important;
+}
+
+.first-place i {
+  color: @sproutup-gold;
+  border: 2px solid @sproutup-gold;
+}
+
+.contest-winner-selection .first-place:hover i,
+.contest-winner-selection .first-place.selected i {
+  color: white;
+  border: 2px solid @sproutup-gold;
+  background-color: @sproutup-gold;
+}
+
+.contest-winner-selection .second-place i {
+  color: @sproutup-grey;
+  border: 2px solid @sproutup-grey;
+}
+
+.contest-winner-selection .second-place:hover i,
+.contest-winner-selection .second-place.selected i {
+  color: white;
+  border: 2px solid @sproutup-grey;
+  background-color: @sproutup-grey;
+}
+
+.contest-winner-selection .third-place i {
+  color: @sproutup-darkgold;
+  border: 2px solid @sproutup-darkgold;
+}
+
+.contest-winner-selection .third-place:hover i,
+.contest-winner-selection .third-place.selected i {
+  color: white;
+  border: 2px solid @sproutup-darkgold;
+  background-color: @sproutup-darkgold;
 }
