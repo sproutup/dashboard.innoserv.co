@@ -137,6 +137,9 @@ exports.signup = function (req, res) {
   // For security measurement we remove the roles from the req.body object
   delete req.body.roles;
 
+  // Make sure the the email has only lowercase letters
+  req.body.email = req.body.email.toLowerCase();
+
   // Init Variables
   var user = new User(req.body);
   var message = null;
