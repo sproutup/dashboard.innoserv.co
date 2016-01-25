@@ -116,6 +116,20 @@ var saveClaimedCompany = function(token, userId) {
   redis.hdel(token, [ 'email', 'companyId' ]);
 };
 
+exports.sendEmailConfirmation = function (req, res) {
+  companyVerificationEmail(req.body, function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      return res.send({
+        message: 'Email sent successfully'
+      });
+    }
+  }, req.headers.host);
+};
+
 /**
  * Signup
  */
