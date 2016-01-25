@@ -108,7 +108,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
           $scope.company.slug = response[3];
           $scope.companyInit = true;
         }
-        $scope.email = response[0];
+        $scope.credentials.email = response[0];
       }).error(function (errorResponse) {
         $scope.error = errorResponse.message;
       });

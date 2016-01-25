@@ -10,7 +10,7 @@
   <div class="row" ng-if="!companyInit">
     <div class="signup-login-header">
         <h1>Thanks for getting started with SproutUp</h1>
-        <h2>Your registered email is <span>{{ email }}</span>. Please fill out your company information below to continue.</h2>
+        <h2>Your registered email is <span>{{ credentials.email }}</span>. Please fill out your company information below to continue.</h2>
     </div>
     <div class="signup-login-area">
       <form name="userForm" ng-submit="initCompany()" class="signin" novalidate autocomplete="off">
@@ -57,7 +57,7 @@
   <div class="row" ng-if="companyInit">
     <div class="signup-login-header">
         <h1>Thanks for getting started with SproutUp</h1>
-        <h2>Your registered email is <span>{{ email }}</span>, and your company is <span class="signup-company-name">{{ company.name }}</span> Please fill out the information below to finish signing up.</h2>
+        <h2>Your registered email is <span>{{ credentials.email }}</span>, and your company is <span class="signup-company-name">{{ company.name }}</span> Please fill out the information below to finish signing up.</h2>
     </div>
     <div class="signup-login-area">
       <form name="userForm" ng-submit="signup(userForm.$valid)" class="signin" novalidate autocomplete="off">
@@ -88,7 +88,7 @@
             </div>
 
             <!-- sign up button -->
-            <button ng-disabled="userForm.$invalid" class="btn btn-lg signup-login-btn" type="submit" ng-click="vm.signup()">Sign up</button>
+            <button ng-disabled="userForm.$invalid" class="btn btn-lg signup-login-btn" type="submit">Sign up</button>
 
           </div>
         </fieldset>
