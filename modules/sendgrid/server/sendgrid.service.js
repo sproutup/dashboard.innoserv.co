@@ -28,8 +28,8 @@ exports.send = function(email, template, url, callback) {
       }
     } else {
       sendgrid.send(email, function(err, json) {
-        if (err) {
-          console.log(err);
+        if (callback) {
+          callback(err);
         }
       });
     }

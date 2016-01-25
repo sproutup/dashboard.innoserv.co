@@ -74,6 +74,10 @@ angular.module('theme').config(['$stateProvider',
       .state('theme.mocks.hud', {
         url: '/hud',
         templateUrl: 'modules/theme/client/mocks/hud.view.html'
+      })
+      .state('theme.mocks.view-contest-entries', {
+        url: '/view-contest-entries',
+        templateUrl: 'modules/theme/client/mocks/view-contest-entries.view.html'
       });
   }
 ]);
