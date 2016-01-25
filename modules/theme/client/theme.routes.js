@@ -59,6 +59,10 @@ angular.module('theme').config(['$stateProvider',
         url: '/trial-request-details',
         templateUrl: 'modules/theme/client/mocks/trial-request-details.view.html'
       })
+      .state('theme.mocks.config-trial-campaign', {
+        url: '/config-trial-campaign',
+        templateUrl: 'modules/theme/client/mocks/config-trial-campaign.view.html'
+      })
       .state('theme.mocks.create-product', {
         url: '/create-product',
         templateUrl: 'modules/theme/client/mocks/create-product.view.html'
