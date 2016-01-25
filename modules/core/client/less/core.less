@@ -327,39 +327,6 @@ body {
   top: 183px;
 }
 
-
-.progress {
-  background-color: white;
-  border: 1px solid @main-text-white;
-  border-radius: 20px;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  box-shadow: none;
-  height: 12px;
-  margin: 90px 10px 0px;
-  overflow: hidden;
-}
-
-.progress-bar {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  box-shadow: none;
-  background-color: @sproutup-blue;
-  background-image: none;
-  float: left;
-  height: 100%;
-  -webkit-transition: width 0.6s ease 0s;
-  -moz-transition: width 0.6s ease 0s;
-  -ms-transition: width 0.6s ease 0s;
-  -o-transition: width 0.6s ease 0s;
-  transition: width 0.6s ease 0s;
-  width: 0;
-}
-
 .active-trial-status {
   position: relative;
   width: 100%;
@@ -3053,7 +3020,9 @@ input:-ms-input-placeholder {
   color: white;
   border-radius: 2px;
   -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
 
@@ -3160,6 +3129,8 @@ input:-ms-input-placeholder {
   border-radius: 2px;
   padding-top: 5px;
   -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
 }
@@ -3470,4 +3441,81 @@ h3[class="placeholder"] {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     margin-bottom: 0;
+}
+
+.upload-file-widget {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0px;
+  height: 160px;
+  width: 160px;
+  margin: 0px;
+  text-align: center;
+  border: 1px solid @sproutup-lightgrey;
+  position: relative;
+}
+
+.upload-file-button {
+  text-align: center;
+  height: 40px;
+  font-weight: 700;
+  font-size: 9pt;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 11px 15px 0px;
+  border-radius: 0px;
+  margin: 0px;
+  box-shadow: none;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.upload-file-button:hover,
+.upload-file-button:focus,
+.upload-file-button:active {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: none;
+}
+
+.progress {
+  background-color: white;
+  border: 1px solid @main-text-white;
+  border-radius: 20px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  box-shadow: none;
+  height: 12px;
+  margin: 134px 10px 0px;
+  overflow: hidden;
+  z-index: 10;
+  position: relative;
+}
+
+.create-campaign-banner .progress {
+  margin: 110px 30px 0px;
+}
+
+.progress-bar {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  box-shadow: none;
+  background-color: @sproutup-orange;
+  background-image: none;
+  float: left;
+  height: 100%;
+  -webkit-transition: width 0.6s ease 0s;
+  -moz-transition: width 0.6s ease 0s;
+  -ms-transition: width 0.6s ease 0s;
+  -o-transition: width 0.6s ease 0s;
+  transition: width 0.6s ease 0s;
+  width: 0;
 }
