@@ -92,6 +92,10 @@ var UserSchema = new Schema({
   hash: {
     type: String
   },
+  avatar: {
+    id: String,
+    ref: String
+  },
   profileImageURL: {
     type: String,
     default: 'modules/core/client/img/default-avatar.png'

@@ -110,13 +110,25 @@ Company.pre('save', function(next) {
   }
 
   // delete old slug
-  if(!_.isEqual(oldSlug, this.slug)){
+  if(!_.isUndefined(this.id)){
     redis.del('company:slug:' + oldSlug);
+    redis.del('company:' + this.id);
   }
-
-  // add new slug
-  redis.hmset('company:slug:' + this.slug, this);
-  redis.hmset('company:' + this.id, this);
 
   next();
 });
+
+/**
+ * Hook a pre delete method to delete from cache
+ */
+Company.pre('delete', function(next) {
+
+  // delete old slug
+  if(!_.isUndefined(this.id)){
+    redis.del('company:slug:' + this.slug);
+    redis.del('company:' + this.id);
+  }
+
+  next();
+});
+
