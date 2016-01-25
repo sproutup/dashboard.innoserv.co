@@ -203,31 +203,25 @@ exports.changePassword = function (req, res, next) {
       User.get(req.user.id, function (err, user) {
         if (!err && user) {
           if (user.authenticate(passwordDetails.currentPassword)) {
-            if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
-              user.password = passwordDetails.newPassword;
+            user.password = passwordDetails.newPassword;
 
-              user.save(function (err) {
-                if (err) {
-                  return res.status(400).send({
-                    message: errorHandler.getErrorMessage(err)
-                  });
-                } else {
-                  req.login(user, function (err) {
-                    if (err) {
-                      res.status(400).send(err);
-                    } else {
-                      res.send({
-                        message: 'Password changed successfully'
-                      });
-                    }
-                  });
-                }
-              });
-            } else {
-              res.status(400).send({
-                message: 'Passwords do not match'
-              });
-            }
+            user.save(function (err) {
+              if (err) {
+                return res.status(400).send({
+                  message: errorHandler.getErrorMessage(err)
+                });
+              } else {
+                req.login(user, function (err) {
+                  if (err) {
+                    res.status(400).send(err);
+                  } else {
+                    res.send({
+                      message: 'Password changed successfully'
+                    });
+                  }
+                });
+              }
+            });
           } else {
             res.status(400).send({
               message: 'Current password is incorrect'
