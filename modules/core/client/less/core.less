@@ -1703,6 +1703,10 @@ body {
   margin-bottom: 10px;
 }
 
+.form-input-textarea.sm {
+  min-height: 60px;
+}
+
 .form-input-textarea.no-resize {
   resize: none;
 }
@@ -2869,6 +2873,59 @@ input:-ms-input-placeholder {
 
 .product-trial-item--shipping .address a {
   color: @sproutup-blue;
+}
+
+.product-trial-item--messages {
+  margin: 0px 0px 30px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid @sproutup-lightgrey;
+}
+
+.message-blurb {
+  margin: 0px 0px 12px;
+}
+
+.message-blurb .sender {
+  font-weight: 700;
+  font-size: 8.5pt;
+  padding: 0px 0px 4px;
+  color: @main-text-light;
+}
+
+.message-blurb .sender span {
+  font-weight: 400;
+  color: @main-text-lighter;
+  padding-left: 10px;
+}
+
+.message-blurb .content {
+  font-weight: 400;
+  font-size: 10pt;
+  line-height: 1.6;
+  padding: 12px 15px;
+}
+
+.message-blurb .btn {
+  margin-top: 7px;
+}
+
+.message-blurb.outbound {
+  margin-left: 25%;
+}
+
+.message-blurb.inbound {
+  margin-right: 25%;
+}
+
+.message-blurb.outbound .content {
+  background-color: @sproutup-green;
+  color: @main-text-white;
+}
+
+.message-blurb.inbound .content {
+  background-color: @sproutup-green-muted;
+  color: @main-text;
 }
 
 // sproutup buttons

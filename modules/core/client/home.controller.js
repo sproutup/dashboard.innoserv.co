@@ -22,7 +22,7 @@ function HomeController($scope, $state, CompanyService, $http, Authentication) {
     Authentication.emailSentTo = vm.email;
 
     $http.post('/api/auth/join', vm.credentials).success(function (response) {
-      $state.go('company.landing.confirmation');
+      $state.go('landing.confirmation');
     }).error(function (response) {
       $scope.error = response.message;
     });
