@@ -35,7 +35,7 @@ var signedUpEmail = function(user, callback, host) {
 
     var url = 'http://' + host + '/api/users/email/confirmation/' + token;
     var email = new sendgrid.Email();
-    email.subject = ' ';
+    email.subject = 'Amazing.';
     email.from = 'mailer@sproutup.co';
     email.fromname = 'SproutUp';
     email.html = '<div></div>';
@@ -44,13 +44,7 @@ var signedUpEmail = function(user, callback, host) {
     email.addSubstitution(':url', url);
     redis.set(token, user.id, 'EX', 86400);
     // TODO -- pass in the email and the template, instead of the email, template and the url 
-    sendgridService.send(email, '0d97d47d-3d32-499d-9cd9-b5c23c24c592', url);
-
-    sendgrid.send(email, function(err, json) {
-      if (callback) {
-        callback(err);
-      }
-    });
+    sendgridService.send(email, '7a6240b6-7a2a-4fc2-aed7-d4a6a52cb880', url);
   });
 };
 
@@ -122,12 +116,29 @@ var saveClaimedCompany = function(token, userId) {
   redis.hdel(token, [ 'email', 'companyId' ]);
 };
 
+exports.sendEmailConfirmation = function (req, res) {
+  companyVerificationEmail(req.body, function(err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      return res.send({
+        message: 'Email sent successfully'
+      });
+    }
+  }, req.headers.host);
+};
+
 /**
  * Signup
  */
 exports.signup = function (req, res) {
   // For security measurement we remove the roles from the req.body object
   delete req.body.roles;
+
+  // Make sure the the email has only lowercase letters
+  req.body.email = req.body.email.toLowerCase();
 
   // Init Variables
   var user = new User(req.body);
@@ -184,59 +195,10 @@ exports.emailIsAvailable = function (req, res) {
 };
 
 /**
- * Validate email token
- */
-exports.validateEmail = function (req, res) {
-  redis.get(req.params.token).then(function(result) {
-    if (result) {
-      User.update({ id: result }, { $PUT: { emailConfirmed: true }}, function (err, user) {
-        return res.redirect('/email/success');
-      });
-    } else {
-      return res.redirect('/email/invalid');
-    }
-  });
-};
-
-/**
- * Validate email confirmation
- */
-exports.resendEmailConfirmation = function (req, res) {
-  signedUpEmail(req.user, function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      return res.send({
-        message: 'Email sent successfully'
-      });
-    }
-  }, req.headers.host);
-};
-
-/**
  * Join from home page
  */
 exports.join = function (req, res) {
   emailVerificationEmail(req.body, function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      return res.send({
-        message: 'Email sent successfully'
-      });
-    }
-  }, req.headers.host);
-};
-
-/**
- * New confirm email funciton
- */
-exports.sendEmailConfirmation = function (req, res) {
-  companyVerificationEmail(req.body, function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
