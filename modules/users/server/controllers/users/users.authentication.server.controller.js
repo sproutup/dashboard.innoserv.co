@@ -178,59 +178,10 @@ exports.emailIsAvailable = function (req, res) {
 };
 
 /**
- * Validate email token
- */
-exports.validateEmail = function (req, res) {
-  redis.get(req.params.token).then(function(result) {
-    if (result) {
-      User.update({ id: result }, { $PUT: { emailConfirmed: true }}, function (err, user) {
-        return res.redirect('/email/success');
-      });
-    } else {
-      return res.redirect('/email/invalid');
-    }
-  });
-};
-
-/**
- * Validate email confirmation
- */
-exports.resendEmailConfirmation = function (req, res) {
-  signedUpEmail(req.user, function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      return res.send({
-        message: 'Email sent successfully'
-      });
-    }
-  }, req.headers.host);
-};
-
-/**
  * Join from home page
  */
 exports.join = function (req, res) {
   emailVerificationEmail(req.body, function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      return res.send({
-        message: 'Email sent successfully'
-      });
-    }
-  }, req.headers.host);
-};
-
-/**
- * New confirm email funciton
- */
-exports.sendEmailConfirmation = function (req, res) {
-  companyVerificationEmail(req.body, function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

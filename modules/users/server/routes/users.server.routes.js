@@ -11,10 +11,6 @@ module.exports = function (app) {
   app.route('/api/users/password').post(users.changePassword);
   app.route('/api/users/picture').post(users.changeProfilePicture);
 
-  // Setting up the user email routes
-  app.route('/api/users/email/confirmation/:token').get(users.validateEmail);
-  app.route('/api/users/email/confirmation').post(users.resendEmailConfirmation);
-
   // Finish by binding the user middleware
   app.param('userId', users.userByID);
 };
