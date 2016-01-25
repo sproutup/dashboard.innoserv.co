@@ -44,7 +44,7 @@ var signedUpEmail = function(user, callback, host) {
     email.addSubstitution(':url', url);
     redis.set(token, user.id, 'EX', 86400);
     // TODO -- pass in the email and the template, instead of the email, template and the url 
-    sendgridService.send(user.email, '0d97d47d-3d32-499d-9cd9-b5c23c24c592', url);
+    sendgridService.send(email, '0d97d47d-3d32-499d-9cd9-b5c23c24c592', url);
 
     sendgrid.send(email, function(err, json) {
       if (callback) {
@@ -161,65 +161,6 @@ exports.signup = function (req, res) {
         } else {
           res.json(user);
         }
-      });
-    }
-  });
-};
-
-/**
- * Signup and claim a company
- */
-exports.signUpAndJoinCompany = function (req, res) {
-  // For security measurement we remove the roles from the req.body object
-  delete req.body.roles;
-
-  // Init Variables
-  var user = new User(req.body);
-  var message = null;
-
-  // Add missing user fields
-  user.provider = 'local';
-  user.displayName = user.firstName + ' ' + user.lastName;
-
-  // Save the user
-  user.save(function (err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      // Remove sensitive data before login
-      user.password = undefined;
-      user.salt = undefined;
-
-      // Save a team obj
-      redis.hmget(req.body.token, ['companyId']).then(function(result) {
-        if (result.length === 1) {
-          var teamObj = {
-            userId: user.id,
-            companyId: result[0]
-          };
-
-          var item = new Team(teamObj);
-          item.save(function (err) {
-            if (err) {
-              res.status(400).send(err);
-            }
-          });
-        } 
-
-        // Remove the token
-        redis.hdel(req.body.token, [ 'email', 'companyId' ]);
-        
-        // Login the user
-        req.login(user, function (err) {
-          if (err) {
-            res.status(400).send(err);
-          } else {
-            signedUpEmail(user, null, req.headers.host);
-            res.json(user);
-          }
-        });
       });
     }
   });

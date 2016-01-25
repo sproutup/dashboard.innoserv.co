@@ -7,28 +7,22 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
     // Get an eventual error defined in the URL query string:
     $scope.error = $location.search().err;
-    
+
     // If user is signed in then redirect back home
     if ($scope.authentication.user) {
       $location.path('/');
     }
 
-    $scope.signUpAndJoinCompany = function() {
-      $scope.credentials.email = $scope.email;
-      $scope.credentials.companyId = $scope.company.id;
+    var saveTeamObject = function(userId, companyId) {
+      var teamObj = {
+        userId: userId,
+        companyId: companyId
+      };
 
-      // This tells the backend that we have a company to claim
-      if ($state.params.token) {
-        $scope.credentials.token = $state.params.token;
-      } else {
-        $scope.error = 'No token found';
-        return;
-      }
-
-      $http.post('/api/auth/signUpAndJoinCompany', $scope.credentials).success(function (response) {
-        $scope.authentication.user = response;
-        $state.go($state.previous.state.name || 'company.navbar.home', $state.previous.params);
+      $http.post('/api/team', teamObj).success(function (team) {
+        $scope.success = true;
       }).error(function (response) {
+        // TODO display message with error message
         $scope.error = response.message;
       });
     };
@@ -36,16 +30,19 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     $scope.signup = function () {
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
-        // If there's a new company, save it, otherwise go to company.navbar.list
+
+        // If there's a new company, save it, otherwise save a team object
         if ($scope.newCompany) {
           $http.post('/api/company', $scope.company).success(function (company) {
             $state.go('company.navbar.list', { companySlug: company.slug });
+            saveTeamObject($scope.authentication.user.id, company.id);
           }).error(function (response) {
             $scope.error = response.message;
             $state.go('company.navbar.home');
           });
         } else {
           $state.go('company.navbar.list', { companySlug: $scope.company.slug });
+          saveTeamObject($scope.authentication.user.id, $scope.company.id);
         }
       }).error(function (response) {
         $scope.error = response.message;
@@ -91,7 +88,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
           $scope.company.slug = response[3];
           $scope.companyInit = true;
         }
-        $scope.email = response[0];
+        $scope.credentials.email = response[0];
       }).error(function (errorResponse) {
         $scope.error = errorResponse.message;
       });
