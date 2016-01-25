@@ -27,26 +27,6 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       });
     };
 
-    $scope.signUpAndJoinCompany = function() {
-      $scope.credentials.email = $scope.email;
-      $scope.credentials.companyId = $scope.company.id;
-
-      // This tells the backend that we have a company to claim
-      if ($state.params.token) {
-        $scope.credentials.token = $state.params.token;
-      } else {
-        $scope.error = 'No token found';
-        return;
-      }
-
-      $http.post('/api/auth/signUpAndJoinCompany', $scope.credentials).success(function (response) {
-        $scope.authentication.user = response;
-        $state.go($state.previous.state.name || 'company.navbar.home', $state.previous.params);
-      }).error(function (response) {
-        $scope.error = response.message;
-      });
-    };
-
     $scope.signup = function () {
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
