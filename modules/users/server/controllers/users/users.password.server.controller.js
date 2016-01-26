@@ -157,33 +157,9 @@ exports.reset = function (req, res, next) {
           });
         }
       });
-    },
-    // If valid email, send reset email using service
-    function (user, done) {
-      // send email to user to let them know their password has been changed
-      var email = new sendgrid.Email();
-      email.addTo(user.email);
-      email.subject = 'Your password has been reset';
-      email.from = 'mailer@sproutup.co';
-      email.fromname = 'Bot@SproutUp';
-      email.html = '<div></div>';
-      email.addSubstitution(':user', user.displayName);
-
-      email.setFilters({
-        'templates': {
-          'settings': {
-            'enable': 1,
-            'template_id' : 'ec65e498-2dd4-4281-bc89-f3e3a9447f80'
-          }
-        }
-      });
-
-      sendgrid.send(email, function(err, json) {
-        if (err) { return console.error('err with email', err); }
-        done(err);
-      });
     }
-  ], function (err) {
+  ],
+  function (err) {
     if (err) {
       return next(err);
     }
