@@ -10,7 +10,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
     // If user is signed in then redirect back home
     if ($scope.authentication.user) {
-      $location.path('/');
+      $state.go('mycompany');
     }
 
     var saveTeamObject = function(userId, companyId) {
@@ -41,7 +41,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
             $state.go('company.navbar.home');
           });
         } else {
-          $state.go('company.navbar.home', { companySlug: $scope.company.slug });
+          $state.go('mycompany', { companySlug: $scope.company.slug });
           saveTeamObject($scope.authentication.user.id, $scope.company.id);
         }
       }).error(function (response) {
