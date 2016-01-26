@@ -3550,53 +3550,33 @@ h3[class="placeholder"] {
   width: 0;
 }
 
-.contest-winner-selection a {
-  text-decoration: none !important;
-  margin: 0px 2px;
-  -webkit-transition: all .3s ease-in-out;
-  -moz-transition: all .3s ease-in-out;
-  -ms-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
-  font-size: 11pt;
+.contest-winner-selection .place {
+  text-align: center;
+  border-radius: 500px;
+  width: 50px;
+  height: 50px;
+  padding: 8px 0px;
+  font-weight: 300;
+  font-size: 16pt;
+  color: @secondary-text;
+  border: 2px solid @secondary-text;
+  background-color: transparent;
+  margin: 0px auto;
 }
 
-.contest-winner-selection a i {
-  border-radius: 100px;
-  padding: 10px !important;
-}
-
-.first-place i {
-  color: @sproutup-gold;
-  border: 2px solid @sproutup-gold;
-}
-
-.contest-winner-selection .first-place:hover i,
-.contest-winner-selection .first-place.selected i {
+.contest-winner-selection .place.first {
   color: white;
   border: 2px solid @sproutup-gold;
   background-color: @sproutup-gold;
 }
 
-.contest-winner-selection .second-place i {
-  color: @sproutup-grey;
-  border: 2px solid @sproutup-grey;
-}
-
-.contest-winner-selection .second-place:hover i,
-.contest-winner-selection .second-place.selected i {
+.contest-winner-selection .place.second {
   color: white;
   border: 2px solid @sproutup-grey;
   background-color: @sproutup-grey;
 }
 
-.contest-winner-selection .third-place i {
-  color: @sproutup-darkgold;
-  border: 2px solid @sproutup-darkgold;
-}
-
-.contest-winner-selection .third-place:hover i,
-.contest-winner-selection .third-place.selected i {
+.contest-winner-selection .place.third {
   color: white;
   border: 2px solid @sproutup-darkgold;
   background-color: @sproutup-darkgold;
