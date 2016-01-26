@@ -11,7 +11,12 @@ function HomeController($scope, $state, CompanyService, $http, Authentication) {
   // This provides Authentication context.
   vm.authentication = Authentication;
   vm.getStarted = getStarted;
+  vm.gotoMyCompany = gotoMyCompany;
   vm.init = true;
+
+  function gotoMyCompany() {
+    $state.go('mycompany');
+  }
 
   function getStarted() {
     vm.credentials = {
