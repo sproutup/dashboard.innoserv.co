@@ -36,6 +36,9 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/campaign/:campaignId',
       permissions: ['*']
     }, {
+      resources: '/api/campaign/template',
+      permissions: '*'
+    }, {
       resources: '/api/company/:companyId/campaign',
       permissions: ['*']
 
