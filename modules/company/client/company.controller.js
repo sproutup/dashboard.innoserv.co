@@ -121,13 +121,13 @@
         }
 
         function findMyCompany() {
-          var company = CompanyService.company().get({
-            companyId: Authentication.user.sessionCompany.id
-            //id: Authentication.user.sessionCompany.id
+          var companies = CompanyService.companyByUser().query({
+            userId: Authentication.user.id
           }, function() {
-            vm.company = company;
+            vm.company = companies[0];
+            $state.go('company.navbar.home', { companySlug: vm.company.slug });
           }, function(err) {
-            $state.go('landing.default');
+            $state.go('index');
           });
         }
    }

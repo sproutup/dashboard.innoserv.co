@@ -34,14 +34,14 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         // If there's a new company, save it, otherwise save a team object
         if ($scope.newCompany) {
           $http.post('/api/company', $scope.company).success(function (company) {
-            $state.go('company.navbar.list', { companySlug: company.slug });
+            $state.go('company.navbar.home', { companySlug: company.slug });
             saveTeamObject($scope.authentication.user.id, company.id);
           }).error(function (response) {
             $scope.error = response.message;
             $state.go('company.navbar.home');
           });
         } else {
-          $state.go('company.navbar.list', { companySlug: $scope.company.slug });
+          $state.go('company.navbar.home', { companySlug: $scope.company.slug });
           saveTeamObject($scope.authentication.user.id, $scope.company.id);
         }
       }).error(function (response) {
@@ -52,7 +52,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     $scope.signin = function () {
       $http.post('/api/auth/signin', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
-        $state.go($state.previous.state.name || 'company.navbar.home', $state.previous.params);
+        $state.go($state.previous.state.name || 'mycompany', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });

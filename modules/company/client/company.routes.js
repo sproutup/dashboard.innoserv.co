@@ -19,7 +19,16 @@ angular.module('company').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-      .state('company.navbar.company.create', {
+      .state('mycompany', {
+        url: '/mycompany',
+        template: '<div ng-init="vm.findMyCompany()"></div>',
+        controller: 'CompanyController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        }
+      })
+     .state('company.navbar.company.create', {
         url: '/create',
         templateUrl: 'modules/company/client/admin/create-company.html'
       })
