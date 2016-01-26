@@ -12,6 +12,7 @@ var validator = require('validator');
 var _ = require('lodash');
 var slug = require('slug');
 var redis = require('config/lib/redis');
+var domain = require('parse-domain');
 
 /**
  * Article Schema
@@ -39,7 +40,15 @@ var CompanySchema = new Schema({
       project: true,
       name: 'index_company_slug'
     }
- },
+  },
+  domain: {
+    type: String,
+    index: {
+      global: true,
+      project: true,
+      name: 'index_company_domain'
+    }
+  },
   address: {
     type: String
   },
@@ -109,6 +118,11 @@ Company.pre('save', function(next) {
   var oldSlug = this.slug;
   if (this.name) {
     this.slug = slug(this.name);
+  }
+
+  if(this.url){
+    var dom = domain(this.url);
+    this.domain = dom.domain + '.' + dom.tld;
   }
 
   // delete old slug
