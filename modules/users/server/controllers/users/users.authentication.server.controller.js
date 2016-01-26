@@ -49,32 +49,9 @@ var signedUpEmail = function(user, callback, host) {
 };
 
 /**
- * Join company verification email after email only signup
- */
-var companyVerificationEmail = function(user, callback, host) {
-  var token;
-
-  crypto.randomBytes(20, function (err, buffer) {
-    token = buffer.toString('hex');
-
-    var url = 'http://' + host + '/authentication/signup/' + token;
-    var email = new sendgrid.Email();
-    email.subject = 'Finish Joining ' + user.company.name + ' on SproutUp';
-    email.from = 'mailer@sproutup.co';
-    email.fromname = 'SproutUp';
-    email.html = '<div></div>';
-    email.addTo(user.email);
-    email.addSubstitution(':url', url);
-    email.addSubstitution(':company_name', user.company.name);
-    redis.hmset(token, {'email': user.email, 'companyId': user.company.id, 'companyName': user.company.name, 'companySlug': user.company.slug });
-    sendgridService.send(email, 'a97ea7cd-fdd9-4c9d-9f32-e6d7793b8fd2', url, callback);
-  });
-};
-
-/**
  * Email Verification
  */
-var emailVerificationEmail = function(user, callback, host) {
+var verificationEmail = function(user, callback, host) {
   var token;
 
   crypto.randomBytes(20, function (err, buffer) {
@@ -88,8 +65,15 @@ var emailVerificationEmail = function(user, callback, host) {
     email.html = '<div></div>';
     email.addTo(user.email);
     email.addSubstitution(':url', url);
-    redis.hmset(token, { 'email': user.email });
-    sendgridService.send(email, '585fc344-09d7-4bcc-b969-863b70f9b7dc', url, callback);
+    if (user.company) {
+      email.addSubstitution(':company_name', user.company.name);
+      redis.hmset(token, {'email': user.email, 'companyId': user.company.id, 'companyName': user.company.name, 'companySlug': user.company.slug });
+      sendgridService.send(email, 'a97ea7cd-fdd9-4c9d-9f32-e6d7793b8fd2', url, callback);
+    } else {
+      redis.hmset(token, { 'email': user.email });
+      sendgridService.send(email, '585fc344-09d7-4bcc-b969-863b70f9b7dc', url, callback);
+    }
+    
   });
 };
 
@@ -114,20 +98,6 @@ var saveClaimedCompany = function(token, userId) {
   });
 
   redis.hdel(token, [ 'email', 'companyId' ]);
-};
-
-exports.sendEmailConfirmation = function (req, res) {
-  companyVerificationEmail(req.body, function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      return res.send({
-        message: 'Email sent successfully'
-      });
-    }
-  }, req.headers.host);
 };
 
 /**
@@ -209,7 +179,7 @@ exports.emailIsAvailable = function (req, res) {
  * Join from home page
  */
 exports.join = function (req, res) {
-  emailVerificationEmail(req.body, function(err) {
+  verificationEmail(req.body, function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

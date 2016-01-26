@@ -5,7 +5,7 @@
         <!-- Company name -->
         <div class="form-group">
           <label for="Name">Company Name</label>
-            <input ng-model="company.company.name" type="text" id="Name" name="Name" class="form-control form-validate form-input" placeholder="The official name of your company">
+            <input ng-model="company.company.name" type="text" id="Name" name="Name" class="form-control form-validate form-input" placeholder="The official name of your company" required>
         </div>
 
         <!-- Company URL -->
@@ -32,11 +32,11 @@
         </div>
 
         <!-- TODO: change to SproutUp heads-up message style -->
-        <div data-ng-show="company.success" class="text-center text-success">
-          <strong>Saved Successfully</strong>
+        <div data-ng-if="company.success" up-banner message-variable="company.success" fade-out="5000" class="hud success">
+          <i class="fa fa-check"></i>Saved Successfully
         </div>
-        <div data-ng-show="company.error" class="text-center text-danger">
-          <strong data-ng-bind="error"></strong>
+        <div data-ng-if="company.error" up-banner message-variable="company.error" fade-out="5000" class="hud error">
+          <i class="fa fa-frown-o"></i><span ng-bind="company.error"></span>
         </div>
       </fieldset>
     </form>
