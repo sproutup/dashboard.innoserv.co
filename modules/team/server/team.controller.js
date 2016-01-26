@@ -6,6 +6,7 @@
 var dynamoose = require('dynamoose');
 var Team = dynamoose.model('Team');
 var User = dynamoose.model('User');
+var Company = dynamoose.model('Company');
 var errorHandler = require('modules/core/server/errors.controller');
 var _ = require('lodash');
 
@@ -137,6 +138,10 @@ exports.listByCompany = function (req, res) {
  */
 exports.listByUser = function (req, res) {
   Team.query({userId: req.model.id}).exec().then(function(items){
+    var query = _.map(items, function(val){ return {id: val.companyId}; });
+    return Company.batchGet(query);
+  })
+  .then(function(items){
     res.json(items);
   })
   .catch(function(err){
