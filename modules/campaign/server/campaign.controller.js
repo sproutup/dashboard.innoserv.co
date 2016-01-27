@@ -25,6 +25,7 @@ exports.dropTable = function (req, res) {
  * Show
  */
 exports.read = function (req, res) {
+  console.log('heres req model', req.model);
   res.json(req.model);
 };
 
@@ -74,7 +75,9 @@ exports.update = function (req, res) {
   //For security purposes only merge these parameters
   item.name = req.body.name;
   item.description = req.body.description;
+  item.tagline = req.body.tagline;
   item.type = req.body.type;
+  item.status = req.body.status;
 
   item.save().then(function(data){
     res.json(item);
@@ -122,8 +125,7 @@ exports.list = function (req, res) {
  * List by company
  */
 exports.listByCompany = function (req, res) {
-  console.log('list by company');
-  Campaign.query('companyId').eq(req.model.id).where('status').eq(0).exec().then(function(items){
+  Campaign.query('companyId').eq(req.model.id).where('status').gt(-2).exec().then(function(items){
     res.json(items);
   })
   .catch(function(err){

@@ -36,15 +36,6 @@ angular.module('users').config(['$stateProvider',
         url: '/authentication',
         templateUrl: 'modules/users/client/views/authentication/authentication.client.view.html'
       })
-      // this is a temporary url
-      .state('authentication.general-signup-1', {
-        url: '/general-signup/1',
-        templateUrl: 'modules/users/client/views/authentication/general-signup-1.client.view.html'
-      })
-      .state('authentication.general-signup-2', {
-        url: '/general-signup/2',
-        templateUrl: 'modules/users/client/views/authentication/general-signup-2.client.view.html'
-      })
       .state('authentication.signup', {
         url: '/signup/:token',
         templateUrl: 'modules/users/client/views/authentication/signup.client.view.html'

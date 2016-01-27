@@ -18,6 +18,7 @@
       vm.find = find;
       vm.findOne = findOne;
       vm.openModal = openModal;
+      vm.startCampaign = startCampaign;
       vm.socialOptions = [
         {  title: 'Twitter',
            type: 'tw' },
@@ -63,7 +64,7 @@
 
         vm.item.$save(function (response) {
           vm.item = {};
-          $state.go('company.navbar.campaign.list');
+          $state.go('company.navbar.campaign.trial.edit', { campaignId: response.id });
           // Clear form fields
         }, function (errorResponse) {
           vm.error = errorResponse.data.message;
@@ -124,12 +125,17 @@
 
         vm.item.$update({
           campaignId: $state.params.campaignId
-        }, function () {
-         $state.go('company.navbar.campaign.list');
+        }, function (response) {
+          $state.go('company.navbar.campaign.list');
         }, function (errorResponse) {
           vm.success = null;
           vm.error = errorResponse.data.message;
         });
+      }
+
+      function startCampaign () {
+        vm.item.status = 1;
+        update();
       }
 
       function cancel() {
@@ -146,10 +152,10 @@
         }
 
         function makeCall() {
-          vm.campaigns = CampaignService.listByCompany().query({
+          CampaignService.listByCompany().query({
             companyId: $scope.company.company.id
-          }, function() {
-            console.log('campaigns found');
+          }, function(response) {
+            vm.campaigns = response;
           }, function(err) {
             console.log(err);
           });
