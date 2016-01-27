@@ -34,9 +34,19 @@ var ContributorSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  // states: 0=requested, 1=approved, -1=rejected, -2=cancelled
   state: {
     type: Number,
     default: 0
+  },
+  address: {
+    type: String
+  },
+  phone: {
+    type: String
+  },
+  comment: {
+    type: String
   }
 });
 
