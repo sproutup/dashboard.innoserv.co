@@ -20,6 +20,7 @@
       vm.openModal = openModal;
       vm.startCampaign = startCampaign;
       vm.stopCampaign = stopCampaign;
+      vm.returnMatch = returnMatch;
       vm.socialOptions = [
         {  title: 'Twitter',
            type: 'tw' },
@@ -74,7 +75,6 @@
 
       function initTemplate() {
         vm.error = null;
-        console.log('init template');
 
         if (!$scope.template.item.type) {
           var listener = $scope.$watch('template.item.type', function(val) {
@@ -140,7 +140,7 @@
       }
 
       function stopCampaign () {
-        var CampaignObj = CampaignService.campaigns();
+        var CampaignObj = CampaignService.campaignFields();
         var campaign = new CampaignObj();
         campaign.status = -1;
         campaign.$update({
@@ -265,6 +265,13 @@
         }, function () {
           console.log('Modal dismissed at: ' + new Date());
         });
+      }
+
+      function returnMatch (actual, expected) {
+        if (!expected) {
+           return true;
+        }
+        return angular.equals(expected, actual);
       }
 
 //       findProducts();
