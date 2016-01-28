@@ -39,6 +39,12 @@ var ContributorSchema = new Schema({
     type: Number,
     default: 0
   },
+  link: {
+    type: String
+  },
+  contentUrl: {
+    type: String
+  },
   address: {
     type: String
   },

@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="campaign in vm.campaigns | filter: {type:'trial', status: 0}: vm.returnMatch">
+        <tr ng-repeat="campaign in vm.campaigns | filter: {status: 0}">
           <td class="product-table-edit"><a ui-sref="company.navbar.campaign.trial.edit({ campaignId: campaign.id })"><i class="fa fa-pencil"></i></a></td>
           <td><span ng-class="campaign.type" class="label label-campaign">{{campaign.type}}</span></td>
           <td>{{campaign.name}}</td>
@@ -35,7 +35,6 @@
           <td class="campaign-kpi"></td>
           <td class="campaign-kpi"></td>
         </tr>
-        <tr>
       </tbody>
     </table>
   </div>
@@ -56,7 +55,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="campaign in vm.campaigns | filter: {type:'trial', status: 1}: vm.returnMatch">
+        <tr ng-repeat="campaign in vm.campaigns | filter: {status: 1}: vm.returnMatch">
           <td class="product-table-edit"><a ui-sref="company.navbar.campaign.trial.configure({ campaignId: campaign.id })"><i class="fa fa-pencil"></i></a></td>
           <td><span ng-class="campaign.type" class="label label-campaign">{{campaign.type}}</span></td>
           <td>{{campaign.name}}</td>
@@ -83,7 +82,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="campaign in vm.campaigns | filter: {type:'trial', status: -1}: vm.returnMatch">
+          <tr ng-repeat="campaign in vm.campaigns | filter: {status: -1}: vm.returnMatch">
             <td class="product-table-edit"><a ui-sref="company.navbar.campaign.trial.configure({ campaignId: campaign.id })"><i class="fa fa-pencil"></i></a></td>
             <td><span ng-class="campaign.type" class="label label-campaign">{{campaign.type}}</span></td>
             <td>{{campaign.name}}</td>
