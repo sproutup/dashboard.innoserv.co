@@ -113,8 +113,13 @@ exports.listByCampaign = function (req, res) {
  */
 exports.listByUser = function (req, res) {
   Contributor.query({userId: req.params.userId}).exec().then(function(items){
-    var query = _.map(items, function(val){ return {id: val.campaignId}; });
-    return Campaign.batchGet(query);
+    if(items.length>0){
+      var query = _.map(items, function(val){ return {id: val.campaignId}; });
+      return Campaign.batchGet(query);
+    }
+    else{
+      return [];
+    }
   })
   .then(function(items){
     res.json(items);
