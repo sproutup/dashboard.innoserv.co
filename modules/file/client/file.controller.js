@@ -118,6 +118,11 @@ function FileController($scope, $state, FileService, $location, Authentication, 
           // Redirect after save
           item.$save(function (response) {
             console.log('file saved', response);
+            vm.file.dataUrl = null;
+            vm.file = item;
+            // set in the directive
+            vm.model.$setViewValue(item);
+            vm.onUpload();
           }, function (errorResponse) {
             console.log(errorResponse);
             vm.error = errorResponse.data.message;
@@ -159,7 +164,7 @@ function FileController($scope, $state, FileService, $location, Authentication, 
   }
 
   function cancel() {
-    $state.go('company.navbar.files');
+    $state.go('company.navbar.file.list');
   }
 
   function find() {

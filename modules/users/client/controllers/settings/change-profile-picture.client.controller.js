@@ -54,6 +54,15 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
       $scope.error = response.message;
     };
 
+    // Save user profile picture
+    $scope.saveProfilePicture = function () {
+      // Clear messages
+      $scope.success = $scope.error = null;
+      console.log('save:');
+
+      Authentication.user.avatar.ref = $scope.user.file.id;
+    };
+
     // Change user profile picture
     $scope.uploadProfilePicture = function () {
       // Clear messages
