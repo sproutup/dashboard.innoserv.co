@@ -93,8 +93,13 @@ var UserSchema = new Schema({
     type: String
   },
   avatar: {
-    id: String,
-    ref: String
+    ref: {
+      type: String
+    },
+    type: {
+      type: String,
+      default: 'file'
+    }
   },
   profileImageURL: {
     type: String,
@@ -142,6 +147,16 @@ UserSchema.method('hashPassword', function (password) {
     return password;
   }
 });
+
+/**
+ * Create instance method for authenticating user
+ */
+UserSchema.method('populate', function (path) {
+  var _this = this;
+  console.log('populate: ', path);
+  return _this;
+});
+
 
 /**
  * Create instance method for authenticating user

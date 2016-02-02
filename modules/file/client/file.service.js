@@ -268,10 +268,10 @@ function FileService($resource, $http, $q, $filter, FileUpload) {
     var pos = 0;
     var reader = new FileReader();
     var startTime = +new Date();
-    var hash;
+//    var hash;
 
-    service.sha256(file).then(
-      function(file){
+//    service.sha256(file).then(
+//      function(file){
         $http({
           method: 'POST',
           url: '/api/file/signature',
@@ -279,7 +279,7 @@ function FileService($resource, $http, $q, $filter, FileUpload) {
             'Content-Type': 'application/json'
           },
           data: {
-            'hash' : file.hash,
+  //          'hash' : file.hash,
             'name' : file.name,
             'length': file.size,
             'type': file.type
@@ -290,20 +290,6 @@ function FileService($resource, $http, $q, $filter, FileUpload) {
         }).error(function(data, status, headers, config){
           deferred.reject(null);
         });
-      },
-      function(error){
-        console.log('error: ' + error);
-      },
-      function(result){
-        deferred.notify(result);
-      }
-    );
-
-    //reader.readAsArrayBuffer(file);
-    //hashFile(file, 4096, onLoad, onProgress );
-
-    //var hash = CryptoJS.SHA256("HOORAY").toString(CryptoJS.enc.Hex);
-
     return deferred.promise;
   }
 }
