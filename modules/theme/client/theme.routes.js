@@ -87,6 +87,10 @@ angular.module('theme').config(['$stateProvider',
         url: '/list-team-member',
         templateUrl: 'modules/theme/client/mocks/list-team-member.view.html'
       })
+      .state('theme.mocks.company-settings', {
+        url: '/company-settings',
+        templateUrl: 'modules/theme/client/mocks/company-settings.view.html'
+      })
       .state('theme.mocks.hud', {
         url: '/hud',
         templateUrl: 'modules/theme/client/mocks/hud.view.html'
