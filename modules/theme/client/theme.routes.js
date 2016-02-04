@@ -51,6 +51,10 @@ angular.module('theme').config(['$stateProvider',
         url: '/create-campaign',
         templateUrl: 'modules/theme/client/mocks/create-campaign.view.html'
       })
+      .state('theme.mocks.start-campaign-confirmation', {
+        url: '/start-campaign-confirmation',
+        templateUrl: 'modules/theme/client/mocks/start-campaign-confirmation.view.html'
+      })
       .state('theme.mocks.list-campaign', {
         url: '/list-campaign',
         templateUrl: 'modules/theme/client/mocks/list-campaign.view.html'
@@ -82,6 +86,10 @@ angular.module('theme').config(['$stateProvider',
       .state('theme.mocks.list-team-member', {
         url: '/list-team-member',
         templateUrl: 'modules/theme/client/mocks/list-team-member.view.html'
+      })
+      .state('theme.mocks.company-settings', {
+        url: '/company-settings',
+        templateUrl: 'modules/theme/client/mocks/company-settings.view.html'
       })
       .state('theme.mocks.hud', {
         url: '/hud',

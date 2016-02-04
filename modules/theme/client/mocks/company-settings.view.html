@@ -1,0 +1,120 @@
+<div class="creator-menu">
+  <div class="navbar-header">
+    <button class="navbar-toggle" type="button">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <nav role="navigation">
+    <div class="nav-head">
+      <div class="nav-item-wrapper creator-company">
+        <a href="#">SproutUp Co</a>
+      </div>
+      <div class="nav-item-wrapper creator-user">
+        <a href="#">
+          <img src="modules/core/client/img/default-avatar.png">Tao
+        </a>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-item-wrapper nav-item-main">
+        <a href="#">Campaigns</a>
+      </div>
+      <div class="nav-item-wrapper nav-item-main">
+        <a href="#">Products</a>
+      </div>
+      <div class="nav-item-wrapper nav-item-main">
+        <a href="#">Company Settings</a>
+      </div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-item-wrapper nav-item-main">
+        <a href="#">Log out</a>
+      </div>
+    </div>
+
+  </nav>
+</div>
+
+<div class="dashboard-container">
+  <h1 class="dashboard-section-title">
+    <i class="fa fa-university"></i>Company Settings
+    <div class="dashboard-menu-top">
+      <a class="dashboard-menu-top-item active" href="#">Profile</a>
+      <a class="dashboard-menu-top-item" href="#">Team Members</a>
+      <a class="dashboard-menu-top-item" href="#">Other</a>
+    </div>
+  </h1>
+
+  <div class="row">
+    <div class="col-sm-7">
+      <form name="companyForm" class="signin" autocomplete="off" ng-submit="company.update(companyForm.$valid)">
+        <fieldset>
+
+          <!-- Company name -->
+          <div class="form-group">
+            <label for="Name">Company Name</label>
+            <input type="text" id="Name" name="Name" class="form-control form-validate form-input" placeholder="The official name of your company" required>
+          </div>
+
+          <!-- Company tagline -->
+          <div class="form-group">
+            <label for="Tagline">Tagline</label>
+            <input type="text" id="" name="" class="form-control form-validate form-input" placeholder="A cool tagline about your company" required>
+          </div>
+
+          <!-- Profile appearance -->
+          <div class="form-group">
+            <label for="">Profile Appearance</label>
+            <div class="form-secondary-label">Upload an awesome photo to showcase your company. For the best visual quality, the recommended size is 2400 x 1200 pixels.</div>
+            <div class="create-campaign-banner" style="background-image: url('modules/core/client/img/default-campaign-banner.jpg');">
+              <a class="btn btn-lg upload-file-button">Upload a profile photo</a>
+            </div>
+          </div>
+
+          <!-- Company URL -->
+          <div class="form-group">
+            <label for="url">Company Website</label>
+            <input type="url" id="url" name="url" class="form-control form-validate form-input" placeholder="The official website of your company">
+          </div>
+
+          <!-- Company address -->
+          <div class="form-group">
+            <label for="vm.address">Business Address</label>
+            <input type="text" id="address" name="address" class="form-control form-validate form-input" placeholder="Business address of your company">
+          </div>
+
+          <!-- Company phone number -->
+          <div class="form-group">
+            <label for="company.phone">Phone Number</label>
+            <input type="text" id="phone" name="phone" class="form-control form-validate form-input" placeholder="A phone number we can reach you">
+          </div>
+
+          <!-- TODO: disable Save button unless users change something -->
+          <div class="form-group">
+            <input value="Save Changes" class="btn btn-lg sproutup-btn-md-main">
+          </div>
+
+        </fieldset>
+      </form>
+    </div>
+    <div class="col-sm-5 col-education-sidebar">
+      <div class="education-sidebar">
+        <div class="education-sidebar-section">
+          <div class="title">Your public profile on SproutUp</div>
+          <div class="description">SproutUp is a great place to showcase your company to a community of product enthusiasts and content creators. <a href="#" target="_blank">See your profile page <i class="fa fa-angle-right"></i></a></div>
+        </div>
+        <hr>
+        <div class="education-sidebar-section">
+          <div class="title">Connect with social networks</div>
+          <div class="description">SproutUp is a great place to showcase your company to a community of product enthusiasts and content creators. <a href="#" target="_blank">See your profile page <i class="fa fa-angle-right"></i></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

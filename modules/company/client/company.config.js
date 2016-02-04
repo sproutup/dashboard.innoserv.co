@@ -3,7 +3,7 @@
 angular.module('company').run(['Menus',
   function (Menus) {
     Menus.addMenuItem('navbar', {
-      title: 'Company Info',
+      title: 'Company Settings',
       state: 'company.navbar.settings.profile',
       class: '',
       roles: ['user', 'admin'],

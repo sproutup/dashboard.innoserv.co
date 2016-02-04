@@ -565,7 +565,7 @@ body {
 
 .nav-item-main {
   font-weight: 700;
-  font-size: 11.5pt;
+  font-size: 10.5pt;
 }
 
 .nav-item-main.active a {
@@ -1103,13 +1103,18 @@ body {
 .label-campaign {
   padding: 8px 12px;
   font-weight: 700;
-  font-size: 9pt;
+  font-size: 8.5pt;
+}
+
+.product-table .label-campaign,
+.sproutup-table .label-campaign {
+  margin-left: 15px;
 }
 
 .label-campaign-sm {
   padding: 8px 12px;
   font-weight: 700;
-  font-size: 8pt;
+  font-size: 7.5pt;
 }
 
 .label-campaign.trial {
@@ -1497,9 +1502,9 @@ body {
   vertical-align: middle;
 }
 
-.product-table tbody tr td[class="campaign-kpi"] {
+.sproutup-table tbody tr td[class="campaign-kpi"] {
   font-weight: 700;
-  font-size: 15pt;
+  font-size: 13pt;
 }
 
 .product-table tbody tr:hover {
@@ -1570,6 +1575,10 @@ body {
   padding-right: 10px;
 }
 
+.dashboard-call-for-action {
+  margin-bottom: 20px;
+}
+
 .dashboard-section-title {
   border-bottom: 1px solid @sproutup-grey;
   font-weight: 300;
@@ -1594,13 +1603,20 @@ body {
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
-  color: @main-text-lighter;
+  color: @main-text-light;
   font-weight: 700;
   font-size: 10.5pt;
+}
+
+.form-group .form-secondary-label {
+  color: @main-text-lighter;
+  font-weight: 400;
+  font-size: 10pt;
+  padding: 0px 0px 12px;
 }
 
 .form-inline .input-group {
@@ -2400,7 +2416,7 @@ body {
 .sproutup-table tbody tr td {
   padding: 20px;
   font-weight: 400;
-  font-size: 11pt;
+  font-size: 10pt;
   color: @main-text;
   vertical-align: middle;
 }
@@ -2584,6 +2600,10 @@ input:-ms-input-placeholder {
   width: 21%;
 }
 
+.sproutup-table .campaign-title {
+  font-weight: 700;
+}
+
 .sproutup-table .request-avatar {
   padding-right: 0px;
 }
@@ -2618,7 +2638,7 @@ input:-ms-input-placeholder {
 }
 
 .sproutup-table .request-reach {
-  font-size: 14pt;
+  font-size: 12pt;
   font-weight: 700;
   color: @sproutup-green;
 }
@@ -2737,10 +2757,19 @@ input:-ms-input-placeholder {
   width: 10%;
 }
 
+.content-stats-list .sproutup-table .social-network-icon {
+  width: 10%;
+}
+
 .dashboard-side-panel-section-body .sproutup-table .social-network-icon img {
   border-radius: 100px;
   width: 28px;
   height: 28px;
+}
+
+.content-stats-list .sproutup-table .social-network-icon img {
+  weight: 40px;
+  height: 40px;
 }
 
 .dashboard-side-panel-section-body .sproutup-table thead tr th {
@@ -2991,6 +3020,26 @@ input:-ms-input-placeholder {
 .sproutup-btn-lg-main.grey:hover {
   color: @main-text;
   background-color: white;
+}
+
+.sproutup-btn-lg-main.facebook {
+  background-color: @facebook-blue;
+  color: white;
+}
+
+.sproutup-btn-lg-main.facebook:hover {
+  background-color: @facebook-blue-hover;
+  color: white;
+}
+
+.sproutup-btn-lg-main.twitter {
+  background-color: @twitter-blue;
+  color: white;
+}
+
+.sproutup-btn-lg-main.twitter:hover {
+  background-color: @twitter-blue-hover;
+  color: white;
 }
 
 .sproutup-btn-md-main {
@@ -3407,6 +3456,11 @@ h3[class="placeholder"] {
   margin: 10px 0px 40px;
 }
 
+.empty-state-wrapper h1 {
+  color: @main-text;
+  font-size: 60pt;
+}
+
 .empty-state-wrapper h2 {
   font-weight: 300;
   color: @main-text;
@@ -3419,6 +3473,10 @@ h3[class="placeholder"] {
   font-size: 13pt;
   margin-bottom: 30px;
   line-height: 1.6;
+}
+
+.empty-state-wrapper p a {
+  color: @sproutup-blue;
 }
 
 .hud {
@@ -3640,4 +3698,85 @@ h3[class="placeholder"] {
 
 .onboarding-action-description a {
   color: @sproutup-orange;
+}
+
+.content-stats-list {
+  padding: 40px 15px;
+}
+
+.content-stats-list .content-title {
+  font-weight: 700;
+  font-size: 14pt;
+  color: @main-text-light;
+  margin: 0px;
+  padding: 0px 0px 5px;
+}
+
+.content-stats-list .content-subline {
+  margin: 0px;
+  padding: 0px;
+}
+
+.content-stats-list .content-subline .content-author {
+  font-weight: 400;
+  font-size: 11pt;
+  color: @main-text-lighter;
+  padding-right: 8px;
+}
+
+.content-stats-list .content-subline .content-view-link {
+  font-weight: 400;
+  font-size: 11pt;
+  color: @main-text-lighter;
+  padding-left: 8px;
+}
+
+.campaign-share-action .btn {
+  margin: 5px;
+}
+
+.campaign-share-back-link {
+  margin-top: 50px;
+  font-weight: 400;
+  font-size: 11pt;
+}
+
+.campaign-share-back-link a {
+  color: @sproutup-blue;
+}
+
+.campaign-share-back-link a i {
+  margin-right: 10px;
+}
+
+.col-education-sidebar {
+  padding: 0px 15px 0px 40px;
+}
+
+.education-sidebar {
+  background-color: @sproutup-verylightgrey;
+  padding: 25px 30px;
+}
+
+.education-sidebar hr {
+  border-top: 1px solid @sproutup-grey;
+}
+
+.education-sidebar-section .title {
+  font-weight: 400;
+  font-size: 12pt;
+  color: @main-text-light;
+  padding-bottom: 15px;
+}
+
+.education-sidebar-section .description {
+  font-weight: 400;
+  font-size: 10.5pt;
+  color: @main-text-lighter;
+  line-height: 1.6;
+}
+
+.education-sidebar-section .description a {
+  color: @sproutup-blue;
+  font-size: 9.5pt;
 }
