@@ -100,7 +100,7 @@
     }
 
     function cancel() {
-      $location.path('products');
+      $state.go('company.navbar.product.list');
     }
 
     function find() {
