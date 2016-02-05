@@ -5,6 +5,7 @@
  */
 var dynamoose = require('dynamoose');
 var Campaign = dynamoose.model('Campaign');
+var Company = dynamoose.model('Company');
 var errorHandler = require('modules/core/server/errors.controller');
 var _ = require('lodash');
 
@@ -25,8 +26,10 @@ exports.dropTable = function (req, res) {
  * Show
  */
 exports.read = function (req, res) {
-  console.log('heres req model', req.model);
-  res.json(req.model);
+  Company.get(req.model.companyId).then(function(company){
+    req.model.company = company;
+    res.json(req.model);
+  });
 };
 
 /**
@@ -125,14 +128,17 @@ exports.list = function (req, res) {
  * List by company
  */
 exports.listByCompany = function (req, res) {
-  Campaign.query('companyId').eq(req.model.id).where('status').gt(-2).exec().then(function(items){
-    res.json(items);
-  })
-  .catch(function(err){
-    return res.status(400).send({
-      message: errorHandler.getErrorMessage(err)
+  Campaign.query('companyId')
+    .eq(req.model.id)
+    .where('status').gt(-2)
+    .exec().then(function(items){
+      res.json(items);
+    })
+    .catch(function(err){
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
     });
-  });
 };
 
 /**
