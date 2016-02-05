@@ -32,6 +32,7 @@
 
       // Get the topbar menu
       vm.menu = Menus.getMenu('company.campaign.menu');
+      vm.trialmenu = Menus.getMenu('company.navbar.campaign.trial.view.menu');
 
       function create(isValid) {
         vm.error = null;
@@ -66,7 +67,7 @@
 
         vm.item.$save(function (response) {
           vm.item = {};
-          $state.go('company.navbar.campaign.trial.edit', { campaignId: response.id });
+          $state.go('company.navbar.campaign.edit-trial', { campaignId: response.id });
           // Clear form fields
         }, function (errorResponse) {
           vm.error = errorResponse.data.message;

@@ -192,6 +192,11 @@ angular.module('core').service('Menus', [
     });
 
     //Adding the campaign menu
+    this.addMenu('company.navbar.campaign.trial.view.menu', {
+      roles: ['*']
+    });
+
+    //Adding the campaign menu
     this.addMenu('company.user.settings.menu', {
       roles: ['*']
     });
