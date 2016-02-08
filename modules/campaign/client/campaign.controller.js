@@ -21,6 +21,9 @@
       vm.startCampaign = startCampaign;
       vm.stopCampaign = stopCampaign;
       vm.returnMatch = returnMatch;
+      vm.viewDetails = viewDetails;
+      vm.closeDetails = closeDetails;
+      vm.approveRequest = approveRequest;
       vm.socialOptions = [
         {  title: 'Twitter',
            type: 'tw' },
@@ -211,8 +214,23 @@
           campaignId: $state.params.campaignId
         }, function(res) {
           vm.contributors = res;
+          filterContributors();
         }, function(err) {
           $state.go('landing.default');
+        });
+      }
+
+      function filterContributors() {
+        vm.requested = vm.contributors.filter(function(item) {
+          return item.state === 0;
+        });
+
+        vm.approved = vm.contributors.filter(function(item) {
+          return item.state === 1;
+        });
+
+        vm.completed = vm.contributors.filter(function(item) {
+          return item.state === 10;
         });
       }
 
@@ -273,6 +291,27 @@
            return true;
         }
         return angular.equals(expected, actual);
+      }
+
+      function viewDetails(request) {
+        vm.details = true;
+        vm.request = request;
+      }
+
+      function closeDetails() {
+        vm.details = false;
+      }
+
+      function approveRequest(request) {
+        console.log(request);
+        // request.state = 1;
+        // request.$update(function(response) {
+        //   console.log(response);
+        //   vm.success = true;
+        // }, function (errorResponse) {
+        //   console.log(errorResponse);
+        //   vm.error = errorResponse.data.message;
+        // });
       }
 
 //       findProducts();
