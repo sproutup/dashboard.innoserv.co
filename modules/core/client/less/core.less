@@ -1594,8 +1594,10 @@ body {
   font-weight: 700;
 }
 
-.dashboard-section-title span {
+.dashboard-section-title span a {
   font-weight: 700;
+  font-size: 10pt;
+  padding-left: 15px;
 }
 
 .dashboard-section-title i {
@@ -2136,6 +2138,29 @@ body {
 .campaign-question-wrapper .btn-group .sproutup-btn-lg-main.active {
   color: white;
   background-color: @sproutup-blue;
+}
+
+.campaign-choose-product a {
+  text-decoration: none !important;
+}
+
+.campaign-choose-product a p {
+  font-weight: 700;
+  font-size: 11pt;
+  padding: 12px 22px;
+  color: @main-text-lighter;
+  background-color: @sproutup-lightgrey;
+  margin: 3px 0px;
+}
+
+.campaign-choose-product a p i {
+  font-size: 11pt;
+  margin-right: 12px;
+}
+
+.campaign-choose-product a:hover p {
+  color: white;
+  background-color: @sproutup-green;
 }
 
 .switch-wrapper .sproutup-btn-lg-main {
@@ -3232,6 +3257,12 @@ input:-ms-input-placeholder {
   background-color: rgba(0, 0, 0, 0.9);
   border: 1px solid @main-text-white;
   color: @main-text-white;
+}
+
+.sproutup-btn-xs.cancel {
+  color: @main-text-lighter;
+  background-color: @sproutup-superlightgrey;
+  border: 1px solid @sproutup-grey;
 }
 
 .form-inline {
