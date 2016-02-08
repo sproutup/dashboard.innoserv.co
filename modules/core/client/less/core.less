@@ -2153,12 +2153,21 @@ body {
   margin: 3px 0px;
 }
 
-.campaign-choose-product a p i {
+.campaign-choose-product a p span {
+  float: right;
+  color: @sproutup-lightgrey;
+}
+
+.campaign-choose-product a p span i {
   font-size: 11pt;
-  margin-right: 12px;
 }
 
 .campaign-choose-product a:hover p {
+  color: white;
+  background-color: @sproutup-green;
+}
+
+.campaign-choose-product a[class="active"] p {
   color: white;
   background-color: @sproutup-green;
 }
