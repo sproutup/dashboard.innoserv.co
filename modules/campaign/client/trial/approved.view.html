@@ -18,12 +18,15 @@
         </thead>
         <tbody>
           <tr ng-repeat="user in vm.approved">
-            <td class="request-avatar"><a href="#"><img class="img-center" ng-src="{{ user.avatarUrl || 'https://pbs.twimg.com/profile_images/555729400335847424/I8lgVJtQ_bigger.png' }}"></a></td>
+            <td class="request-avatar"><a href="#">
+              <img ng-if="user.avatarUrl" class="img-center" ng-src="{{ user.avatarUrl }}">
+              <canvas ng-if="!user.avatarUrl" width="60" height="60" fontsize="28" name="{{ user.name }}" up-avatar></canvas>
+            </a></td>
             <td class="request-name-pitch">
-              <div class="name"><a href="#">{{ user.name || 'Peter Thiel' }}</a></div>
+              <div class="name"><a href="#">{{ user.name || 'User' }}</a></div>
               <div>{{ user.comment || 'No reason specified' }}<a href="#"></a></div>
             </td>
-            <td class="request-reach">{{ user.reach || '9,391,471' }}</td>
+            <td class="request-reach">{{ user.reach || '?' }}</td>
             <td class="request-detail-link"><a href="#" ng-click="vm.viewDetails(user)">Details</a></td>
           </tr>
         </tbody>
