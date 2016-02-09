@@ -19,7 +19,10 @@ var config = require('../config'),
   helmet = require('helmet'),
   flash = require('connect-flash'),
   consolidate = require('consolidate'),
-  path = require('path');
+  path = require('path'),
+  httpProxy = require('http-proxy'),
+  proxy = httpProxy.createProxyServer();
+
 
 /**
  * Initialize local variables
@@ -216,6 +219,21 @@ module.exports.configureSocketIO = function (app, db) {
   return server;
 };
 
+
+module.exports.initHttpProxy = function (app){
+  console.log('init http proxy');
+  app.use(function(req, res, next){
+    if(req.url.match(new RegExp('^\/api\/'))) {
+      proxy.proxyRequest(req, res,
+        {target: config.server.api }
+      );
+    } else {
+      next();
+    }
+  });
+};
+
+
 /**
  * Initialize the Express application
  */
@@ -225,6 +243,9 @@ module.exports.init = function (db) {
 
   // Initialize local variables
   this.initLocalVariables(app);
+
+  // Inititalize http proxy
+  this.initHttpProxy(app);
 
   // Initialize Express middleware
   this.initMiddleware(app);
@@ -258,3 +279,4 @@ module.exports.init = function (db) {
 
   return app;
 };
+
