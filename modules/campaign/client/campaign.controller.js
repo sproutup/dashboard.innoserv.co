@@ -24,6 +24,7 @@
       vm.viewDetails = viewDetails;
       vm.closeDetails = closeDetails;
       vm.approveRequest = approveRequest;
+      vm.findContributors = findContributors;
       vm.socialOptions = [
         {  title: 'Twitter',
            type: 'tw' },
@@ -32,6 +33,8 @@
         {  title: 'YouTube',
            type: 'yt' }
       ];
+
+      console.log($state);
 
       // Get the topbar menu
       vm.menu = Menus.getMenu('company.campaign.menu');
@@ -173,7 +176,8 @@
 
         function makeCall() {
           CampaignService.listByCompany().query({
-            companyId: $scope.company.company.id
+            userId: $state.params.userId,
+            campaignId: $state.params.campaignId
           }, function(response) {
             vm.campaigns = response;
           }, function(err) {
@@ -198,7 +202,6 @@
       function findOne() {
         vm.success = false;
         vm.item = {};
-        findContributors();
 
         CampaignService.campaigns().get({
           campaignId: $state.params.campaignId
@@ -213,6 +216,7 @@
         CampaignService.contributors().get({
           campaignId: $state.params.campaignId
         }, function(res) {
+          vm.item = res.campaign;
           vm.contributors = res.items;
           filterContributors();
         }, function(err) {

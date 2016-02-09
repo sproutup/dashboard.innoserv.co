@@ -1,4 +1,4 @@
-<h1 class="dashboard-section-title" ng-init="vm.findOne()">
+<h1 class="dashboard-section-title" ng-init="vm.findContributors()">
   <a ui-sref="company.navbar.campaign.list"><i class="fa fa-angle-left"></i></a>{{vm.item.name}}
   <div class="dashboard-menu-top">
     <a class="dashboard-menu-top-item active" ui-sref="company.navbar.campaign.trial.view">Requests</a>
@@ -6,7 +6,6 @@
     <a class="dashboard-menu-top-item" ui-sref="company.navbar.campaign.trial.view">Configuration</a>
   </div>
 </h1>
-
 <div class="row dashboard-body-wrapper" ng-init="vm.status = 'Requested'">
   <div class="col-sm-3 request-group">
     <div class="list-group">
@@ -24,10 +23,5 @@
     <div ng-include="'modules/campaign/client/trial/completed.view.html'"></div>
   </div>
 </div>
-
 <!-- Details panel -->
-<div class="dashboard-side-panel" ng-if="vm.details">
-  <div class="dashboard-side-panel-wrapper">
-    <div ng-include="'modules/campaign/client/trial/request-details.view.html'"></div>
-  </div>
-</div>
+<div ui-view></div>

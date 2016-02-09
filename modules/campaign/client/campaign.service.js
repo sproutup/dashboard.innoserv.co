@@ -10,7 +10,8 @@ function CampaignService($resource) {
   var service = {
     listByCompany: listByCompany,
     campaigns: campaigns,
-    contributors: contributors
+    contributors: contributors,
+    contribution: contribution
   };
 
   return service;
