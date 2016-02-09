@@ -17,17 +17,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="user in vm.requested">
+          <tr ng-repeat="request in vm.requested">
             <td class="request-avatar"><a href="#">
-              <img ng-if="user.avatarUrl" class="img-center" ng-src="{{ user.avatarUrl }}">
-              <canvas ng-if="!user.avatarUrl" width="60" height="60" fontsize="28" name="{{ user.name }}" up-avatar></canvas>
+              <img ng-if="request.user.avatarUrl" class="img-center" ng-src="{{ request.user.avatarUrl }}">
+              <canvas ng-if="!request.avatarUrl" width="60" height="60" fontsize="28" name="{{ request.user.name }}" up-avatar></canvas>
             </a></td>
             <td class="request-name-pitch">
-              <div class="name"><a href="#">{{ user.name || 'User' }}</a></div>
-              <div>{{ user.comment || 'No reason specified' }}<a href="#"></a></div>
+              <div class="name"><a href="#">{{ request.user.name || 'User' }}</a></div>
+              <div>{{ request.user.comment || 'No reason specified' }}<a href="#"></a></div>
             </td>
-            <td class="request-reach">{{ user.reach || '?' }}</td>
-            <td class="request-detail-link"><a href="#" ng-click="vm.viewDetails(user)">Details</a></td>
+            <td class="request-reach">{{ request.user.reach || '?' }}</td>
+            <td class="request-detail-link"><a href="#" ng-click="vm.viewDetails(request)">Details</a></td>
           </tr>
         </tbody>
       </table>

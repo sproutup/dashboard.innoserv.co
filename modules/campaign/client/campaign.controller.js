@@ -210,10 +210,10 @@
       }
 
       function findContributors() {
-        CampaignService.contributors().query({
+        CampaignService.contributors().get({
           campaignId: $state.params.campaignId
         }, function(res) {
-          vm.contributors = res;
+          vm.contributors = res.items;
           filterContributors();
         }, function(err) {
           $state.go('landing.default');
