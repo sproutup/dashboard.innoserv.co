@@ -27,4 +27,8 @@ function CampaignService($resource) {
      return $resource('/api/campaign/:campaignId/user', { companyId:'@id' }, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
   }
 
+  function contribution () {
+     return $resource('/api/user/:userId/campaign/:campaignId', { userId:'@userId', campaignId:'@id' }, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
+  }
+
 }

@@ -6,12 +6,28 @@
     <a class="dashboard-menu-top-item" ui-sref="company.navbar.campaign.trial.view">Configuration</a>
   </div>
 </h1>
-<div class="row dashboard-body-wrapper">
+
+<div class="row dashboard-body-wrapper" ng-init="vm.status = 'Requested'">
   <div class="col-sm-3 request-group">
     <div class="list-group">
-      <a ng-repeat="item in vm.trialmenu.items | orderBy: 'position'" ui-sref="{{item.state}}" ng-if="item.shouldRender(company.authentication.user);" ng-switch="item.type" class="{{item.class}}"><div class="list-group-item" ng-class="{ 'current': company.state.includes(item.state) }">{{item.title}}</div></a>
+      <a ng-repeat="item in vm.trialmenu.items | orderBy: 'position'" ng-click="vm.status = item.title" ng-if="item.shouldRender(company.authentication.user);" ng-switch="item.type" class="{{item.class}}"><div class="list-group-item" ng-class="{ 'current': vm.status === item.title }">{{item.title}}</div></a>
     </div>
   </div>
+  <!-- Requests -->
+  <div class="col-sm-9 request-list" ng-show="vm.status === 'Requested'">
+    <div ng-include="'modules/campaign/client/trial/requested.view.html'"></div>
+  </div>
+  <div class="col-sm-9 request-list" ng-show="vm.status === 'Approved'">
+    <div ng-include="'modules/campaign/client/trial/approved.view.html'"></div>
+  </div>
+  <div class="col-sm-9 request-list" ng-show="vm.status === 'Completed'">
+    <div ng-include="'modules/campaign/client/trial/completed.view.html'"></div>
+  </div>
+</div>
 
-  <ui-view></ui-view>
+<!-- Details panel -->
+<div class="dashboard-side-panel" ng-if="vm.details">
+  <div class="dashboard-side-panel-wrapper">
+    <div ng-include="'modules/campaign/client/trial/request-details.view.html'"></div>
+  </div>
 </div>
