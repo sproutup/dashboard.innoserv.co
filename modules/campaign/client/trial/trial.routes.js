@@ -33,7 +33,7 @@ angular.module('campaign').config(['$stateProvider',
         url: '/:userId',
         templateUrl: 'modules/campaign/client/contributor-details.view.html',
         controller: 'ContributorController',
-        controllerAs: 'vm'
+        controllerAs: 'contributor'
       });
   }
 ]);

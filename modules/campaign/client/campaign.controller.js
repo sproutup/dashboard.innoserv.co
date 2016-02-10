@@ -176,8 +176,7 @@
 
         function makeCall() {
           CampaignService.listByCompany().query({
-            userId: $state.params.userId,
-            campaignId: $state.params.campaignId
+            companyId: $scope.company.company.id
           }, function(response) {
             vm.campaigns = response;
           }, function(err) {
@@ -298,7 +297,6 @@
       }
 
       function viewDetails(request) {
-        vm.details = true;
         vm.request = request;
       }
 

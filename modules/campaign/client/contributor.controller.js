@@ -9,29 +9,30 @@
   ContributorController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService'];
 
   function ContributorController($scope, $rootScope, $state, CampaignService) {
-    var vm = this;
-    vm.getDetails = getDetails;
-    vm.approveTrial = approveTrial;
+    var contributor = this;
+    contributor.getDetails = getDetails;
+    contributor.approveRequest = approveRequest;
 
     function getDetails() {
       CampaignService.contribution().get({
         userId: $state.params.userId,
         campaignId: $state.params.campaignId
       }, function(response) {
-        vm.item = response;
+        contributor.item = response;
       }, function(err) {
         console.log(err);
       });
     }
 
-    function approveTrial() {
+    function approveRequest(request) {
       CampaignService.contribution().update({
         userId: $state.params.userId,
         campaignId: $state.params.campaignId
       }, { state: 1 }, function(response) {
-        var user = vm.item.user;
-        vm.item = response;
-        vm.item.user = user;
+        var user = contributor.item.user;
+        contributor.item = response;
+        contributor.item.user = user;
+        request.state = 1;
       }, function(err) {
         console.log(err);
       });
