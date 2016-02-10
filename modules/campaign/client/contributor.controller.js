@@ -27,23 +27,25 @@
     }
 
     function sortLog() {
-      // Find approved logs
-      contributor.item.approved = contributor.item.log.filter(function(item) {
-        return item.state === 1;
-      });
+      if (contributor.item.log) {
+        // Find approved logs
+        contributor.item.approved = contributor.item.log.filter(function(item) {
+          return item.state === 1;
+        });
 
-      // Find completed logs
-      contributor.item.completed = contributor.item.log.filter(function(item) {
-        return item.state === 10;
-      });
-
-      // contributor.item.approved.sort(function(a,b){
-      //   return b.created - a.created;
-      // });
+        // Find completed logs
+        contributor.item.completed = contributor.item.log.filter(function(item) {
+          return item.state === 10 || item.state === '10';
+        });
 
       // contributor.item.approved.sort(function(a,b){
       //   return b.created - a.created;
       // });
+
+      // contributor.item.approved.sort(function(a,b){
+      //   return b.created - a.created;
+      // });
+      }
     }
 
     function approveRequest(request) {
@@ -58,6 +60,7 @@
         var user = contributor.item.user;
         contributor.item = response;
         contributor.item.user = user;
+        sortLog();
         if (request) {
           request.state = state;
         }
@@ -78,6 +81,7 @@
         var user = contributor.item.user;
         contributor.item = response;
         contributor.item.user = user;
+        sortLog();
       }, function(err) {
         console.log(err);
       });
