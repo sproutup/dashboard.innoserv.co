@@ -9,9 +9,9 @@
 <div class="row dashboard-body-wrapper" ng-init="vm.query.state = 0">
   <div class="col-sm-3 request-group">
     <div class="list-group">
-      <a ng-click="vm.query.state = 0" class="{{item.class}}"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 0 }">Requested</div></a>
-      <a ng-click="vm.query.state = 1" class="{{item.class}}"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 1 }">Approved</div></a>
-      <a ng-click="vm.query.state = 10" class="{{item.class}}"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 10 }">Completed</div></a>
+      <a ng-click="vm.query.state = 0"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 0 }">Requested</div></a>
+      <a ng-click="vm.query.state = 1"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 1 }">Approved</div></a>
+      <a ng-click="vm.query.state = 10"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 10 }">Completed</div></a>
     </div>
   </div>
   <!-- Requests -->

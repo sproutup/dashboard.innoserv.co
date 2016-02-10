@@ -51,27 +51,27 @@
         </div>
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0">
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Approved on Jan 16, 2016</div>
-          <div class="product-trial-item--status-desc"><span class="label label-info">Shipping</span>Please ship product as soon as you can.</div>
+          <div class="product-trial-item--status-desc" ng-if="!contributor.item.trial.shippingState"><span class="label label-info">Shipping</span>Please ship product as soon as you can.</div>
+          <div class="product-trial-item--detail" ng-if="contributor.item.trial.shippingState">
+            <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped</div>
+          <!-- <div class="product-trial-item--status-desc">Awesome! Kevin the Tech Ninja is very excited!</div> -->
+          </div>
           <div class="product-trial-item--shipping">
-            <div class="name">Kevin the Tech Ninja</div>
-            <div class="address">10605 Concord St, Kensington, MD 20895</div>
-            <div class="address phone">(540) 558-8770</div>
-            <div class="address"><a href="mailto:kevin@gmail.com">kevin@gmail.com</a></div>
+            <div class="name">{{ contributor.item.user.name }}</div>
+            <div class="address">{{ contributor.item.address }}</div>
+            <div class="address phone">({{ contributor.item.phone }}</div>
+            <div class="address"><a href="mailto:{{ contributor.item.user.email}}">{{ contributor.item.user.email }}</a></div>
+          </div>
+          <div class="product-trial-item--detail" ng-if="!contributor.item.trial.shippingState">
+            <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Have you shipped the product?</div>
+            <div class="product-trial-item--status-desc"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.productShipped()">YES! En route.</button></div>
           </div>
         </div>
-    <!--     <div class="product-trial-item--detail">
-          <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Have you shipped the product?</div>
-          <div class="product-trial-item--status-desc"><button class="btn sproutup-btn-sm aqua">YES! En route.</button></div>
-        </div>
-        <div class="product-trial-item--detail">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped on Jan 19, 2016</div>
-          <div class="product-trial-item--status-desc">Awesome! Kevin the Tech Ninja is very excited!</div>
-        </div>
-        <div class="product-trial-item--detail">
+        <div class="product-trial-item--detail" ng-if="contributor.item.state === 10">
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Completed on Feb 20, 2016</div>
-          <div class="product-trial-item--status-desc">Hooray, Kevin the Tech Ninja has posted a video! <a href="#">Check it out!</a></div>
+          <!-- <div class="product-trial-item--status-desc">Hooray, Kevin the Tech Ninja has posted a video! <a href="#">Check it out!</a></div> -->
         </div>
-        <div class="product-trial-item--detail">
+<!--         <div class="product-trial-item--detail">
           <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Have you received the product back?</div>
           <div class="product-trial-item--status-desc">
             <button class="btn sproutup-btn-sm aqua">YES!</button>
@@ -90,7 +90,7 @@
     </div>
 
     <!-- section: reach -->
-    <div class="dashboard-side-panel-section">
+<!--     <div class="dashboard-side-panel-section">
       <h4>Social Reach<span class="total-reach">203,943</span></h4>
       <div class="dashboard-side-panel-section-body">
         <div class="dashboard-side-panel-fineprint">Social Reach is a great indicator of the user's potential impact on promoting your product.</div>
@@ -116,10 +116,10 @@
           </table>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- section: track record -->
-    <div class="dashboard-side-panel-section">
+    <!-- <div class="dashboard-side-panel-section">
       <h4>Track Record</h4>
       <div class="dashboard-side-panel-section-body">
         <div class="dashboard-side-panel-fineprint">Below are previous contributions from Kevin the Tech Ninja.</div>
@@ -150,6 +150,6 @@
           </table>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

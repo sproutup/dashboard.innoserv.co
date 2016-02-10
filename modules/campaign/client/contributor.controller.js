@@ -12,6 +12,7 @@
     var contributor = this;
     contributor.getDetails = getDetails;
     contributor.approveRequest = approveRequest;
+    contributor.productShipped = productShipped;
 
     function getDetails() {
       CampaignService.contribution().get({
@@ -25,18 +26,41 @@
     }
 
     function approveRequest(request) {
+      updateRequestState(1, request);
+    }
+
+    function updateRequestState(state, request) {
       CampaignService.contribution().update({
         userId: $state.params.userId,
         campaignId: $state.params.campaignId
-      }, { state: 1 }, function(response) {
+      }, { state: state }, function(response) {
         var user = contributor.item.user;
         contributor.item = response;
         contributor.item.user = user;
-        request.state = 1;
+        if (request) {
+          request.state = state;
+        }
       }, function(err) {
         console.log(err);
       });
     }
-  }
 
+    function productShipped() {
+      updateShippingState(1);
+    }
+
+    function updateShippingState(state) {
+      CampaignService.contribution().update({
+        userId: $state.params.userId,
+        campaignId: $state.params.campaignId
+      }, { trial: { shippingState: state } }, function(response) {
+        var user = contributor.item.user;
+        contributor.item = response;
+        contributor.item.user = user;
+      }, function(err) {
+        console.log(err);
+      });
+    }
+
+  }
 })();
