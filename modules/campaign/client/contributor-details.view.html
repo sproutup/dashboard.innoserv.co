@@ -50,7 +50,7 @@
           <div class="product-trial-item--status-desc" ng-click="contributor.approveTrial()"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.approveRequest(vm.request)">YES</button></div>
         </div>
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Approved on Jan 16, 2016</div>
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Approved on {{ contributor.item.approved[0].created | date }}</div>
           <div class="product-trial-item--status-desc" ng-if="!contributor.item.trial.shippingState"><span class="label label-info">Shipping</span>Please ship product as soon as you can.</div>
           <div class="product-trial-item--detail" ng-if="contributor.item.trial.shippingState">
             <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped</div>
@@ -68,7 +68,7 @@
           </div>
         </div>
         <div class="product-trial-item--detail" ng-if="contributor.item.state === 10">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Completed on Feb 20, 2016</div>
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Completed on {{ contributor.item.completed[0].created | date }}</div>
           <!-- <div class="product-trial-item--status-desc">Hooray, Kevin the Tech Ninja has posted a video! <a href="#">Check it out!</a></div> -->
         </div>
 <!--         <div class="product-trial-item--detail">

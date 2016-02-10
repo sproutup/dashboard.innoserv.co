@@ -20,9 +20,30 @@
         campaignId: $state.params.campaignId
       }, function(response) {
         contributor.item = response;
+        getLatestEvents();
       }, function(err) {
         console.log(err);
       });
+    }
+
+    function getLatestEvents() {
+      // Find approved logs
+      contributor.item.approved = contributor.item.log.filter(function(item) {
+        return item.state === 1;
+      });
+
+      // Find completed logs
+      contributor.item.completed = contributor.item.log.filter(function(item) {
+        return item.state === 10;
+      });
+
+      // contributor.item.approved.sort(function(a,b){
+      //   return b.created - a.created;
+      // });
+
+      // contributor.item.approved.sort(function(a,b){
+      //   return b.created - a.created;
+      // });
     }
 
     function approveRequest(request) {
