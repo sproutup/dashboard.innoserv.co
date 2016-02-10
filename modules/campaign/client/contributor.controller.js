@@ -20,13 +20,13 @@
         campaignId: $state.params.campaignId
       }, function(response) {
         contributor.item = response;
-        getLatestEvents();
+        sortLog();
       }, function(err) {
         console.log(err);
       });
     }
 
-    function getLatestEvents() {
+    function sortLog() {
       // Find approved logs
       contributor.item.approved = contributor.item.log.filter(function(item) {
         return item.state === 1;
