@@ -31,9 +31,13 @@ angular.module('theme').config(['$stateProvider',
         url: '/signin',
         templateUrl: 'modules/theme/client/mocks/signin.view.html'
       })
-      .state('theme.mocks.landing', {
-        url: '/landing',
-        templateUrl: 'modules/theme/client/mocks/landing.view.html'
+      .state('theme.mocks.company-landing', {
+        url: '/company-landing',
+        templateUrl: 'modules/theme/client/mocks/company-landing.view.html'
+      })
+      .state('theme.mocks.genereal-landing', {
+        url: '/general-landing',
+        templateUrl: 'modules/theme/client/mocks/general-landing.view.html'
       })
       .state('theme.mocks.navbar', {
         url: '/navbar',
