@@ -35,7 +35,7 @@ angular.module('theme').config(['$stateProvider',
         url: '/company-landing',
         templateUrl: 'modules/theme/client/mocks/company-landing.view.html'
       })
-      .state('theme.mocks.genereal-landing', {
+      .state('theme.mocks.general-landing', {
         url: '/general-landing',
         templateUrl: 'modules/theme/client/mocks/general-landing.view.html'
       })

@@ -10,6 +10,85 @@ body {
   font-family: "lato", Helvetica, Arial, sans-serif;
 }
 
+.navbar {
+  margin: 0px;
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0px;
+  z-index: 50;
+}
+
+.navbar-collapse {
+  padding: 0px;
+}
+
+.navbar-content {
+  max-width: 1250px;
+  margin: 0px auto;
+  padding: 0px 30px;
+}
+
+.navbar-brand {
+  padding: 24px 0px 0px;
+}
+
+.logo {
+  width: 120px;
+}
+
+.navbar-nav {
+  padding: 10px 0px;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: @main-text-white;
+}
+
+.navbar-default .navbar-nav > .open > a:focus {
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a:focus {
+  color: @main-text-white;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: white;
+}
+
+.navbar-right {
+  padding-right: 0px;
+}
+
+.navbar-item li a {
+  font-weight: 400;
+  font-size: 11pt;
+  color: @sproutup-lightgrey;
+}
+
+.navbar-item li a:hover {
+  border-radius: 4px;
+  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: @main-text-white;
+}
+
+.navbar-item li a:active,
+.navbar-item li a:visited,
+.navbar-item li a:focus {
+  color: @main-text-white;
+  background-color: transparent;
+}
+
+.navbar-toggle {
+  background-color: transparent;
+  border: 2px solid @sproutup-lightgrey;
+  margin: 15px 0px;
+  color: @sproutup-lightgrey;
+  padding: 9px 15px;
+}
+
 .mock-section {
   margin-bottom: 100px;
 }
@@ -925,7 +1004,9 @@ body {
   background-repeat:no-repeat;
   background-size: cover;
   color: #fff;
-  position: relative;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 .dashboard-product-info-wrapper::before{
@@ -3813,4 +3894,10 @@ h3[class="placeholder"] {
 .education-sidebar-section .description a {
   color: @sproutup-blue;
   font-size: 9.5pt;
+}
+
+@media (max-width:767px) {
+  .logo {
+    width: 100px;
+  }
 }
