@@ -1,7 +1,6 @@
-<div class="col-sm-3 col-profile-picture" data-ng-controller="ChangeProfilePictureController">
-  <div up-file-upload ng-model="user.file" on-upload="saveProfilePicture()"></div>
+<div class="col-sm-3 col-profile-picture" data-ng-controller="ChangeProfilePictureController as profile">
+  <div up-file-upload ng-model="user.avatar.file" on-change="profile.saveProfilePicture(user.avatar.file.id)"></div>
 </div>
-
 
 <div class="col-sm-9 col-profile-info" data-ng-controller="EditProfileController">
     <form name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin" autocomplete="off">
@@ -53,4 +52,4 @@
       </fieldset>
     </form>
 </div>
-{{user.avatar}}
+
