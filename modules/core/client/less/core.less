@@ -20,10 +20,6 @@ body {
   height: 70px;
 }
 
-.navbar-collapse {
-  padding: 0px;
-}
-
 .navbar-content {
   max-width: 1250px;
   margin: 0px auto;
@@ -39,23 +35,7 @@ body {
 }
 
 .navbar-nav {
-  padding: 10px 0px;
-}
-
-.navbar-default .navbar-nav > li > a {
-  color: @main-text-white;
-}
-
-.navbar-default .navbar-nav > .open > a:focus {
-  color: white;
-}
-
-.navbar-default .navbar-nav > li > a:focus {
-  color: @main-text-white;
-}
-
-.navbar-default .navbar-nav > li > a:hover {
-  color: white;
+  padding: 15px 0px;
 }
 
 .navbar-right {
@@ -63,9 +43,11 @@ body {
 }
 
 .navbar-item li a {
+  margin: 0px 5px;
   font-weight: 400;
   font-size: 11pt;
   color: @sproutup-lightgrey;
+  padding: 10px 12px !important;
 }
 
 .navbar-item li a:hover {
@@ -73,6 +55,17 @@ body {
   background-color: black;
   background-color: rgba(255, 255, 255, 0.25);
   color: @main-text-white;
+}
+
+.navbar-item li.sign-in a {
+  border-radius: 4px;
+  background-color: black;
+  background-color: rgba(255, 255, 255, 0.25);
+  color: @main-text-white;
+}
+
+.navbar-item li.sign-in a i {
+  margin-right: 8px;
 }
 
 .navbar-item li a:active,
@@ -1014,14 +1007,7 @@ body {
   left: 0;
   bottom: 0;
   content: "";
-  background: rgba(0,0,0,0.75);
-  background: -moz-linear-gradient(top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.75) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0.75)), color-stop(15%, rgba(0,0,0,0.6)), color-stop(80%, rgba(0,0,0,0.5)), color-stop(100%, rgba(0,0,0,0.75)));
-  background: -webkit-linear-gradient(top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.75) 100%);
-  background: -o-linear-gradient(top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.75) 100%);
-  background: -ms-linear-gradient(top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.75) 100%);
-  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.75) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.4));
 }
 
 .dashboard-product-info-wrapper {
@@ -1045,7 +1031,7 @@ body {
 .dashboard-secondary-tagline {
   margin: 0px auto;
   padding: 0px 15px 25px;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 14pt;
   line-height: 1.6;
   max-width: 960px;
@@ -1083,7 +1069,6 @@ body {
 }
 
 .dashboard-cta {
-  padding: 0px;
   z-index: 10;
   position: relative;
   border-radius: 12px;
@@ -3975,9 +3960,9 @@ ul.sproutup-social-buttons li a {
   border-radius: 100%;
   font-size: 14pt;
   line-height: 40px;
-  outline: 0;
   color: white;
   background-color: none;
+  -o-transition: all .3s;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
   transition: all .3s;
