@@ -5,6 +5,7 @@
  */
 var passport = require('passport'),
   User = require('dynamoose').model('User'),
+  FileModel = require('dynamoose').model('File'),
   path = require('path'),
   config = require(path.resolve('./config/config'));
 
@@ -14,14 +15,20 @@ var passport = require('passport'),
 module.exports = function (app, db) {
   // Serialize sessions
   passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    console.log('serializeUser');
+    done(null, JSON.stringify(user));
   });
 
   // Deserialize sessions
-  passport.deserializeUser(function (id, done) {
-    User.get(id, function (err, user) {
-      done(err, user);
-    });
+  passport.deserializeUser(function (str, done) {
+    console.log('deserializeUser');
+    try {
+      var user = JSON.parse(str); // this is how you parse a string into JSON
+      done(null, user);
+    } catch (err) {
+      console.error(err);
+      done(err, null);
+    }
   });
 
   // Initialize strategies
