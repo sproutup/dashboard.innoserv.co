@@ -1756,41 +1756,6 @@ body {
   width: 250px;
 }
 
-.form-input + .fa {
-  position: absolute;
-  top: 16px;
-  left: 20px;
-  padding: 0;
-  color: @input-placeholder-text;
-}
-
-.form-input + span {
-  position: absolute;
-  top: 54px;
-  left: 30px;
-  padding: 0;
-  color: @input-placeholder-text;
-  font-weight: 400;
-}
-
-.form-input:focus + .fa {
-  color: @sproutup-blue;
-}
-
-.form-input +  .url-prefix {
-  position: relative;
-  top: -47px;
-  left: 16px;
-  padding: 0;
-  color: @sproutup-blue;
-  font-size: 11pt;
-  font-weight: 400;
-}
-
-.form-input.left-feedback {
-  padding-left: 65px;
-}
-
 .form-input-textarea {
   resize: vertical;
   border: 1px solid @form-border;
@@ -3981,6 +3946,18 @@ p.copyright {
   color: @main-text-white;
 }
 
+.form-input-select {
+  position: relative;
+}
+
+.input-select-mark.fa {
+  position: absolute;
+  right: 15px;
+  top: 18px;
+  display: block;
+  font-size: 13pt;
+  color: @input-placeholder-text;
+}
 
 @media (max-width:767px) {
   .logo {
