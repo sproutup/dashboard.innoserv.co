@@ -10,6 +10,7 @@ function CampaignService($resource) {
   var service = {
     listByCompany: listByCompany,
     campaigns: campaigns,
+    content: content,
     contributors: contributors,
     contribution: contribution
   };
@@ -18,6 +19,10 @@ function CampaignService($resource) {
 
   function campaigns () {
      return $resource('/api/campaign/:campaignId', {campaignId:'@campaignId'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
+  }
+
+  function content () {
+     return $resource('/api/campaign/:campaignId/content', {campaignId:'@campaignId'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
   }
 
   function listByCompany () {
