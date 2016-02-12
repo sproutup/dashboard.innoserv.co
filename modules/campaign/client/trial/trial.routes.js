@@ -38,6 +38,10 @@ angular.module('campaign').config(['$stateProvider',
         url: '/stats',
         templateUrl: 'modules/campaign/client/trial/stats.view.html'
       })
+      .state('company.navbar.campaign.trial.view.stats.details', {
+        url: '/:contentId',
+        templateUrl: 'modules/campaign/client/trial/content-details.view.html'
+      })
       .state('company.navbar.campaign.trial.view.configure', {
         url: '/configure',
         templateUrl: 'modules/campaign/client/trial/configure.view.html'
