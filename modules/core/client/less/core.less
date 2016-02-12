@@ -1014,7 +1014,14 @@ body {
   left: 0;
   bottom: 0;
   content: "";
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1)); /* Standard syntax */
+  background: rgba(0,0,0,0.75);
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.75) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0.75)), color-stop(15%, rgba(0,0,0,0.6)), color-stop(80%, rgba(0,0,0,0.5)), color-stop(100%, rgba(0,0,0,0.75)));
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.75) 100%);
+  background: -o-linear-gradient(top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.75) 100%);
+  background: -ms-linear-gradient(top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.75) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 15%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0.75) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
 }
 
 .dashboard-product-info-wrapper {
@@ -1081,7 +1088,7 @@ body {
   position: relative;
   border-radius: 12px;
   background-color: black;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.3);
   max-width: 640px;
   padding: 30px;
   margin: 0px auto;
@@ -3936,7 +3943,7 @@ footer {
   margin: 0px;
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: @sproutup-footer;
+  background-color: #303030;
   overflow: hidden;
 }
 
