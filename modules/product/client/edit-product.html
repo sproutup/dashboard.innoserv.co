@@ -10,6 +10,10 @@
             <div class="form--error-message" ng-show="form.name.$error.required"><i class="help-block text-danger"></i>Product name is required.</div>
           </div>
           <input type="text" class="form-control form-input" placeholder="Tagline for this product" ng-model="vm.product.tagline" />
+          <input type="url" name="url" class="form-control form-input" placeholder="Video link (must be a valid link)" ng-model="vm.product.video" />
+          <div ng-show="form.$submitted || form.name.$touched">
+            <div class="form--error-message" ng-show="form.url.$error.url"><i class="help-block text-danger"></i>This is not a valid link. Make sure to include your http:// or https:// prefix.</div>
+          </div>
         </div>
         <div class="col-sm-12 form-input-group">
           <p class="input-group-title">Description</p>
