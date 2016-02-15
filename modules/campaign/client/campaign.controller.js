@@ -17,6 +17,7 @@
       vm.cancel = cancel;
       vm.find = find;
       vm.findOne = findOne;
+      vm.findContent = findContent;
       vm.openModal = openModal;
       vm.startCampaign = startCampaign;
       vm.stopCampaign = stopCampaign;
@@ -62,7 +63,7 @@
           vm.item.productId = vm.product.id;
         }
 
-        // temporary hack 
+        // temporary hack
         vm.item.typeOfContent = [];
         for (var s = 0; s < vm.socialOptions.length; s++) {
           if (vm.socialOptions[s].type) {
@@ -205,6 +206,19 @@
           campaignId: $state.params.campaignId
         }, function(res) {
           vm.item = res;
+        }, function(err) {
+          $state.go('landing.default');
+        });
+      }
+
+      function findContent() {
+        vm.success = false;
+        vm.content = {};
+
+        CampaignService.content().query({
+          campaignId: $state.params.campaignId
+        }, function(res) {
+          vm.content = res;
         }, function(err) {
           $state.go('landing.default');
         });

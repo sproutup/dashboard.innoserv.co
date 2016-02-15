@@ -122,7 +122,7 @@ function FileController($scope, $state, FileService, $location, Authentication, 
             vm.file = item;
             // set in the directive
             vm.model.$setViewValue(item);
-            vm.onUpload();
+            vm.onChange();
           }, function (errorResponse) {
             console.log(errorResponse);
             vm.error = errorResponse.data.message;

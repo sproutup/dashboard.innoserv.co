@@ -58,7 +58,7 @@
         <tr ng-repeat="campaign in vm.campaigns | filter: {status: 1}: vm.returnMatch">
           <td class="product-table-edit"><a ui-sref="company.navbar.campaign.configure-trial({ campaignId: campaign.id })"><i class="fa fa-pencil"></i></a></td>
           <td><span ng-class="campaign.type" class="label label-campaign">{{campaign.type}}</span></td>
-          <td><a ui-sref="company.navbar.campaign.trial.view({ campaignId: campaign.id })">{{campaign.name}}</a></td>
+          <td><a ui-sref="company.navbar.campaign.trial.view.requests({ campaignId: campaign.id })">{{campaign.name}}</a></td>
           <td class="campaign-kpi"></td>
           <td class="campaign-kpi"></td>
           <td class="campaign-kpi"></td>

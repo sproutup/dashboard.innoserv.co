@@ -35,9 +35,13 @@ angular.module('theme').config(['$stateProvider',
         url: '/company-landing',
         templateUrl: 'modules/theme/client/mocks/company-landing.view.html'
       })
-      .state('theme.mocks.genereal-landing', {
-        url: '/general-landing',
-        templateUrl: 'modules/theme/client/mocks/general-landing.view.html'
+      .state('theme.mocks.landing-home', {
+        url: '/landing-home',
+        templateUrl: 'modules/theme/client/mocks/landing-home.view.html'
+      })
+      .state('theme.mocks.landing-product', {
+        url: '/landing-product',
+        templateUrl: 'modules/theme/client/mocks/landing-product.view.html'
       })
       .state('theme.mocks.navbar', {
         url: '/navbar',

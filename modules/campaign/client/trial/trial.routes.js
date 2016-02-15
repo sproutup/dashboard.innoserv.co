@@ -14,7 +14,7 @@ angular.module('campaign').config(['$stateProvider',
         templateUrl: 'modules/campaign/client/trial/edit.view.html'
       })
       .state('company.navbar.campaign.configure-trial', {
-        url: '/trial/:campaignId/configure',
+        url: '/trial/:campaignId/edit',
         templateUrl: 'modules/campaign/client/trial/edit.view.html'
       })
       // States for requested, approved, and completed trials
@@ -27,7 +27,24 @@ angular.module('campaign').config(['$stateProvider',
       })
       .state('company.navbar.campaign.trial.view', {
         url: '',
+        abstract: true,
         templateUrl: 'modules/campaign/client/trial/trial.view.html'
+      })
+      .state('company.navbar.campaign.trial.view.requests', {
+        url: '',
+        templateUrl: 'modules/campaign/client/trial/requests.view.html'
+      })
+      .state('company.navbar.campaign.trial.view.stats', {
+        url: '/stats',
+        templateUrl: 'modules/campaign/client/trial/stats.view.html'
+      })
+      .state('company.navbar.campaign.trial.view.stats.details', {
+        url: '/:contentId',
+        templateUrl: 'modules/campaign/client/trial/content-details.view.html'
+      })
+      .state('company.navbar.campaign.trial.view.configure', {
+        url: '/configure',
+        templateUrl: 'modules/campaign/client/trial/configure.view.html'
       })
       .state('company.navbar.campaign.trial.view.contributor', {
         url: '/:userId',
