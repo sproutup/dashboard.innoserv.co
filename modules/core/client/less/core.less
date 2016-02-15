@@ -1001,6 +1001,10 @@ body {
   position: relative;
 }
 
+.dashboard-product-banner.brand-landing-page {
+  min-height: 560px;
+}
+
 .dashboard-product-banner::after{
   position: absolute;
   top: 0;
@@ -1126,9 +1130,9 @@ body {
 }
 
 .preview-wrapper {
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 0px 10px;
+  max-width: 1200px;
+  margin: 0px auto;
+  padding: 40px 30px;
 }
 
 .preview-wrapper hr {
@@ -1184,17 +1188,35 @@ body {
   font-weight: 700;
 }
 
-.preview-section-header {
-  font-weight: 300;
+.preview-header {
+  font-weight: 400;
   font-size: 18pt;
-  color: @main-text;
-  margin: 0px 0px 15px;
-  padding: 0px;
+  color: @main-text-light;
+  margin: 0px;
+  padding: 0px 0px 25px;
+  text-align: center;
+  line-height: 1.7;
+}
+
+.preview-header a {
+  font-weight: 700;
+  color: @main-text-light;
+}
+
+.preview-header span {
+  display: block;
+  font-size: 13pt;
+  font-weight: 400;
+  color: @main-text-lighter;
+}
+
+.preview-content {
+  padding-bottom: 30px;
 }
 
 .preview-video-creator {
-  margin: 0px 0px 25px;
-  padding: 0px;
+  padding: 0px 0px 10px;
+  margin: 0px;
 }
 
 .preview-video-creator a {
