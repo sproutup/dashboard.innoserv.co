@@ -50,6 +50,14 @@ body {
   padding: 10px 12px !important;
 }
 
+
+.navbar-item li a:active,
+.navbar-item li a:visited,
+.navbar-item li a:focus {
+  color: @sproutup-lightgrey;
+  background: transparent;
+}
+
 .navbar-item li a:hover {
   border-radius: 4px;
   background-color: black;
@@ -66,13 +74,6 @@ body {
 
 .navbar-item li.sign-in a i {
   margin-right: 8px;
-}
-
-.navbar-item li a:active,
-.navbar-item li a:visited,
-.navbar-item li a:focus {
-  color: @main-text-white;
-  background-color: transparent;
 }
 
 .navbar-toggle {
@@ -2250,11 +2251,13 @@ body {
   color: @main-text;
   background-color: @sproutup-lightgrey;
   width: 100px;
+  border: 1px solid white;
 }
 
 .switch-wrapper .sproutup-btn-lg-main.active {
   color: white;
   background-color: @sproutup-blue;
+  border: 1px solid white;
 }
 
 .campaign-question-wrapper .campaign-question-input-label.right {

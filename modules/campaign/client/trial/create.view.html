@@ -1,10 +1,12 @@
 <div class="mock-section" id="create-trial-campaign" ng-init="vm.initTemplate()">
   <form name="form" class="css-form" novalidate ng-submit="vm.create(form.$valid)">
     <h1 class="dashboard-section-title">
-      Create <span class="create-trial-campaign-name">Basic Product Trial</span>
+      Create New Campaign<span><a href="#">Preview</a></span>
       <div class="dashboard-buttons-top">
-        <input class="dashboard-buttons-top-item" href="#" type="submit" value="Save">
-        <a class="dashboard-buttons-top-item cancel" ng-click="vm.cancel()" href="#">Exit</a>
+        <button class="btn sproutup-btn-xs" disabled="disabled" href="#">Start Campaign</button>
+        <!-- <input class="dashboard-buttons-top-item" href="#" type="submit" value="Save"> -->
+        <button class="btn sproutup-btn-xs" href="#" type="submit">Save</button>
+        <button class="btn sproutup-btn-xs cancel" ng-click="vm.cancel()" href="#">Exit</button>
       </div>
     </h1>
     <div class="create-campaign-wrapper">
