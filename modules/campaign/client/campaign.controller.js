@@ -25,6 +25,7 @@
       vm.closeDetails = closeDetails;
       vm.approveRequest = approveRequest;
       vm.findContributors = findContributors;
+      vm.findProducts = findProducts;
       vm.socialOptions = [
         {  title: 'Twitter',
            type: 'tw' },
@@ -33,8 +34,6 @@
         {  title: 'YouTube',
            type: 'yt' }
       ];
-
-      console.log($state);
 
       // Get the topbar menu
       vm.menu = Menus.getMenu('company.campaign.menu');
@@ -100,8 +99,8 @@
         vm.item = new Campaign($scope.template.item);
         vm.item.companyId = $scope.company.company.id;
         vm.item.status = 0;
+        findProducts();
       }
-
 
       function remove(campaign) {
         if (campaign) {
@@ -238,38 +237,23 @@
       }
 
       function findProducts() {
-        if (Authentication.user.sessionCompany) {
+        if ($scope.company.company.id) {
           makeCall();
         } else {
-          $scope.$watch(Authentication.user.sessionCompany.id, function() {
-            makeCall();
+          $scope.$watch('company.company.id', function(val) {
+            if(val) makeCall();
           });
         }
 
         function makeCall() {
           vm.products = ProductService.listByCompany().query({
-            companyId: Authentication.user.sessionCompany.id
+            companyId: $scope.company.company.id
           }, function() {
             console.log('products found');
           }, function(err) {
             console.log(err);
           });
         }
-
-        // the code below will find companies for a normal user
-
-        // TeamService.listByUser().query({
-        //   userId: Authentication.user.id
-        // },function() {
-        //   Authentication.user.sessionCompany = $scope.myCompanies[0];
-        //   vm.products = ProductService.listByCompany().query({
-        //     companyId: Authentication.user.sessionCompany.companyId
-        //   }, function() {
-        //     console.log('products found');
-        //   }, function(err) {
-        //     console.log(err);
-        //   });
-        // });
       }
 
       function openModal(item) {
