@@ -53,15 +53,15 @@
   <div class="row dashboard-body-wrapper">
     <div class="col-md-2">
       <div class="list-group">
-        <a href="#"><div class="list-group-item current">Requests</div></a>
+        <a ui-sref="theme.mocks.view-trial-requests"><div class="list-group-item">Requests</div></a>
         <a href="#"><div class="list-group-item">In Talk</div></a>
-        <a ui-sref="theme.mocks.view-trial-requests-yes-list"><div class="list-group-item">Yes List</div></a>
+        <a href="#"><div class="list-group-item current">Yes List</div></a>
       </div>
     </div>
     <div class="col-md-10">
       <div class="dashboard-body-header">
-        <div class="dashboard-body-title">Best shots &#x1F680;</div>
-        <div class="dashboard-body-subtitle">Please review and find who you'd like to work with.</div>
+        <div class="dashboard-body-title">Waiting for product shipment &#x1F4E6;</div>
+        <div class="dashboard-body-subtitle">Please ship products to influencers that you have picked for trial campaign.</div>
       </div>
       <div class="sproutup-table table-responsive">
         <table class="table table-hover">
@@ -108,8 +108,56 @@
       <hr>
 
       <div class="dashboard-body-header">
-        <div class="dashboard-body-title">Up-and-coming rising stars &#x1F31F;</div>
-        <div class="dashboard-body-subtitle">Please review and find who you'd like to work with.</div>
+        <div class="dashboard-body-title">Reviewing product now &#x1F64C;</div>
+        <div class="dashboard-body-subtitle">You have shipped products to the following influencers.</div>
+      </div>
+      <div class="sproutup-table table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th><a href="#">Reach</a><sup><i class="fa fa-question-circle"></i></sup></th>
+              <th><a href="#">Predicted Impressions</a><sup><i class="fa fa-question-circle"></i></sup></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="request-avatar"><a href="#"><img class="img-center" src="https://pbs.twimg.com/profile_images/555729400335847424/I8lgVJtQ_bigger.png"></a></td>
+              <td class="request-name-pitch">
+                <div class="name"><a href="#">Chris Sacca</a></div>
+                <div>I'd like to shoot videos on how I use Petcube to train my new pitbull and... <a href="#">read more</a></div>
+              </td>
+              <td class="request-reach">2,492,232</td>
+              <td class="request-reach">140,000</td>
+            </tr>
+            <tr>
+              <td class="request-avatar"><a href="#"><img class="img-center" src="https://pbs.twimg.com/profile_images/555729400335847424/I8lgVJtQ_bigger.png"></a></td>
+              <td class="request-name-pitch">
+                <div class="name"><a href="#">Chris Sacca</a></div>
+                <div>I'd like to shoot videos on how I use Petcube to train my new pitbull... <a href="#">read more</a></div>
+              </td>
+              <td class="request-reach">2,492,232</td>
+              <td class="request-reach">140,000</td>
+            </tr>
+            <tr>
+              <td class="request-avatar"><a href="#"><img class="img-center" src="https://pbs.twimg.com/profile_images/555729400335847424/I8lgVJtQ_bigger.png"></a></td>
+              <td class="request-name-pitch">
+                <div class="name"><a href="#">Chris Sacca</a></div>
+                <div>I'd like to shoot videos on how I use Petcube to train my new pitbull... <a href="#">read more</a></div>
+              </td>
+              <td class="request-reach">2,492,232</td>
+              <td class="request-reach">140,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr>
+
+      <div class="dashboard-body-header">
+        <div class="dashboard-body-title">Content published &#x1F37B;</div>
+        <div class="dashboard-body-subtitle">The following influencers have published content about your campaign.</div>
       </div>
       <div class="sproutup-table table-responsive">
         <table class="table table-hover">
