@@ -116,6 +116,29 @@
           </div>
         </div>
       </div>
+      <div class="new-campaign-component" ng-init="vm.findProducts()">
+        <div class="row new-campaign-component-header todo">
+          <div class="col-sm-6">
+            <p>Add a product</p>
+          </div>
+        </div>
+        <div class="row new-campaign-component-content" ng-if="vm.products">
+          <div class="col-sm-12">
+            <div class="campaign-question-wrapper">
+              <p>Please choose or add a new product you'd like to promote in your campaign</p>
+              <div class="campaign-choose-product">
+                <div ng-repeat="product in vm.products">
+                  <label>
+                   <input type="radio" ng-model="vm.item.productId" value="{{ product.id }}">
+                   {{ product.name }}
+                  </label>
+                </div>
+<!--                 <a href="#" class="active" ng-repeat="product in vm.products"><p>{{ product.name }}<span><i class="fa fa-check-circle"></i></span></p></a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="new-campaign-component todo">
         <div class="row new-campaign-component-header todo">
           <div class="col-sm-6">
