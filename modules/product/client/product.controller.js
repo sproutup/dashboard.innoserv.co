@@ -38,7 +38,8 @@
         companyId: $scope.company.company.id,
         name: vm.name,
         description: vm.description,
-        tagline: vm.tagline
+        tagline: vm.tagline,
+        video: vm.video
       });
 
       // Redirect after save
