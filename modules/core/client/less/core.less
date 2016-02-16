@@ -2269,6 +2269,47 @@ body {
   background-color: @sproutup-green;
 }
 
+.campaign-choose-product label {
+  display: inline-block;
+  position: relative;
+  font-size: 12pt;
+  font-weight: 700;
+  color: @main-text-lighter;
+  margin: 10px 0px;
+}
+
+.campaign-choose-product input[type="radio"] {
+  display:none;
+}
+
+.campaign-choose-product input[type="radio"] + label span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: -3px 15px 0px 0px;
+  vertical-align: middle;
+  cursor: pointer;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: @sproutup-lightgrey;
+}
+
+.campaign-choose-product input[type="radio"]:checked + label span{
+  background-color: @sproutup-blue;
+}
+
+.campaign-choose-product input[type="radio"]:checked + label {
+  color: @sproutup-blue;
+}
+
+.campaign-choose-product input[type="radio"] + label span,
+.campaign-choose-product input[type="radio"]:checked + label span {
+  -webkit-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+}
+
 .switch-wrapper .sproutup-btn-lg-main {
   color: @main-text;
   background-color: @sproutup-lightgrey;
