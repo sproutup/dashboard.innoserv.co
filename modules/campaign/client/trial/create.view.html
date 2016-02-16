@@ -165,12 +165,9 @@
               <p>Please choose or add a new product you'd like to promote in your campaign</p>
               <div class="campaign-choose-product">
                 <div ng-repeat="product in vm.products">
-                  <label>
-                   <input type="radio" ng-model="vm.item.productId" value="{{ product.id }}">
-                   {{ product.name }}
-                  </label>
+                  <input type="radio" id="{{ product.id }}" ng-model="vm.item.productId" value="{{ product.id }}">
+                  <label for="{{ product.id }}"><span></span>{{ product.name }}</label>
                 </div>
-<!--                 <a href="#" class="active" ng-repeat="product in vm.products"><p>{{ product.name }}<span><i class="fa fa-check-circle"></i></span></p></a> -->
               </div>
             </div>
           </div>
