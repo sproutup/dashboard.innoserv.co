@@ -2640,7 +2640,7 @@ button:active {
 }
 
 .sproutup-table thead tr th {
-  padding: 18px 20px;
+  padding: 15px;
   font-weight: 700;
   font-size: 9pt;
   color: @main-text-verylight;
@@ -2659,7 +2659,7 @@ button:active {
 }
 
 .sproutup-table tbody tr td {
-  padding: 20px;
+  padding: 20px 15px;
   font-weight: 400;
   font-size: 10pt;
   color: @main-text;
@@ -2844,12 +2844,12 @@ input:-ms-input-placeholder {
 .sproutup-table .request-avatar img {
   margin: 0px auto;
   border: 1px solid @sproutup-grey;
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
 }
 
 .sproutup-table .request-name-pitch {
-  width: 45%;
+  width: 40%;
 }
 
 .sproutup-table .request-name-pitch .name {
@@ -2885,10 +2885,8 @@ input:-ms-input-placeholder {
 }
 
 .label-request-status {
-  padding: 12px 16px;
-  font-weight: 700;
-  font-size: 9.5pt;
   color: @main-text-white;
+  font-size: 8.5pt;
 }
 
 .label-request-status i {
@@ -2899,18 +2897,25 @@ input:-ms-input-placeholder {
   background-color: @sproutup-green;
 }
 
-.label-request-status.approved {
-  background-color: @sproutup-green;
-}
-
 .label-request-status.pending {
   background-color: transparent;
   border: 1px solid @sproutup-green;
   color: @sproutup-green;
 }
 
-.label-request-status.completed {
+.label-request-status.not-shipped {
+  background-color: @sproutup-salmon;
+  border: 1px solid @sproutup-salmon;
+}
+
+.label-request-status.shipped {
   background-color: @sproutup-gold;
+  border: 1px solid @sproutup-gold;
+}
+
+.label-request-status.completed {
+  background-color: @sproutup-green;
+  border: 1px solid @sproutup-green;
 }
 
 .dashboard-side-panel {
