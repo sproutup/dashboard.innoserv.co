@@ -110,6 +110,15 @@ angular.module('theme').config(['$stateProvider',
       .state('theme.mocks.view-contest-entries', {
         url: '/view-contest-entries',
         templateUrl: 'modules/theme/client/mocks/view-contest-entries.view.html'
+      })
+      // messages
+      .state('theme.mocks.list-conversation', {
+        url: '/list-conversation',
+        templateUrl: 'modules/theme/client/mocks/list-conversation.view.html'
+      })
+      .state('theme.mocks.view-a-conversation', {
+        url: '/view-a-conversation',
+        templateUrl: 'modules/theme/client/mocks/view-a-conversation.view.html'
       });
   }
 ]);

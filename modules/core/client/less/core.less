@@ -667,6 +667,10 @@ button:active {
   color: @main-text-white;
 }
 
+.nav-item-main a i {
+  margin-left: 12px;
+}
+
 .nav-head {
   padding-top: 30px;
 }
@@ -1895,6 +1899,10 @@ button:active {
 
 .dashboard-body-wrapper.team-member {
   max-width: 750px;
+}
+
+.dashboard-body-wrapper.messages {
+  max-width: 960px;
 }
 
 .team-member-table-wrapper {
@@ -4123,6 +4131,80 @@ p.copyright {
   display: block;
   font-size: 13pt;
   color: @input-placeholder-text;
+}
+
+ul.list-conversation-thread {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+ul.list-conversation-thread li {
+  background-color: @sproutup-veryverylightgrey;
+  padding: 0px;
+  border-bottom: 1px solid @sproutup-lightgrey;
+}
+
+ul.list-conversation-thread li.unread {
+  background-color: @sproutup-table-hover;
+  padding: 0px;
+}
+
+ul.list-conversation-thread li:hover {
+  background-color: @sproutup-lightgrey;
+}
+
+ul.list-conversation-thread li.unread:hover {
+  background-color: @sproutup-table-hover;
+}
+
+ul.list-conversation-thread li a {
+  text-decoration: none !important;
+}
+
+.sproutup-table.messages .table {
+  margin: 0px;
+}
+
+.sproutup-table.messages .table tbody tr td {
+  padding: 15px 10px;
+}
+
+.sproutup-table.messages .photo {
+  text-align: center;
+  width: 10%;
+}
+
+.sproutup-table.messages img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  border: 1px solid @sproutup-lightgrey;
+}
+
+.sproutup-table.messages .content {
+  width: 70%;
+}
+
+.sproutup-table.messages .name {
+  font-weight: 700;
+  padding-bottom: 2px;
+  color: @main-text-lighter;
+}
+
+.sproutup-table.messages .text {
+  font-weight: 400;
+  font-size: 10.5pt;
+}
+
+ul.list-conversation-thread li.unread .sproutup-table.messages .text {
+  font-weight: 700;
+}
+
+.sproutup-table.messages .time {
+  text-align: right;
+  color: @main-text-lighter;
+  font-size: 8.5pt;
 }
 
 @media (max-width:767px) {
