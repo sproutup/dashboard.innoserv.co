@@ -3,15 +3,6 @@
 var defaultEnvConfig = require('./default');
 
 module.exports = {
-  db: {
-    local: true,
-    region: 'us-west-2',
-    create: true,
-    prefix: 'Dev_',
-    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mean-dev',
-    // Enable mongoose debug mode
-    debug: process.env.MONGODB_DEBUG || false
-  },
   log: {
     // Can specify one of 'combined', 'common', 'dev', 'short', 'tiny'
     format: 'dev',
@@ -37,19 +28,6 @@ module.exports = {
     },
     cloudfront: {
       files: process.env.AWS_CLOUDFRONT_FILES || 'PUT YOUR CLOUDFRONT INFO'
-    }
-  },
-  knex: {
-    client: 'mysql',
-    connection: {
-      host: '127.0.0.1',
-      user: 'root',
-      password: 'root',
-      database: 'mean_db'
-    },
-    pool: {
-      min: 2,
-      max: 10
     }
   },
   facebook: {
@@ -101,10 +79,6 @@ module.exports = {
         pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
       }
     }
-  },
-  sendgrid: {
-    username: process.env.SENDGRID_USERNAME,
-    pass: process.env.SENDGRID_PASSWORD
   },
   livereload: true,
   seedDB: process.env.MONGO_SEED || false
