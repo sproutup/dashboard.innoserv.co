@@ -25,7 +25,7 @@ module.exports = {
     title: defaultEnvConfig.app.title + ' - Development Environment'
   },
   server: {
-    api: process.env.server.api || 'http://localhost:3333'
+    api: process.env.SERVER_API || 'http://localhost:3333'
   },
   aws: {
     accessKeyID: process.env.AWS_ACCESS_KEY_ID || 'ToDo',
