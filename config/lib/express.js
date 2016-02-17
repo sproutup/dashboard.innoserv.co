@@ -9,7 +9,6 @@ var config = require('../config'),
   bodyParser = require('body-parser'),
   redis = require('config/lib/redis'),
   session = require('express-session'),
-//  MongoStore = require('connect-mongo')(session),
   RedisStore = require('connect-redis')(session),
   multer = require('multer'),
   favicon = require('serve-favicon'),
@@ -114,7 +113,7 @@ module.exports.initViewEngine = function (app) {
 /**
  * Configure Express session
  */
-module.exports.initSession = function (app, db) {
+module.exports.initSession = function (app) {
   // Express Redis session storage
   app.use(session({
     saveUninitialized: true,
@@ -211,9 +210,9 @@ module.exports.initErrorRoutes = function (app) {
 /**
  * Configure Socket.io
  */
-module.exports.configureSocketIO = function (app, db) {
+module.exports.configureSocketIO = function (app) {
   // Load the Socket.io configuration
-  var server = require('./socket.io')(app, db);
+  var server = require('./socket.io')(app);
 
   // Return server object
   return server;
@@ -254,7 +253,7 @@ module.exports.init = function (db) {
   this.initViewEngine(app);
 
   // Initialize Express session
-  this.initSession(app, db);
+  this.initSession(app);
 
   // Initialize Modules configuration
   this.initModulesConfiguration(app);
@@ -275,7 +274,7 @@ module.exports.init = function (db) {
   this.initErrorRoutes(app);
 
   // Configure Socket.io
-  app = this.configureSocketIO(app, db);
+  app = this.configureSocketIO(app);
 
   return app;
 };

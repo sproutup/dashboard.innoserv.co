@@ -167,21 +167,6 @@ gulp.task('mocha', function (done) {
 
 var gutil = require('gulp-util');
 
-gulp.task('mocha2', function() {
-  require('app-module-path').addPath(__dirname);
-  var dynamoose = require('./config/lib/dynamoose');
-  dynamoose.loadModels();
-  return gulp.src(['modules/users/tests/server/user.server.model.tests.js'], { read: false })
-    .pipe(debug({title: 'mocha:'}))
-    .pipe(plugins.mocha({ reporter: 'spec',
-      globals: {
-        path: require('app-module-path').addPath(__dirname),
-        should: require('should')
-      }}))
-    .on('error', gutil.log);
-});
-
-
 // Karma test runner task
 gulp.task('karma', function (done) {
   return gulp.src([])
