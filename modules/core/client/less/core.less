@@ -3161,9 +3161,24 @@ input:-ms-input-placeholder {
 
 .product-trial-item--messages {
   margin: 0px 0px 30px;
-  padding: 20px;
-  background-color: white;
   border: 1px solid @sproutup-lightgrey;
+  padding: 0px;
+  background-color: white;
+}
+
+.message-body {
+  padding: 20px 15px 0px;
+  margin: 0px 15px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  max-height: 420px;
+}
+
+.message-footer {
+  border-top: 1px solid @form-border;
+  padding: 20px 15px 25px;
+  margin: 15px 15px 0px;
 }
 
 .message-blurb {
@@ -3212,7 +3227,7 @@ input:-ms-input-placeholder {
 }
 
 .message-blurb.inbound .content {
-  background-color: @sproutup-green-muted;
+  background-color: @sproutup-lightgrey;
   color: @main-text;
 }
 
