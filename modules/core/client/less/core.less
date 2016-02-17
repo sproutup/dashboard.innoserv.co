@@ -1324,11 +1324,13 @@ button:active {
   font-size: 7.5pt;
 }
 
-.label-campaign.trial {
+.label-campaign.trial,
+.label-campaign-sm.trial {
   background-color: @sproutup-salmon;
 }
 
-.label-campaign.contest {
+.label-campaign.contest,
+.label-campaign-sm.contest {
   background-color: @sproutup-green;
 }
 
@@ -1899,10 +1901,6 @@ button:active {
 
 .dashboard-body-wrapper.team-member {
   max-width: 750px;
-}
-
-.dashboard-body-wrapper.messages {
-  max-width: 960px;
 }
 
 .team-member-table-wrapper {
@@ -3179,10 +3177,14 @@ input:-ms-input-placeholder {
   color: @main-text-light;
 }
 
-.message-blurb .sender span {
+.message-blurb .sender .spacer {
+  padding: 0px 5px;
+}
+
+.message-blurb .sender .time {
   font-weight: 400;
-  color: @main-text-lighter;
-  padding-left: 10px;
+  color: @sproutup-grey;
+  padding-left: 15px;
 }
 
 .message-blurb .content {
@@ -4203,8 +4205,19 @@ ul.list-conversation-thread li.unread .sproutup-table.messages .text {
 
 .sproutup-table.messages .time {
   text-align: right;
-  color: @main-text-lighter;
+  color: @sproutup-grey;
   font-size: 8.5pt;
+}
+
+.message-campaign-link {
+  font-size: 10.5pt;
+  font-weight: 400;
+  color: @main-text-lighter;
+}
+
+.message-campaign-link a {
+  color: @sproutup-blue;
+  font-weight: 700;
 }
 
 @media (max-width:767px) {
