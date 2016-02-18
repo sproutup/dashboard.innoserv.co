@@ -9,6 +9,6 @@ angular.module('message').config(['$stateProvider',
         template: '<div ui-view></div>',
         controller: 'MessageController',
         controllerAs: 'messageCtrl'
-      })
+      });
   }
 ]);
