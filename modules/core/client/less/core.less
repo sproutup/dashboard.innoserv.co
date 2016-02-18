@@ -1003,7 +1003,7 @@ button:active {
 
 .dashboard-product-banner {
   width: 100%;
-  min-height: 640px;
+  min-height: 680px;
   margin: -70px 0px 0px;
   background-position:center;
   background-repeat:no-repeat;
@@ -1026,7 +1026,7 @@ button:active {
 }
 
 .dashboard-product-info-wrapper {
-  padding: 130px 0px 50px;
+  padding: 100px 0px 0px;
   margin: 0px auto;
   text-align: center;
   z-index: 10;
@@ -1041,6 +1041,17 @@ button:active {
   line-height: 1.6;
   max-width: 640px;
   color: @main-text-white;
+}
+
+.dashboard-main-tagline span {
+  color: @sproutup-blue-bright;
+  font-weight: 700;
+}
+
+.dashboard-main-tagline .signup-email {
+  padding-top: 30px;
+  font-size: 22pt;
+  font-weight: 400;
 }
 
 .dashboard-secondary-tagline {
@@ -1273,7 +1284,7 @@ button:active {
   position: relative;
   color: @main-text-white;
   font-weight: 700;
-  font-size: 11pt;
+  font-size: 10pt;
   padding: 5px 0px 0px;
 }
 
@@ -1281,13 +1292,13 @@ button:active {
   color: @main-text-white;
 }
 
-.preview-content-creator-reach {
+.preview-content-title {
   z-index: 5;
   position: relative;
   color: @main-text-white;
   font-weight: 400;
-  font-size: 9.5pt;
-  padding: 5px 0px 0px;
+  font-size: 10pt;
+  padding: 7px 0px 0px;
 }
 
 .preview-content-play {
@@ -3161,9 +3172,24 @@ input:-ms-input-placeholder {
 
 .product-trial-item--messages {
   margin: 0px 0px 30px;
-  padding: 20px;
-  background-color: white;
   border: 1px solid @sproutup-lightgrey;
+  padding: 0px;
+  background-color: white;
+}
+
+.message-body {
+  padding: 20px 15px 0px;
+  margin: 0px 15px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  max-height: 420px;
+}
+
+.message-footer {
+  border-top: 1px solid @form-border;
+  padding: 20px 15px 25px;
+  margin: 15px 15px 0px;
 }
 
 .message-blurb {
@@ -3212,7 +3238,7 @@ input:-ms-input-placeholder {
 }
 
 .message-blurb.inbound .content {
-  background-color: @sproutup-green-muted;
+  background-color: @sproutup-lightgrey;
   color: @main-text;
 }
 
