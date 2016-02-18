@@ -1,4 +1,4 @@
-<div class="dashboard-side-panel" ng-init="contributor.getDetails()">
+<div class="dashboard-side-panel" ng-init="vm.findOneContent()">
   <div class="dashboard-side-panel-wrapper">
     <div class="dashboard-side-panel-close">
       <a class="btn sproutup-btn-xs" ui-sref="company.navbar.campaign.trial.view.stats"><i class="fa fa-times"></i></a>
@@ -8,6 +8,8 @@
       <p>{{ contributor.item.user.name || 'User' }}<sup class="label label-influencer">Influencer</sup></p>
       <button class="btn sproutup-btn-sm aqua" ng-click="contributor.messaging = true"><i class="fa fa-commenting"></i>Send message</button>
     </div>
+
+    <p>item {{ contributor.item }}</p>
 
     <!-- sending a message -->
     <!-- <div class="dashboard-side-panel-header" ng-if="contributor.messaging">

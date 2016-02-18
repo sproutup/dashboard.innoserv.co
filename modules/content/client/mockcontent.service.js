@@ -2,11 +2,11 @@
 
 angular
     .module('content')
-    .factory('ContentService', ContentService);
+    .factory('MockContentService', MockContentService);
 
-ContentService.$inject = ['$resource'];
+MockContentService.$inject = ['$resource'];
 
-function ContentService($resource){
+function MockContentService($resource){
   var service = {
     getContent: getContent 
   };

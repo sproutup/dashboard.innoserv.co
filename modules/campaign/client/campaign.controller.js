@@ -6,9 +6,9 @@
       .module('campaign')
       .controller('CampaignController', CampaignController);
 
-    CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$modal'];
+    CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$modal', 'ContentService'];
 
-    function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal) {
+    function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService) {
       var vm = this;
       vm.create = create;
       vm.initTemplate = initTemplate;
@@ -18,6 +18,7 @@
       vm.find = find;
       vm.findOne = findOne;
       vm.findContent = findContent;
+      vm.findOneContent = findOneContent;
       vm.openModal = openModal;
       vm.startCampaign = startCampaign;
       vm.stopCampaign = stopCampaign;
@@ -219,6 +220,18 @@
           campaignId: $state.params.campaignId
         }, function(res) {
           vm.content = res;
+        }, function(err) {
+          $state.go('landing.default');
+        });
+      }
+
+      function findOneContent() {
+        console.log('hey');
+        ContentService.content().get({
+          contentId: $state.params.contentId
+        }, function(res) {
+          console.log(res);
+          vm.item = res;
         }, function(err) {
           $state.go('landing.default');
         });
