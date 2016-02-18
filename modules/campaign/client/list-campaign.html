@@ -18,22 +18,22 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th></th>
-          <th></th>
           <th>Campaign</th>
-          <th>Requests</th>
-          <th>Reach</th>
-          <th>Content</th>
+          <th>Created by</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="campaign in vm.campaigns | filter: {status: 0}">
-          <td class="product-table-edit"><a ui-sref="company.navbar.campaign.edit-trial({ campaignId: campaign.id })"><i class="fa fa-pencil"></i></a></td>
-          <td><span ng-class="campaign.type" class="label label-campaign">{{campaign.type}}</span></td>
-          <td>{{campaign.name}}</td>
-          <td class="campaign-kpi"></td>
-          <td class="campaign-kpi"></td>
-          <td class="campaign-kpi"></td>
+          <td class="campaign-title">
+            <div>{{campaign.name}}<sup ng-class="campaign.type" class="label label-campaign">{{campaign.type}}</sup></div>
+            <div class="schedule-time">Edited on Feb 18, 2016 at 5:06 pm</div>
+          </td>
+          <td>Me</td>
+          <td>
+            <button ui-sref="company.navbar.campaign.edit-trial({ campaignId: campaign.id })" class="btn sproutup-btn-xs">Edit Campaign</button>
+            <button class="btn sproutup-btn-xs">Discard</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -46,22 +46,24 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th></th>
-          <th></th>
           <th>Campaign</th>
-          <th>Requests</th>
-          <th>Reach</th>
-          <th>Content</th>
+          <th>Impressions</th>
+          <th>Engagements</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="campaign in vm.campaigns | filter: {status: 1}: vm.returnMatch">
-          <td class="product-table-edit"><a ui-sref="company.navbar.campaign.configure-trial({ campaignId: campaign.id })"><i class="fa fa-pencil"></i></a></td>
-          <td><span ng-class="campaign.type" class="label label-campaign">{{campaign.type}}</span></td>
-          <td><a ui-sref="company.navbar.campaign.trial.view.requests({ campaignId: campaign.id })">{{campaign.name}}</a></td>
-          <td class="campaign-kpi"></td>
-          <td class="campaign-kpi"></td>
-          <td class="campaign-kpi"></td>
+          <td class="campaign-title">
+            <div>{{ campaign.name }}<sup ng-class="campaign.type" class="label label-campaign">{{ campaign.type }}</sup></div>
+            <div class="schedule-time">15 Jun 2015 - Ongoing</div>
+          </td>
+          <td class="campaign-kpi">42.3k</td>
+          <td class="campaign-kpi">11</td>
+          <td>
+            <button ui-sref="company.navbar.campaign.trial.view.requests({ campaignId: campaign.id })" class="btn sproutup-btn-xs">View Details</button>
+            <button class="btn sproutup-btn-xs">Share</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -73,22 +75,24 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th></th>
-            <th></th>
             <th>Campaign</th>
-            <th>Requests</th>
-            <th>Reach</th>
-            <th>Content</th>
+            <th>Impressions</th>
+            <th>Engagements</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="campaign in vm.campaigns | filter: {status: -1}: vm.returnMatch">
-            <td class="product-table-edit"><a ui-sref="company.navbar.campaign.trial.configure({ campaignId: campaign.id })"><i class="fa fa-pencil"></i></a></td>
-            <td><span ng-class="campaign.type" class="label label-campaign">{{campaign.type}}</span></td>
-            <td>{{campaign.name}}</td>
-            <td class="campaign-kpi"></td>
-            <td class="campaign-kpi"></td>
-            <td class="campaign-kpi"></td>
+            <td class="campaign-title">
+              <div>{{ campaign.name }}<sup ng-class="campaign.type" class="label label-campaign">{{ campaign.type }}</sup></div>
+              <div class="schedule-time">15 Jun 2015 - 30 Jun 2015</div>
+            </td>
+            <td class="campaign-kpi">42.3k</td>
+            <td class="campaign-kpi">11</td>
+            <td>
+              <button ui-sref="company.navbar.campaign.trial.view.requests({ campaignId: campaign.id })" class="btn sproutup-btn-xs">View Details</button>
+              <button class="btn sproutup-btn-xs">Share</button>
+            </td>
           </tr>
         </tbody>
       </table>
