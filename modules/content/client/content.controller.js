@@ -23,7 +23,7 @@
 			sref: 'user.content.blogs'
 		}];
 
-		vm.content = ContentService.getContent();
+		// vm.content = ContentService.getContent();
 
 		vm.chartOptions = {
 	  		scaleShowLabels: false,
