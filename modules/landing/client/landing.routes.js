@@ -23,11 +23,11 @@ angular.module('landing').config(['$stateProvider',
         templateUrl: 'modules/landing/client/landing.view.html'
       })
       .state('landing.confirmation', {
-        url: '/confirmation',
+        url: '/confirmation?url',
         templateUrl: 'modules/landing/client/landing-confirmation.view.html'
       })
       .state('company.landing.confirmation', {
-        url: '/confirmation',
+        url: '/confirmation?url',
         templateUrl: 'modules/landing/client/landing-confirmation.view.html'
       });
   }

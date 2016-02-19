@@ -10,6 +10,7 @@
         <div class="signup-email">{{ vm.authentication.emailSentTo }}</div>
       </div>
       <div class="dashboard-secondary-tagline">Please check your inbox and finish signing up</div>
+      <a ng-show="vm.url" class="signup-email" ng-href="{{vm.url}}">Click here to verify</a>
     </div>
   </div>
 </div>
