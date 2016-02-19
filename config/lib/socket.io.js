@@ -74,21 +74,21 @@ module.exports = function (app, db) {
       var sessionId = socket.request.signedCookies['connect.sid'];
 
       // Use the mongoStorage instance to get the Express session information
-//      mongoStore.get(sessionId, function (err, session) {
-//        // Set the Socket.io session information
+//      RedisStore.get(sessionId, function (err, session) {
+        // Set the Socket.io session information
 //        socket.request.session = session;
-//
-//        // Use Passport to populate the user details
+
+        // Use Passport to populate the user details
 //        passport.initialize()(socket.request, {}, function () {
 //          passport.session()(socket.request, {}, function () {
 //            if (socket.request.user) {
-//              next(null, true);
+              next(null, true);
 //            } else {
 //              next(new Error('User is not authenticated'), false);
 //            }
 //          });
 //        });
-//      });
+    //  });
     });
   });
 
