@@ -120,8 +120,9 @@ module.exports.initSession = function (app) {
     resave: false,
     secret: config.sessionSecret,
     cookie: {
-      maxAge: config.sessionExpiration,
-      secure: false
+      maxAge: config.sessionCookie.maxAge,
+      httpOnly: config.sessionCookie.httpOnly,
+      secure: config.sessionCookie.secure && config.secure.ssl
     },
     key: config.sessionKey,
     store: new RedisStore({client: redis})
@@ -278,4 +279,3 @@ module.exports.init = function (db) {
 
   return app;
 };
-
