@@ -7,8 +7,7 @@ module.exports = function (io, socket) {
     type: 'status',
     text: 'Is now connected',
     created: Date.now(),
-    profileImageURL: socket.request.user.profileImageURL,
-    username: socket.request.user.username
+    user: socket.request.user
   });
 
   // Send a chat messages to all connected sockets when a message is received
@@ -16,8 +15,7 @@ module.exports = function (io, socket) {
     console.log('message: ', message);
     message.type = 'message';
     message.created = Date.now();
-    message.profileImageURL = socket.request.user.profileImageURL;
-    message.username = socket.request.user.username;
+    message.user = socket.request.user;
 
     // Emit the 'chatMessage' event
     io.emit('chatMessage', message);

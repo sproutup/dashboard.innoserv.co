@@ -31,6 +31,7 @@ function MessageChannelController($scope, Authentication, Socket) {
     var vm = this;
     vm.commentToggle = commentToggle;
     vm.send = send;
+    vm.messages = [];
     init();
 
     function init() {
@@ -42,6 +43,7 @@ function MessageChannelController($scope, Authentication, Socket) {
       // Add an event listener to the 'chatMessage' event
       Socket.on('chatMessage', function (message) {
         console.log('msg: ', message);
+        message.inbound = (Authentication.user.id !== message.user.id);
         vm.messages.unshift(message);
       });
 
