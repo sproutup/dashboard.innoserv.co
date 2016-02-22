@@ -1,4 +1,4 @@
-<div class="message-body">
+<div class="message-body" ng-init="vm.load()">
   <div ng-repeat="message in vm.messages | orderBy:'created'" ng-class="{inbound: message.inbound, outbound: !message.inbound}" class="message-blurb">
     <div class="sender">{{message.user.displayName}}<span class="time">{{message.created}}</span></div>
     <div class="content" ng-bind="message.text"></div>

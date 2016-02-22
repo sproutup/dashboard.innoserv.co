@@ -31,6 +31,7 @@ function MessageChannelController($scope, Authentication, Socket, MessageService
     var vm = this;
     vm.commentToggle = commentToggle;
     vm.send = send;
+    vm.load = load;
     vm.messages = [];
     init();
 
@@ -64,7 +65,7 @@ function MessageChannelController($scope, Authentication, Socket, MessageService
       var Message = MessageService.message();
       var item = new Message({
         body: vm.body,
-        channelId: 'test'
+        channelId: vm.channelId
       });
 
       item.$save(function (response) {
@@ -72,6 +73,17 @@ function MessageChannelController($scope, Authentication, Socket, MessageService
         Socket.emit('chatMessage', message);
         // Clear the message text
         vm.body = '';
+      }, function (errorResponse) {
+        console.log(errorResponse);
+        vm.error = errorResponse.data.message;
+      });
+    }
+
+    function load(){
+      var ChannelMessage = MessageService.channel();
+
+      ChannelMessage.query({channelId: vm.channelId}, function (response) {
+        vm.messages = response;
       }, function (errorResponse) {
         console.log(errorResponse);
         vm.error = errorResponse.data.message;

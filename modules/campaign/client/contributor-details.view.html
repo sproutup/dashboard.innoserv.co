@@ -8,8 +8,7 @@
       <p>{{ contributor.item.user.name || 'User' }}<sup class="label label-influencer">Influencer</sup></p>
       <button class="btn sproutup-btn-sm aqua" ng-click="contributor.messaging = true"><i class="fa fa-commenting"></i>Send message</button>
     </div>
-
-    <up-message-channel />
+    <up-message-channel channel-id="contributor.item.channel.id"/>
     <!-- sending a message -->
     <!-- <div class="dashboard-side-panel-header" ng-if="contributor.messaging">
       <p>Kevin the Tech Ninja<sup class="label label-influencer">Influencer</sup></p>
