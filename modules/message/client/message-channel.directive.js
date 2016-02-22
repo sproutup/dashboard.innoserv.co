@@ -9,7 +9,7 @@ function upMessageChannel() {
     restrict: 'EA',
     templateUrl: 'modules/message/client/message-channel.template.html',
     scope: {
-      content: '=',
+      channelId: '=',
       state: '@',
       params: '='
     },
@@ -25,9 +25,9 @@ function upMessageChannel() {
   }
 }
 
-MessageChannelController.$inject = ['$scope', 'Authentication', 'Socket'];
+MessageChannelController.$inject = ['$scope', 'Authentication', 'Socket', 'MessageService'];
 
-function MessageChannelController($scope, Authentication, Socket) {
+function MessageChannelController($scope, Authentication, Socket, MessageService) {
     var vm = this;
     vm.commentToggle = commentToggle;
     vm.send = send;
@@ -61,11 +61,21 @@ function MessageChannelController($scope, Authentication, Socket) {
         text: vm.body
       };
 
-      // Emit a 'chatMessage' message event
-      Socket.emit('chatMessage', message);
+      var Message = MessageService.message();
+      var item = new Message({
+        body: vm.body,
+        channelId: 'test'
+      });
 
-      // Clear the message text
-      vm.body = '';
+      item.$save(function (response) {
+        // Emit a 'chatMessage' message event
+        Socket.emit('chatMessage', message);
+        // Clear the message text
+        vm.body = '';
+      }, function (errorResponse) {
+        console.log(errorResponse);
+        vm.error = errorResponse.data.message;
+      });
     }
 
     function commentToggle() {
