@@ -226,12 +226,10 @@
       }
 
       function findOneContent() {
-        console.log('hey');
         ContentService.content().get({
           contentId: $state.params.contentId
         }, function(res) {
-          console.log(res);
-          vm.item = res;
+          vm.contentItem = res;
         }, function(err) {
           $state.go('landing.default');
         });
