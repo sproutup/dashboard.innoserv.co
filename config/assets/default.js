@@ -23,7 +23,8 @@ module.exports = {
         'public/lib/angular-moment/angular-moment.min.js',
         'public/lib/ng-file-upload/ng-file-upload.min.js',
         'public/lib/crypto-js/crypto-js.js',
-        'public/lib/angular-cookies/angular-cookies.min.js'
+        'public/lib/angular-cookies/angular-cookies.min.js',
+        'public/lib/ng-videosharing-embed/build/ng-videosharing-embed.min.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

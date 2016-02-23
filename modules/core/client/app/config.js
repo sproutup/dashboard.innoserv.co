@@ -14,7 +14,8 @@ var ApplicationConfiguration = (function () {
     'chart.js',
     'angularMoment',
     'ngCookies',
-    'ngFileUpload'
+    'ngFileUpload',
+    'videosharing-embed'
   ];
 
   // Add a new vertical module

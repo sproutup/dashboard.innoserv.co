@@ -40,5 +40,9 @@
   </div>
 </div>
 <div ng-init="vm.findCompanyContent()">
-  <up-media ng-repeat="item in vm.content" item=item></up-media>
+  <div class="preview-wrapper">
+    <div class="row">
+      <up-media ng-repeat="item in vm.content" item=item></up-media>
+    </div>
+  </div>
 </div>
