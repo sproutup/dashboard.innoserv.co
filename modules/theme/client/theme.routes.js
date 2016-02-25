@@ -31,6 +31,10 @@ angular.module('theme').config(['$stateProvider',
         url: '/signin',
         templateUrl: 'modules/theme/client/mocks/signin.view.html'
       })
+      .state('theme.mocks.select-company', {
+        url: '/select-company',
+        templateUrl: 'modules/theme/client/mocks/select-company.view.html'
+      })
       .state('theme.mocks.company-landing', {
         url: '/company-landing',
         templateUrl: 'modules/theme/client/mocks/company-landing.view.html'
