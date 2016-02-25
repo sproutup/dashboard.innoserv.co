@@ -24,22 +24,16 @@
           <input type="text" id="lastName" name="lastName" class="form-control form-validate form-input" data-ng-model="user.lastName" placeholder="Last Name">
         </div>
 
-        <!-- Last name -->
-        <div class="form-group">
-          <label for="lastName">Url</label>
-          <input type="text" id="url" name="url" class="form-control form-validate form-input" data-ng-model="user.file.url" placeholder="Last Name">
-        </div>
-
         <!-- TODO: send a verification email is users change email -->
         <div class="form-group">
           <label for="email">Email</label>
 <!--           <div><a href="" ng-click="emailConfirmation()" ng-if="!user.emailConfirmed">Send another email confirmation</a></div> -->
-          <input type="email" id="email" name="email" class="form-control form-validate form-input" data-ng-model="user.email" placeholder="Email">
+          <input type="email" id="email" name="email" class="form-control form-validate form-input" data-ng-model="user.email" placeholder="Email" disabled>
         </div>
 
         <!-- TODO: disable Save button unless users change something -->
         <div class="form-group">
-          <input type="submit" id="submit" class="btn btn-lg sproutup-btn-md-main" value="Save Changes">
+          <button type="submit" id="submit" class="btn btn-lg sproutup-btn-md-main">Save changes</button>
         </div>
 
         <!-- TODO: change to SproutUp heads-up message style -->
@@ -52,4 +46,3 @@
       </fieldset>
     </form>
 </div>
-
