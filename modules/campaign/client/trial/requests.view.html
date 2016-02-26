@@ -39,7 +39,7 @@
               <div>{{ item.user.comment || 'No reason specified' }}<a href="#"></a></div>
             </td>
             <td class="request-reach">{{ item.user.reach || '?' }}</td>
-            <td class="request-detail-link" ng-click="vm.request = item"><a ui-sref="company.navbar.campaign.trial.view.contributor({ userId: item.user.id })">Details</a></td>
+            <td class="request-detail-link" ng-click="vm.request = item"><a ui-sref="company.navbar.campaign.trial.view.requests.contributor({ userId: item.user.id })">Details</a></td>
           </tr>
         </tbody>
       </table>

@@ -46,7 +46,7 @@ angular.module('campaign').config(['$stateProvider',
         url: '/configure',
         templateUrl: 'modules/campaign/client/trial/configure.view.html'
       })
-      .state('company.navbar.campaign.trial.view.contributor', {
+      .state('company.navbar.campaign.trial.view.requests.contributor', {
         url: '/:userId',
         templateUrl: 'modules/campaign/client/contributor-details.view.html',
         controller: 'ContributorController',
