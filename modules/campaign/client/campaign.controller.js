@@ -147,8 +147,8 @@
       }
 
       function stopCampaign () {
-        var CampaignObj = CampaignService.campaignFields();
-        var campaign = new CampaignObj();
+        var CampaignObj = CampaignService.campaigns();
+        var campaign = new CampaignObj(vm.item);
         campaign.status = -1;
         campaign.$update({
           campaignId: $state.params.campaignId
