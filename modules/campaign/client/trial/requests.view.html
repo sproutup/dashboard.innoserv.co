@@ -1,15 +1,23 @@
 <div class="row dashboard-body-wrapper" ng-init="vm.query.state = 0">
-  <div class="col-sm-3 request-group">
+  <div class="col-sm-2">
     <div class="list-group">
-      <a ng-click="vm.query.state = 0"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 0 }">Requested</div></a>
-      <a ng-click="vm.query.state = 1"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 1 }">Approved</div></a>
-      <a ng-click="vm.query.state = 10"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 10 }">Completed</div></a>
+      <a href="#" ng-click="vm.query.state = 0"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 0 }">Requests</div></a>
+      <a href="#" ng-click="vm.query.state = 1"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 1 }">In Talk</div></a>
+      <a href="#" ng-click="vm.query.state = 10"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 10 }">Yes List</div></a>
     </div>
   </div>
   <!-- Requests -->
-  <div class="dashboard-body-header">
+  <div class="col-sm-10">
+    <div ng-if="filteredItems.length < 1">
+      <div class="col-sm-12">
+        <div class="empty-state-wrapper">
+          <img class="img-center" src="modules/core/client/img/icon-campaign.png">
+          <h2>No trials found.</h2>
+        </div>
+      </div>
+    </div>
     <div class="sproutup-table table-responsive">
-      <input ng-model="vm.query.$" class="form-control" placeholder="Search your contributors."/>
+      <input ng-show="filteredItems.length > 0" ng-model="vm.query.$" class="form-control form-input" placeholder="Search your contributors."/>
       <br>
       <table class="table table-hover" ng-show="filteredItems.length > 0">
         <thead>
@@ -35,15 +43,6 @@
           </tr>
         </tbody>
       </table>
-      <div ng-if="filteredItems.length < 1">
-        <div class="col-sm-12">
-          <div class="empty-state-wrapper">
-            <img class="img-center" src="modules/core/client/img/icon-campaign.png">
-            <h2>No trials found.</h2>
-      <!--         <a ui-sref="company.navbar.product.create" class="btn btn-lg sproutup-btn-md-main orange">Add New Product</a> -->
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>

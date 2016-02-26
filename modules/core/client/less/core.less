@@ -3293,6 +3293,10 @@ input:-ms-input-placeholder {
     transition: all .1s ease-in-out;
 }
 
+a.sproutup-btn-lg-main {
+  padding-top: 14px;
+}
+
 .sproutup-btn-lg-main.orange {
   color: white;
   background-color: @sproutup-orange;
@@ -3413,7 +3417,9 @@ input:-ms-input-placeholder {
   color: white;
 }
 
-.sproutup-btn-sm {
+.sproutup-btn-sm,
+.sproutup-btn-sm:active,
+.sproutup-btn-sm:focus {
   height: 40px;
   font-weight: 700;
   font-size: 10pt;
@@ -3521,19 +3527,25 @@ input:-ms-input-placeholder {
   color: white;
 }
 
-.sproutup-btn-xs {
+.sproutup-btn-xs,
+.sproutup-btn-xs:active,
+.sproutup-btn-xs:focus {
   height: 32px;
   font-weight: 700;
   font-size: 9pt;
   background-color: @sproutup-blue;
   color: white;
   border-radius: 2px;
-  padding-top: 5px;
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
   -ms-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
+}
+
+a.sproutup-btn-xs {
+  color: white;
+  padding-top: 6px;
 }
 
 .sproutup-btn-xs:hover {
@@ -3767,7 +3779,7 @@ h3[class="placeholder"] {
   border: 1px solid @sproutup-grey;
   padding: 40px;
   text-align: center;
-  margin: 10px 0px 40px;
+  margin: 0px 0px 40px;
 }
 
 .empty-state-wrapper h1 {
