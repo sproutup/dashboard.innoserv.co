@@ -35,6 +35,10 @@
            type: 'yt' }
       ];
 
+      if ($state.params.productId) {
+        vm.productId = $state.params.productId;
+      }
+
       function init(type) {
         vm.item = {};
         vm.item.type = type;

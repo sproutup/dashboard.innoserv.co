@@ -17,7 +17,6 @@
     vm.find = find;
     vm.findOne = findOne;
     vm.editProduct = editProduct;
-    vm.startCampaign = startCampaign;
     vm.openModal = openModal;
 
     function create(isValid) {
@@ -138,10 +137,6 @@
 
     function editProduct() {
       $state.go('company.navbar.product.edit', { productId: $state.params.productId });
-    }
-
-    function startCampaign(product) {
-      $rootScope.startingCampaign = product;
     }
 
     function openModal(item) {

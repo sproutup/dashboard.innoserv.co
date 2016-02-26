@@ -38,11 +38,11 @@ angular.module('campaign').config(['$stateProvider',
         template: '<ui-view></ui-view>'
       })
       .state('company.navbar.t.campaign.trial.create', {
-        url: '/create',
+        url: '/create/:productId',
         templateUrl: 'modules/campaign/client/trial/create.view.html'
       })
       .state('company.navbar.t.campaign.contest', {
-        url: '/contest',
+        url: '/contest/:productId',
         template: '<ui-view></ui-view>'
       })
       .state('company.navbar.t.campaign.contest.create', {

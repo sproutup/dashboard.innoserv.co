@@ -25,7 +25,7 @@ angular.module('campaign').config(['$stateProvider',
         }
       })
       .state('company.navbar.template.select', {
-        url: '/select',
+        url: '/select/:productId',
         templateUrl: 'modules/campaign/client/template/select-template.view.html',
         data: {
           roles: ['user', 'admin']

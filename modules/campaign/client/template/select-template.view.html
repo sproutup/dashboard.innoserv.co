@@ -7,7 +7,7 @@
       <div class="row campaign-template-list product-trial">
       <p>Launching a new product? Run <span>Product Trial</span> is the way to go! &#x1F680;</p>
         <div class="col-sm-4 campaign-template-item" ng-repeat="item in vm.campaigns | filter: {type:'trial', status: -10}">
-          <a ui-sref='company.navbar.t.campaign.trial.create({templateId: item.id})'>
+          <a ui-sref='company.navbar.t.campaign.trial.create({templateId: item.id, productId: vm.productId})'>
             <div class="campaign-template-item-info product-trial">
               <p class="template-title">{{item.name}}</p>
               <p class="template-description">{{item.description}}</p>
@@ -20,7 +20,7 @@
       <div class="row campaign-template-list video-contest">
         <p>Wanna engage existing and new customers? Start <span>Contest</span> and let their creative juice flow! &#x1F31F;</p>
         <div class="col-sm-4 campaign-template-item" ng-repeat="item in vm.campaigns | filter: {type:'contest', status: -10}">
-          <a ui-sref='company.navbar.t.campaign.contest.create({templateId: item.id})'>
+          <a ui-sref='company.navbar.t.campaign.contest.create({templateId: item.id, productId: vm.productId})'>
             <div class="campaign-template-item-info video-contest">
               <p class="template-title">{{item.name}}</p>
               <p class="template-description">{{item.description}}</p>

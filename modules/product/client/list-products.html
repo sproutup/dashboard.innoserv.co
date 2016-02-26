@@ -31,7 +31,7 @@
           <td><a ui-sref="company.navbar.product.edit({ productId: product.id })">{{ product.name }}</a></td>
           <td>{{ product.tagline }}</td>
           <td>Category</td>
-          <td class="start-new-campaign"><a ui-sref="company.navbar.campaign.create" ng-click="vm.startCampaign(product)"><i class="fa fa-plus-circle"></i>START CAMPAIGN</a></td>
+          <td class="start-new-campaign"><a ui-sref="company.navbar.template.select({ productId: product.id })"><i class="fa fa-plus-circle"></i>START CAMPAIGN</a></td>
           <td>
             <button class="btn sproutup-btn-xs" ui-sref="company.navbar.product.edit({ productId: product.id })">Edit</button>
           </td>

@@ -6,7 +6,7 @@ angular.module('campaign').config(['$stateProvider',
       // Create, edit, and configure trial states
       // (They're using different headers/state prefixs than the regular trial views for now.)
       .state('company.navbar.campaign.create-trial', {
-        url: '/trial/create',
+        url: '/trial/create/:productId',
         templateUrl: 'modules/campaign/client/trial/create.view.html'
       })
       .state('company.navbar.campaign.edit-trial', {

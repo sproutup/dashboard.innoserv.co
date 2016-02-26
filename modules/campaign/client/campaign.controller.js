@@ -60,10 +60,6 @@
           name: vm.name
         }); */
 
-        if (vm.product) {
-          vm.item.productId = vm.product.id;
-        }
-
         // temporary hack
         vm.item.typeOfContent = [];
         for (var s = 0; s < vm.socialOptions.length; s++) {
@@ -101,6 +97,9 @@
         vm.item = new Campaign($scope.template.item);
         vm.item.companyId = $scope.company.company.id;
         vm.item.status = 0;
+        if ($state.params.productId) {
+          vm.item.productId = $state.params.productId;
+        }
         findProducts();
       }
 
@@ -326,9 +325,5 @@
       }
 
 //       findProducts();
-
-//       if ($rootScope.startingCampaign) {
-//         vm.product = $rootScope.startingCampaign;
-//       }
     }
 })();
