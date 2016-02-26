@@ -15,7 +15,8 @@ var ApplicationConfiguration = (function () {
     'angularMoment',
     'ngCookies',
     'ngFileUpload',
-    'videosharing-embed'
+    'videosharing-embed',
+    'angularSpinner'
   ];
 
   // Add a new vertical module

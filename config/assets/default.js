@@ -24,7 +24,9 @@ module.exports = {
         'public/lib/ng-file-upload/ng-file-upload.min.js',
         'public/lib/crypto-js/crypto-js.js',
         'public/lib/angular-cookies/angular-cookies.min.js',
-        'public/lib/ng-videosharing-embed/build/ng-videosharing-embed.min.js'
+        'public/lib/ng-videosharing-embed/build/ng-videosharing-embed.min.js',
+        'public/lib/spin.js/spin.min.js',
+        'public/lib/angular-spinner/angular-spinner.min.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
