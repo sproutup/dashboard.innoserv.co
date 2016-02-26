@@ -10,7 +10,7 @@ angular.module('campaign').run(['Menus',
     });
 
     Menus.addMenuItem('company.navbar.campaign.trial.view.menu', {
-      title: 'Stats',
+      title: 'Content',
       state: 'company.navbar.campaign.trial.view.stats',
       class: '',
       roles: ['*']
