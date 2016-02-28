@@ -28,6 +28,7 @@
       vm.approveRequest = approveRequest;
       vm.findContributors = findContributors;
       vm.findProducts = findProducts;
+      vm.state = $state;
       vm.socialOptions = [
         {  title: 'Twitter',
            type: 'tw' },
