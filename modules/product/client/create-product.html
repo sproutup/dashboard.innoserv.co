@@ -22,7 +22,7 @@
           <input type="url" name="video" class="form-control form-input" placeholder="Video link (must be a valid YouTube or Vimeo link)" ng-model="vm.video" up-valid-video/>
           <div ng-show="form.$submitted || form.name.$touched">
             <div class="form--error-message" ng-show="form.video.$error.url"><i class="help-block text-danger"></i>This is not a valid link. Make sure to include your http:// or https:// prefix.</div>
-            <div class="form--error-message" ng-show="form.video.$error.validVideo"><i class="help-block text-danger"></i>Make sure this is a YouTube or Vimeo link.</div>
+            <div class="form--error-message" ng-show="form.video.$error.validVideo"><i class="help-block text-danger"></i>This needs a link to a YouTube or Vimeo video.</div>
           </div>
         </div>
         <div class="col-sm-12 form-input-group">
