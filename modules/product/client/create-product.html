@@ -10,7 +10,7 @@
             <div class="form--error-message" ng-show="form.name.$error.required"><i class="help-block text-danger"></i>Product name is required.</div>
           </div>
           <input type="text" class="form-control form-input" placeholder="Tagline" ng-model="vm.tagline" />
-          <input type="url" name="url" class="form-control form-input" placeholder="Url to this product" ng-model="vm.url" />
+          <input type="url" name="url" class="form-control form-input" placeholder="URL of this product" ng-model="vm.url" />
           <div ng-show="form.$submitted || form.name.$touched">
             <div class="form--error-message" ng-show="form.url.$error.url"><i class="help-block text-danger"></i>This is not a valid link. Make sure to include your http:// or https:// prefix.</div>
           </div>
@@ -19,9 +19,10 @@
         </div>
         <div class="col-sm-12 form-input-group">
           <p class="input-group-title">Product Video</p>
-          <input type="url" name="video" class="form-control form-input" placeholder="Video link (must be a valid YouTube or Vimeo link)" ng-model="vm.video" />
+          <input type="url" name="video" class="form-control form-input" placeholder="Video link (must be a valid YouTube or Vimeo link)" ng-model="vm.video" up-valid-video/>
           <div ng-show="form.$submitted || form.name.$touched">
             <div class="form--error-message" ng-show="form.video.$error.url"><i class="help-block text-danger"></i>This is not a valid link. Make sure to include your http:// or https:// prefix.</div>
+            <div class="form--error-message" ng-show="form.video.$error.validVideo"><i class="help-block text-danger"></i>Make sure this is a youtube or vimeo link.</div>
           </div>
         </div>
         <div class="col-sm-12 form-input-group">
