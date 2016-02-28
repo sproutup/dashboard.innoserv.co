@@ -1,19 +1,21 @@
 <section ng-init="vm.find()">
-  <div class="page-header">
-    <h1>Choose a company</h1>
+  <h1 class="dashboard-section-title">
+    <i class="fa fa-exchange"></i>Switch Company
+  </h1>
+  <div class="row dashboard-body-wrapper">
+    <div class="col-sm-12">
+      <div class="dashboard-body-header">
+        <div class="dashboard-body-title">Click and switch to another company</div>
+      </div>
+      <a class="company-selector" ng-repeat="company in vm.companies" ui-sref='company.navbar.list({companySlug: company.slug})' ng-click="vm.authentication.setCompany(company)">
+        <div class="create-campaign-banner company-profile-banner" style="background-image: url('{{ company. || 'https://s3.amazonaws.com/images.mentor.com/News/DSC_6084.jpg' }}');">
+          <h1 ng-bind="company.name"></h1>
+          <h2 ng-bind="company.url"></h2>
+        </div>
+      </a>
+    </div>
   </div>
-  <a ui-sref="company.navbar.company.create" class="btn btn-info">Create New Company</a>
-  <div class="list-group">
-    <a ng-repeat="company in vm.companies" class="list-group-item" ui-sref='company.navbar.list({companySlug: company.slug})' ng-click="vm.authentication.setCompany(company)">
-      <small class="list-group-item-text">
-        Created on
-        <span ng-bind="company.created | date:'mediumDate'"></span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="company.name"></h4>
-      <p class="list-group-item-text" ng-bind="company.url"></p>
-    </a>
-  </div>
-  <div class="alert alert-warning text-center" ng-if="vm.companies.$resolved && !companies.length">
+  <div class="alert alert-warning text-center" ng-if="vm.companies.$resolved && !vm.companies.length">
     No companies yet, why don't you <a ui-sref="companies.create">create one</a>?
   </div>
 </section>
