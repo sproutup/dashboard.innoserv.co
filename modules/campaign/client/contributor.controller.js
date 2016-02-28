@@ -9,40 +9,49 @@
   ContributorController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService'];
 
   function ContributorController($scope, $rootScope, $state, CampaignService) {
-    var contributor = this;
-    contributor.getDetails = getDetails;
-    contributor.approveRequest = approveRequest;
-    contributor.productShipped = productShipped;
+    var vm = this;
+    vm.getDetails = getDetails;
+    vm.getCampaign = getCampaign;
+    vm.approveRequest = approveRequest;
+    vm.productShipped = productShipped;
+    vm.userId = null;
+    vm.campaignId = null;
 
     function getDetails() {
       CampaignService.contribution().get({
         userId: $state.params.userId,
         campaignId: $state.params.campaignId
       }, function(response) {
-        contributor.item = response;
+        vm.item = response;
+        vm.userId = 5;//response.userId;
+        vm.campaignId = response.campaignId;
         sortLog();
       }, function(err) {
         console.log(err);
       });
     }
 
+    function getCampaign() {
+      return vm.campaignId;
+    }
+
     function sortLog() {
-      if (contributor.item.log) {
+      if (vm.item.log) {
         // Find approved logs
-        contributor.item.approved = contributor.item.log.filter(function(item) {
+        vm.item.approved = vm.item.log.filter(function(item) {
           return item.state === 1;
         });
 
         // Find completed logs
-        contributor.item.completed = contributor.item.log.filter(function(item) {
+        vm.item.completed = vm.item.log.filter(function(item) {
           return item.state === 10 || item.state === '10';
         });
 
-      // contributor.item.approved.sort(function(a,b){
+      // vm.item.approved.sort(function(a,b){
       //   return b.created - a.created;
       // });
 
-      // contributor.item.approved.sort(function(a,b){
+      // vm.item.approved.sort(function(a,b){
       //   return b.created - a.created;
       // });
       }
@@ -57,9 +66,9 @@
         userId: $state.params.userId,
         campaignId: $state.params.campaignId
       }, { state: state }, function(response) {
-        var user = contributor.item.user;
-        contributor.item = response;
-        contributor.item.user = user;
+        var user = vm.item.user;
+        vm.item = response;
+        vm.item.user = user;
         sortLog();
         if (request) {
           request.state = state;
@@ -78,9 +87,9 @@
         userId: $state.params.userId,
         campaignId: $state.params.campaignId
       }, { trial: { shippingState: state } }, function(response) {
-        var user = contributor.item.user;
-        contributor.item = response;
-        contributor.item.user = user;
+        var user = vm.item.user;
+        vm.item = response;
+        vm.item.user = user;
         sortLog();
       }, function(err) {
         console.log(err);

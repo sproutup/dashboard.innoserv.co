@@ -15,6 +15,7 @@ var ApplicationConfiguration = (function () {
     'angularMoment',
     'ngCookies',
     'ngFileUpload',
+    'luegg.directives',    
     'videosharing-embed',
     'angularSpinner'
   ];

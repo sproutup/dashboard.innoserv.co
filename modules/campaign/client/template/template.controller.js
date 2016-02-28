@@ -6,7 +6,7 @@
     .module('campaign')
     .controller('TemplateController', TemplateController);
 
-    TemplateController.$inject = ['$scope', '$rootScope', 'TrialService', '$state', 'CampaignService', 'TemplateService', '$location', 'Authentication', 'TeamService', 'ProductService', '$cookieStore', '$modal'];
+    TemplateController.$inject = ['$scope', '$rootScope', 'TrialService', '$state', 'CampaignService', 'TemplateService', '$location', 'Authentication', 'TeamService', 'ProductService', '$cookieStore', '$uibModal'];
 
     function TemplateController($scope, $rootScope, TrialService, $state, CampaignService, TemplateService, $location, Authentication, TeamService, ProductService, $cookieStore, $modal) {
       var vm = this;
@@ -21,7 +21,7 @@
       vm.item = {};
       vm.openModal = openModal;
       vm.types = [
-        { id: 'trial', 
+        { id: 'trial',
           name: 'Product Trial'},
         { id: 'contents',
           name: 'Video Contest'}
@@ -92,9 +92,9 @@
           //     vm.companies.splice(i, 1);
           //   }
           // }
-        } 
+        }
         // else {
-          // test this 
+          // test this
           // vm.campaign.$remove(function () {
           //   $location.path('user.campaign');
           // });
@@ -117,7 +117,7 @@
 
         console.log(vm.item);
         console.log(vm.item.tagline);
-        
+
         vm.item.$update(function () {
           console.log(vm.item);
           console.log(vm.item.tagline);

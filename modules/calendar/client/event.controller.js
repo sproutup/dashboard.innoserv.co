@@ -6,7 +6,7 @@
     .module('calendar')
     .controller('EventController', EventController);
 
-  EventController.$inject = ['$scope', '$state', 'CalendarService', 'Authentication', '$modal'];
+  EventController.$inject = ['$scope', '$state', 'CalendarService', 'Authentication', '$uibModal'];
 
   function EventController($scope, $state, CalendarService, Authentication, $modal) {
     var vm = this;

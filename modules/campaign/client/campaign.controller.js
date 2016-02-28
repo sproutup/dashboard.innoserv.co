@@ -6,7 +6,7 @@
       .module('campaign')
       .controller('CampaignController', CampaignController);
 
-    CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$modal', 'ContentService'];
+    CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService'];
 
     function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService) {
       var vm = this;

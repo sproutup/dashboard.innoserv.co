@@ -6,7 +6,7 @@
     .module('product')
     .controller('ProductController', ProductController);
 
-  ProductController.$inject = ['$scope', 'TrialService', '$state', 'ProductService', '$location', 'Authentication', 'TeamService', '$rootScope', '$modal'];
+  ProductController.$inject = ['$scope', 'TrialService', '$state', 'ProductService', '$location', 'Authentication', 'TeamService', '$rootScope', '$uibModal'];
 
   function ProductController($scope, TrialService, $state, ProductService, $location, Authentication, TeamService, $rootScope, $modal) {
     var vm = this;
@@ -69,9 +69,9 @@
             vm.companies.splice(i, 1);
           }
         }
-      } 
+      }
       // else {
-        // test this 
+        // test this
         // vm.product.$remove(function () {
         //   $location.path('user.product');
         // });
