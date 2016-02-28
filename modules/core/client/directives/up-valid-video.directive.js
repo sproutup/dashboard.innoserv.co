@@ -7,16 +7,6 @@ angular
   .directive('upValidVideo', upValidVideo);
 
 function upValidVideo() {
-  function isValidVideo(url) {
-    if (getYouTubeId(url)) {
-      return true;
-    } else if (getVimeoId(url)) {
-      return true;
-    }
-
-    return false;
-  }
-
   function getVideoId(str, prefixes) {
     var cleaned = str.replace(/^(https?:)?\/\/(www\.)?/, '');
     for(var i = 0; i < prefixes.length; i++) {
@@ -49,12 +39,14 @@ function upValidVideo() {
           return true;
         }
 
-        if (isValidVideo(viewValue)) {
-          // it is a valid video link
+        // check for valid video link
+        if (getYouTubeId(viewValue)) {
+          return true;
+        } else if (getVimeoId(viewValue)) {
           return true;
         }
 
-        // it is an invalid video link
+        // invalid video link
         return false;
       };
     }
