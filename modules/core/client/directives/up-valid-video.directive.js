@@ -3,8 +3,8 @@
 // It takes a height, width, and fontsize
 
 angular
-    .module('core')
-    .directive('upValidVideo', upValidVideo);
+  .module('core')
+  .directive('upValidVideo', upValidVideo);
 
 function upValidVideo() {
   function isValidVideo(url) {
