@@ -47,6 +47,9 @@
 
         // Clear form fields
         vm.description = '';
+        vm.name = '';
+        vm.tagline = '';
+        vm.video = '';
       }, function (errorResponse) {
         console.log(errorResponse);
         vm.error = errorResponse.data.message;
