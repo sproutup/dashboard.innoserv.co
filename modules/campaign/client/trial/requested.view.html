@@ -23,8 +23,8 @@
               <canvas ng-if="!request.avatarUrl" width="60" height="60" fontsize="28" name="{{ request.user.name }}" up-avatar></canvas>
             </a></td>
             <td class="request-name-pitch">
-              <div class="name"><a href="#">{{ request.user.name || 'User' }}</a></div>
-              <div>{{ request.user.comment || 'No reason specified' }}<a href="#"></a></div>
+              <div class="name"><a href="#">{{ request.user.displayName || 'User' }}</a></div>
+              <div>{{ request.comment || 'No reason specified' }}<a href="#"></a></div>
             </td>
             <td class="request-reach">{{ request.user.reach || '?' }}</td>
             <td class="request-detail-link"><a ui-sref="company.navbar.campaign.trial.view.contributor({ userId: request.user.id })">Details</a></td>

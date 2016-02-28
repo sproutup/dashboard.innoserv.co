@@ -6,7 +6,7 @@ angular.module('campaign').config(['$stateProvider',
       .state('company.navbar.campaign', {
         url: '/campaign',
         abstract: true,
-        template: '<div ui-view></div>',
+        template: '<div data-ui-view></div>',
         controller: 'CampaignController',
         controllerAs: 'vm'
       })
