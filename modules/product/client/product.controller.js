@@ -38,7 +38,8 @@
         name: vm.name,
         description: vm.description,
         tagline: vm.tagline,
-        video: vm.video
+        video: vm.video,
+        url: vm.url
       });
 
       // Redirect after save
@@ -50,6 +51,7 @@
         vm.name = '';
         vm.tagline = '';
         vm.video = '';
+        vm.url = '';
       }, function (errorResponse) {
         console.log(errorResponse);
         vm.error = errorResponse.data.message;
