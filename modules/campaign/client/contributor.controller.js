@@ -6,9 +6,9 @@
     .module('campaign')
     .controller('ContributorController', ContributorController);
 
-  ContributorController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService'];
+  ContributorController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', 'MessageService'];
 
-  function ContributorController($scope, $rootScope, $state, CampaignService) {
+  function ContributorController($scope, $rootScope, $state, CampaignService, MessageService) {
     var vm = this;
     vm.getDetails = getDetails;
     vm.getCampaign = getCampaign;
@@ -16,6 +16,44 @@
     vm.productShipped = productShipped;
     vm.userId = null;
     vm.campaignId = null;
+    vm.findChannel = findChannel;
+    vm.startChannel = startChannel;
+
+    function findChannel(){
+      console.log('find channel by ref: ', $state.params.campaignId);
+      var myChannelRef = MessageService.myChannelRef();
+      var item = new myChannelRef({
+        userId: $state.params.userId
+      });
+      // Use save to post a request. we are not really saving anything
+      item.$save({refId: $state.params.campaignId}, function (channel) {
+        if(channel.id){
+          console.log('channel found: ', channel.id);
+          vm.channelId = channel.id;
+        }
+      }, function (errorResponse) {
+        console.log(errorResponse);
+        vm.error = errorResponse.data.message;
+      });
+    }
+
+    function startChannel(){
+      console.log('start channel by ref: ', $state.params.campaignId);
+      var campaignChannel = MessageService.campaignChannel();
+      var item = new campaignChannel({
+        userId: $state.params.userId
+      });
+      // Use save to post a request. we are not really saving anything
+      item.$save({campaignId: $state.params.campaignId}, function (channel) {
+        if(channel.id){
+          console.log('channel created: ', channel.id);
+          vm.channelId = channel.id;
+        }
+      }, function (errorResponse) {
+        console.log(errorResponse);
+        vm.error = errorResponse.data.message;
+      });
+    }
 
     function getDetails() {
       CampaignService.contribution().get({

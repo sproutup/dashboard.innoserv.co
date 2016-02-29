@@ -7,7 +7,7 @@
     <div class="dashboard-side-panel-header">
       {{contributor.item.campaignId}}<p>{{ contributor.item.user.name || 'User' }}<sup class="label label-influencer">Influencer</sup></p>
     </div>
-    <up-message-channel ref-id="contributor.item.campaignId" user-id="contributor.item.userId"/>
+    <up-message-channel channel="contributor.channelId" on-start="campaign.startChannel()" ng-init="contributor.findChannel()"/>
 
     <!-- section: trial status management -->
     <div class="dashboard-side-panel-section">
