@@ -123,6 +123,15 @@ angular.module('theme').config(['$stateProvider',
       .state('theme.mocks.view-a-conversation', {
         url: '/view-a-conversation',
         templateUrl: 'modules/theme/client/mocks/view-a-conversation.view.html'
+      })
+      // legal
+      .state('theme.mocks.terms', {
+        url: '/terms',
+        templateUrl: 'modules/theme/client/mocks/terms.view.html'
+      })
+      .state('theme.mocks.privacy', {
+        url: '/privacy',
+        templateUrl: 'modules/theme/client/mocks/privacy.view.html'
       });
   }
 ]);
