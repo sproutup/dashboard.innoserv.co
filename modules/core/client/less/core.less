@@ -2124,12 +2124,21 @@ button:active {
   margin: 10px 0px 20px;
 }
 
+.campaign-template-list .campaign-template-list-header {
+  padding: 0px;
+  margin: 0px auto 30px;
+  font-weight: 400;
+  font-size: 13pt;
+  color: @main-text-verylight;
+  max-width: 600px;
+}
+
 .campaign-template-list p {
   padding: 0px 3px;
   margin: 0px 0px 15px;
   font-weight: 400;
   font-size: 14pt;
-  color: @main-text-lighter;
+  color: @main-text-light;
 }
 
 .campaign-template-list.product-trial p span {
@@ -3216,7 +3225,7 @@ input:-ms-input-placeholder {
   padding: 0px 5px;
 }
 
-.message-blurb .sender .time {
+.message-blurb .sender span {
   font-weight: 400;
   color: @sproutup-grey;
   padding-left: 15px;
@@ -3795,7 +3804,7 @@ h3[class="placeholder"] {
 
 .empty-state-wrapper p {
   font-weight: 400;
-  color: @input-placeholder-text;
+  color: @main-text-veryverylight;
   font-size: 13pt;
   margin-bottom: 30px;
   line-height: 1.6;
@@ -3803,6 +3812,12 @@ h3[class="placeholder"] {
 
 .empty-state-wrapper p a {
   color: @sproutup-blue;
+}
+
+.empty-state-wrapper .campaign-template-list {
+  border-top: 1px solid @sproutup-grey;
+  margin: 40px 0px 0px;
+  padding: 40px 0px 0px;
 }
 
 .hud {
