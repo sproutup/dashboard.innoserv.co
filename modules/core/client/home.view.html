@@ -25,7 +25,7 @@
             <div class="input-group">
               <input name="email" type="email" class="form-control dashboard-signup-input" placeholder="Your email account" ng-model="vm.email" ng-model-options="{ debounce: 250 }" unique-email required>
             </div>
-            <button type="submit" ng-disabled="form.$invalid" class="btn btn-lg sproutup-btn-lg-main orange" ng-click="vm.getStarted()">
+            <button analytics-on="click" analytics-event="Sign Up" type="submit" ng-disabled="form.$invalid" class="btn btn-lg sproutup-btn-lg-main orange" ng-click="vm.getStarted()">
               <span ng-hide="vm.company">Get Started</span>
               <span ng-show="vm.company">Join {{vm.company.name}}</span>
             </button>

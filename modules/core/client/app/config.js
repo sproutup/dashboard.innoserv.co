@@ -15,9 +15,12 @@ var ApplicationConfiguration = (function () {
     'angularMoment',
     'ngCookies',
     'ngFileUpload',
-    'luegg.directives',    
+    'luegg.directives',
     'videosharing-embed',
-    'angularSpinner'
+    'angularSpinner',
+    'angulartics',
+    'angulartics.google.analytics',
+    'angulartics.mixpanel'
   ];
 
   // Add a new vertical module

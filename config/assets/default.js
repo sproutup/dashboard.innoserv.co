@@ -27,7 +27,10 @@ module.exports = {
         'public/lib/angular-scroll-glue/src/scrollglue.js',
         'public/lib/ng-videosharing-embed/build/ng-videosharing-embed.min.js',
         'public/lib/spin.js/spin.min.js',
-        'public/lib/angular-spinner/angular-spinner.min.js'
+        'public/lib/angular-spinner/angular-spinner.min.js',
+        'public/lib/angulartics/dist/angulartics.min.js',
+        'public/lib/angulartics-mixpanel/dist/angulartics-mixpanel.min.js',
+        'public/lib/angulartics-google-analytics/dist/angulartics-google-analytics.min.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
