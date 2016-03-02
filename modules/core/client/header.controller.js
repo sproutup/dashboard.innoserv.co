@@ -5,7 +5,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     var vm = this;
     vm.toggleCollapsibleMenu = toggleCollapsibleMenu;
     // Expose view variables
-    vm.$state = $state;
+    vm.state = $state;
     vm.authentication = Authentication;
     vm.isCollapsed = false;
     // Get the navbar menu
