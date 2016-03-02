@@ -32,13 +32,13 @@
         <!-- Company address -->
         <div class="form-group">
           <label for="vm.address">Business Address</label>
-          <input ng-model="company.company.address" type="text" id="address" name="address" class="form-control form-validate form-input" placeholder="Business address of your company">
+          <input class="form-control form-input" ng-model="company.company.address" name="address" placeholder="Business address of your company" ng-autocomplete="" details="company.company.addressDetails" required>
         </div>
 
         <!-- Company phone number -->
         <div class="form-group">
           <label for="company.phone">Phone Number</label>
-          <input ng-model="company.company.phone" type="text" id="phone" name="phone" class="form-control form-validate form-input" placeholder="A phone number we can reach you">
+          <input type="text" ng-model="company.company.phone" class="form-control form-validate form-input" ng-intl-tel-input>
         </div>
 
         <!-- TODO: disable Save button unless users change something -->
