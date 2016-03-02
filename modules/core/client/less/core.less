@@ -715,10 +715,22 @@ button:active {
   padding-left: 12px;
 }
 
-.creator-company a {
+.creator-company {
   font-weight: 700;
   font-size: 13pt;
   color: @main-text-white;
+}
+
+.creator-company span {
+  display: block;
+}
+
+.creator-company a,
+.creator-company a:active,
+.creator-company a:focus {
+  font-weight: 400;
+  font-size: 8pt;
+  color: @sproutup-grey;
   text-decoration: none !important;
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
@@ -727,7 +739,7 @@ button:active {
   transition: all .2s ease-in-out;
 }
 
-.creator-company a:hover, .creator-company a:active, .creator-company a:focus {
+.creator-company a:hover {
   color: white;
 }
 
