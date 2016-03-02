@@ -4,29 +4,36 @@
 angular.module('landing').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('company.landing', {
+      .state('footer.company', {
+        url: '/com/:companySlug',
+        abstract: true,
+        template: '<section ng-init="company.findByStateParam()"><div ui-view></div></section>',
+        controller: 'CompanyController',
+        controllerAs: 'company'
+      })
+      .state('footer.company.landing', {
         url: '/landing',
         abstract: true,
         template: '<div ui-view></div>',
         controller: 'landingController',
         controllerAs: 'vm'
       })
-      .state('landing', {
+      .state('footer.landing', {
         url: '/landing',
         abstract: true,
         template: '<div ui-view></div>',
         controller: 'landingController',
         controllerAs: 'vm'
       })
-      .state('company.landing.default', {
+      .state('footer.company.landing.default', {
         url: '',
         templateUrl: 'modules/landing/client/landing.view.html'
       })
-      .state('landing.confirmation', {
+      .state('footer.landing.confirmation', {
         url: '/confirmation?url',
         templateUrl: 'modules/landing/client/landing-confirmation.view.html'
       })
-      .state('company.landing.confirmation', {
+      .state('footer.company.landing.confirmation', {
         url: '/confirmation?url',
         templateUrl: 'modules/landing/client/landing-confirmation.view.html'
       });

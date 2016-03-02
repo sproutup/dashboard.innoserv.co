@@ -28,9 +28,9 @@ function HomeController($scope, $state, CompanyService, $http, Authentication) {
 
     $http.post('/api/auth/join', vm.credentials).success(function (response) {
       if (vm.company) {
-        $state.go('company.landing.confirmation', { companySlug: vm.company.slug, url: response.data[':url'][0] });
+        $state.go('footer.company.landing.confirmation', { companySlug: vm.company.slug, url: response.data[':url'][0] });
       } else {
-        $state.go('landing.confirmation', {url: response.data[':url'][0]});
+        $state.go('footer.landing.confirmation', {url: response.data[':url'][0]});
       }
     }).error(function (response) {
       $scope.error = response.message;
