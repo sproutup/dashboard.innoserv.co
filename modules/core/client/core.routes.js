@@ -37,7 +37,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'modules/core/client/404.view.html'
       })
       .state('privacy', {
-        url: '/privacy-policy',
+        url: '/privacy',
         templateUrl: 'modules/core/client/privacy.view.html'
       })
       .state('terms', {
