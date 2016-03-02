@@ -29,7 +29,7 @@ function landingController($scope, $state, $location, CompanyService, $http, Aut
     Authentication.emailSentTo = userEmail;
 
     $http.post('/api/auth/join', vm.credentials).success(function (response) {
-      $state.go('company.landing.confirmation', {url: response.data[':url'][0]});
+      $state.go('footer.company.landing.confirmation', {url: response.data[':url'][0]});
     }).error(function (response) {
       $scope.error = response.message;
     });

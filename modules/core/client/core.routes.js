@@ -9,7 +9,12 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
     // Home state routing
     $stateProvider
-      .state('home', {
+      .state('footer', {
+        url: '',
+        abstract: true,
+        templateUrl: 'modules/core/client/footer.view.html'
+      })
+      .state('footer.home', {
         url: '/',
         controller: 'HomeController',
         controllerAs: 'vm',
@@ -30,6 +35,14 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
       .state('not-found', {
         url: '/not-found',
         templateUrl: 'modules/core/client/404.view.html'
+      })
+      .state('privacy', {
+        url: '/privacy-policy',
+        templateUrl: 'modules/core/client/privacy.view.html'
+      })
+      .state('terms', {
+        url: '/terms',
+        templateUrl: 'modules/core/client/terms.view.html'
       });
   }
 ]);
