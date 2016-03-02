@@ -1,9 +1,9 @@
 environment_name = develop
 platform = docker
-application_name = creator
+application_name = dashboard
 region = us-west-2
 keypair = endurance
-configuration = creator
+configuration = dashboard
 domain = sproutup-co
 repo = sproutupco
 
@@ -46,7 +46,7 @@ start:
 	docker start $(application_name)
 
 run:
-	docker run -p 9000:9000 -it --rm $(repo)/$(application_name):$(environment_name) /bin/sh
+	docker run -p 3000:3000 -it --rm $(repo)/$(application_name):$(environment_name) /bin/sh
 
 delete: init
 	docker rm $(application_name)
@@ -59,4 +59,3 @@ node:
 	SENDGRID_USERNAME=sproutup \
 	SENDGRID_PASSWORD='1nter$Tellar' \
 	npm start
-

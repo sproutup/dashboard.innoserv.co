@@ -18,9 +18,7 @@ module.exports.loadModels = function loadModels() {
 };
 
 module.exports.init = function init(callback) {
-
   var app = express.init();
-
   if(callback) callback(app, config);
 };
 

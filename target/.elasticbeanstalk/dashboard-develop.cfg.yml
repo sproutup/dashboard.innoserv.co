@@ -1,10 +1,10 @@
 EnvironmentConfigurationMetadata:
-  Description: Analytics server standard configuration.
+  Description: Dashboard server standard configuration.
 AWSConfigurationTemplateVersion: 1.1.0.0
 EnvironmentTier:
   Name: WebServer
   Type: Standard
-SolutionStack: 64bit Amazon Linux 2015.09 v2.0.7 running Docker 1.9.1
+SolutionStack: 64bit Amazon Linux 2015.09 v2.0.8 running Docker 1.9.1
 OptionSettings:
   aws:elasticbeanstalk:command:
     Timeout: 1800
