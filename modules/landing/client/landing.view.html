@@ -10,7 +10,7 @@
       <ul class="nav navbar-nav navbar-item navbar-right">
         <li><a href="#">Product</a></li>
         <li><a href="#">Stories</a></li>
-        <li><a href="#">Sign In</a></li>
+        <li><a ui-sref="authentication.signin">Sign In</a></li>
       </ul>
     </div>
   </div>
@@ -40,7 +40,7 @@
   </div>
 </div>
 <div ng-init="vm.findCompanyContent()">
-  <div class="preview-wrapper">
+  <div class="preview-wrapper" ng-if="vm.content.length > 0">
     <div class="row">
       <div class="col-sm-6 preview-content" ng-repeat="item in vm.content">
         <up-media item='item'></up-media>
