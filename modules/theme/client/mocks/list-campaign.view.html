@@ -9,9 +9,7 @@
   </div>
   <nav role="navigation">
     <div class="nav-head">
-      <div class="nav-item-wrapper creator-company">
-        <a href="#">SproutUp Co</a>
-      </div>
+      <div class="nav-item-wrapper creator-company">SproutUp Co<span><a href="#">Change Company</a></span></div>
       <div class="nav-item-wrapper creator-user">
         <a href="#">
           <img src="modules/core/client/img/default-avatar.png"> Tao
@@ -42,51 +40,38 @@
 
 <div class="dashboard-container">
 	<h1 class="dashboard-section-title"><i class="fa fa-bullhorn"></i>Campaigns</h1>
-  <!-- empty state -->
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="empty-state-wrapper">
-        <img class="img-center" src="modules/core/client/img/icon-campaign.png">
-        <h2>Launch beautiful campaigns. Grow your business.</h2>
-        <p>Launching a new product? Finding product ambassadors to spread the word? Looking for engaging new and existing users? We've built a campaign tool just for you.</p>
-        <button href="#" class="btn btn-lg sproutup-btn-md-main orange">Create New Campaign</button>
-        <div class="row campaign-template-list">
-          <div class="campaign-template-list-header">Starting a campaign in minutes with a template carefully drafted by our creative marketing experts. Yes it's that easy!</div>
-          <div class="col-sm-4 campaign-template-item">
-            <div class="campaign-template-item-info product-trial">
-              <p class="template-title">Basic</p>
-              <p class="template-description">This is some description about the Basic product trial template</p>
-            </div>
-          </div>
-          <div class="col-sm-4 campaign-template-item">
-            <div class="campaign-template-item-info product-trial">
-              <p class="template-title">Flex</p>
-              <p class="template-description">This is some description about the Flex product trial template</p>
-            </div>
-          </div>
-          <div class="col-sm-4 campaign-template-item">
-            <div class="campaign-template-item-info product-trial">
-              <p class="template-title">Flex</p>
-              <p class="template-description">This is some description about the Flex product trial template</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="campaign-list-wrapper">
+    <ul class="list-inline">
+      <li class="campaign-item-wrapper">
+        <div class="header">Ongoing sicne Feb 10, 2016</div>
+        <div class="type-icon"><img src="modules/theme/client/img/trial.png"></div>
+        <div class="title">Promoting RocketSkates R5</div>
+        <div class="action"><button class="btn sproutup-btn-sm minimal">View Details</button></div>
+      </li>
+      <li class="campaign-item-wrapper">
+        <div class="header">Ongoing sicne Feb 10, 2016</div>
+        <div class="type-icon"><img src="modules/theme/client/img/video-contest.png"></div>
+        <div class="title">Promoting RocketSkates R5</div>
+        <div class="action"><button class="btn sproutup-btn-sm minimal">View Details</button></div>
+      </li>
+      <li class="campaign-item-wrapper">
+        <div class="header">Ongoing sicne Feb 10, 2016</div>
+        <div class="type-icon"><img src="modules/theme/client/img/video-contest.png"></div>
+        <div class="title">Promoting RocketSkates R5</div>
+        <div class="action"><button class="btn sproutup-btn-sm minimal">View Details</button></div>
+      </li>
+      <li class="campaign-item-wrapper new-campaign">
+        <button><span>+</span>Create New Campaign</button>
+      </li>
+    </ul>
   </div>
-
-  <!-- non-empty state -->
-	<div class="row">
-		<div class="col-sm-12">
-			<button href="#" class="btn btn-lg sproutup-btn-md-main orange"><i class="fa fa-plus-circle"></i>Create New Campaign</button>
-		</div>
-	</div>
-  <div class="campaign-list-wrapper draft">
-    <h4><i class="fa fa-dot-circle-o"></i>Draft Campaigns</h4>
+  <div class="campaign-list-wrapper">
+    <h4>Drafts</h4>
     <div class="sproutup-table table-responsive">
       <table class="table table-hover">
         <thead>
           <tr>
+            <th></th>
             <th>Campaign</th>
             <th>Created by</th>
             <th></th>
@@ -94,125 +79,63 @@
         </thead>
         <tbody>
           <tr>
+            <td class="campaign-type-icon"><img src="modules/theme/client/img/edit-trial.png"></td>
             <td class="campaign-title">
-              <div>Launching RocketSkates R5<sup class="label label-campaign trial">Product Trial</sup></div>
+              <div>Launching RocketSkates R5</div>
               <div class="schedule-time">Edited on Feb 18, 2016 at 5:06 pm</div>
             </td>
             <td>Me</td>
-            <td>
-              <button class="btn sproutup-btn-xs">Edit Campaign</button>
-              <button class="btn sproutup-btn-xs">Discard</button>
+            <td class="campaign-actions">
+              <button class="btn sproutup-btn-sm minimal">Edit Campaign</button>
+              <button class="btn sproutup-btn-sm minimal">Discard</button>
             </td>
           </tr>
           <tr>
+            <td class="campaign-type-icon"><img src="modules/theme/client/img/edit-video-contest.png"></td>
             <td class="campaign-title">
-              <div>FindWhatMatters<sup class="label label-campaign contest">Contest</sup></div>
+              <div>FindWhatMatters</div>
               <div class="schedule-time">Edited on Feb 12, 2016 at 5:06 pm</div>
             </td>
             <td>Peter Andersen</td>
-            <td>
-              <button class="btn sproutup-btn-xs">Edit Campaign</button>
-              <button class="btn sproutup-btn-xs">Discard</button>
+            <td class="campaign-actions">
+              <button class="btn sproutup-btn-sm minimal">Edit Campaign</button>
+              <button class="btn sproutup-btn-sm minimal">Discard</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <div class="campaign-list-wrapper active">
-    <h4><i class="fa fa-spinner fa-spin"></i>Active Campaigns</h4>
+  <div class="campaign-list-wrapper">
+    <h4>Completed</h4>
     <div class="sproutup-table table-responsive">
       <table class="table table-hover">
         <thead>
           <tr>
+            <th></th>
             <th>Campaign</th>
-            <th>Impressions</th>
-            <th>Engagements</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td class="campaign-type-icon"><img src="modules/theme/client/img/completed-trial.png"></td>
             <td class="campaign-title">
-              <div>Launching RocketSkates R5<sup class="label label-campaign trial">Product Trial</sup></div>
-              <div class="schedule-time">15 Jun 2015 - Ongoing</div>
+              <div>Launching RocketSkates R5</div>
+              <div class="schedule-time">Nov 1, 2015 - Feb 1, 2016</div>
             </td>
-            <td class="campaign-kpi">42.3k</td>
-            <td class="campaign-kpi">11</td>
-            <td>
-              <button class="btn sproutup-btn-xs">View Details</button>
+            <td class="campaign-actions">
+              <button class="btn sproutup-btn-sm minimal">View Details</button>
             </td>
           </tr>
           <tr>
+            <td class="campaign-type-icon"><img src="modules/theme/client/img/completed-video-contest.png"></td>
             <td class="campaign-title">
-              <div>Launching RocketSkates R5<sup class="label label-campaign trial">Product Trial</sup></div>
-              <div class="schedule-time">15 Jun 2015 - Ongoing</div>
+              <div>FindWhatMatters</div>
+              <div class="schedule-time">Nov 1, 2015 - Feb 1, 2016</div>
             </td>
-            <td class="campaign-kpi">42.3k</td>
-            <td class="campaign-kpi">11</td>
-            <td>
-              <button class="btn sproutup-btn-xs">View Details</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="campaign-title">
-              <div>Launching RocketSkates R5<sup class="label label-campaign trial">Product Trial</sup></div>
-              <div class="schedule-time">15 Jun 2015 - Ongoing</div>
-            </td>
-            <td class="campaign-kpi">42.3k</td>
-            <td class="campaign-kpi">11</td>
-            <td>
-              <button class="btn sproutup-btn-xs">View Details</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="campaign-list-wrapper past">
-    <h4><i class="fa fa-circle"></i>Past Campaigns</h4>
-    <div class="sproutup-table table-responsive">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Campaign</th>
-            <th>Impressions</th>
-            <th>Engagements</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="campaign-title">
-              <div>Launching RocketSkates R5<sup class="label label-campaign trial">Product Trial</sup></div>
-              <div class="schedule-time">15 Jun 2015 - 15 Feb 2016</div>
-            </td>
-            <td class="campaign-kpi">42.3k</td>
-            <td class="campaign-kpi">11</td>
-            <td>
-              <button class="btn sproutup-btn-xs">View Details</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="campaign-title">
-              <div>Launching RocketSkates R5<sup class="label label-campaign trial">Product Trial</sup></div>
-              <div class="schedule-time">15 Jun 2015 - 15 Feb 2016</div>
-            </td>
-            <td class="campaign-kpi">42.3k</td>
-            <td class="campaign-kpi">11</td>
-            <td>
-              <button class="btn sproutup-btn-xs">View Details</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="campaign-title">
-              <div>Launching RocketSkates R5<sup class="label label-campaign trial">Product Trial</sup></div>
-              <div class="schedule-time">15 Jun 2015 - 15 Feb 2016</div>
-            </td>
-            <td class="campaign-kpi">42.3k</td>
-            <td class="campaign-kpi">11</td>
-            <td>
-              <button class="btn sproutup-btn-xs">View Details</button>
+            <td class="campaign-actions">
+              <button class="btn sproutup-btn-sm minimal">View Details</button>
             </td>
           </tr>
         </tbody>

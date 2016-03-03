@@ -16,6 +16,12 @@ button:active {
   box-shadow: none !important;
 }
 
+.popover {
+  font-size: 9pt;
+  color: @main-text;
+  line-height: 1.5;
+}
+
 .navbar {
   margin: 0px;
   padding: 0px;
@@ -1574,28 +1580,17 @@ button:active {
 
 .campaign-list-wrapper {
   margin: 0px;
-  padding: 40px 0px 0px;
+  padding: 0px 0px 30px;
 }
 
 .campaign-list-wrapper h4 {
   margin: 0px 0px 20px;
   font-weight: 700;
+  color: @main-text-lighter;
 }
 
 .campaign-list-wrapper h4 i {
   margin-right: 12px;
-}
-
-.campaign-list-wrapper.active h4 {
-  color: @sproutup-green;
-}
-
-.campaign-list-wrapper.past h4 {
-  color: @main-text-verylight;
-}
-
-.campaign-list-wrapper.draft h4 {
-  color: @sproutup-orange;
 }
 
 .campaign-list-item {
@@ -1696,14 +1691,6 @@ button:active {
 .campaign-kpi {
   font-size: 15pt;
   font-weight: 700;
-}
-
-.campaign-list-wrapper.active .campaign-kpi {
-  color: @sproutup-green;
-}
-
-.campaign-list-wrapper.past .campaign-kpi {
-  color: @main-text-verylight;
 }
 
 .product-table {
@@ -2183,7 +2170,7 @@ button:active {
 
 .campaign-template-item {
   margin: 0px;
-  padding: 0px;
+  padding: 0px 8px;
 }
 
 .campaign-template-item a {
@@ -2694,15 +2681,9 @@ button:active {
   color: @main-text-verylight;
 }
 
-.sproutup-table thead tr th sup {
-  color: @sproutup-blue;
-  padding: 0px 3px;
-  font-size: 9pt;
-}
-
 .sproutup-table thead tr th a {
   color: @main-text-verylight;
-  border-bottom: 1px dotted @sproutup-blue;
+  border-bottom: 2px dotted @sproutup-blue;
   text-decoration: none !important;
 }
 
@@ -2885,6 +2866,19 @@ input:-ms-input-placeholder {
   line-height: 1.6;
 }
 
+.sproutup-table .campaign-actions {
+  text-align: right;
+}
+
+.sproutup-table .campaign-type-icon {
+  width: 10%;
+}
+
+.sproutup-table .campaign-type-icon img {
+  width: 50px;
+  height: 50px;
+}
+
 .sproutup-table .campaign-title {
   font-weight: 700;
   font-size: 11pt;
@@ -2937,7 +2931,7 @@ input:-ms-input-placeholder {
 .sproutup-table .request-reach {
   font-size: 12pt;
   font-weight: 700;
-  color: @sproutup-green;
+  color: @main-text-lighter;
 }
 
 .sproutup-table .request-detail-link {
@@ -2946,32 +2940,23 @@ input:-ms-input-placeholder {
 }
 
 .label-request-status {
-  color: @main-text-white;
+  color: white;
   font-size: 8.5pt;
 }
 
-.label-request-status i {
-  padding-right: 8px;
-}
-
-.label-request-status.recommended {
-  background-color: @sproutup-green;
-}
-
 .label-request-status.pending {
-  background-color: transparent;
-  border: 1px solid @sproutup-green;
-  color: @sproutup-green;
+  background-color: @sproutup-grey;
+  border: 1px solid @sproutup-grey;
 }
 
 .label-request-status.not-shipped {
-  background-color: @sproutup-salmon;
-  border: 1px solid @sproutup-salmon;
+  background-color: @sproutup-grey;
+  border: 1px solid @sproutup-grey;
 }
 
 .label-request-status.shipped {
-  background-color: @sproutup-gold;
-  border: 1px solid @sproutup-gold;
+  background-color: @sproutup-green;
+  border: 1px solid @sproutup-green;
 }
 
 .label-request-status.completed {
@@ -3038,7 +3023,7 @@ input:-ms-input-placeholder {
 }
 
 .dashboard-side-panel-section h4 .total-reach {
-  color: @sproutup-green;
+  color: @main-text-lighter;
   font-weight: 700;
   margin-left: 15px;
 }
@@ -3098,7 +3083,7 @@ input:-ms-input-placeholder {
 .dashboard-side-panel-section-body .sproutup-table .request-reach {
   font-size: 13pt;
   font-weight: 700;
-  color: @sproutup-green;
+  color: @main-text-lighter;
   text-align: right;
 }
 
@@ -3561,6 +3546,18 @@ a.sproutup-btn-lg-main {
   color: white;
 }
 
+.sproutup-btn-sm.minimal {
+  color: @main-text-lighter;
+  background-color: @sproutup-veryverylightgrey;
+  border: 1px solid @sproutup-grey;
+}
+
+.sproutup-btn-sm.minimal:hover {
+  color: @main-text-lighter;
+  background-color: white;
+  border: 1px solid @sproutup-grey;
+}
+
 .sproutup-btn-xs,
 .sproutup-btn-xs:active,
 .sproutup-btn-xs:focus {
@@ -3604,6 +3601,24 @@ a.sproutup-btn-xs {
 .sproutup-btn-xs.cancel {
   color: @main-text-lighter;
   background-color: @sproutup-superlightgrey;
+  border: 1px solid @sproutup-grey;
+}
+
+.sproutup-btn-xs.cancel:hover {
+  color: @main-text;
+  background-color: @sproutup-superlightgrey;
+  border: 1px solid @sproutup-grey;
+}
+
+.sproutup-btn-xs.minimal {
+  color: @main-text-lighter;
+  background-color: @sproutup-veryverylightgrey;
+  border: 1px solid @sproutup-grey;
+}
+
+.sproutup-btn-xs.minimal:hover {
+  color: @main-text-lighter;
+  background-color: white;
   border: 1px solid @sproutup-grey;
 }
 
@@ -3926,11 +3941,6 @@ h3[class="placeholder"] {
   position: relative;
 }
 
-.upload-file-widget.company-banner {
-  height: 200px;
-  width: 100%;
-}
-
 .upload-file-button {
   text-align: center;
   height: 40px;
@@ -4235,22 +4245,22 @@ ul.list-conversation-thread {
 }
 
 ul.list-conversation-thread li {
-  background-color: @sproutup-veryverylightgrey;
+  //background-color: @sproutup-veryverylightgrey;
   padding: 0px;
-  border-bottom: 1px solid @sproutup-lightgrey;
+  //border-bottom: 1px solid @sproutup-lightgrey;
 }
 
 ul.list-conversation-thread li.unread {
-  background-color: @sproutup-table-hover;
+  background-color: @sproutup-table-highlight-blue;
   padding: 0px;
 }
 
 ul.list-conversation-thread li:hover {
-  background-color: @sproutup-lightgrey;
+  background-color: @sproutup-table-hover;
 }
 
 ul.list-conversation-thread li.unread:hover {
-  background-color: @sproutup-table-hover;
+  background-color: @sproutup-table-highlight-blue;
 }
 
 ul.list-conversation-thread li a {
@@ -4366,7 +4376,91 @@ a.company-selector {
   color: @main-text-light;
 }
 
+li.campaign-item-wrapper {
+  position: relative;
+  border: 1px solid @sproutup-grey;
+  width: 240px;
+  height: 320px;
+  padding: 0px;
+  margin: 0px 5px 10px;
+  text-align: center;
+}
 
+li.campaign-item-wrapper.new-campaign {
+  border: 1px dashed @sproutup-grey;
+}
+
+li.campaign-item-wrapper.new-campaign:hover {
+  border: 1px dashed @sproutup-blue;
+}
+
+li.campaign-item-wrapper.new-campaign button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  font-weight: 400;
+  font-size: 10pt;
+  color: @main-text-veryverylight;
+  background-color: transparent;
+  border: none;
+}
+
+li.campaign-item-wrapper.new-campaign button:hover {
+  color: @sproutup-blue;
+}
+
+li.campaign-item-wrapper.new-campaign button span {
+  display: block;
+  font-size: 40pt;
+  font-weight: 300;
+}
+
+.campaign-item-wrapper .header {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  background-color: @sproutup-dark-grey;
+  color: @main-text-white;
+  font-weight: 300;
+  font-size: 9pt;
+  height: 110px;
+  padding-top: 30px;
+  line-height: 1.6;
+}
+
+.campaign-item-wrapper .type-icon {
+  position: absolute;
+  top: 70px;
+  width: 100%;
+}
+
+.campaign-item-wrapper .type-icon img {
+  width: 70px;
+  height: 70px;
+}
+
+.campaign-item-wrapper .title {
+  position: absolute;
+  font-weight: 400;
+  font-size: 11.5pt;
+  color: @main-text-lighter;
+  top: 160px;
+  padding: 0px 15px;
+  width: 100%;
+}
+
+.campaign-item-wrapper .action {
+  position: absolute;
+  bottom: 25px;
+  width: 100%;
+}
+
+.campaign-item-wrapper .action .btn {
+  width: 160px;
+}
 
 @media (max-width:767px) {
   .logo {
