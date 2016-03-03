@@ -35,7 +35,8 @@ module.exports = {
         'public/lib/intl-tel-input/build/js/intlTelInput.min.js',
         'public/lib/intl-tel-input/lib/libphonenumber/build/utils.js',
         'public/lib/ng-intl-tel-input/dist/ng-intl-tel-input.min.js',
-        'public/lib/ngAutocomplete/src/ngAutocomplete.js'
+        'public/lib/ngAutocomplete/src/ngAutocomplete.js',
+        'public/lib/angular-intercom/angular-intercom.min.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
