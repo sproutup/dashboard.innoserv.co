@@ -16,6 +16,12 @@ button:active {
   box-shadow: none !important;
 }
 
+.popover {
+  font-size: 9pt;
+  color: @main-text;
+  line-height: 1.5;
+}
+
 .navbar {
   margin: 0px;
   padding: 0px;
@@ -1574,7 +1580,7 @@ button:active {
 
 .campaign-list-wrapper {
   margin: 0px;
-  padding: 0px 0px 40px;
+  padding: 0px 0px 30px;
 }
 
 .campaign-list-wrapper h4 {
@@ -1685,14 +1691,6 @@ button:active {
 .campaign-kpi {
   font-size: 15pt;
   font-weight: 700;
-}
-
-.campaign-list-wrapper.active .campaign-kpi {
-  color: @sproutup-green;
-}
-
-.campaign-list-wrapper.past .campaign-kpi {
-  color: @main-text-verylight;
 }
 
 .product-table {
@@ -2683,15 +2681,9 @@ button:active {
   color: @main-text-verylight;
 }
 
-.sproutup-table thead tr th sup {
-  color: @sproutup-blue;
-  padding: 0px 3px;
-  font-size: 9pt;
-}
-
 .sproutup-table thead tr th a {
   color: @main-text-verylight;
-  border-bottom: 1px dotted @sproutup-blue;
+  border-bottom: 2px dotted @sproutup-blue;
   text-decoration: none !important;
 }
 
@@ -2935,7 +2927,7 @@ input:-ms-input-placeholder {
 .sproutup-table .request-reach {
   font-size: 12pt;
   font-weight: 700;
-  color: @sproutup-green;
+  color: @main-text-lighter;
 }
 
 .sproutup-table .request-detail-link {
@@ -2944,32 +2936,23 @@ input:-ms-input-placeholder {
 }
 
 .label-request-status {
-  color: @main-text-white;
+  color: white;
   font-size: 8.5pt;
 }
 
-.label-request-status i {
-  padding-right: 8px;
-}
-
-.label-request-status.recommended {
-  background-color: @sproutup-green;
-}
-
 .label-request-status.pending {
-  background-color: transparent;
-  border: 1px solid @sproutup-green;
-  color: @sproutup-green;
+  background-color: @sproutup-grey;
+  border: 1px solid @sproutup-grey;
 }
 
 .label-request-status.not-shipped {
-  background-color: @sproutup-salmon;
-  border: 1px solid @sproutup-salmon;
+  background-color: @sproutup-grey;
+  border: 1px solid @sproutup-grey;
 }
 
 .label-request-status.shipped {
-  background-color: @sproutup-gold;
-  border: 1px solid @sproutup-gold;
+  background-color: @sproutup-green;
+  border: 1px solid @sproutup-green;
 }
 
 .label-request-status.completed {
@@ -3036,7 +3019,7 @@ input:-ms-input-placeholder {
 }
 
 .dashboard-side-panel-section h4 .total-reach {
-  color: @sproutup-green;
+  color: @main-text-lighter;
   font-weight: 700;
   margin-left: 15px;
 }
@@ -3096,7 +3079,7 @@ input:-ms-input-placeholder {
 .dashboard-side-panel-section-body .sproutup-table .request-reach {
   font-size: 13pt;
   font-weight: 700;
-  color: @sproutup-green;
+  color: @main-text-lighter;
   text-align: right;
 }
 
@@ -3559,6 +3542,18 @@ a.sproutup-btn-lg-main {
   color: white;
 }
 
+.sproutup-btn-sm.minimal {
+  color: @main-text-lighter;
+  background-color: @sproutup-veryverylightgrey;
+  border: 1px solid @sproutup-grey;
+}
+
+.sproutup-btn-sm.minimal:hover {
+  color: @main-text-lighter;
+  background-color: white;
+  border: 1px solid @sproutup-grey;
+}
+
 .sproutup-btn-xs,
 .sproutup-btn-xs:active,
 .sproutup-btn-xs:focus {
@@ -3605,10 +3600,22 @@ a.sproutup-btn-xs {
   border: 1px solid @sproutup-grey;
 }
 
+.sproutup-btn-xs.cancel:hover {
+  color: @main-text;
+  background-color: @sproutup-superlightgrey;
+  border: 1px solid @sproutup-grey;
+}
+
 .sproutup-btn-xs.minimal {
   color: @main-text-lighter;
   background-color: @sproutup-veryverylightgrey;
-  border: 1px solid @sproutup-lightgrey;
+  border: 1px solid @sproutup-grey;
+}
+
+.sproutup-btn-xs.minimal:hover {
+  color: @main-text-lighter;
+  background-color: white;
+  border: 1px solid @sproutup-grey;
 }
 
 .form-inline {
@@ -4234,22 +4241,22 @@ ul.list-conversation-thread {
 }
 
 ul.list-conversation-thread li {
-  background-color: @sproutup-veryverylightgrey;
+  //background-color: @sproutup-veryverylightgrey;
   padding: 0px;
-  border-bottom: 1px solid @sproutup-lightgrey;
+  //border-bottom: 1px solid @sproutup-lightgrey;
 }
 
 ul.list-conversation-thread li.unread {
-  background-color: @sproutup-table-hover;
+  background-color: @sproutup-table-highlight-blue;
   padding: 0px;
 }
 
 ul.list-conversation-thread li:hover {
-  background-color: @sproutup-lightgrey;
+  background-color: @sproutup-table-hover;
 }
 
 ul.list-conversation-thread li.unread:hover {
-  background-color: @sproutup-table-hover;
+  background-color: @sproutup-table-highlight-blue;
 }
 
 ul.list-conversation-thread li a {
@@ -4368,9 +4375,8 @@ a.company-selector {
 li.campaign-item-wrapper {
   position: relative;
   border: 1px solid @sproutup-grey;
-  border-radius: 4px;
   width: 270px;
-  height: 320px;
+  height: 330px;
   padding: 0px;
   margin: 0px 5px 10px;
   text-align: center;
@@ -4417,9 +4423,8 @@ li.campaign-item-wrapper.new-campaign button span {
   font-weight: 400;
   font-size: 10pt;
   height: 110px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  padding-top: 25px;
+  padding-top: 30px;
+  line-height: 1.6;
 }
 
 .campaign-item-wrapper .type-icon {
@@ -4447,6 +4452,10 @@ li.campaign-item-wrapper.new-campaign button span {
   position: absolute;
   bottom: 25px;
   width: 100%;
+}
+
+.campaign-item-wrapper .action .btn {
+  width: 160px;
 }
 
 @media (max-width:767px) {
