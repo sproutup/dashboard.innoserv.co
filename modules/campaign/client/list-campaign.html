@@ -6,14 +6,21 @@
   </div>
 </h1>
 
-<div class="row">
-  <div class="col-sm-12">
-    <button ui-sref="company.navbar.template.select" class="btn btn-lg sproutup-btn-md-main orange"><i class="fa fa-plus-circle"></i>Create New Campaign</button>
-  </div>
+<div class="campaign-list-wrapper">
+  <ul class="list-inline">
+    <li class="campaign-item-wrapper" ng-repeat="campaign in vm.campaigns | filter: {status: 1}: vm.returnMatch">
+      <div class="header">Ongoing sicne Feb 10, 2016</div>
+      <div class="type-icon"><img src="modules/theme/client/img/trial.png"></div>
+      <div class="title">{{ campaign.name }}</div>
+      <div class="action"><button ui-sref="company.navbar.campaign.trial.view.requests({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Details</button></div>
+    </li>
+    <li class="campaign-item-wrapper new-campaign">
+      <button ui-sref="company.navbar.template.select"><span>+</span>Create New Campaign</button>
+    </li>
+  </ul>
 </div>
-
 <div class="campaign-list-wrapper draft">
-  <h4><i class="fa fa-dot-circle-o"></i>Draft Campaigns</h4>
+  <h4>Drafts</h4>
   <div class="sproutup-table table-responsive">
     <table class="table table-hover">
       <thead>
@@ -30,17 +37,16 @@
             <div class="schedule-time">Edited on Feb 18, 2016 at 5:06 pm</div>
           </td>
           <td>Me</td>
-          <td>
-            <button ui-sref="company.navbar.campaign.edit-trial({ campaignId: campaign.id })" class="btn sproutup-btn-xs">Edit Campaign</button>
-            <button class="btn sproutup-btn-xs">Discard</button>
+          <td class="campaign-actions">
+            <button ui-sref="company.navbar.campaign.edit-trial({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">Edit Campaign</button>
+            <button class="btn sproutup-btn-sm minimal">Discard</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
-
-<div class="campaign-list-wrapper active">
+<!-- <div class="campaign-list-wrapper active">
   <h4><i class="fa fa-spinner fa-spin"></i>Active Campaigns</h4>
   <div class="sproutup-table table-responsive">
     <table class="table table-hover">
@@ -67,10 +73,9 @@
         </tr>
       </tbody>
     </table>
-  </div>
-
-  <div class="campaign-list-wrapper past">
-    <h4><i class="fa fa-circle"></i>Past Campaigns</h4>
+  </div> -->
+  <div class="campaign-list-wrapper past" ng-if="!{{ vm.campaigns | filter: { status: -1 }: vm.returnMatch }}">
+    <h4>Completed</h4>
     <div class="sproutup-table table-responsive">
       <table class="table table-hover">
         <thead>
@@ -89,9 +94,8 @@
             </td>
             <td class="campaign-kpi">42.3k</td>
             <td class="campaign-kpi">11</td>
-            <td>
-              <button ui-sref="company.navbar.campaign.trial.view.requests({ campaignId: campaign.id })" class="btn sproutup-btn-xs">View Details</button>
-              <button class="btn sproutup-btn-xs">Share</button>
+            <td class="campaign-actions">
+              <button ui-sref="company.navbar.campaign.trial.view.requests({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Details</button>
             </td>
           </tr>
         </tbody>
