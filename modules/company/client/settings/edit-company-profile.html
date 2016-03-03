@@ -18,8 +18,9 @@
         <div class="form-group">
           <label for="">Profile Appearance</label>
           <div class="form-secondary-label">Upload an awesome photo to showcase your company. For the best visual quality, the recommended size is 2400 x 1200 pixels.</div>
-          <div class="create-campaign-banner company-profile-banner" style="background-image: url('modules/core/client/img/default-campaign-banner.jpg');">
-            <a class="btn btn-lg upload-file-button">Upload a profile photo</a>
+          <div data-ng-controller="ChangeCompanyBannerController as banner">
+            <div class="company-banner" up-file-upload ng-model="company.comapny.banner.file" on-change="banner.saveBannerPicture(user.avatar.file.id, company.company.id)">
+            </div>
           </div>
         </div>
 

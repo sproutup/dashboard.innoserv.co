@@ -25,7 +25,7 @@ function fileUpload($parse, $timeout) {
     vm.model = ngModel;
     //var onupload = function(){};
 //    if(attr.onUpload){
- var     onchange = $parse(attr.onChange);
+    var onchange = $parse(attr.onChange);
 //    }
 
 
@@ -36,7 +36,6 @@ function fileUpload($parse, $timeout) {
       //element.val(ngModel.$modelValue);
       //element.change();
     };
-
 
     vm.onChange = function(){
       console.log('onSuccess');
@@ -49,4 +48,3 @@ function fileUpload($parse, $timeout) {
     };
   }
 }
-
