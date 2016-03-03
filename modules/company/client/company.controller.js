@@ -81,6 +81,11 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
       vm.invalid = false;
     }
 
+    // Capture full address from google maps api service
+    if (vm.company.addressDetails && vm.company.addressDetails.formatted_address) {
+      vm.company.address = vm.company.addressDetails.formatted_address;
+    }
+
     vm.company.$update(function() {
       vm.success = true;
     }, function (errorResponse) {
