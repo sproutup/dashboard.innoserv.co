@@ -25,6 +25,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
+          <th></th>
           <th>Campaign</th>
           <th>Created by</th>
           <th></th>
@@ -32,8 +33,9 @@
       </thead>
       <tbody>
         <tr ng-repeat="campaign in vm.campaigns | filter: {status: 0}">
+          <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-edit.png"></td>
           <td class="campaign-title">
-            <div>{{campaign.name}}<sup ng-class="campaign.type" class="label label-campaign">{{campaign.type}}</sup></div>
+            <div>{{campaign.name}}</div>
             <div class="schedule-time">Edited on Feb 18, 2016 at 5:06 pm</div>
           </td>
           <td>Me</td>
@@ -80,6 +82,7 @@
       <table class="table table-hover">
         <thead>
           <tr>
+            <th></th>
             <th>Campaign</th>
             <th>Impressions</th>
             <th>Engagements</th>
@@ -88,8 +91,9 @@
         </thead>
         <tbody>
           <tr ng-repeat="campaign in vm.campaigns | filter: {status: -1}: vm.returnMatch">
+            <td class="campaign-type-icon"><img src="modules/theme/client/img/instagram-contest-completed.png"></td>
             <td class="campaign-title">
-              <div>{{ campaign.name }}<sup ng-class="campaign.type" class="label label-campaign">{{ campaign.type }}</sup></div>
+              <div>{{ campaign.name }}</div>
               <div class="schedule-time">15 Jun 2015 - 30 Jun 2015</div>
             </td>
             <td class="campaign-kpi">42.3k</td>
