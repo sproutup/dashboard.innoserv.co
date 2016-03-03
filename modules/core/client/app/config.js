@@ -22,7 +22,8 @@ var ApplicationConfiguration = (function () {
     'angulartics.google.analytics',
     'angulartics.mixpanel',
     'ngIntlTelInput',
-    'ngAutocomplete'
+    'ngAutocomplete',
+    'ngIntercom'
   ];
 
   // Add a new vertical module
