@@ -2170,11 +2170,17 @@ button:active {
 
 .campaign-template-item {
   margin: 0px;
-  padding: 0px 8px;
+  padding: 0px 5px;
 }
 
-.campaign-template-item a {
-  text-decoration: none !important;
+.campaign-template-item a:hover::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  content: "";
+  background: linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.42)); /* Standard syntax */
 }
 
 .campaign-template-item-info {
