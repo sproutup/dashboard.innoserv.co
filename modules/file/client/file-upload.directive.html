@@ -1,5 +1,5 @@
 <div>
-  <div ng-show="vm.file.dataUrl == null" class="upload-file-widget" style="background-image: url({{vm.file.url || 'modules/core/client/img/default-campaign-banner.jpg'}});"
+  <div ng-show="vm.file.dataUrl == null" class="upload-file-widget" style="background-image: url({{vm.file.url || vm.preview || 'modules/core/client/img/default-campaign-banner.jpg'}});"
      ngf-select="vm.upload(vm.file, 'profile img', vm.user.id, 'models.user')" ng-model="vm.file">
     <a class="btn btn-lg upload-file-button">Change Photo</a>
   </div>
