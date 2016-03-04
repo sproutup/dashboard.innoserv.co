@@ -1,13 +1,10 @@
 @import "global";
 
-html {
-  overflow-x: -moz-hidden-unscrollable;
-  overflow-x: hidden;
-}
 body {
   letter-spacing: 0.2pt;
   font-size: 14px !important;
   font-family: "lato", Helvetica, Arial, sans-serif;
+  min-width: 1024px;
 }
 
 button:focus,
@@ -119,6 +116,7 @@ button:active {
   padding-right: 10px;
   background-color: @sproutup-dark-grey;
   color: white !important;
+  z-index: 100;
 }
 
 .menu-item {
@@ -1930,10 +1928,10 @@ button:active {
 }
 
 .create-campaign-wrapper h1 {
-  font-weight: 300;
-  font-size: 20pt;
-  line-height: 1.5;
-  color: @sproutup-blue;
+  font-weight: 400;
+  font-size: 13pt;
+  line-height: 1.6;
+  color: @main-text-lighter;
   margin-bottom: 25px;
 }
 
@@ -2134,7 +2132,7 @@ button:active {
 }
 
 .campaign-template-list {
-  margin: 10px 0px 20px;
+  margin: 10px -5px 20px;
 }
 
 .campaign-template-list .campaign-template-list-header {
