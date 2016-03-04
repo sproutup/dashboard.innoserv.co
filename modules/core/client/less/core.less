@@ -2146,7 +2146,7 @@ button:active {
 
 .campaign-template-item {
   margin: 0px;
-  padding: 10px 15px;
+  padding: 10px 15px 24px;
 }
 
 .campaign-template-item img {
@@ -2165,7 +2165,7 @@ button:active {
 
 .campaign-template-item-info {
   text-align: center;
-  padding: 20px 0px 0px;
+  padding: 15px 0px 0px;
 }
 
 .campaign-template-item-info .template-title {
@@ -2178,7 +2178,17 @@ button:active {
 .campaign-template-item-info .template-description {
   font-weight: 400;
   font-size: 9.5pt;
-  color: @main-text-verylight;
+}
+
+.campaign-template-item-info .template-description span {
+  color: @sproutup-blue;
+  padding-left: 6px;
+}
+
+.campaign-template-item-info .template-description a {
+  border-bottom: 2px dotted @sproutup-blue;
+  text-decoration: none;
+  color: @main-text-lighter;
 }
 
 .new-campaign-component {
