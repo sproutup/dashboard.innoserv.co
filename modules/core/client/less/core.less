@@ -723,8 +723,9 @@ button:active {
 
 .creator-company {
   font-weight: 700;
-  font-size: 13pt;
+  font-size: 12pt;
   color: @main-text-white;
+  max-width: 148px;
 }
 
 .creator-company span {
@@ -1580,7 +1581,7 @@ button:active {
 
 .campaign-list-wrapper {
   margin: 0px;
-  padding: 0px 0px 30px;
+  padding: 20px 0px 5px;
 }
 
 .campaign-list-wrapper h4 {
@@ -2170,11 +2171,17 @@ button:active {
 
 .campaign-template-item {
   margin: 0px;
-  padding: 0px 8px;
+  padding: 0px 5px;
 }
 
-.campaign-template-item a {
-  text-decoration: none !important;
+.campaign-template-item a:hover::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  content: "";
+  background: linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.42)); /* Standard syntax */
 }
 
 .campaign-template-item-info {
@@ -3132,7 +3139,7 @@ input:-ms-input-placeholder {
 }
 
 .product-trial-item--status.reminder {
-    color: @sproutup-aqua;
+    color: @main-text-lighter;
 }
 
 .product-trial-item--status.reject {
@@ -3150,8 +3157,8 @@ input:-ms-input-placeholder {
 }
 
 .product-trial-item--status-desc .label-info {
-  color: @sproutup-aqua;
-  border: 1px solid @sproutup-aqua;
+  color: @sproutup-green;
+  border: 1px solid @sproutup-green;
   background-color: transparent;
 }
 
@@ -3620,6 +3627,16 @@ a.sproutup-btn-xs {
   color: @main-text-lighter;
   background-color: white;
   border: 1px solid @sproutup-grey;
+}
+
+.sproutup-btn-xs.aqua {
+  color: white;
+  background-color: @sproutup-aqua;
+}
+
+.sproutup-btn-xs.aqua:hover {
+  color: white;
+  background-color: @sproutup-aqua-hover;
 }
 
 .form-inline {
