@@ -2132,7 +2132,7 @@ button:active {
 }
 
 .campaign-template-list {
-  margin: 10px -5px 20px;
+  margin: 10px -15px 20px;
 }
 
 .campaign-template-list .campaign-template-list-header {
@@ -2144,75 +2144,41 @@ button:active {
   max-width: 600px;
 }
 
-.campaign-template-list p {
-  padding: 0px 3px;
-  margin: 0px 0px 15px;
-  font-weight: 400;
-  font-size: 14pt;
-  color: @main-text-light;
-}
-
-.campaign-template-list.product-trial p span {
-  color: @sproutup-salmon;
-  font-weight: 700;
-}
-
-.campaign-template-list.video-contest p span {
-  color: @sproutup-green;
-  font-weight: 700;
-}
-
-.campaign-template-list.twitter-contest p span {
-  color: @twitter-blue;
-  font-weight: 700;
-}
-
 .campaign-template-item {
   margin: 0px;
-  padding: 0px 5px;
+  padding: 10px 15px;
 }
 
-.campaign-template-item a:hover::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  content: "";
-  background: linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.42)); /* Standard syntax */
+.campaign-template-item img {
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.campaign-template-item img:hover {
+  -webkit-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 .campaign-template-item-info {
   text-align: center;
-  color: white;
-  margin: 3px;
-  min-height: 160px;
-  padding: 30px 20px 0px;
+  padding: 20px 0px 0px;
 }
 
 .campaign-template-item-info .template-title {
   font-weight: 700;
-  font-size: 12pt;
-  color: white;
+  font-size: 11pt;
+  color: @main-text;
+  padding-bottom: 5px;
 }
 
 .campaign-template-item-info .template-description {
   font-weight: 400;
-  font-size: 9.4pt;
-  color: white;
-  line-height: 1.5;
-}
-
-.campaign-template-item-info.product-trial {
-  background-color: @sproutup-salmon;
-}
-
-.campaign-template-item-info.video-contest {
-  background-color: @sproutup-green;
-}
-
-.campaign-template-item-info.twitter-contest {
-  background-color: @twitter-blue;
+  font-size: 9.5pt;
+  color: @main-text-verylight;
 }
 
 .new-campaign-component {
@@ -3841,7 +3807,7 @@ h3[class="placeholder"] {
 
 .empty-state-wrapper {
   border: 1px solid @sproutup-grey;
-  padding: 40px;
+  padding: 30px;
   text-align: center;
   margin: 0px 0px 40px;
 }
