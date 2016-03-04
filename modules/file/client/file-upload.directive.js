@@ -10,9 +10,6 @@ function fileUpload($parse, $timeout) {
   var directive = {
     restrict: 'EA',
     require: '?ngModel',
-    scope: {
-      preview: '@'
-    },
     templateUrl: 'modules/file/client/file-upload.directive.html',
     link: linkFunc,
     controller: 'FileController',
@@ -25,6 +22,7 @@ function fileUpload($parse, $timeout) {
   function linkFunc(scope, el, attr, ngModel) {
     console.log('LINK: file upload', attr.onChange);
     var vm = scope.vm;
+    vm.preview = attr.preview;
     vm.model = ngModel;
     //var onupload = function(){};
 //    if(attr.onUpload){
