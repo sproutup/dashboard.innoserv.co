@@ -1,5 +1,5 @@
 <div class="col-sm-3 col-profile-picture" data-ng-controller="ChangeProfilePictureController as profile">
-  <div up-file-upload ng-model="user.avatar.file" on-change="profile.saveProfilePicture(user.avatar.file.id)"></div>
+  <div up-file-upload ng-model="user.avatar.file" on-change="profile.saveProfilePicture(user.avatar.file.id)" preview="modules/core/client/img/default-avatar.png"></div>
 </div>
 
 <div class="col-sm-9 col-profile-info" data-ng-controller="EditProfileController">
