@@ -1,0 +1,33 @@
+<div class="row message-page">
+  <div class="col-sm-3">
+    <div class="list-group">
+      <a href="#" class="list-group-item current">All</a>
+      <a href="#" class="list-group-item">Unread</a>
+    </div>
+  </div>
+  <!-- Content -->
+  <div class="col-sm-9" ng-init="messageCtrl.listMyChannels()">
+    <ul class="list-conversation-thread">
+      <li class="unread" ng-repeat="channel in messageCtrl.channels">
+        <a ui-sref="company.navbar.conversation.view({channelId: channel.id})">
+          <div class="sproutup-table messages">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td class="photo">
+                    <img class="img-center" ng-src="{{channel.last.user.profileImageURL}}">
+                  </td>
+                  <td>
+                    <div class="name" ng-bind="channel.last.user.displayName"></div>
+                    <div class="text" ng-bind="channel.last.body"></div>
+                  </td>
+                  <td class="time"><span am-time-ago="channel.last.created"></span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
