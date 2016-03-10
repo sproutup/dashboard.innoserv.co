@@ -5,14 +5,14 @@ angular.module('landing').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
       .state('footer.company', {
-        url: '/com/:companySlug',
+        url: '/landing/:companySlug',
         abstract: true,
         template: '<section ng-init="company.findByStateParam()"><div ui-view></div></section>',
         controller: 'CompanyController',
         controllerAs: 'company'
       })
       .state('footer.company.landing', {
-        url: '/landing',
+        url: '',
         abstract: true,
         template: '<div ui-view></div>',
         controller: 'landingController',
