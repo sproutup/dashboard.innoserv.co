@@ -9,6 +9,7 @@ var ApplicationConfiguration = (function () {
     'ngAnimate',
     'ui.router',
     'ui.bootstrap',
+    'ngMessages',
     'ui.utils',
     'angularFileUpload',
     'chart.js',

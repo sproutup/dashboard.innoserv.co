@@ -69,17 +69,8 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
     }
   }
 
-  function update(isValid) {
+  function update() {
     vm.error = null;
-
-    if (!isValid) {
-      vm.invalid = true;
-      //$scope.$broadcast('show-errors-check-validity', 'articleForm');
-
-      return false;
-    } else {
-      vm.invalid = false;
-    }
 
     // Capture full address from google maps api service
     if (vm.company.addressDetails && vm.company.addressDetails.formatted_address) {
