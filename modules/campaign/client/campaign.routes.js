@@ -19,12 +19,22 @@ angular.module('campaign').config(['$stateProvider',
         templateUrl: 'modules/campaign/client/create-campaign.html'
       })
       .state('company.navbar.campaign.view', {
-        url: '/:campaignId',
-        templateUrl: 'modules/campaign/client/campaign.html'
+        url: '/:campaignId/view',
+        abstract: true,
+        template: '<div ui-view ng-init="vm.findOne()"></div>'
+      })
+      .state('company.navbar.campaign.view.default', {
+        url: '',
+        template: '<div ui-view ng-init="vm.redirect()"></div>'
       })
       .state('company.navbar.campaign.edit', {
         url: '/:campaignId/edit',
-        templateUrl: 'modules/campaign/client/edit-campaign.html'
+        abstract: true,
+        template: '<div ui-view ng-init="vm.findOne()"></div>'
+      })
+      .state('company.navbar.campaign.edit.default', {
+        url: '',
+        template: '<div ui-view ng-init="vm.redirectToEdit()"></div>'
       })
       .state('company.navbar.t.campaign', {
         url: '',

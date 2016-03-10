@@ -136,6 +136,11 @@ angular.module('theme').config(['$stateProvider',
       .state('theme.mocks.privacy', {
         url: '/privacy',
         templateUrl: 'modules/theme/client/mocks/privacy.view.html'
+      })
+      //not found
+      .state('theme.mocks.not-found', {
+        url: '/404',
+        templateUrl: 'modules/theme/client/mocks/404.view.html'
       });
   }
 ]);

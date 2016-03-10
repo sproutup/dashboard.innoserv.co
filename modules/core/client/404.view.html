@@ -1,5 +1,19 @@
-<h1>Page Not Found</h1>
-<div class="alert alert-danger" role="alert">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Error:</span> Page Not Found
+<nav class="navbar" role="navigation">
+  <div class="navbar-content">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sproutup-collapse-navbar">Menu</button>
+      <a class="navbar-brand" href="#">
+        <img class="logo" src="modules/core/client/img/logo-white.png">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="sproutup-collapse-navbar">
+      <ul class="nav navbar-nav navbar-item navbar-right">
+        <li><a href="#">Product</a></li>
+        <li class="sign-in"><a ui-sref="authentication.signin">Sign In</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="banner-404" style="background-image: url('modules/core/client/img/404.jpg');">
+  <div class="message">Seems that you came to a weird space. Escape before it sucks you in. <span>&#x1F680;</span></div>
 </div>

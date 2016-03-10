@@ -17,6 +17,8 @@
       vm.cancel = cancel;
       vm.find = find;
       vm.findOne = findOne;
+      vm.redirect = redirect;
+      vm.redirectToEdit = redirectToEdit;
       vm.findContent = findContent;
       vm.findOneContent = findOneContent;
       vm.openModal = openModal;
@@ -210,6 +212,53 @@
         }, function(err) {
           $state.go('landing.default');
         });
+      }
+
+      function redirect() {
+        if (vm.item.type) {
+          makeCall();
+        } else {
+          $scope.$watch('vm.item.type', function(val) {
+            if(val) makeCall();
+          });
+        }
+
+        function makeCall() {
+          console.log('type:', vm.item.type);
+          switch(vm.item.type){
+            case 'trial':
+              $state.go('company.navbar.campaign.view.trial.requests', {}, {location: 'replace'});
+              break;
+            case 'contest':
+              $state.go('company.navbar.campaign.view.contest.requests', {}, {location: 'replace'});
+              break;
+            default:
+              $state.go('company.navbar.campaign.list', {}, {location: 'replace'});
+          }
+        }
+      }
+
+      function redirectToEdit() {
+        if (!vm.item.type) {
+          var listener = $scope.$watch('vm.item.type', function(val) {
+            if(val) {
+              listener();
+              redirectToEdit();
+            }
+          });
+          return;
+        }
+
+        switch(vm.item.type){
+          case 'trial':
+            $state.go('company.navbar.campaign.edit.trial', {}, {location: 'replace'});
+            break;
+          case 'contest':
+            $state.go('company.navbar.campaign.edit.contest', {}, {location: 'replace'});
+            break;
+          default:
+            $state.go('company.navbar.campaign.list', {}, {location: 'replace'});
+        }
       }
 
       function findContent() {

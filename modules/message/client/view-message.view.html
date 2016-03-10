@@ -1,0 +1,17 @@
+<div class="row message-page">
+  <div class="col-sm-3">
+    <div class="list-group">
+      <a ui-sref="company.navbar.conversation.list" class="list-group-item current">All</a>
+      <!--a href="#" class="list-group-item">Unread</a-->
+    </div>
+  </div>
+  <!-- Content -->
+  <div class="col-sm-9">
+    <div class="detail-conversation-thread">
+      <div class="back"><a ui-sref="company.navbar.conversation.list">Back to all messages</a></div>
+      <hr>
+      <up-message-channel channel="messageCtrl.getChannelId()" on-start="messageCtrl.startChannel()"/>
+    </div>
+  </div>
+</div>
+
