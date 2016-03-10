@@ -32,7 +32,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         controller: 'HeaderController',
         controllerAs: 'vm'
       })
-      .state('not-found', {
+      .state('footer.not-found', {
         url: '/not-found',
         templateUrl: 'modules/core/client/404.view.html'
       })

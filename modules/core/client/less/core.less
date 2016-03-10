@@ -4458,6 +4458,38 @@ li.campaign-item-wrapper.new-campaign button span {
   width: 160px;
 }
 
+
+.banner-404 {
+  width: 100%;
+  min-height: 640px;
+  margin: -70px 0px 0px;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.banner-404::after{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  content: "";
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+}
+
+.banner-404 .message {
+  padding: 300px 20px 0px;
+  margin: 0px;
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  color: white;
+  font-weight: 400;
+  font-size: 20pt;
+}
+
 @media (max-width:767px) {
   .logo {
     width: 100px;
