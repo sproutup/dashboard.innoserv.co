@@ -8,7 +8,10 @@ angular.module('company').config(['$stateProvider',
         abstract: true,
         template: '<section ng-init="company.findByStateParam()"><div ui-view></div></section>',
         controller: 'CompanyController',
-        controllerAs: 'company'
+        controllerAs: 'company',
+        data: {
+          roles: ['user', 'admin']
+        }
       })
       .state('company.navbar.list', {
         url: '/select',
