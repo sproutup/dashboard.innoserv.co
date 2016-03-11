@@ -13,7 +13,7 @@
         </div>
         <div class="col-sm-12 form-input-group">
           <p class="input-group-title">Product Video</p>
-          <input type="text" name="video" class="form-control form-input" placeholder="Video link (must be a valid YouTube or Vimeo link)" ng-model="vm.product.video" up-valid-video required/>
+          <input type="text" name="video" class="form-control form-input" placeholder="Video link (must be a valid YouTube or Vimeo link)" ng-model="vm.product.video" up-valid-video required up-http-prefix/>
           <div ng-messages="form.video.$error">
             <div class="form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>Video is required.</div>
             <div class="form--error-message" ng-message="validVideo"><i class="fa fa-minus-circle"></i>This needs a link to a YouTube or Vimeo video.</div>
