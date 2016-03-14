@@ -99,6 +99,8 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
         var index = vm.company.url.indexOf('www.');
         vm.company.domain = vm.company.url.substring((index + 4), vm.company.url.length);
         console.log('domain', vm.company.domain);
+      }, function(err){
+        $state.go('footer.not-found');
       });
   }
 

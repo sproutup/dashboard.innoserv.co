@@ -1,10 +1,8 @@
 'use strict';
 
-(function() {
-
-  angular
-    .module('landing')
-    .controller('landingController', landingController);
+angular
+  .module('landing')
+  .controller('landingController', landingController);
 
 landingController.$inject = ['$scope', '$state', '$location', 'CompanyService', '$http', 'Authentication', 'ContentService'];
 
@@ -36,7 +34,6 @@ function landingController($scope, $state, $location, CompanyService, $http, Aut
   }
 
   function findCompanyContent() {
-    console.log('yo', $scope);
     if (!$scope.company.company.id) {
       var listener = $scope.$watch('company.company.id', function(val) {
         if(val) {
@@ -56,5 +53,3 @@ function landingController($scope, $state, $location, CompanyService, $http, Aut
     });
   }
 }
-
-})();
