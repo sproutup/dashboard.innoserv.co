@@ -7,10 +7,10 @@
       <div class="dashboard-body-header">
         <div class="dashboard-body-title">Click and switch to another company</div>
       </div>
-      <a class="company-selector" ng-repeat="company in vm.companies" ui-sref='company.navbar.list({companySlug: company.slug})' ng-click="vm.authentication.setCompany(company)">
-        <div class="create-campaign-banner company-profile-banner" style="background-image: url('{{ company. || 'https://s3.amazonaws.com/images.mentor.com/News/DSC_6084.jpg' }}');">
-          <h1 ng-bind="company.name"></h1>
-          <h2 ng-bind="company.url"></h2>
+      <a class="company-selector" ng-repeat="item in vm.companies" ng-click="vm.select(item)">
+        <div class="create-campaign-banner company-profile-banner" style="background-image: url('{{ item.banner.file.url || 'https://s3.amazonaws.com/images.mentor.com/News/DSC_6084.jpg' }}');">
+          <h1 ng-bind="item.name"></h1>
+          <h2 ng-bind="item.url"></h2>
         </div>
       </a>
     </div>

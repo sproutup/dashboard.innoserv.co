@@ -13,6 +13,15 @@ angular.module('company').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
+      .state('footer.select', {
+        url: '/select',
+        templateUrl: 'modules/company/client/company-settings.html',
+        controller: 'CompanyController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        }
+      })
       .state('company.navbar.list', {
         url: '/select',
         templateUrl: 'modules/company/client/company-settings.html',
@@ -44,7 +53,7 @@ angular.module('company').config(['$stateProvider',
         url: '',
         templateUrl: 'modules/company/client/settings/edit-company-profile.html'
       })
-      // for internal admin 
+      // for internal admin
       .state('admincompany', {
         url: '/admin/company',
         abstract: true,

@@ -13,6 +13,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   vm.remove = remove;
   vm.update = update;
   vm.find = find;
+  vm.select = select;
   vm.findOne = findOne;
   vm.findMyCompany = findMyCompany;
   vm.findByStateParam = findByStateParam;
@@ -86,7 +87,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   }
 
   function find() {
-    CompanyService.company().query(function(data){
+    CompanyService.mycompany().query(function(data){
       vm.companies = data;
     });
   }
@@ -106,6 +107,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
 
   function select(company) {
     vm.authentication.setCompany(company);
+    $state.go('company.navbar.campaign.list', { companySlug: company.slug });
   }
 
   function findOne() {
