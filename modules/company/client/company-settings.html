@@ -1,13 +1,8 @@
 <section ng-init="vm.find()">
-  <h1 class="dashboard-section-title">
-    <i class="fa fa-exchange"></i>Switch Company
-  </h1>
-  <div class="row dashboard-body-wrapper">
+  <div class="row select-company-wrapper">
+    <h3>You are with more than one companies. Busy guy! Please select one to see your dashboard.</h3>
     <div class="col-sm-12">
-      <div class="dashboard-body-header">
-        <div class="dashboard-body-title">Click and switch to another company</div>
-      </div>
-      <a class="company-selector" ng-repeat="item in vm.companies" ng-click="vm.select(item)">
+      <a href="#" class="company-selector" ng-repeat="item in vm.companies" ng-click="vm.select(item)">
         <div class="create-campaign-banner company-profile-banner" style="background-image: url('{{ item.banner.file.url || 'https://s3.amazonaws.com/images.mentor.com/News/DSC_6084.jpg' }}');">
           <h1 ng-bind="item.name"></h1>
           <h2 ng-bind="item.url"></h2>
