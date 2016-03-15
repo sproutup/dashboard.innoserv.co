@@ -1739,40 +1739,41 @@ button:active {
   padding-right: 6px;
 }
 
-.product-table .team-member {
+.sproutup-table .team-member-photo {
   width: 10%;
 }
 
-.product-table .team-member-photo img {
+.sproutup-table .team-member-photo img {
   width: 40px;
   height: 40px;
   margin: 0px auto;
   border: 1px solid @sproutup-grey;
 }
 
-.product-table .team-member-name {
+.sproutup-table .team-member-name {
+  width: 30%;
+  font-weight: 700;
+}
+
+.sproutup-table .team-member-email {
   width: 30%;
 }
 
-.product-table .team-member-email {
-  width: 30%;
-}
-
-.product-table .team-member-role {
+.sproutup-table .team-member-role {
   width: 20%;
 }
 
-.product-table .team-member-edit {
+.sproutup-table .team-member-edit {
   width: 20%;
   padding-right: 20px;
   text-align: right;
 }
 
-.product-table .product-table-edit {
+.sproutup-table .product-table-edit {
   padding-right: 10px;
 }
 
-.product-table-header {
+.sproutup-table-header {
   font-weight: 700;
   font-size: 12pt;
   color: @main-text-lighter;
@@ -1780,17 +1781,17 @@ button:active {
   padding-bottom: 0px;
 }
 
-.product-table-header a {
+.sproutup-table-header a {
   margin-left: 60px;
   color: @sproutup-blue;
   font-size: 10pt;
 }
 
-.product-table-header a:hover {
+.sproutup-table-header a:hover {
   color: @sproutup-blue-hover;
 }
 
-.product-table-header a i {
+.sproutup-table-header a i {
   padding-right: 10px;
 }
 
@@ -2434,7 +2435,7 @@ button:active {
   left: 0;
   bottom: 0;
   content: "";
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)); /* Standard syntax */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)); /* Standard syntax */
 }
 
 .create-campaign-banner h1 span,
@@ -4494,6 +4495,23 @@ li.campaign-item-wrapper.new-campaign button span {
   display: block;
   padding-top: 40px;
   font-size: 60pt;
+}
+
+.select-company-wrapper {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 0px 20px;
+  text-align: center;
+}
+
+.select-company-wrapper h3 {
+  max-width: 600px;
+  margin: 0px auto;
+  padding: 0px 0px 25px;
+  font-weight: 400;
+  font-size: 14pt;
+  color: @main-text-lighter;
+  line-height: 1.6;
 }
 
 @media (max-width:767px) {
