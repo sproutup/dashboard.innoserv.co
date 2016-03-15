@@ -1919,6 +1919,10 @@ button:active {
   max-width: 750px;
 }
 
+.dashboard-body-wrapper.messages {
+  max-width: 800px;
+}
+
 .team-member-table-wrapper {
   margin: 0px;
 }
@@ -3180,6 +3184,69 @@ input:-ms-input-placeholder {
   color: @sproutup-blue;
 }
 
+.conversation-wrapper {
+  margin: 0px 0px 15px;
+  border: 1px solid @sproutup-lightgrey;
+  padding: 0px;
+  background-color: white;
+}
+
+.detail-conversation-thread {
+  background-color: @sproutup-verylightgrey;
+  padding: 15px 30px 25px;
+}
+
+.detail-conversation-thread .back {
+  font-weight: 400;
+  font-size: 9.5pt;
+  padding: 10px 0px 15px;
+}
+
+.detail-conversation-thread .back a {
+  color: @sproutup-blue;
+}
+
+.detail-conversation-thread .back a i {
+  margin-right: 12px;
+}
+
+.detail-conversation-thread .back a:hover {
+  color: @sproutup-blue-hover;
+}
+
+.detail-conversation-thread .header {
+  font-weight: 400;
+  font-size: 12pt;
+  padding: 0px 0px 20px;
+}
+
+.detail-conversation-thread .header a {
+  font-weight: 700;
+  color: @sproutup-blue;
+}
+
+.detail-conversation-thread .header a:hover {
+  color: @sproutup-blue-hover;
+}
+
+.message-header {
+  padding: 20px 15px 15px;
+  margin: 0px 15px;
+  border-bottom: 1px solid @form-border;
+}
+
+.message-header p {
+  font-weight: 400;
+  font-size: 11pt;
+  color: @main-text-lighter;
+  padding: 0px;
+  margin: 0px;
+}
+
+.message-header p a {
+  color: @sproutup-blue;
+}
+
 .product-trial-item--messages {
   margin: 0px 0px 30px;
   border: 1px solid @sproutup-lightgrey;
@@ -3203,13 +3270,16 @@ input:-ms-input-placeholder {
 }
 
 .message-blurb {
-  margin: 0px 0px 12px;
+  margin: 0px 0px 15px;
 }
 
 .message-blurb .sender {
-  font-weight: 700;
+  padding: 0px 0px 7px;
   font-size: 8.5pt;
-  padding: 0px 0px 4px;
+}
+
+.message-blurb .sender .name {
+  font-weight: 700;
   color: @main-text-light;
 }
 
@@ -3217,7 +3287,7 @@ input:-ms-input-placeholder {
   padding: 0px 5px;
 }
 
-.message-blurb .sender span {
+.message-blurb .sender .time {
   font-weight: 400;
   color: @sproutup-grey;
   padding-left: 15px;
@@ -4269,7 +4339,7 @@ ul.list-conversation-thread li a {
 }
 
 .sproutup-table.messages .table tbody tr td {
-  padding: 15px 10px;
+  padding: 15px 20px;
 }
 
 .sproutup-table.messages .photo {
@@ -4297,10 +4367,6 @@ ul.list-conversation-thread li a {
 .sproutup-table.messages .text {
   font-weight: 400;
   font-size: 10.5pt;
-}
-
-ul.list-conversation-thread li.unread .sproutup-table.messages .text {
-  font-weight: 700;
 }
 
 .sproutup-table.messages .time {
