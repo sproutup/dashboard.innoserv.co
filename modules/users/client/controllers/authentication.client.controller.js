@@ -52,7 +52,10 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     $scope.signin = function () {
       $http.post('/api/auth/signin', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
-        $state.go($state.previous.state.name || 'mycompany', $state.previous.params);
+        if($state.previous.state.name==='footer.home'){
+          $state.previous.state.name = null;
+        }
+        $state.go($state.previous.state.name || 'footer.select', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });
