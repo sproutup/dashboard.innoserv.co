@@ -15,7 +15,7 @@
       <div class="nav-item-wrapper creator-user">
         <a ui-sref='company.navbar.user.profile'>
           <img alt="avatar"
-             src=""> {{ vm.authentication.user.firstName }}
+             ng-src="{{vm.authentication.user.avatar.file.url}}?w=36&h=36"> {{ vm.authentication.user.firstName }}
         </a>
       </div>
     </div>
