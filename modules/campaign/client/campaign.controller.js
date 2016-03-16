@@ -73,7 +73,7 @@
 
         vm.item.$save(function (response) {
           vm.item = {};
-          $state.go('company.navbar.campaign.edit-trial', { campaignId: response.id });
+          $state.go('company.navbar.campaign.edit.trial', { campaignId: response.id });
           // Clear form fields
         }, function (errorResponse) {
           vm.error = errorResponse.data.message;
@@ -137,6 +137,7 @@
         vm.item.$update({
           campaignId: $state.params.campaignId
         }, function (response) {
+          console.log('in here');
           $state.go('company.navbar.campaign.list');
         }, function (errorResponse) {
           vm.success = null;
@@ -146,7 +147,12 @@
 
       function startCampaign () {
         vm.item.status = 1;
-        update();
+        CampaignService.updateCampaign(vm.item)
+          .then(function(result) {
+            $state.go('company.navbar.campaign.confirmation', { campaignId: vm.item.id });
+          }, function(reason) {
+            vm.error = reason;
+          });
       }
 
       function stopCampaign () {

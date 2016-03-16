@@ -23,6 +23,10 @@ angular.module('campaign').config(['$stateProvider',
         abstract: true,
         template: '<div ui-view ng-init="vm.findOne()"></div>'
       })
+      .state('company.navbar.campaign.confirmation', {
+        url: '/:campaignId/confirmation',
+        templateUrl: 'modules/campaign/client/start-campaign-confirmation.html'
+      })
       .state('company.navbar.campaign.view.default', {
         url: '',
         template: '<div ui-view ng-init="vm.redirect()"></div>'

@@ -4,21 +4,22 @@ angular
     .module('campaign')
     .factory('CampaignService', CampaignService);
 
-CampaignService.$inject = ['$resource'];
+CampaignService.$inject = ['$resource', '$q'];
 
-function CampaignService($resource) {
+function CampaignService($resource, $q) {
   var service = {
     listByCompany: listByCompany,
     campaigns: campaigns,
     content: content,
     contributors: contributors,
-    contribution: contribution
+    contribution: contribution,
+    updateCampaign: updateCampaign
   };
 
   return service;
 
   function campaigns () {
-     return $resource('/api/campaign/:campaignId', {campaignId:'@campaignId'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
+     return $resource('/api/campaign/:campaignId', {campaignId: '@id'}, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
   }
 
   function content () {
@@ -35,6 +36,19 @@ function CampaignService($resource) {
 
   function contribution () {
      return $resource('/api/user/:userId/campaign/:campaignId', { userId:'@userId', campaignId:'@id' }, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
+  }
+
+  function updateCampaign(campaign) {
+    var defer = $q.defer();
+    var promise = defer.promise;
+
+    campaign.$update(function(response) {
+      return defer.resolve(response);
+    }, function(errorResponse) {
+      return defer.reject(errorResponse);
+    });
+
+    return promise;
   }
 
 }
