@@ -137,7 +137,6 @@
         vm.item.$update({
           campaignId: $state.params.campaignId
         }, function (response) {
-          console.log('in here');
           $state.go('company.navbar.campaign.list');
         }, function (errorResponse) {
           vm.success = null;
