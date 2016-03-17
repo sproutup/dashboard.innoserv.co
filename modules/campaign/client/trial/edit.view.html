@@ -1,10 +1,10 @@
 <div class="mock-section" id="create-trial-campaign" ng-init="vm.findOne()">
   <form name="form" class="css-form" novalidate>
     <h1 class="dashboard-section-title">
-      {{ vm.item.name }}
+      {{ vm.item.name || 'Your Campaign Title' }}
       <div class="dashboard-buttons-top">
         <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()">Start Campaign</button>
-        <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.update()">Save</button>
+        <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.update()" ng-disabled="!form.$valid">Save</button>
         <button class="btn btn-sm sproutup-btn-xs cancel" ng-click="vm.cancel()" href="#">Exit</button>
       </div>
     </h1>
@@ -17,7 +17,7 @@
       </div-->
       <!-- edit banner area -->
       <div class="create-campaign-banner" style="background-image: url('modules/core/client/img/default-campaign-banner.jpg');">
-        <h1><input type="text" ng-model="vm.item.name" placeholder="Your campaign title" name="name" required=""></h1>
+        <h1><input type="text" ng-model="vm.item.name" placeholder="Your Campaign Title" name="name" required=""></h1>
         <!-- <div ng-show="form.$submitted || form.name.$touched">
           <div class="form--error-message" ng-show="form.name.$error.required"><i class="fa fa-minus-circle"></i>Tell us your campaign name.</div>
         </div> -->
@@ -25,21 +25,6 @@
         <h3><a href="#"><i class="fa fa-camera"></i>Choose an awesome banner</a></h3>
       </div>
       <!-- editing a component -->
-      <div class="new-campaign-component todo">
-        <div class="row new-campaign-component-header todo">
-          <div class="col-sm-6">
-            <p>Description</p>
-          </div>
-        </div>
-        <div class="row new-campaign-component-content">
-          <div class="col-sm-12">
-            <div class="campaign-question-wrapper">
-              <p>Tell us more about this product trial campaign.</p>
-              <textarea class="form-control form-input-textarea" ng-model="vm.item.description"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="new-campaign-component todo">
         <div class="row new-campaign-component-header todo">
           <div class="col-sm-6">
@@ -58,60 +43,14 @@
       <div class="new-campaign-component todo">
         <div class="row new-campaign-component-header todo">
           <div class="col-sm-6">
-            <p>Campaign hashtag</p>
-          </div>
-        </div>
-        <div class="row new-campaign-component-content">
-          <div class="col-sm-12">
-            <div class="campaign-question-wrapper">
-              <p>An eye-catching hashtag helps draw strong interests from our community</p>
-              <input ng-model="vm.item.hashtag" type="text" class="form-control form-validate form-input">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="new-campaign-component todo">
-        <div class="row new-campaign-component-header todo">
-          <div class="col-sm-6">
             <p>Social media</p>
           </div>
         </div>
         <div class="row new-campaign-component-content">
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
-              <p>Which social platforms would you like us to optimize your campaign for?</p>
+              <p>What type of content creators are you looking for?</p>
               <up-multi-switch options="vm.socialOptions"></up-multi-switch>
-            </div>
-            <div class="campaign-question-wrapper">
-              <p>How many people would you like to reach?</p>
-              <div class="form-inline">
-                <input ng-model="vm.item.target" type="text" class="form-control form-validate form-input small">
-                <label class="campaign-question-input-label right">People</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="new-campaign-component todo">
-        <div class="row new-campaign-component-header todo">
-          <div class="col-sm-6">
-            <p>Start and end date</p>
-          </div>
-        </div>
-        <div class="row new-campaign-component-content">
-          <div class="col-sm-12">
-            <div class="campaign-question-wrapper">
-              <p>How long would you like to run the campaign?</p>
-              <div class="form-inline">
-                <div class="input-group">
-                  <div class="input-group-addon">From</div>
-                  <input ng-model="vm.item.start" type="text" class="form-control form-validate form-input medium" placeholder="MM/DD/YYYY">
-                </div>
-                <div class="input-group">
-                  <div class="input-group-addon">To</div>
-                  <input ng-model="vm.item.end" type="text" class="form-control form-validate form-input medium" placeholder="MM/DD/YYYY">
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -151,14 +90,6 @@
             <p class="input-group-title">Do you accept requests for paid content creation?</p>
             <up-switch optionfalse="No" optiontrue="Yep" selected="vm.item.trial.paidContent"></up-switch>
           </div>
-          <div class="campaign-question-wrapper">
-            <p class="input-group-title">How many days do you want influencrs to try the products for?</p>
-            <div class="form-inline">
-              <input ng-model="vm.item.trial.duration" type="text" class="form-control form-validate form-input small">
-              <label class="campaign-question-input-label right">Days</label>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <!-- <div>

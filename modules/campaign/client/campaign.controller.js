@@ -32,12 +32,15 @@
       vm.findProducts = findProducts;
       vm.state = $state;
       vm.socialOptions = [
-        {  title: 'Twitter',
-           type: 'tw' },
+        {  title: 'YouTube',
+           type: 'yt',
+           selected: true },
+        {  title: 'Vine',
+           type: 'vi' },
         {  title: 'Instagram',
            type: 'ig' },
-        {  title: 'YouTube',
-           type: 'yt' }
+         {  title: 'Blogger',
+           type: 'bl' }
       ];
 
       // Get the topbar menu
@@ -93,6 +96,15 @@
           return;
         }
 
+        if (!$scope.company.company.id) {
+          var listener2 = $scope.$watch('company.company.id', function(val) {
+            if(val) {
+              listener2();
+              initTemplate();
+            }
+          });
+        }
+
         console.log('template loaded...!', $scope.template);
         // We may want to hook up socialOptions to vm.item.socialOptions here
         // Create new campaign object
@@ -124,15 +136,6 @@
 
       function update(isValid) {
         vm.error = null;
-
-        if (!isValid) {
-          vm.invalid = true;
-          $scope.$broadcast('show-errors-check-validity', 'articleForm');
-
-          return false;
-        } else {
-          vm.invalid = false;
-        }
 
         vm.item.$update({
           campaignId: $state.params.campaignId
