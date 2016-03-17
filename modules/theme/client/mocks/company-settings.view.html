@@ -55,6 +55,13 @@
       <form name="companyForm" class="signin" autocomplete="off" ng-submit="company.update(companyForm.$valid)">
         <fieldset>
 
+          <!-- Company logo -->
+          <div class="form-group">
+            <label for="">Your Logo</label>
+            <div class="form-secondary-label">Your logo shows up in your SproutUp campaigns. For the best visual quality, the recommended size is 400 pixels.</div>
+            <div up-file-upload ng-model="user.avatar.file" on-change="profile.saveProfilePicture(user.avatar.file.id)" preview="modules/core/client/img/default-avatar.png"></div>
+          </div>
+
           <!-- Company name -->
           <div class="form-group">
             <label for="Name">Company Name</label>
