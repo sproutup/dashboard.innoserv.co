@@ -33,7 +33,7 @@
           <tr ng-repeat="item in vm.contributors | filter: vm.query as filteredItems">
             <td class="request-avatar"><a href="#">
               <img ng-if="item.user.profileImageURL" class="img-center" ng-src="item.user.profileImageURL">
-              <canvas ng-if="!item.user.profileImageURL" width="60" height="60" fontsize="28" name="{{ item.user.name }}" up-avatar></canvas>
+              <canvas ng-if="!item.user.profileImageURL" width="60" height="60" fontsize="21" name="{{ item.user.displayName }}" up-avatar></canvas>
             </a></td>
             <td class="request-name-pitch">
               <div class="name"><a href="#">{{ item.user.displayName|| 'User' }}</a></div>

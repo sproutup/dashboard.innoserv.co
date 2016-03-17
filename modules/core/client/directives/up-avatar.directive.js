@@ -50,7 +50,7 @@ function upAvatar() {
       context.font = attrs.fontsize + 'px Arial';
       context.textAlign = 'center';
       context.fillStyle = '#FFF';
-      context.fillText(initials, canvasCssWidth / 2, canvasCssHeight / 1.5);
+      context.fillText(initials, canvasCssWidth / 2.2, canvasCssHeight / 1.7);
     }
   };
 
