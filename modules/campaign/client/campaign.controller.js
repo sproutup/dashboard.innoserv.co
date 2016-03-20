@@ -1,387 +1,340 @@
 'use strict';
+angular
+  .module('campaign')
+  .controller('CampaignController', CampaignController);
 
-(function() {
+CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService', '$http'];
 
-    angular
-      .module('campaign')
-      .controller('CampaignController', CampaignController);
+function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http) {
+  var vm = this;
+  vm.test = 'lala';
+  vm.create = create;
+  // vm.initTemplate = initTemplate;
+  vm.remove = remove;
+  vm.update = update;
+  vm.cancel = cancel;
+  vm.find = find;
+  vm.findOne = findOne;
+  vm.redirect = redirect;
+  vm.redirectToEdit = redirectToEdit;
+  vm.findContent = findContent;
+  vm.findOneContent = findOneContent;
+  vm.openModal = openModal;
+  vm.startCampaign = startCampaign;
+  vm.stopCampaign = stopCampaign;
+  vm.returnMatch = returnMatch;
+  vm.viewDetails = viewDetails;
+  vm.closeDetails = closeDetails;
+  vm.approveRequest = approveRequest;
+  vm.findContributors = findContributors;
+  vm.findProducts = findProducts;
+  vm.saveBannerPicture = saveBannerPicture;
+  vm.state = $state;
+  vm.socialOptions = [
+    {  title: 'YouTube',
+       type: 'yt',
+       selected: true },
+    {  title: 'Vine',
+       type: 'vi' },
+    {  title: 'Instagram',
+       type: 'ig' },
+     {  title: 'Blogger',
+       type: 'bl' }
+  ];
 
-    CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService'];
+  // Get the topbar menu
+  vm.menu = Menus.getMenu('company.campaign.menu');
+  vm.trialmenu = Menus.getMenu('company.navbar.campaign.trial.view.menu');
+  findProducts();
 
-    function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService) {
-      var vm = this;
-      vm.create = create;
-      vm.initTemplate = initTemplate;
-      vm.remove = remove;
-      vm.update = update;
-      vm.cancel = cancel;
-      vm.find = find;
-      vm.findOne = findOne;
-      vm.redirect = redirect;
-      vm.redirectToEdit = redirectToEdit;
-      vm.findContent = findContent;
-      vm.findOneContent = findOneContent;
-      vm.openModal = openModal;
-      vm.startCampaign = startCampaign;
-      vm.stopCampaign = stopCampaign;
-      vm.returnMatch = returnMatch;
-      vm.viewDetails = viewDetails;
-      vm.closeDetails = closeDetails;
-      vm.approveRequest = approveRequest;
-      vm.findContributors = findContributors;
-      vm.findProducts = findProducts;
-      vm.state = $state;
-      vm.socialOptions = [
-        {  title: 'YouTube',
-           type: 'yt',
-           selected: true },
-        {  title: 'Vine',
-           type: 'vi' },
-        {  title: 'Instagram',
-           type: 'ig' },
-         {  title: 'Blogger',
-           type: 'bl' }
-      ];
-
-      // Get the topbar menu
-      vm.menu = Menus.getMenu('company.campaign.menu');
-      vm.trialmenu = Menus.getMenu('company.navbar.campaign.trial.view.menu');
-
-      function create(isValid) {
-        vm.error = null;
-
-        if (!isValid) {
-          console.log('not valid');
-          $scope.$broadcast('show-errors-check-validity', 'campaignForm');
-
-          return false;
-        }
-
-        // Create new campaign object
-/*          var CampaignObj = CampaignService.campaigns();
-        var campaign = new CampaignObj({
-          companyId: $scope.company.company.id,
-          description: vm.description,
-          type: vm.type,
-          name: vm.name
-        }); */
-
-        // temporary hack
-        vm.item.typeOfContent = [];
-        for (var s = 0; s < vm.socialOptions.length; s++) {
-          if (vm.socialOptions[s].type) {
-            vm.item.typeOfContent.push(vm.socialOptions[s].type);
-          }
-        }
-
-        vm.item.$save(function (response) {
-          vm.item = {};
-          $state.go('company.navbar.campaign.edit.trial', { campaignId: response.id });
-          // Clear form fields
-        }, function (errorResponse) {
-          vm.error = errorResponse.data.message;
-        });
+  function create(item) {
+    // // temporary hack
+    item.typeOfContent = [];
+    for (var s = 0; s < vm.socialOptions.length; s++) {
+      if (vm.socialOptions[s].type) {
+        item.typeOfContent.push(vm.socialOptions[s].type);
       }
-
-      function initTemplate() {
-        vm.error = null;
-
-        if (!$scope.template.item.type) {
-          var listener = $scope.$watch('template.item.type', function(val) {
-            if(val) {
-              listener();
-              initTemplate();
-            }
-          });
-          return;
-        }
-
-        if (!$scope.company.company.id) {
-          var listener2 = $scope.$watch('company.company.id', function(val) {
-            if(val) {
-              listener2();
-              initTemplate();
-            }
-          });
-        }
-
-        console.log('template loaded...!', $scope.template);
-        // We may want to hook up socialOptions to vm.item.socialOptions here
-        // Create new campaign object
-        var Campaign = CampaignService.campaigns();
-        vm.item = new Campaign($scope.template.item);
-        vm.item.companyId = $scope.company.company.id;
-        vm.item.status = 0;
-        if ($state.params.productId) {
-          vm.item.productId = $state.params.productId;
-        }
-        findProducts();
-      }
-
-      function remove(campaign) {
-        if (campaign) {
-          campaign.$remove({
-            campaignId: campaign.id
-          }, function() {
-            $state.go('company.navbar.campaign.list');
-          });
-
-          for (var i in vm.companies) {
-            if (vm.companies[i] === campaign) {
-              vm.companies.splice(i, 1);
-            }
-          }
-        }
-      }
-
-      function update(isValid) {
-        vm.error = null;
-
-        vm.item.$update({
-          campaignId: $state.params.campaignId
-        }, function (response) {
-          $state.go('company.navbar.campaign.list');
-        }, function (errorResponse) {
-          vm.success = null;
-          vm.error = errorResponse.data.message;
-        });
-      }
-
-      function startCampaign () {
-        vm.item.status = 1;
-        CampaignService.updateCampaign(vm.item)
-          .then(function(result) {
-            $state.go('company.navbar.campaign.confirmation', { campaignId: vm.item.id });
-          }, function(reason) {
-            vm.error = reason;
-          });
-      }
-
-      function stopCampaign () {
-        var CampaignObj = CampaignService.campaigns();
-        var campaign = new CampaignObj(vm.item);
-        campaign.status = -1;
-        campaign.$update({
-          campaignId: $state.params.campaignId
-        }, function (response) {
-          vm.succes = true;
-          $state.go('company.navbar.campaign.list');
-        }, function (errorResponse) {
-          vm.success = null;
-          vm.error = errorResponse.data.message;
-        });
-      }
-
-      function cancel() {
-        $state.go('company.navbar.campaign.list');
-      }
-
-      function find() {
-        if ($scope.company.company.id) {
-          makeCall();
-        } else {
-          $scope.$watch('company.company.id', function(val) {
-            if(val) makeCall();
-          });
-        }
-
-        function makeCall() {
-          CampaignService.listByCompany().query({
-            companyId: $scope.company.company.id
-          }, function(response) {
-            vm.campaigns = response;
-          }, function(err) {
-            console.log(err);
-          });
-        }
-      }
-
-        // TeamService.listByUser().query({
-        //   userId: Authentication.user.id
-        // },function() {
-        //   Authentication.user.sessionCompany = $scope.myCompanies[0];
-        //   vm.campaigns = CampaignService.listByCompany().query({
-        //     companyId: Authentication.user.sessionCompany.companyId
-        //   }, function() {
-        //     console.log('coo');
-        //   }, function(err) {
-        //     console.log(err);
-        //   });
-        // });
-
-      function findOne() {
-        vm.success = false;
-        vm.item = {};
-
-        CampaignService.campaigns().get({
-          campaignId: $state.params.campaignId
-        }, function(res) {
-          vm.item = res;
-        }, function(err) {
-          $state.go('landing.default');
-        });
-      }
-
-      function redirect() {
-        if (vm.item.type) {
-          makeCall();
-        } else {
-          $scope.$watch('vm.item.type', function(val) {
-            if(val) makeCall();
-          });
-        }
-
-        function makeCall() {
-          console.log('type:', vm.item.type);
-          switch(vm.item.type){
-            case 'trial':
-              $state.go('company.navbar.campaign.view.trial.requests', {}, {location: 'replace'});
-              break;
-            case 'contest':
-              $state.go('company.navbar.campaign.view.contest.requests', {}, {location: 'replace'});
-              break;
-            default:
-              $state.go('company.navbar.campaign.list', {}, {location: 'replace'});
-          }
-        }
-      }
-
-      function redirectToEdit() {
-        if (!vm.item.type) {
-          var listener = $scope.$watch('vm.item.type', function(val) {
-            if(val) {
-              listener();
-              redirectToEdit();
-            }
-          });
-          return;
-        }
-
-        switch(vm.item.type){
-          case 'trial':
-            $state.go('company.navbar.campaign.edit.trial', {}, {location: 'replace'});
-            break;
-          case 'contest':
-            $state.go('company.navbar.campaign.edit.contest', {}, {location: 'replace'});
-            break;
-          default:
-            $state.go('company.navbar.campaign.list', {}, {location: 'replace'});
-        }
-      }
-
-      function findContent() {
-        vm.success = false;
-        vm.content = {};
-
-        CampaignService.content().query({
-          campaignId: $state.params.campaignId
-        }, function(res) {
-          vm.content = res;
-        }, function(err) {
-          $state.go('landing.default');
-        });
-      }
-
-      function findOneContent() {
-        ContentService.content().get({
-          contentId: $state.params.contentId
-        }, function(res) {
-          vm.contentItem = res;
-        }, function(err) {
-          $state.go('landing.default');
-        });
-      }
-
-      function findContributors() {
-        CampaignService.contributors().get({
-          campaignId: $state.params.campaignId
-        }, function(res) {
-          vm.item = res.campaign;
-          vm.contributors = res.items;
-          filterContributors();
-        }, function(err) {
-          $state.go('landing.default');
-        });
-      }
-
-      function filterContributors() {
-        vm.requested = vm.contributors.filter(function(item) {
-          return item.state === 0;
-        });
-
-        vm.approved = vm.contributors.filter(function(item) {
-          return item.state === 1;
-        });
-
-        vm.completed = vm.contributors.filter(function(item) {
-          return item.state === 10;
-        });
-      }
-
-      function findProducts() {
-        if ($scope.company.company.id) {
-          makeCall();
-        } else {
-          $scope.$watch('company.company.id', function(val) {
-            if(val) makeCall();
-          });
-        }
-
-        function makeCall() {
-          vm.products = ProductService.listByCompany().query({
-            companyId: $scope.company.company.id
-          }, function() {
-            console.log('products found');
-          }, function(err) {
-            console.log(err);
-          });
-        }
-      }
-
-      function openModal(item) {
-        var modalInstance = $modal.open({
-          templateUrl: 'modules/core/client/delete-confirmation.html',
-          controller: 'DeleteController',
-          controllerAs: 'vm',
-          resolve: {
-            message: function() { return 'Deleting a campaign is risky business.'; }
-          }
-        });
-
-        modalInstance.result.then(function () {
-          remove(item);
-        }, function () {
-          console.log('Modal dismissed at: ' + new Date());
-        });
-      }
-
-      function returnMatch (actual, expected) {
-        if (!expected) {
-           return true;
-        }
-        return angular.equals(expected, actual);
-      }
-
-      function viewDetails(request) {
-        vm.request = request;
-      }
-
-      function closeDetails() {
-        vm.details = false;
-      }
-
-      function approveRequest(request) {
-        console.log(request);
-        // request.state = 1;
-        // request.$update(function(response) {
-        //   console.log(response);
-        //   vm.success = true;
-        // }, function (errorResponse) {
-        //   console.log(errorResponse);
-        //   vm.error = errorResponse.data.message;
-        // });
-      }
-
-//       findProducts();
     }
-})();
+
+    if (vm.banner) {
+      item.banner = {
+        fileId: vm.banner.id
+      };
+    }
+
+    item.$save(function (response) {
+      item = {};
+      $state.go('company.navbar.campaign.edit.trial', { campaignId: response.id });
+      // Clear form fields
+    }, function (errorResponse) {
+      vm.error = errorResponse.data.message;
+    });
+  }
+
+  function remove(campaign) {
+    if (campaign) {
+      campaign.$remove({
+        campaignId: campaign.id
+      }, function() {
+        $state.go('company.navbar.campaign.list');
+      });
+
+      for (var i in vm.companies) {
+        if (vm.companies[i] === campaign) {
+          vm.companies.splice(i, 1);
+        }
+      }
+    }
+  }
+
+  function update(isValid) {
+    vm.error = null;
+
+    vm.item.$update({
+      campaignId: $state.params.campaignId
+    }, function (response) {
+      $state.go('company.navbar.campaign.list');
+    }, function (errorResponse) {
+      vm.success = null;
+      vm.error = errorResponse.data.message;
+    });
+  }
+
+  function startCampaign () {
+    vm.item.status = 1;
+    CampaignService.updateCampaign(vm.item)
+      .then(function(result) {
+        $state.go('company.navbar.campaign.confirmation', { campaignId: vm.item.id });
+      }, function(reason) {
+        vm.error = reason;
+      });
+  }
+
+  function stopCampaign () {
+    var CampaignObj = CampaignService.campaigns();
+    var campaign = new CampaignObj(vm.item);
+    campaign.status = -1;
+    campaign.$update({
+      campaignId: $state.params.campaignId
+    }, function (response) {
+      vm.succes = true;
+      $state.go('company.navbar.campaign.list');
+    }, function (errorResponse) {
+      vm.success = null;
+      vm.error = errorResponse.data.message;
+    });
+  }
+
+  function cancel() {
+    $state.go('company.navbar.campaign.list');
+  }
+
+  function find() {
+    if ($scope.company.company.id) {
+      makeCall();
+    } else {
+      $scope.$watch('company.company.id', function(val) {
+        if(val) makeCall();
+      });
+    }
+
+    function makeCall() {
+      CampaignService.listByCompany().query({
+        companyId: $scope.company.company.id
+      }, function(response) {
+        vm.campaigns = response;
+      }, function(err) {
+        console.log(err);
+      });
+    }
+  }
+
+  function findOne() {
+    vm.success = false;
+    vm.item = {};
+
+    CampaignService.campaigns().get({
+      campaignId: $state.params.campaignId
+    }, function(res) {
+      vm.item = res;
+    }, function(err) {
+      $state.go('landing.default');
+    });
+  }
+
+  function redirect() {
+    if (vm.item.type) {
+      makeCall();
+    } else {
+      $scope.$watch('vm.item.type', function(val) {
+        if(val) makeCall();
+      });
+    }
+
+    function makeCall() {
+      console.log('type:', vm.item.type);
+      switch(vm.item.type){
+        case 'trial':
+          $state.go('company.navbar.campaign.view.trial.requests', {}, {location: 'replace'});
+          break;
+        case 'contest':
+          $state.go('company.navbar.campaign.view.contest.requests', {}, {location: 'replace'});
+          break;
+        default:
+          $state.go('company.navbar.campaign.list', {}, {location: 'replace'});
+      }
+    }
+  }
+
+  function redirectToEdit() {
+    if (!vm.item.type) {
+      var listener = $scope.$watch('vm.item.type', function(val) {
+        if(val) {
+          listener();
+          redirectToEdit();
+        }
+      });
+      return;
+    }
+
+    switch(vm.item.type){
+      case 'trial':
+        $state.go('company.navbar.campaign.edit.trial', {}, {location: 'replace'});
+        break;
+      case 'contest':
+        $state.go('company.navbar.campaign.edit.contest', {}, {location: 'replace'});
+        break;
+      default:
+        $state.go('company.navbar.campaign.list', {}, {location: 'replace'});
+    }
+  }
+
+  function findContent() {
+    vm.success = false;
+    vm.content = {};
+
+    CampaignService.content().query({
+      campaignId: $state.params.campaignId
+    }, function(res) {
+      vm.content = res;
+    }, function(err) {
+      $state.go('landing.default');
+    });
+  }
+
+  function findOneContent() {
+    ContentService.content().get({
+      contentId: $state.params.contentId
+    }, function(res) {
+      vm.contentItem = res;
+    }, function(err) {
+      $state.go('landing.default');
+    });
+  }
+
+  function findContributors() {
+    CampaignService.contributors().get({
+      campaignId: $state.params.campaignId
+    }, function(res) {
+      vm.item = res.campaign;
+      vm.contributors = res.items;
+      filterContributors();
+    }, function(err) {
+      $state.go('landing.default');
+    });
+  }
+
+  function filterContributors() {
+    vm.requested = vm.contributors.filter(function(item) {
+      return item.state === 0;
+    });
+
+    vm.approved = vm.contributors.filter(function(item) {
+      return item.state === 1;
+    });
+
+    vm.completed = vm.contributors.filter(function(item) {
+      return item.state === 10;
+    });
+  }
+
+  function findProducts() {
+    if ($scope.company.company.id) {
+      makeCall();
+    } else {
+      $scope.$watch('company.company.id', function(val) {
+        if(val) makeCall();
+      });
+    }
+
+    function makeCall() {
+      ProductService.listByCompany().query({
+        companyId: $scope.company.company.id
+      }, function(res) {
+        vm.products = res; 
+        console.log('products found');
+      }, function(err) {
+        console.log(err);
+      });
+    }
+  }
+
+  function openModal(item) {
+    var modalInstance = $modal.open({
+      templateUrl: 'modules/core/client/delete-confirmation.html',
+      controller: 'DeleteController',
+      controllerAs: 'vm',
+      resolve: {
+        message: function() { return 'Deleting a campaign is risky business.'; }
+      }
+    });
+
+    modalInstance.result.then(function () {
+      remove(item);
+    }, function () {
+      console.log('Modal dismissed at: ' + new Date());
+    });
+  }
+
+  function returnMatch (actual, expected) {
+    if (!expected) {
+       return true;
+    }
+    return angular.equals(expected, actual);
+  }
+
+  function viewDetails(request) {
+    vm.request = request;
+  }
+
+  function closeDetails() {
+    vm.details = false;
+  }
+
+  function approveRequest(request) {
+    console.log(request);
+    request.state = 1;
+    request.$update(function(response) {
+      console.log(response);
+      vm.success = true;
+    }, function (errorResponse) {
+      console.log(errorResponse);
+      vm.error = errorResponse.data.message;
+    });
+  }
+
+  function saveBannerPicture(fileId, campaignId) {
+    var req = {
+      method: 'POST',
+      url: 'api/campaign/picture',
+      data: { fileId: fileId, campaignId: campaignId }
+    };
+
+    $scope.success = $scope.error = null;
+    $http(req).then(function(val){
+      console.log('success: ', val);
+    }, function(err){
+      console.log('err: ', err);
+    });
+  }
+}

@@ -10,6 +10,7 @@ function fileUpload($parse, $timeout) {
   var directive = {
     restrict: 'EA',
     require: '?ngModel',
+    scope: {},
     templateUrl: 'modules/file/client/file-upload.directive.html',
     link: linkFunc,
     controller: 'FileController',

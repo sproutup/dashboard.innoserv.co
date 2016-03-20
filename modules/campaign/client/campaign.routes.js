@@ -45,7 +45,7 @@ angular.module('campaign').config(['$stateProvider',
         abstract: true,
         template: '<div ui-view></div>',
         controller: 'CampaignController',
-        controllerAs: 'vm'
+        controllerAs: 'campaign'
       })
       .state('company.navbar.t.campaign.trial', {
         url: '/trial',
