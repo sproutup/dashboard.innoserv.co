@@ -43,8 +43,8 @@ function fileUpload($parse, $timeout) {
       console.log('onSuccess');
       ngModel.$setViewValue(vm.file);
       $timeout(function(){
-        scope.$apply(function () {
-          onchange(scope);
+        scope.$parent.$apply(function () {
+          onchange(scope.$parent);
         });
       });
     };
