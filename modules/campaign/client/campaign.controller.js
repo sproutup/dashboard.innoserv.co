@@ -324,17 +324,18 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   }
 
   function saveBannerPicture(fileId, campaignId) {
-    var req = {
-      method: 'POST',
-      url: 'api/campaign/picture',
-      data: { fileId: fileId, campaignId: campaignId }
-    };
+    var CampaignObj = CampaignService.campaigns();
+    var campaign = new CampaignObj();
+    campaign.banner = { fileId: fileId };
+    campaign.id = campaignId;
 
-    $scope.success = $scope.error = null;
-    $http(req).then(function(val){
-      console.log('success: ', val);
-    }, function(err){
-      console.log('err: ', err);
+    campaign.$update({
+      campaignId: $state.params.campaignId
+    }, function (response) {
+      vm.succes = true;
+    }, function (errorResponse) {
+      vm.success = null;
+      vm.error = errorResponse.data.message;
     });
   }
 }
