@@ -18,6 +18,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   vm.findMyCompany = findMyCompany;
   vm.findByStateParam = findByStateParam;
   vm.authentication = Authentication;
+  vm.saveBannerPicture = saveBannerPicture;
   vm.state = $state;
   vm.company = {};
 
@@ -127,5 +128,20 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
     }, function(err) {
       $state.go('index');
     });
+  }
+
+  function saveBannerPicture(fileId, companyId) {
+    var CompanyObj = CompanyService.company();
+    var company = new CompanyObj();
+    company.banner = { fileId: fileId };
+    company.id = companyId;
+
+    CompanyService.updateCompany(company)
+      .then(function(result) {
+        console.log(result);
+        vm.succes = true;
+      }, function(reason) {
+        vm.error = reason;
+      });
   }
 }

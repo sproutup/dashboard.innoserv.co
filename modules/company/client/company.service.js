@@ -4,13 +4,14 @@ angular
   .module('company')
   .factory('CompanyService', CompanyService);
 
-CompanyService.$inject = ['$resource'];
+CompanyService.$inject = ['$resource', '$q'];
 
-function CompanyService($resource) {
+function CompanyService($resource, $q) {
   var service = {
     company: company,
     companyBySlug: companyBySlug,
-    mycompany: mycompany
+    mycompany: mycompany,
+    updateCompany: updateCompany
   };
 
   return service;
@@ -26,6 +27,19 @@ function CompanyService($resource) {
 
   function mycompany () {
     return $resource('/api/my/company/:companyId', { companyId:'@id' }, { 'update': { method:'PUT' }, 'query': { method:'GET', isArray:true } } );
+  }
+
+  function updateCompany(company) {
+    var defer = $q.defer();
+    var promise = defer.promise;
+
+    company.$update(function(response) {
+      return defer.resolve(response);
+    }, function(errorResponse) {
+      return defer.reject(errorResponse);
+    });
+
+    return promise;
   }
 
 }
