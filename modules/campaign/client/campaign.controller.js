@@ -329,13 +329,11 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     campaign.banner = { fileId: fileId };
     campaign.id = campaignId;
 
-    campaign.$update({
-      campaignId: $state.params.campaignId
-    }, function (response) {
-      vm.succes = true;
-    }, function (errorResponse) {
-      vm.success = null;
-      vm.error = errorResponse.data.message;
-    });
+    CampaignService.updateCampaign(campaign)
+      .then(function(result) {
+        vm.succes = true;
+      }, function(reason) {
+        vm.error = reason;
+      });
   }
 }
