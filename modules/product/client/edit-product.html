@@ -23,10 +23,14 @@
           <p class="input-group-title">Description</p>
           <textarea class="form-control form-input-textarea" placeholder="Tell users more about this product. What are the cool features? What's the story behind this product?" ng-model="vm.product.description"></textarea>
         </div>
-        <div class="col-sm-12 form-input-group">
+        <div class="col-sm-12 form-input-group" ng-if="vm.campaignInit && vm.campaigns.length > 0">
+          <p class="input-group-title">Related Campaigns</p>
+          <p class="product-campaign" ng-repeat="campaign in vm.campaigns"><a ui-sref="company.navbar.campaign.view.default({ campaignId: campaign.id })">{{ campaign.name }}</a></p>
+        </div>
+        <div class="col-sm-12 form-input-group" ng-init="vm.findCampaigns()">
           <button class="btn btn-lg sproutup-btn-md-main" type="submit">Save</button>
           <button class="btn btn-lg sproutup-btn-md-main cancel" href="#" ng-click="vm.cancel()">Cancel</button>
-          <a class="btn btn-lg sproutup-btn-md-main trash" href="#" ng-click="vm.openModal(vm.product)"><i class="fa fa-trash"></i></a>
+          <a class="btn btn-lg sproutup-btn-md-main trash" href="#" ng-click="vm.openModal(vm.product)" ng-if="vm.campaignInit && vm.campaigns.length < 1"><i class="fa fa-trash"></i></a>
         </div>
       </fieldset>
     </form>

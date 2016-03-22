@@ -6,9 +6,9 @@
     .module('product')
     .controller('ProductController', ProductController);
 
-  ProductController.$inject = ['$scope', 'TrialService', '$state', 'ProductService', '$location', 'Authentication', 'TeamService', '$rootScope', '$uibModal'];
+  ProductController.$inject = ['$scope', 'TrialService', '$state', 'ProductService', '$location', 'Authentication', 'TeamService', '$rootScope', '$uibModal', 'CampaignService'];
 
-  function ProductController($scope, TrialService, $state, ProductService, $location, Authentication, TeamService, $rootScope, $modal) {
+  function ProductController($scope, TrialService, $state, ProductService, $location, Authentication, TeamService, $rootScope, $modal, CampaignService) {
     var vm = this;
     vm.create = create;
     vm.remove = remove;
@@ -18,6 +18,7 @@
     vm.findOne = findOne;
     vm.editProduct = editProduct;
     vm.openModal = openModal;
+    vm.findCampaigns = findCampaigns;
 
     function create(isValid) {
       vm.error = null;
@@ -160,5 +161,18 @@
         console.log('Modal dismissed at: ' + new Date());
       });
     }
+
+    function findCampaigns() {
+      CampaignService.listByProduct().query({
+        productId: $state.params.productId
+      }, function(res) {
+        vm.campaigns = res;
+        vm.campaignInit = true;
+      }, function(error) {
+        vm.error = error;
+        console.log(error);
+      });
+    }
+
   }
 })();
