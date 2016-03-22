@@ -26,7 +26,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="product in vm.products">
-          <td><a ui-sref="company.navbar.product.edit({ productId: product.id })">{{ product.name }}</a></td>
+          <td><a ui-sref="company.navbar.product.list.edit({ productId: product.id })">{{ product.name }}</a></td>
           <td>{{ product.tagline }}</td>
           <td class="product-action">
             <button class="btn sproutup-btn-xs minimal" ui-sref="company.navbar.product.list.edit({ productId: product.id })">Edit</button>
