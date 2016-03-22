@@ -2217,7 +2217,6 @@ button:active {
 .new-campaign-component-header {
   color: @main-text-white;
   padding: 15px 25px;
-  color: @main-text-white;
   margin: 0px;
   min-height: 50px;
 }
@@ -2246,6 +2245,12 @@ button:active {
 
 .new-campaign-component-header.todo {
   background-color: @sproutup-stronger-grey;
+}
+
+.new-campaign-component-header.banner {
+  background-color: transparent;
+  border: 1px solid @sproutup-grey;
+  color: @main-text-lighter;
 }
 
 .new-campaign-component-content {
@@ -4476,7 +4481,7 @@ li.campaign-item-wrapper {
   position: relative;
   border: 1px solid @sproutup-grey;
   width: 235px;
-  height: 320px;
+  height: 340px;
   padding: 0px;
   margin: 0px 5px 10px;
   text-align: center;
@@ -4550,12 +4555,13 @@ li.campaign-item-wrapper.new-campaign button span {
 
 .campaign-item-wrapper .action {
   position: absolute;
-  bottom: 25px;
+  bottom: 20px;
   width: 100%;
 }
 
 .campaign-item-wrapper .action .btn {
-  width: 160px;
+  width: 150px;
+  margin: 5px 0px 0px;
 }
 
 
