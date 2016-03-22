@@ -6,9 +6,9 @@
     .module('product')
     .controller('ProductController', ProductController);
 
-  ProductController.$inject = ['$scope', 'TrialService', '$state', 'ProductService', '$location', 'Authentication', 'TeamService', '$rootScope', '$uibModal'];
+  ProductController.$inject = ['$scope', 'TrialService', '$state', 'ProductService', '$location', 'Authentication', 'TeamService', '$rootScope', '$uibModal', 'CampaignService'];
 
-  function ProductController($scope, TrialService, $state, ProductService, $location, Authentication, TeamService, $rootScope, $modal) {
+  function ProductController($scope, TrialService, $state, ProductService, $location, Authentication, TeamService, $rootScope, $modal, CampaignService) {
     var vm = this;
     vm.create = create;
     vm.remove = remove;
@@ -18,18 +18,11 @@
     vm.findOne = findOne;
     vm.editProduct = editProduct;
     vm.openModal = openModal;
+    vm.findCampaigns = findCampaigns;
+    vm.closePanel = closePanel;
 
     function create(isValid) {
       vm.error = null;
-
-      if (!isValid) {
-        vm.invalid = true;
-        $scope.$broadcast('show-errors-check-validity', 'productForm');
-
-        return false;
-      } else {
-        vm.invalid = false;
-      }
 
       // Create new product object
       var Product = ProductService.products();
@@ -52,6 +45,7 @@
         vm.tagline = '';
         vm.video = '';
         vm.url = '';
+        vm.products.push(response);
       }, function (errorResponse) {
         console.log(errorResponse);
         vm.error = errorResponse.data.message;
@@ -69,6 +63,12 @@
         for (var i in vm.companies) {
           if (vm.companies[i] === product) {
             vm.companies.splice(i, 1);
+          }
+        }
+
+        for (var p in vm.products) {
+          if (vm.products[p].id === product.id) {
+            vm.products.splice(p, 1);
           }
         }
       }
@@ -135,6 +135,7 @@
         productId: $state.params.productId
       }, function() {
         vm.product = product;
+        vm.productInit = true;
       }, function(err) {
         $state.go('landing.default');
       });
@@ -160,5 +161,23 @@
         console.log('Modal dismissed at: ' + new Date());
       });
     }
+
+    function findCampaigns() {
+      CampaignService.listByProduct().query({
+        productId: $state.params.productId
+      }, function(res) {
+        vm.campaigns = res;
+        vm.campaignInit = true;
+      }, function(error) {
+        vm.error = error;
+        console.log(error);
+      });
+    }
+
+    function closePanel() {
+      vm.productInit = false;
+      $state.go('company.navbar.product.list');
+    }
+
   }
 })();

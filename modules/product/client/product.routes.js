@@ -14,18 +14,18 @@ angular.module('product').config(['$stateProvider',
         url: '/list',
         templateUrl: 'modules/product/client/list-products.html'
       })
-      .state('company.navbar.product.create', {
+      .state('company.navbar.product.list.create', {
         url: '/create',
-        templateUrl: 'modules/product/client/create-product.html'
+        templateUrl: 'modules/product/client/create-product.html',
+      })
+      //edit product and mock
+      .state('company.navbar.product.list.edit', {
+        url: '/edit/:productId',
+        templateUrl: 'modules/product/client/edit-product.html'
       })
       .state('company.navbar.product.view', {
         url: '/:productId',
         templateUrl: 'modules/product/client/product.html'
-      })
-      //edit product and mock
-      .state('company.navbar.product.edit', {
-        url: '/:productId/edit',
-        templateUrl: 'modules/product/client/edit-product.html'
       });
   }
 ]);
