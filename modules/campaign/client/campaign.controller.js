@@ -45,7 +45,6 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   // Get the topbar menu
   vm.menu = Menus.getMenu('company.campaign.menu');
   vm.trialmenu = Menus.getMenu('company.navbar.campaign.trial.view.menu');
-  findProducts();
 
   function create(item) {
     // // temporary hack
@@ -278,6 +277,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       });
     }
   }
+
 
   function openModal(item) {
     var modalInstance = $modal.open({
