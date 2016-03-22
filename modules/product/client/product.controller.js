@@ -19,18 +19,10 @@
     vm.editProduct = editProduct;
     vm.openModal = openModal;
     vm.findCampaigns = findCampaigns;
+    vm.closePanel = closePanel;
 
     function create(isValid) {
       vm.error = null;
-
-      if (!isValid) {
-        vm.invalid = true;
-        $scope.$broadcast('show-errors-check-validity', 'productForm');
-
-        return false;
-      } else {
-        vm.invalid = false;
-      }
 
       // Create new product object
       var Product = ProductService.products();
@@ -53,6 +45,7 @@
         vm.tagline = '';
         vm.video = '';
         vm.url = '';
+        vm.products.push(response);
       }, function (errorResponse) {
         console.log(errorResponse);
         vm.error = errorResponse.data.message;
@@ -70,6 +63,12 @@
         for (var i in vm.companies) {
           if (vm.companies[i] === product) {
             vm.companies.splice(i, 1);
+          }
+        }
+
+        for (var p in vm.products) {
+          if (vm.products[p].id === product.id) {
+            vm.products.splice(p, 1);
           }
         }
       }
@@ -136,6 +135,7 @@
         productId: $state.params.productId
       }, function() {
         vm.product = product;
+        vm.productInit = true;
       }, function(err) {
         $state.go('landing.default');
       });
@@ -172,6 +172,11 @@
         vm.error = error;
         console.log(error);
       });
+    }
+
+    function closePanel() {
+      vm.productInit = false;
+      $state.go('company.navbar.product.list');
     }
 
   }
