@@ -8,7 +8,7 @@
 <div class="row">
   <div class="signup-login-header">
       <h1>Thanks for getting started with SproutUp</h1>
-      <h2>Your registered email is <span>peter@sproutup.co</span>, and your company is <span class="signup-company-name">SproutUp Co</span> Please fill out the information below to finish signing up.</h2>
+      <h2>Your email is <span>peter@sproutup.co</span>. Please fill out your personal information below.</h2>
   </div>
   <div class="signup-login-area">
     <form name="userForm" class="signin" novalidate autocomplete="off">
@@ -57,8 +57,8 @@
 
 <div class="row">
   <div class="signup-login-header">
-      <h1>Thanks for getting started with SproutUp</h1>
-      <h2>Your registered email is <span>tony@gmail.com</span>. Please fill out your company information below to continue.</h2>
+      <h1>Thanks for signing up with SproutUp</h1>
+      <h2>One more step... Please fill out your company information below to get started.</h2>
   </div>
   <div class="signup-login-area">
     <form name="userForm" ng-submit="signup(userForm.$valid)" class="signin" novalidate autocomplete="off">
@@ -78,18 +78,13 @@
           </div>
 
           <!-- Company Name -->
-          <input type="text" id="companySlug" name="companySlug" class="form-control form-validate signup-login-input" placeholder="Choose a nickname for your company" required>
+          <input type="text" id="companySlug" name="companySlug" class="form-control form-validate signup-login-input" placeholder="Choose a handle for your company" required>
 
-          <button ng-disabled="userForm.$invalid" class="btn btn-lg signup-login-btn" type="submit" ui-sref="authentication.general-signup-2">Continue</button>
+          <button ng-disabled="userForm.$invalid" class="btn btn-lg signup-login-btn" type="submit" ui-sref="authentication.general-signup-2">Take me to dashboard</button>
 
         </div>
       </fieldset>
     </form>
-
-    <!-- footer -->
-    <div class="signup-login-form-footer">
-      <p>Already signed up? <a ui-sref="authentication.signin">Log in</a> here.</p>
-    </div>
 
   </div>
 </div>
