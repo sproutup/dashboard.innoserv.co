@@ -11,7 +11,6 @@ function ProductController($scope, TrialService, $state, ProductService, $locati
   vm.create = create;
   vm.remove = remove;
   vm.update = update;
-  vm.cancel = cancel;
   vm.find = find;
   vm.findOne = findOne;
   vm.editProduct = editProduct;
@@ -67,10 +66,6 @@ function ProductController($scope, TrialService, $state, ProductService, $locati
       }, function(reason) {
         vm.error = reason;
       });
-  }
-
-  function cancel() {
-    $state.go('company.navbar.product.list');
   }
 
   function find() {
@@ -137,7 +132,10 @@ function ProductController($scope, TrialService, $state, ProductService, $locati
 
   function closePanel() {
     vm.productInit = false;
-    $state.go('company.navbar.product.list');
+    var currentState = $state.current.name;
+    var index = currentState.lastIndexOf('.');
+    var nextState = currentState.slice(0, index);
+    $state.go(nextState);
   }
 
 }
