@@ -2217,7 +2217,6 @@ button:active {
 .new-campaign-component-header {
   color: @main-text-white;
   padding: 15px 25px;
-  color: @main-text-white;
   margin: 0px;
   min-height: 50px;
 }
@@ -2246,6 +2245,12 @@ button:active {
 
 .new-campaign-component-header.todo {
   background-color: @sproutup-stronger-grey;
+}
+
+.new-campaign-component-header.banner {
+  background-color: transparent;
+  border: 1px solid @sproutup-grey;
+  color: @main-text-lighter;
 }
 
 .new-campaign-component-content {
@@ -2320,10 +2325,10 @@ button:active {
 }
 
 .campaign-question-wrapper p {
-  font-size: 12pt;
+  font-size: 11pt;
   font-weight: 700;
   padding: 0px;
-  margin: 0px 0px 16px;
+  margin: 0px 0px 10px;
   color: @main-text-light;
 }
 
@@ -2373,7 +2378,7 @@ button:active {
 .campaign-choose-product label {
   display: inline-block;
   position: relative;
-  font-size: 12pt;
+  font-size: 11pt;
   font-weight: 700;
   color: @main-text-lighter;
   margin: 10px 0px;
@@ -4405,6 +4410,7 @@ ul.list-conversation-thread li a {
   text-align: right;
   color: @sproutup-grey;
   font-size: 8.5pt;
+  width: 20%;
 }
 
 .message-campaign-link {
@@ -4476,7 +4482,7 @@ li.campaign-item-wrapper {
   position: relative;
   border: 1px solid @sproutup-grey;
   width: 235px;
-  height: 320px;
+  height: 340px;
   padding: 0px;
   margin: 0px 5px 10px;
   text-align: center;
@@ -4550,12 +4556,13 @@ li.campaign-item-wrapper.new-campaign button span {
 
 .campaign-item-wrapper .action {
   position: absolute;
-  bottom: 25px;
+  bottom: 20px;
   width: 100%;
 }
 
 .campaign-item-wrapper .action .btn {
-  width: 160px;
+  width: 150px;
+  margin: 5px 0px 0px;
 }
 
 
@@ -4611,6 +4618,10 @@ li.campaign-item-wrapper.new-campaign button span {
   font-size: 14pt;
   color: @main-text-lighter;
   line-height: 1.6;
+}
+
+.sproutup-table .product-action {
+  text-align: right;
 }
 
 @media (max-width:767px) {
