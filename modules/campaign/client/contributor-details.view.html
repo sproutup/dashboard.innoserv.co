@@ -5,9 +5,8 @@
     </div>
     <!-- panel header -->
     <div class="dashboard-side-panel-header">
-      {{contributor.item.campaignId}}<p>{{ contributor.item.user.name || 'User' }}<sup class="label label-influencer">Influencer</sup></p>
+      <p>{{ contributor.item.user.displayName }}</p>
     </div>
-    <up-message-channel channel="contributor.channelId" on-start="campaign.startChannel()" ng-init="contributor.findChannel()"/>
 
     <!-- section: trial status management -->
     <div class="dashboard-side-panel-section">
@@ -17,12 +16,12 @@
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Requested on {{ contributor.item.created | date }}</div>
           <div class="product-trial-item--status-desc">
             <p><span class="label label-info">Why</span>{{ contributor.item.comment }}</p>
-            <p><span class="label label-info">Reward</span><strong>${{ contributor.item.bid }}</strong></p>
+            <p><span class="label label-info">Reward</span>I'd like to request <strong>${{ contributor.item.bid }}</strong> sponsorship.</p>
           </div>
         </div>
         <div class="product-trial-item--detail" ng-if="contributor.item.state === 0">
-          <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Approve this requset?</div>
-          <div class="product-trial-item--status-desc" ng-click="contributor.approveTrial()"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.approveRequest(vm.request)">YES</button></div>
+          <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Approve this request?</div>
+          <div class="product-trial-item--status-desc" ng-click="contributor.approveTrial()"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.approveRequest(vm.request)">YES to {{ contributor.item.user.displayName }}</button></div>
         </div>
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0">
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Approved on {{ contributor.item.approved[0].created | date }}</div>
@@ -52,6 +51,13 @@
             <button class="btn sproutup-btn-sm grey">No. Send a reminder.</button>
           </div>
         </div> -->
+      </div>
+    </div>
+
+    <div class="dashboard-side-panel-section">
+      <h4>Messages</h4>
+      <div class="dashboard-side-panel-section-body">
+        <up-message-channel channel="contributor.channelId" on-start="campaign.startChannel()" ng-init="contributor.findChannel()"/>
       </div>
     </div>
 
