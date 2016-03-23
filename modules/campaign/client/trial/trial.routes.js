@@ -13,6 +13,12 @@ angular.module('campaign').config(['$stateProvider',
         url: '/trial',
         templateUrl: 'modules/campaign/client/trial/edit.view.html'
       })
+      .state('company.navbar.campaign.edit.trial.create-product', {
+        url: '/create-product',
+        templateUrl: 'modules/product/client/create-product.html',
+        controller: 'ProductController',
+        controllerAs: 'vm'
+      })
       .state('company.navbar.campaign.configure.trial', {
         url: '/trial/:campaignId/edit',
         templateUrl: 'modules/campaign/client/trial/edit.view.html'
@@ -27,6 +33,12 @@ angular.module('campaign').config(['$stateProvider',
         url: '/requests',
         templateUrl: 'modules/campaign/client/trial/requests.view.html'
       })
+      .state('company.navbar.campaign.view.trial.requests.contributor', {
+        url: '/contributor/:userId',
+        templateUrl: 'modules/campaign/client/contributor-details.view.html',
+        controller: 'ContributorController',
+        controllerAs: 'contributor'
+      })
       .state('company.navbar.campaign.view.trial.stats', {
         url: '/stats',
         templateUrl: 'modules/campaign/client/trial/stats.view.html'
@@ -38,12 +50,6 @@ angular.module('campaign').config(['$stateProvider',
       .state('company.navbar.campaign.view.trial.configure', {
         url: '/configure',
         templateUrl: 'modules/campaign/client/trial/configure.view.html'
-      })
-      .state('company.navbar.campaign.view.trial.requests.contributor', {
-        url: '/contributor/:userId',
-        templateUrl: 'modules/campaign/client/contributor-details.view.html',
-        controller: 'ContributorController',
-        controllerAs: 'contributor'
       });
   }
 ]);
