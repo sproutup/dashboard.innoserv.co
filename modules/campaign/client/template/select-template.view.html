@@ -1,42 +1,38 @@
 <div class="mock-section" id="choose-template" ng-init="vm.find()">
   <h1 class="dashboard-section-title"><a ui-sref='company.navbar.campaign.list'><i class="fa fa-angle-left"></i></a>Create New Campaign</h1>
   <div class="create-campaign-wrapper">
-    <h1>Yo, we have some cool ideas for you to start a campaign!</h1>
-
-      <!-- product trial -->
-      <div class="row campaign-template-list product-trial">
-      <p>Launching a new product? Run <span>Product Trial</span> is the way to go! &#x1F680;</p>
-        <div class="col-sm-4 campaign-template-item" ng-repeat="item in vm.campaigns | filter: {type:'trial', status: -10}">
-          <a ui-sref='company.navbar.t.campaign.trial.create({templateId: item.id, productId: vm.productId})'>
-            <div class="campaign-template-item-info product-trial">
-              <p class="template-title">{{item.name}}</p>
-              <p class="template-description">{{item.description}}</p>
-            </div>
-          </a>
+    <h1>Starting a campaign in minutes with a template carefully drafted by our creative marketing experts. Yes it's that easy!</h1>
+    <div class="row campaign-template-list">
+      <div class="col-lg-3 col-xs-4 campaign-template-item" ng-repeat="item in vm.campaigns | filter: {type:'trial', status: -10}">
+        <a ui-sref='company.navbar.t.campaign.trial.create({templateId: item.id, productId: vm.productId})'>
+          <img class="img-responsive" src="modules/core/client/img/campaign/template-trial.jpg">
+        </a>
+        <div class="campaign-template-item-info">
+          <div class="template-title">{{ item.name }}</div>
+          <div uib-popover="{{ item.description }}" popover-trigger="mouseenter" class="template-description"><a href="#">Learn more about this campaign</a><span><i class="fa fa-question-circle"></i></span></div>
         </div>
       </div>
-
-      <!-- video contest -->
-      <div class="row campaign-template-list video-contest">
-        <p>Wanna engage existing and new customers? Start <span>Contest</span> and let their creative juice flow! &#x1F31F;</p>
-        <div class="col-sm-4 campaign-template-item" ng-repeat="item in vm.campaigns | filter: {type:'contest', status: -10}">
-          <a ui-sref='company.navbar.t.campaign.contest.create({templateId: item.id, productId: vm.productId})'>
-            <div class="campaign-template-item-info video-contest">
-              <p class="template-title">{{item.name}}</p>
-              <p class="template-description">{{item.description}}</p>
-            </div>
-          </a>
+      <div class="col-lg-3 col-xs-4 campaign-template-item">
+        <a href=""><img class="img-responsive" src="modules/core/client/img/campaign/template-video-contest-coming.jpg"></a>
+        <div class="campaign-template-item-info">
+          <div class="template-title">Video Contest</div>
+          <div class="template-description">Video contest coming soon...<span><i class="fa fa-clock-o"></i></span></div>
         </div>
       </div>
-     <!-- sweepstakes -->
-     <!--div class="row campaign-template-list twitter-contest">
-         <p>Simple <span>Sweepstakes</span> make customers feel loved! &#x1F496;</p>
-         <div class="col-sm-4 campaign-template-item">
-             <div class="campaign-template-item-info twitter-contest">
-                 <p class="template-title">Sweepstakes</p>
-                 <p class="template-description">Run exciting sweepstakes contest to engage and grow your customers</p>
-             </div>
-         </div>
-     </div-->
+      <div class="col-lg-3 col-xs-4 campaign-template-item">
+        <a href=""><img class="img-responsive" src="modules/core/client/img/campaign/template-instagram-contest-coming.jpg"></a>
+        <div class="campaign-template-item-info">
+          <div class="template-title">Instagram Contest</div>
+          <div class="template-description">Instagram contest coming soon...<span><i class="fa fa-clock-o"></i></span></div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-xs-4 campaign-template-item">
+        <a href=""><img class="img-responsive" src="modules/core/client/img/campaign/template-video-contest-coming.jpg"></a>
+        <div class="campaign-template-item-info">
+          <div class="template-title">OpenIdea</div>
+          <div class="template-description">OpenIdea campaigns coming soon...<span><i class="fa fa-clock-o"></i></span></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
