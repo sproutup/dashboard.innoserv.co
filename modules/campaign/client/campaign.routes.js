@@ -55,6 +55,12 @@ angular.module('campaign').config(['$stateProvider',
         url: '/create/:productId',
         templateUrl: 'modules/campaign/client/trial/create.view.html'
       })
+      .state('company.navbar.t.campaign.trial.create.create-product', {
+        url: '/create-product',
+        templateUrl: 'modules/product/client/create-product.html',
+        controller: 'ProductController',
+        controllerAs: 'vm'
+      })
       .state('company.navbar.t.campaign.contest', {
         url: '/contest/:productId',
         template: '<ui-view></ui-view>'

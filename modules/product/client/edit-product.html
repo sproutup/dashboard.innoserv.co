@@ -33,7 +33,7 @@
               <p class="product-campaign" ng-repeat="campaign in vm.campaigns"><a ui-sref="company.navbar.campaign.view.default({ campaignId: campaign.id })">{{ campaign.name }}</a></p>
             </div>
             <div class="col-sm-12 form-input-group" ng-init="vm.findCampaigns()">
-              <button class="btn btn-lg sproutup-btn-md-main" type="submit">Save</button>
+              <button class="btn btn-lg sproutup-btn-md-main" type="submit" ng-disabled="form.$invalid">Save</button>
               <button class="btn btn-lg sproutup-btn-md-main cancel" href="#" ng-click="vm.closePanel()">Cancel</button>
               <a class="btn btn-lg sproutup-btn-md-main trash" href="#" ng-click="vm.openModal(vm.product)" ng-if="vm.campaigns.length < 1 && vm.campaignInit"><i class="fa fa-trash"></i></a>
             </div>

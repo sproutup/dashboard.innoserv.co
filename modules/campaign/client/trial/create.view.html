@@ -77,16 +77,17 @@
             <p>Add a product</p>
           </div>
         </div>
-        <div class="row new-campaign-component-content" ng-if="campaign.products">
+        <div class="row new-campaign-component-content" ng-if="campaign.ProductService.model.products">
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Please choose or add a new product you'd like to promote in your campaign</p>
               <div class="campaign-choose-product">
-                <div ng-repeat="product in campaign.products">
+                <div ng-repeat="product in campaign.ProductService.model.products">
                   <input type="radio" id="{{ product.id }}" ng-model="template.item.productId" value="{{ product.id }}">
                   <label for="{{ product.id }}"><span></span>{{ product.name }}</label>
                 </div>
               </div>
+              <a ui-sref="company.navbar.t.campaign.trial.create.create-product">Create a product</a>
             </div>
           </div>
         </div>
@@ -112,3 +113,4 @@
     </div> -->
   </form>
 </div>
+<div ui-view></div>
