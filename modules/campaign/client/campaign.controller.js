@@ -1,4 +1,5 @@
 'use strict';
+
 angular
   .module('campaign')
   .controller('CampaignController', CampaignController);
@@ -30,6 +31,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.findProducts = findProducts;
   vm.saveBannerPicture = saveBannerPicture;
   vm.state = $state;
+  vm.ProductService = ProductService;
   vm.socialOptions = [
     {  title: 'YouTube',
        type: 'yt',
@@ -86,17 +88,14 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     }
   }
 
-  function update(isValid) {
+  function update() {
     vm.error = null;
-
-    vm.item.$update({
-      campaignId: $state.params.campaignId
-    }, function (response) {
-      $state.go('company.navbar.campaign.list');
-    }, function (errorResponse) {
-      vm.success = null;
-      vm.error = errorResponse.data.message;
-    });
+    CampaignService.updateCampaign(vm.item)
+      .then(function(result) {
+        $state.go('company.navbar.campaign.list');
+      }, function(reason) {
+        vm.error = reason;
+      });
   }
 
   function startCampaign () {
@@ -267,14 +266,12 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     }
 
     function makeCall() {
-      ProductService.listByCompany().query({
-        companyId: $scope.company.company.id
-      }, function(res) {
-        vm.products = res; 
-        console.log('products found');
-      }, function(err) {
-        console.log(err);
-      });
+      ProductService.listByCompany($scope.company.company.id)
+        .then(function() {
+          vm.success = true;
+        }, function(reason) {
+          vm.error = reason;
+        });
     }
   }
 

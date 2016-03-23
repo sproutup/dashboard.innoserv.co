@@ -5,7 +5,6 @@ body {
   font-size: 14px !important;
   font-family: "lato", Helvetica, Arial, sans-serif;
   min-width: 1024px;
-  max-width: 1600px;
 }
 
 button:focus,
@@ -2899,6 +2898,10 @@ input:-ms-input-placeholder {
   padding-top: 6px;
 }
 
+.sproutup-table .request-avatar {
+  width: 10%;
+}
+
 .sproutup-table .request-avatar img {
   margin: 0px auto;
   border: 1px solid @sproutup-grey;
@@ -2908,7 +2911,7 @@ input:-ms-input-placeholder {
 }
 
 .sproutup-table .request-name-pitch {
-  width: 40%;
+  width: 50%;
 }
 
 .sproutup-table .request-name-pitch .name {
@@ -2936,6 +2939,10 @@ input:-ms-input-placeholder {
   font-size: 12pt;
   font-weight: 700;
   color: @main-text-lighter;
+}
+
+.sproutup-table .request-status {
+
 }
 
 .sproutup-table .request-detail-link {
@@ -3278,7 +3285,18 @@ input:-ms-input-placeholder {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: none;
-  max-height: 420px;
+  min-height: 200px;
+  max-height: 450px;
+}
+
+.message-body .empty-state {
+  background-color: @sproutup-verylightgrey;
+  font-weight: 400;
+  font-size: 11pt;
+  margin: 0px 0px 5px;
+  color: @main-text-veryverylight;
+  line-height: 1.6;
+  padding: 50px 20px;
 }
 
 .message-footer {

@@ -1,183 +1,143 @@
 'use strict';
 
-(function() {
+angular
+  .module('product')
+  .controller('ProductController', ProductController);
 
-  angular
-    .module('product')
-    .controller('ProductController', ProductController);
+ProductController.$inject = ['$scope', 'TrialService', '$state', 'ProductService', '$location', 'Authentication', 'TeamService', '$rootScope', '$uibModal', 'CampaignService'];
 
-  ProductController.$inject = ['$scope', 'TrialService', '$state', 'ProductService', '$location', 'Authentication', 'TeamService', '$rootScope', '$uibModal', 'CampaignService'];
+function ProductController($scope, TrialService, $state, ProductService, $location, Authentication, TeamService, $rootScope, $modal, CampaignService) {
+  var vm = this;
+  vm.create = create;
+  vm.remove = remove;
+  vm.update = update;
+  vm.cancel = cancel;
+  vm.find = find;
+  vm.findOne = findOne;
+  vm.editProduct = editProduct;
+  vm.openModal = openModal;
+  vm.findCampaigns = findCampaigns;
+  vm.closePanel = closePanel;
+  vm.ProductService = ProductService;
 
-  function ProductController($scope, TrialService, $state, ProductService, $location, Authentication, TeamService, $rootScope, $modal, CampaignService) {
-    var vm = this;
-    vm.create = create;
-    vm.remove = remove;
-    vm.update = update;
-    vm.cancel = cancel;
-    vm.find = find;
-    vm.findOne = findOne;
-    vm.editProduct = editProduct;
-    vm.openModal = openModal;
-    vm.findCampaigns = findCampaigns;
-    vm.closePanel = closePanel;
+  function create() {
+    var item = {
+      companyId: $scope.company.company.id,
+      name: vm.name,
+      description: vm.description,
+      tagline: vm.tagline,
+      video: vm.video,
+      url: vm.url
+    };
 
-    function create(isValid) {
-      vm.error = null;
-
-      // Create new product object
-      var Product = ProductService.products();
-      var item = new Product({
-        companyId: $scope.company.company.id,
-        name: vm.name,
-        description: vm.description,
-        tagline: vm.tagline,
-        video: vm.video,
-        url: vm.url
-      });
-
-      // Redirect after save
-      item.$save(function (response) {
-        $state.go('company.navbar.product.list');
-
-        // Clear form fields
+    ProductService.add(item)
+      .then(function(result) {
         vm.description = '';
         vm.name = '';
         vm.tagline = '';
         vm.video = '';
         vm.url = '';
-        vm.products.push(response);
-      }, function (errorResponse) {
-        console.log(errorResponse);
-        vm.error = errorResponse.data.message;
+      }, function(reason) {
+        vm.error = reason;
       });
-    }
-
-    function remove(product) {
-      if (product) {
-        product.$remove({
-          productId: product.id
-        }, function() {
-          $state.go('company.navbar.product.list');
-        });
-
-        for (var i in vm.companies) {
-          if (vm.companies[i] === product) {
-            vm.companies.splice(i, 1);
-          }
-        }
-
-        for (var p in vm.products) {
-          if (vm.products[p].id === product.id) {
-            vm.products.splice(p, 1);
-          }
-        }
-      }
-      // else {
-        // test this
-        // vm.product.$remove(function () {
-        //   $location.path('user.product');
-        // });
-      // }
-    }
-
-    function update(isValid) {
-      vm.error = null;
-
-      if (!isValid) {
-        vm.invalid = true;
-        $scope.$broadcast('show-errors-check-validity', 'articleForm');
-
-        return false;
-      } else {
-        vm.invalid = false;
-      }
-
-      var product = vm.product;
-
-      product.$update({
-        productId: $state.params.productId
-      }, function () {
-        $state.go('company.navbar.product.list');
-      }, function (errorResponse) {
-        vm.success = null;
-        vm.error = errorResponse.data.message;
-      });
-    }
-
-    function cancel() {
-      $state.go('company.navbar.product.list');
-    }
-
-    function find() {
-      if ($scope.company.company.id) {
-        makeCall();
-      } else {
-        $scope.$watch('company.company.id', function(val) {
-          if(val) makeCall();
-        });
-      }
-
-      function makeCall() {
-        vm.products = ProductService.listByCompany().query({
-          companyId: $scope.company.company.id
-        }, function() {
-          console.log('products found');
-        }, function(err) {
-          console.log(err);
-        });
-      }
-    }
-
-    function findOne() {
-      vm.success = false;
-
-      var product = ProductService.products().get({
-        productId: $state.params.productId
-      }, function() {
-        vm.product = product;
-        vm.productInit = true;
-      }, function(err) {
-        $state.go('landing.default');
-      });
-    }
-
-    function editProduct() {
-      $state.go('company.navbar.product.edit', { productId: $state.params.productId });
-    }
-
-    function openModal(item) {
-      var modalInstance = $modal.open({
-        templateUrl: 'modules/core/client/delete-confirmation.html',
-        controller: 'DeleteController',
-        controllerAs: 'vm',
-        resolve: {
-          message: function() { return 'This product will be gone forever.'; }
-        }
-      });
-
-      modalInstance.result.then(function () {
-        remove(item);
-      }, function () {
-        console.log('Modal dismissed at: ' + new Date());
-      });
-    }
-
-    function findCampaigns() {
-      CampaignService.listByProduct().query({
-        productId: $state.params.productId
-      }, function(res) {
-        vm.campaigns = res;
-        vm.campaignInit = true;
-      }, function(error) {
-        vm.error = error;
-        console.log(error);
-      });
-    }
-
-    function closePanel() {
-      vm.productInit = false;
-      $state.go('company.navbar.product.list');
-    }
-
   }
-})();
+
+  function remove() {
+    if (vm.product) {
+      ProductService.remove(vm.product)
+        .then(function(result) {
+          $state.go('company.navbar.product.list');
+          vm.success = true;
+        }, function(reason) {
+          vm.error = reason;
+        });
+    }
+    // else {
+      // test this
+      // vm.product.$remove(function () {
+      //   $location.path('user.product');
+      // });
+    // }
+  }
+
+  function update() {
+    ProductService.update(vm.product)
+      .then(function(result) {
+        $state.go('company.navbar.product.list');
+      }, function(reason) {
+        vm.error = reason;
+      });
+  }
+
+  function cancel() {
+    $state.go('company.navbar.product.list');
+  }
+
+  function find() {
+    if ($scope.company.company.id) {
+      makeCall();
+    } else {
+      $scope.$watch('company.company.id', function(val) {
+        if(val) makeCall();
+      });
+    }
+
+    function makeCall() {
+      ProductService.listByCompany($scope.company.company.id)
+        .then(function() {
+          vm.success = true;
+        }, function(reason) {
+          vm.error = reason;
+        });
+    }
+  }
+
+  function findOne() {
+    ProductService.findOne($state.params.productId)
+      .then(function(result) {
+        vm.product = result;
+        vm.productInit = true;
+      }, function(reason) {
+        vm.error = reason;
+      });
+  }
+
+  function editProduct() {
+    $state.go('company.navbar.product.edit', { productId: $state.params.productId });
+  }
+
+  function openModal(item) {
+    var modalInstance = $modal.open({
+      templateUrl: 'modules/core/client/delete-confirmation.html',
+      controller: 'DeleteController',
+      controllerAs: 'vm',
+      resolve: {
+        message: function() { return 'This product will be gone forever.'; }
+      }
+    });
+
+    modalInstance.result.then(function () {
+      remove(item);
+    }, function () {
+      console.log('Modal dismissed at: ' + new Date());
+    });
+  }
+
+  function findCampaigns() {
+    CampaignService.listByProduct().query({
+      productId: $state.params.productId
+    }, function(res) {
+      vm.campaigns = res;
+      vm.campaignInit = true;
+    }, function(error) {
+      vm.error = error;
+      console.log(error);
+    });
+  }
+
+  function closePanel() {
+    vm.productInit = false;
+    $state.go('company.navbar.product.list');
+  }
+
+}
