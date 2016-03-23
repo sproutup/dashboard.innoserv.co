@@ -74,7 +74,7 @@
       <div class="new-campaign-component">
         <div class="row new-campaign-component-header todo">
           <div class="col-sm-6">
-            <p>Add a product</p>
+            <p>Choose a product</p>
           </div>
         </div>
         <div class="row new-campaign-component-content" ng-if="campaign.ProductService.model.products">
@@ -86,8 +86,8 @@
                   <input type="radio" id="{{ product.id }}" ng-model="template.item.productId" value="{{ product.id }}">
                   <label for="{{ product.id }}"><span></span>{{ product.name }}</label>
                 </div>
+                <button class="btn sproutup-btn-sm" ui-sref="company.navbar.t.campaign.trial.create.create-product">Add a product</a>
               </div>
-              <a ui-sref="company.navbar.t.campaign.trial.create.create-product">Create a product</a>
             </div>
           </div>
         </div>
