@@ -4,7 +4,7 @@ angular.module('message').run(['Menus',
   function (Menus) {
     Menus.addMenuItem('navbar', {
       title: 'Messages',
-      state: 'company.navbar.conversation.list',
+      state: 'slug.company.navbar.conversation.list',
       class: '',
       roles: ['user', 'admin'],
       position: 50
@@ -12,7 +12,7 @@ angular.module('message').run(['Menus',
 /*
     Menus.addMenuItem('company.settings.menu', {
       title: 'Profile',
-      state: 'company.navbar.settings.profile',
+      state: 'slug.company.navbar.settings.profile',
       class: '',
       roles: ['*'],
       position: 1

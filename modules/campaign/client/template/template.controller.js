@@ -71,7 +71,7 @@
         // Redirect after save
         item.$save(function (response) {
           console.log('created this: ', response);
-          $state.go('company.navbar.template.list');
+          $state.go('slug.company.navbar.template.list');
           // Clear form fields
         vm.description = '';
         }, function (errorResponse) {
@@ -84,7 +84,7 @@
           item.$remove({
             campaignId: item.id
           }, function() {
-            $state.go('company.navbar.template.list');
+            $state.go('slug.company.navbar.template.list');
           });
 
           // for (var i in vm.companies) {
@@ -121,7 +121,7 @@
         vm.item.$update(function () {
           console.log(vm.item);
           console.log(vm.item.tagline);
-          $state.go('company.navbar.template.list');
+          $state.go('slug.company.navbar.template.list');
         }, function (errorResponse) {
           vm.success = null;
           vm.error = errorResponse.data.message;
@@ -129,7 +129,7 @@
       }
 
       function cancel() {
-        $state.go('company.navbar.template.list');
+        $state.go('slug.company.navbar.template.list');
       }
 
       function find() {

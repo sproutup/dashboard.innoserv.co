@@ -35,7 +35,7 @@ function EmailDirective($q, $timeout, $http) {
 
       $http.post('/api/auth/validate/email', {email: email}).success(function (response) {
         if(response.result === 1){
-          scope.vm.company = response.company;
+//          scope.vm.company = response.company;
           def.resolve();
         }
         else{

@@ -2,26 +2,25 @@
 
 angular.module('campaign').run(['Menus',
   function (Menus) {
-    Menus.addMenuItem('company.navbar.campaign.trial.view.menu', {
+    Menus.addMenuItem('campaign.trial.menu', {
       title: 'Requests',
-      state: 'company.navbar.campaign.view.trial.requests',
+      state: 'slug.company.navbar.campaign.view.trial.requests',
       class: '',
       roles: ['*']
     });
 
-    Menus.addMenuItem('company.navbar.campaign.trial.view.menu', {
+    Menus.addMenuItem('campaign.trial.menu', {
       title: 'Content',
-      state: 'company.navbar.campaign.view.trial.stats',
+      state: 'slug.company.navbar.campaign.view.trial.stats',
       class: '',
       roles: ['*']
     });
 
-    Menus.addMenuItem('company.navbar.campaign.trial.view.menu', {
+    Menus.addMenuItem('campaign.trial.menu', {
       title: 'Configuration',
-      state: 'company.navbar.campaign.view.trial.configure',
+      state: 'slug.company.navbar.campaign.view.trial.configure',
       class: '',
       roles: ['*']
     });
   }
 ]);
-

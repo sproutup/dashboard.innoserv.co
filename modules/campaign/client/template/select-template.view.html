@@ -1,10 +1,10 @@
 <div class="mock-section" id="choose-template" ng-init="vm.find()">
-  <h1 class="dashboard-section-title"><a ui-sref='company.navbar.campaign.list'><i class="fa fa-angle-left"></i></a>Create New Campaign</h1>
+  <h1 class="dashboard-section-title"><a ui-sref='slug.company.navbar.campaign.list'><i class="fa fa-angle-left"></i></a>Create New Campaign</h1>
   <div class="create-campaign-wrapper">
     <h1>Starting a campaign in minutes with a template carefully drafted by our creative marketing experts. Yes it's that easy!</h1>
     <div class="row campaign-template-list">
       <div class="col-lg-3 col-xs-4 campaign-template-item" ng-repeat="item in vm.campaigns | filter: {type:'trial', status: -10}">
-        <a ui-sref='company.navbar.t.campaign.trial.create({templateId: item.id, productId: vm.productId})'>
+        <a ui-sref='slug.company.navbar.t.campaign.trial.create({templateId: item.id, productId: vm.productId})'>
           <img class="img-responsive" src="modules/core/client/img/campaign/template-trial.jpg">
         </a>
         <div class="campaign-template-item-info">

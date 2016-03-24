@@ -4,7 +4,7 @@ angular.module('users').run(['Menus',
   function (Menus) {
     Menus.addMenuItem('company.user.settings.menu', {
       title: 'Profile',
-      state: 'company.navbar.user.profile',
+      state: 'slug.company.navbar.user.profile',
       class: '',
       roles: ['*'],
       position: 10
@@ -12,7 +12,7 @@ angular.module('users').run(['Menus',
 
     Menus.addMenuItem('company.user.settings.menu', {
       title: 'Password',
-      state: 'company.navbar.user.password',
+      state: 'slug.company.navbar.user.password',
       class: '',
       roles: ['*'],
       position: 20

@@ -4,14 +4,15 @@ angular
   .module('core')
   .controller('HomeController', HomeController);
 
-HomeController.$inject = ['$scope', '$state', 'CompanyService', '$http', 'Authentication'];
+HomeController.$inject = ['$scope', '$state', 'CompanyService', '$http', 'Authentication', 'SlugService'];
 
-function HomeController($scope, $state, CompanyService, $http, Authentication) {
+function HomeController($scope, $state, CompanyService, $http, Authentication, SlugService) {
   var vm = this;
   // This provides Authentication context.
   vm.authentication = Authentication;
   vm.getStarted = getStarted;
   vm.gotoMyCompany = gotoMyCompany;
+  vm.item = null;
   vm.init = true;
 
   function gotoMyCompany() {

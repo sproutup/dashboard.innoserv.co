@@ -4,14 +4,15 @@ angular
   .module('company')
   .controller('CompanyController', CompanyController);
 
-CompanyController.$inject = ['$scope', 'CompanyService', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'Menus'];
+CompanyController.$inject = ['$scope', 'CompanyService', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'item'];
 
-function CompanyController($scope, CompanyService, TrialService, $state, CampaignService, $location, Authentication, Menus) {
+function CompanyController($scope, CompanyService, TrialService, $state, CampaignService, $location, Authentication, Menus, item) {
   var vm = this;
   vm.success = false;
   vm.create = create;
   vm.remove = remove;
   vm.update = update;
+  vm.init = init;
   vm.find = find;
   vm.select = select;
   vm.findOne = findOne;
@@ -20,7 +21,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   vm.authentication = Authentication;
   vm.saveBannerPicture = saveBannerPicture;
   vm.state = $state;
-  vm.company = {};
+  vm.company = item;
 
   // Get the topbar menu
   vm.menu = Menus.getMenu('company.settings.menu');
@@ -106,9 +107,14 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
       });
   }
 
-  function select(company) {
-    vm.authentication.setCompany(company);
-    $state.go('company.navbar.campaign.list', { companySlug: company.slug });
+  function select(comp) {
+    vm.authentication.setCompany(comp);
+    $state.go('slug', { slug: comp.slug });
+  }
+
+  function init() {
+    console.log('init company: ', vm.company);
+    $state.go('slug.company.navbar.campaign.list');
   }
 
   function findOne() {
@@ -124,7 +130,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
       userId: Authentication.user.id
     }, function() {
       vm.company = companies[0];
-      $state.go('company.navbar.home', { companySlug: vm.company.slug });
+      $state.go('slug.company.navbar.home', { companySlug: vm.company.slug });
     }, function(err) {
       $state.go('index');
     });
