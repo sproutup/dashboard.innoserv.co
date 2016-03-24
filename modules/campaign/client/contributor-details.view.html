@@ -19,27 +19,36 @@
             <p><span class="label label-info">Sponsorship</span>I'd like to ask <strong>${{ contributor.item.bid }}</strong> for sponsored content.</p>
           </div>
         </div>
+
         <div class="product-trial-item--detail" ng-if="contributor.item.state === 0">
           <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Approve this request?</div>
           <div class="product-trial-item--status-desc" ng-click="contributor.approveTrial()"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.approveRequest(vm.request)">YES to {{ contributor.item.user.displayName }}</button></div>
         </div>
+
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0">
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Approved on {{ contributor.item.approved[0].created | date }}</div>
           <div class="product-trial-item--status-desc" ng-if="!contributor.item.trial.shippingState"><span class="label label-info">Shipping</span>Please ship product as soon as you can.</div>
-          <div class="product-trial-item--detail" ng-if="contributor.item.trial.shippingState">
-            <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped</div>
-          </div>
           <div class="product-trial-item--shipping">
-            <div class="name">{{ contributor.item.user.name }}</div>
+            <div class="name">{{ contributor.item.user.displayName }}</div>
             <div class="address">{{ contributor.item.address }}</div>
-            <div class="address phone">({{ contributor.item.phone }}</div>
-            <div class="address"><a href="mailto:{{ contributor.item.user.email}}">{{ contributor.item.user.email }}</a></div>
+            <div class="address phone"><i class="fa fa-phone"></i>{{ contributor.item.phone }}</div>
+            <div class="address"><i class="fa fa-at"></i><a href="mailto:{{ contributor.item.user.email}}">{{ contributor.item.user.email }}</a></div>
           </div>
+        </div>
+
+        <div class="product-trial-item--detail" ng-if="contributor.item.state > 0">
           <div class="product-trial-item--detail" ng-if="!contributor.item.trial.shippingState">
             <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Have you shipped the product?</div>
             <div class="product-trial-item--status-desc"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.productShipped()">YES! En route.</button></div>
           </div>
         </div>
+
+        <div class="product-trial-item--detail" ng-if="contributor.item.state > 0 && contributor.item.trial.shippingState">
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped</div>
+          <div class="product-trial-item--status-desc">Awesome! {{ contributor.item.user.displayName }} must be very excited now about the product!</div>
+        </div>
+
+
         <div class="product-trial-item--detail" ng-if="contributor.item.state === 10">
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Completed on {{ contributor.item.completed[0].created | date }}</div>
           <!-- <div class="product-trial-item--status-desc">Hooray, Kevin the Tech Ninja has posted a video! <a href="#">Check it out!</a></div> -->

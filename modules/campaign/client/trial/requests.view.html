@@ -42,7 +42,10 @@
               <div>{{ item.comment | limitTo: 140 }}{{ item.comment.length < 140 ? '' : '...' }}</div>
             </td>
             <td class="request-reach">{{ item.user.reach || '0' }}</td>
-            <td><span class="label label-request-status pending">Requested</span></td>
+            <td>
+              <span ng-if="item.state == 0" class="label label-request-status pending">Requested</span>
+              <span ng-if="item.state == 1 " class="label label-request-status completed">Approved</span>
+            </td>
           </tr>
         </tbody>
       </table>
