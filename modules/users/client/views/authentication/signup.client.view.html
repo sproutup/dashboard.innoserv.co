@@ -10,7 +10,7 @@
             <!-- Company slug -->
             <input ng-model="company.slug" type="text" id="slug" name="slug" class="form-control form-validate signup-login-input" placeholder="Pick a handle for your company" ng-pattern="/^[a-z0-9-]+$/" required>
             <div ng-show="userForm.slug.$submitted || userForm.slug.$touched">
-              <div class="signup-login-form--error-message" ng-show="userForm.slug.$error.required"><i class="fa fa-minus-circle"></i>A company with no slug? Silly.</div>
+              <div class="signup-login-form--error-message" ng-show="userForm.slug.$error.required"><i class="fa fa-minus-circle"></i>A company with no handle? Silly.</div>
             </div>
 
           <!-- First Name -->
@@ -26,7 +26,7 @@
           <!-- Username -->
           <input type="text" ng-model="credentials.username" ng-model-options="{ debounce: 250 }"  ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" id="username" name="username" class="form-control form-validate signup-login-input" placeholder="Create a SproutUp username" required up-slug/>
           <div ng-messages="userForm.username.$error" ng-show="userForm.$submitted || userForm.username.$touched">
-            <div class="signup-login-form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>Please choose a username.</div>
+            <div class="signup-login-form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>A user without a username? Silly.</div>
             <div class="signup-login-form--error-message" ng-message="uniqueslug"><i class="fa fa-minus-circle"></i>This username has been taken.</div>
             <div class="signup-login-form--error-message" ng-message="minlength"><i class="fa fa-minus-circle"></i>Your username has to be at least 3 characters long.</div>
             <div class="signup-login-form--error-message" ng-message="pattern"><i class="fa fa-minus-circle"></i>Your username can only have letters and numbers. It can't have any spaces either.</div>
