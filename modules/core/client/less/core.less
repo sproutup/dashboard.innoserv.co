@@ -2342,6 +2342,10 @@ button:active {
   background-color: @sproutup-blue;
 }
 
+.campaign-choose-product button {
+  margin-top: 15px;
+}
+
 .campaign-choose-product a {
   text-decoration: none !important;
 }
@@ -2691,7 +2695,7 @@ button:active {
 }
 
 .sproutup-table tbody tr td {
-  padding: 20px 15px;
+  padding: 16px 15px;
   font-weight: 400;
   font-size: 10pt;
   color: @main-text;
@@ -2907,11 +2911,12 @@ input:-ms-input-placeholder {
   border: 1px solid @sproutup-grey;
   width: 45px;
   height: 45px;
-  border-radius: 100%;
+  border-radius: 0px;
 }
 
 .sproutup-table .request-name-pitch {
   width: 50%;
+  line-height: 1.6;
 }
 
 .sproutup-table .request-name-pitch .name {
@@ -2976,6 +2981,7 @@ input:-ms-input-placeholder {
 }
 
 .dashboard-side-panel {
+  z-index: 80;
   display: flex;
   position: fixed;
   top: 0px;

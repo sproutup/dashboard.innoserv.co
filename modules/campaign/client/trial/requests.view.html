@@ -2,9 +2,9 @@
   <div class="col-sm-2">
     <div class="list-group">
       <a href="#" ng-click="vm.query.state = 0"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 0 }">Requests</div></a>
-      <a href="#"><div class="list-group-item">In Talk</div></a>
-      <a href="#" ng-click="vm.query.state = 1"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 1 }">Approved</div></a>
-      <a href="#" ng-click="vm.query.state = 10"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 10 }">Completed</div></a>
+      <!-- <a href="#"><div class="list-group-item">In Talk</div></a> -->
+      <a href="#" ng-click="vm.query.state = 1"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 1 }">Yes List</div></a>
+      <!-- <a href="#" ng-click="vm.query.state = 10"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 10 }">Completed</div></a> -->
     </div>
   </div>
   <div class="col-sm-10">
@@ -33,8 +33,8 @@
           <tr ng-repeat="item in vm.contributors | filter: vm.query as filteredItems">
             <td class="request-avatar">
               <a ui-sref="company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">
-                <img ng-if="item.user.profileImageURL" class="img-center" ng-src="item.user.profileImageURL">
-                <canvas ng-if="!item.user.profileImageURL" width="60" height="60" fontsize="21" name="{{ item.user.displayName }}" up-avatar></canvas>
+                <img ng-if="item.user.avatar.fileId" class="img-center" ng-src="">
+                <canvas ng-if="!item.user.avatar.fileId" width="60" height="60" fontsize="18" name="{{ item.user.displayName }}" up-avatar></canvas>
               </a>
             </td>
             <td class="request-name-pitch">
