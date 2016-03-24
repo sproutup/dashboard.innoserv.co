@@ -36,9 +36,17 @@ angular.module('company').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-     .state('slug.company.navbar.company.create', {
-        url: '/create',
-        templateUrl: 'modules/company/client/admin/create-company.html'
+     .state('authentication.create-company', {
+        url: '/create-company',
+        templateUrl: 'modules/company/client/admin/create-company.html',
+        controller: 'CompanyController',
+        controllerAs: 'vm',
+        resolve: {
+          item: function(SlugService) {
+            console.log('resolve: ', SlugService.getCurrent());
+            return SlugService.getCurrent();
+          }
+        }
       })
       .state('slug.company.navbar.settings', {
         url: '/settings',

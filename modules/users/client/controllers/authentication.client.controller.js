@@ -30,6 +30,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     $scope.signup = function () {
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
+        $state.go('authentication.create-company');
         // Go to create company or dashboard
       }).error(function (response) {
         $scope.error = response.message;
