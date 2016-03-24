@@ -40,9 +40,11 @@ angular.module('company').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-     .state('company.navbar.company.create', {
-        url: '/create',
-        templateUrl: 'modules/company/client/admin/create-company.html'
+     .state('create-company', {
+        url: '/create-company',
+        templateUrl: 'modules/company/client/admin/create-company.html',
+        controller: 'CompanyController',
+        controllerAs: 'vm'
       })
       .state('company.navbar.settings', {
         url: '/settings',

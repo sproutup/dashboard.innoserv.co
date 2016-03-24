@@ -28,31 +28,23 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   function create(isValid) {
     vm.error = null;
 
-    console.log('company create');
-    if (!isValid) {
-      vm.invalid = true;
-      //$scope.$broadcast('show-errors-check-validity', 'companyForm');
-
-      return false;
-    } else {
-      vm.invalid = false;
-    }
-
     // Create new Company object
     var CompanyObj = CompanyService.company();
     var company = new CompanyObj({
       name: this.name,
-      url: this.url
+      url: this.url,
+      slug: this.slug
     });
 
     // Redirect after save
     company.$save(function (response) {
       //$location.path('admin/company/' + response.id);
-      $state.go('admincompany.list');
+      // $state.go('admincompany.list');
 
       // Clear form fields
       vm.name = '';
       vm.url = '';
+      vm.slug = '';
     }, function (errorResponse) {
       console.log(errorResponse);
       vm.error = errorResponse.data.message;

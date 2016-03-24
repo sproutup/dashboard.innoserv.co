@@ -1,28 +1,33 @@
-<section>
-  <div class="page-header">
-    <h1>New company</h1>
+<div class="row">
+  <div class="signup-login-header">
+      <h1>Thanks for signing up with SproutUp</h1>
+      <h2>One more step... Please fill out your company information below to get started.</h2>
   </div>
-  <div class="col-md-12">
-    <form name="companyForm" class="form-horizontal" ng-submit="vm.create(companyForm.$valid)" novalidate>
+  <div class="signup-login-area">
+    <form name="companyForm" class="signin" novalidate autocomplete="off">
       <fieldset>
-        <div class="form-group" show-errors>
-          <label for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.name" id="name" class="form-control" placeholder="name" required>
-          <div ng-messages="companyForm.name.$error" role="alert" ng-if="vm.invalid">
-            <p class="help-block error-text" ng-message="required">company name is required.</p>
+        <div class="signup-login-form" show-errors>
+          <!-- Company Name -->
+          <input type="text" ng-model="vm.name" id="name" name="name" class="form-control form-validate signup-login-input" placeholder="Which company do you work for?" required>
+          <div ng-messages="companyForm.name.$error" ng-show="companyForm.name.$submitted || companyForm.name.$touched">
+            <div class="signup-login-form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>We thought a company name is essential for business software.</div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="url">Url</label>
-          <textarea name="url" ng-model="vm.url" id="url" class="form-control" cols="30" rows="10" placeholder="url"></textarea>
-        </div>
-        <div class="form-group">
-          <input type="submit" class="btn btn-default">
-        </div>
-        <div ng-show="vm.error" class="text-danger">
-          <strong ng-bind="vm.error"></strong>
+          <!-- Company URL -->
+          <input type="url" ng-model="vm.url" id="url" name="url" class="form-control form-validate signup-login-input" placeholder="Official website of your company" required up-http-prefix>
+          <div ng-messages="companyForm.url.$error" ng-show="companyForm.url.$submitted || companyForm.url.$touched">
+            <div class="signup-login-form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>A company with no website? Silly.</div>
+          </div>
+          <!-- Company Name -->
+          <input type="text" ng-model="vm.slug" ng-model-options="{ debounce: 250 }" ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" id="slug" name="slug" class="form-control form-validate signup-login-input" placeholder="Choose a handle for your company" required up-slug>
+          <div ng-messages="companyForm.slug.$error" ng-show="companyForm.$submitted || companyForm.slug.$touched">
+            <div class="signup-login-form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>Please choose a handle.</div>
+            <div class="signup-login-form--error-message" ng-message="uniqueslug"><i class="fa fa-minus-circle"></i>This handle has been taken.</div>
+            <div class="signup-login-form--error-message" ng-message="minlength"><i class="fa fa-minus-circle"></i>Your username has to be at least 3 characters long.</div>
+            <div class="signup-login-form--error-message" ng-message="pattern"><i class="fa fa-minus-circle"></i>Your username can only have letters and numbers. It can't have any spaces either.</div>
+          </div>
+          <button ng-disabled="companyForm.$invalid" class="btn btn-lg signup-login-btn" ng-click="vm.create()">Take me to dashboard</button>
         </div>
       </fieldset>
     </form>
   </div>
-</section>
+</div>
