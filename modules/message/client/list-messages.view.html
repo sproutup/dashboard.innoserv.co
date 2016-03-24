@@ -2,6 +2,16 @@
   <i class="fa fa-commenting-o"></i>Messages
 </h1>
 
+<div class="row dashboard-body-wrapper" ng-init="messageCtrl.listMyChannels()">
+  <div class="col-sm-12">
+    <div class="empty-state-wrapper" ng-if="messageCtrl.channels.length == 0">
+      <img class="img-center" src="modules/core/client/img/icon-message.png">
+      <h2>No messages sent or received</h2>
+      <p>Your conversations will show up once you start to talk with someone.</p>
+    </div>
+  </div>
+</div>
+
 <div class="row dashboard-body-wrapper messages">
   <!-- <div class="col-sm-2">
     <div class="list-group">
@@ -9,7 +19,7 @@
     </div>
   </div> -->
   <!-- Content -->
-  <div class="col-sm-12" ng-init="messageCtrl.listMyChannels()">
+  <div class="col-sm-12">
     <ul class="list-conversation-thread">
       <li class="unread" ng-repeat="channel in messageCtrl.channels">
         <a ui-sref="slug.company.navbar.conversation.view({channelId: channel.id})">

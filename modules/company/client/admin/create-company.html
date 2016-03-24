@@ -22,8 +22,8 @@
           <div ng-messages="companyForm.slug.$error" ng-show="companyForm.$submitted || companyForm.slug.$touched">
             <div class="signup-login-form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>Please choose a handle.</div>
             <div class="signup-login-form--error-message" ng-message="uniqueslug"><i class="fa fa-minus-circle"></i>This handle has been taken.</div>
-            <div class="signup-login-form--error-message" ng-message="minlength"><i class="fa fa-minus-circle"></i>Your username has to be at least 3 characters long.</div>
-            <div class="signup-login-form--error-message" ng-message="pattern"><i class="fa fa-minus-circle"></i>Your username can only have letters and numbers. It can't have any spaces either.</div>
+            <div class="signup-login-form--error-message" ng-message="minlength"><i class="fa fa-minus-circle"></i>Your handle has to be at least 3 characters long.</div>
+            <div class="signup-login-form--error-message" ng-message="pattern"><i class="fa fa-minus-circle"></i>Your handle can only have letters and numbers. It can't have any spaces either.</div>
           </div>
           <button ng-disabled="companyForm.$invalid" class="btn btn-lg signup-login-btn" ng-click="vm.create()">Take me to dashboard</button>
         </div>

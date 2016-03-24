@@ -6,6 +6,19 @@
   </div>
 </h1>
 
+<div ng-if="vm.campaigns.length == 0">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="empty-state-wrapper">
+        <img class="img-center" src="modules/core/client/img/icon-campaign.png">
+        <h2>Launch beautiful campaigns. Grow your business.</h2>
+        <p>Launching a new product? Looking for beta testers? Engaging new and existing users? We've built a campaign tool just for you. Starting a campaign in minutes with a template carefully drafted by our creative marketing experts.</p>
+        <button ui-sref="slug.company.navbar.template.select" class="btn btn-lg sproutup-btn-md-main orange">Create New Campaign</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div ng-if="vm.campaigns.length > 0">
   <div class="campaign-list-wrapper">
     <ul class="list-inline">
