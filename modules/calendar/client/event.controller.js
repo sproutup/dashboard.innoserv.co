@@ -45,7 +45,7 @@
 
       item.$save(function (response) {
         console.log(response);
-        $state.go('company.navbar.calendar.event.view', { eventId: response.id });
+        $state.go('slug.company.navbar.calendar.event.view', { eventId: response.id });
         // Clear form fields
         vm.startTime = '';
         vm.endTime = '';
@@ -72,14 +72,14 @@
         id: vm.event.id,
         resource: vm.event
       }, function(response) {
-        $state.go('company.navbar.calendar.event.view', { eventId: vm.event.id });
+        $state.go('slug.company.navbar.calendar.event.view', { eventId: vm.event.id });
       }, function(err) {
         console.log(err);
       });
     }
 
     function cancel() {
-      $state.go('company.navbar.calendar.event.list');
+      $state.go('slug.company.navbar.calendar.event.list');
     }
 
     function find() {
@@ -113,7 +113,7 @@
       CalendarService.events().delete({
         eventId: eventId
       }, function() {
-        $state.go('company.navbar.calendar.event.view', { eventId: eventId });
+        $state.go('slug.company.navbar.calendar.event.view', { eventId: eventId });
       }, function(err) {
         console.log(err);
       });

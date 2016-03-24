@@ -3,26 +3,22 @@
 angular.module('company').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('company', {
-        url: '/com/:companySlug',
-        abstract: true,
-        template: '<section ng-init="company.findByStateParam()"><div ui-view></div></section>',
+      .state('slug.company', {
+        url: '',
+        template: '<div ui-view ng-init="company.init()"></div>',
         controller: 'CompanyController',
         controllerAs: 'company',
+        resolve: {
+          item: function(SlugService) {
+            console.log('resolve: ', SlugService.getCurrent());
+            return SlugService.getCurrent();
+          }
+        },
         data: {
           roles: ['user', 'admin']
         }
       })
-      .state('footer.select', {
-        url: '/select',
-        templateUrl: 'modules/company/client/company-settings.html',
-        controller: 'CompanyController',
-        controllerAs: 'vm',
-        data: {
-          roles: ['user', 'admin']
-        }
-      })
-      .state('company.navbar.list', {
+      .state('slug.company.navbar.list', {
         url: '/select',
         templateUrl: 'modules/company/client/company-settings.html',
         controller: 'CompanyController',
@@ -40,18 +36,24 @@ angular.module('company').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-     .state('create-company', {
+     .state('authentication.create-company', {
         url: '/create-company',
         templateUrl: 'modules/company/client/admin/create-company.html',
         controller: 'CompanyController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          item: function(SlugService) {
+            console.log('resolve: ', SlugService.getCurrent());
+            return SlugService.getCurrent();
+          }
+        }
       })
-      .state('company.navbar.settings', {
+      .state('slug.company.navbar.settings', {
         url: '/settings',
         abstract: true,
         templateUrl: 'modules/company/client/settings/settings.html',
       })
-      .state('company.navbar.settings.profile', {
+      .state('slug.company.navbar.settings.profile', {
         url: '',
         templateUrl: 'modules/company/client/settings/edit-company-profile.html'
       })

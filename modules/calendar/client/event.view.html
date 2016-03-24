@@ -1,6 +1,6 @@
 <div ng-init="vm.findOne()">
   <div ng-if="vm.event">
-    <div>{{ vm.event.start.dateTime | date }} <a ui-sref="company.navbar.calendar.event.edit({ eventId: vm.event.id })">edit</a></div>
+    <div>{{ vm.event.start.dateTime | date }} <a ui-sref="slug.company.navbar.calendar.event.edit({ eventId: vm.event.id })">edit</a></div>
     <div>{{ vm.event.summary }}</div>
     <div>status - {{ vm.event.status }}</div>
     <div>{{ vm.event.description }}</div>

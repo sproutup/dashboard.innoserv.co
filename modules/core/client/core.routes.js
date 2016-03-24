@@ -20,7 +20,21 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         controllerAs: 'vm',
         templateUrl: 'modules/core/client/home.view.html'
       })
-      .state('company.navbar.home', {
+      .state('footer.select', {
+        url: '/select',
+        templateUrl: 'modules/company/client/company-settings.html',
+        controller: 'CompanyController',
+        controllerAs: 'vm',
+        resolve: {
+          item: function() {
+            return {item: null};
+          }
+        },
+        data: {
+          roles: ['user', 'admin']
+        }
+      })
+      .state('slug.company.navbar.home', {
         url: '/home',
         controller: 'HomeController',
         templateUrl: 'modules/core/client/home.view.html'
@@ -32,7 +46,14 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         controller: 'HeaderController',
         controllerAs: 'vm'
       })
-      .state('footer.not-found', {
+      .state('slug.company.navbar' , {
+        url: '',
+        abstract: true,
+        templateUrl: 'modules/core/client/header.view.html',
+        controller: 'HeaderController',
+        controllerAs: 'vm'
+      })
+     .state('footer.not-found', {
         url: '/not-found',
         templateUrl: 'modules/core/client/404.view.html'
       })
@@ -43,6 +64,17 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
       .state('terms', {
         url: '/terms',
         templateUrl: 'modules/core/client/terms.view.html'
+      })
+      .state('slug', {
+        url: '/:slug',
+        controller: 'SlugController',
+        controllerAs: 'slug',
+        template: '<div ui-view ng-init="slug.slug()"></div>',
+        resolve: {
+          slugitem: function($stateParams, SlugService) {
+            return SlugService.find($stateParams.slug);
+          }
+        }
       });
   }
 ]);

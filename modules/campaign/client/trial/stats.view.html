@@ -19,7 +19,7 @@
             <td ng-if="item.media=='url'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/url.png"></td>
             <td>
               <div class="content-title" ng-bind="item.title"></div>
-              <div class="content-subline"><a class="content-author" href="#" ng-bind="item.user.name"></a>&#183;<a class="content-view-link" ui-sref="company.navbar.campaign.view.trial.stats.details({contentId:item.id})" ng-click="vm.contentItem = null">View Content</a></div>
+              <div class="content-subline"><a class="content-author" href="#" ng-bind="item.user.name"></a>&#183;<a class="content-view-link" ui-sref="slug.company.navbar.campaign.view.trial.stats.details({contentId:item.id})" ng-click="vm.contentItem = null">View Content</a></div>
             </td>
             <td class="request-reach" ng-bind="item.impressions"></td>
             <td class="request-reach" ng-bind="item.engagements"></td>
