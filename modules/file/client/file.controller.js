@@ -42,7 +42,7 @@ function FileController($scope, $state, FileService, $location, Authentication, 
 
     // Redirect after save
     file.$save(function (response) {
-      $state.go('company.navbar.file.list');
+      $state.go('slug.company.navbar.file.list');
 
       // Clear form fields
       vm.name = '';
@@ -57,7 +57,7 @@ function FileController($scope, $state, FileService, $location, Authentication, 
       file.$remove({
         fileId: file.id
       }, function() {
-        $state.go('company.navbar.file.list');
+        $state.go('slug.company.navbar.file.list');
       });
 
       for (var i in vm.files) {
@@ -156,7 +156,7 @@ function FileController($scope, $state, FileService, $location, Authentication, 
     file.$update({
       fileId: $state.params.fileId
     }, function () {
-      $state.go('company.navbar.file.list');
+      $state.go('slug.company.navbar.file.list');
     }, function (errorResponse) {
       vm.success = null;
       vm.error = errorResponse.data.message;
@@ -164,7 +164,7 @@ function FileController($scope, $state, FileService, $location, Authentication, 
   }
 
   function cancel() {
-    $state.go('company.navbar.file.list');
+    $state.go('slug.company.navbar.file.list');
   }
 
   function find() {

@@ -32,13 +32,13 @@
         <tbody>
           <tr ng-repeat="item in vm.contributors | filter: vm.query as filteredItems">
             <td class="request-avatar">
-              <a ui-sref="company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">
+              <a ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">
                 <img ng-if="item.user.avatar.fileId" class="img-center" ng-src="">
                 <canvas ng-if="!item.user.avatar.fileId" width="60" height="60" fontsize="18" name="{{ item.user.displayName }}" up-avatar></canvas>
               </a>
             </td>
             <td class="request-name-pitch">
-              <div class="name"><a ui-sref="company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">{{ item.user.displayName|| 'User' }}</a></div>
+              <div class="name"><a ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">{{ item.user.displayName|| 'User' }}</a></div>
               <div>{{ item.comment | limitTo: 140 }}{{ item.comment.length < 140 ? '' : '...' }}</div>
             </td>
             <td class="request-reach">{{ item.user.reach || '0' }}</td>

@@ -70,8 +70,15 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
     }
   });
 
+  $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+    console.log('stateChangeError: ', error);
+    event.preventDefault();
+    $state.go('footer.not-found', {}, {location: 'replace'});
+  });
+
   // Record previous state
   $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+    console.log('stateChangeSuccess: ', fromState.name, toState.name);
     $state.previous = {
       state: fromState,
       params: fromParams,

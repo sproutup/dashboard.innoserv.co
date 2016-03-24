@@ -45,7 +45,7 @@ function ProductController($scope, TrialService, $state, ProductService, $locati
     if (vm.product) {
       ProductService.remove(vm.product)
         .then(function(result) {
-          $state.go('company.navbar.product.list');
+          $state.go('slug.company.navbar.product.list');
           vm.success = true;
         }, function(reason) {
           vm.error = reason;
@@ -62,7 +62,7 @@ function ProductController($scope, TrialService, $state, ProductService, $locati
   function update() {
     ProductService.update(vm.product)
       .then(function(result) {
-        $state.go('company.navbar.product.list');
+        $state.go('slug.company.navbar.product.list');
       }, function(reason) {
         vm.error = reason;
       });
@@ -98,7 +98,7 @@ function ProductController($scope, TrialService, $state, ProductService, $locati
   }
 
   function editProduct() {
-    $state.go('company.navbar.product.edit', { productId: $state.params.productId });
+    $state.go('slug.company.navbar.product.edit', { productId: $state.params.productId });
   }
 
   function openModal(item) {

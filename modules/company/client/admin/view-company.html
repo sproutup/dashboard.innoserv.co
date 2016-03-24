@@ -5,7 +5,7 @@
   </div>
   <div class="campaign-list-wrapper">
     <div class="col-sm-4 campaign-list-item" ng-repeat="campaign in vm.campaigns">
-      <a ui-sref="company.navbar.campaign.view({ companyId: vm.company.slug, campaignId: campaign.id })">
+      <a ui-sref="slug.company.navbar.campaign.view({ companyId: vm.company.slug, campaignId: campaign.id })">
         <div class="campaign-list-item-banner" style="background-image: url('{{ campaign.product.image }}');">
           <p class="campaign-type">{{ campaign.type }}</p>
           <p class="campaign-name">{{ campaign.product.name }}</p>

@@ -30,7 +30,7 @@
             </div>
             <div class="col-sm-12 form-input-group" ng-if="vm.campaignInit && vm.campaigns.length > 0">
               <p class="input-group-title">Related Campaigns</p>
-              <p class="product-campaign" ng-repeat="campaign in vm.campaigns"><a ui-sref="company.navbar.campaign.view.default({ campaignId: campaign.id })">{{ campaign.name }}</a></p>
+              <p class="product-campaign" ng-repeat="campaign in vm.campaigns"><a ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })">{{ campaign.name }}</a></p>
             </div>
             <div class="col-sm-12 form-input-group" ng-init="vm.findCampaigns()">
               <button class="btn btn-lg sproutup-btn-md-main" type="submit" ng-disabled="form.$invalid">Save</button>

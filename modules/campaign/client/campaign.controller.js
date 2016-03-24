@@ -4,9 +4,9 @@ angular
   .module('campaign')
   .controller('CampaignController', CampaignController);
 
-CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService', '$http'];
+CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService', '$http', 'company'];
 
-function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http) {
+function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http, company) {
   var vm = this;
   vm.test = 'lala';
   vm.create = create;
@@ -46,7 +46,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
 
   // Get the topbar menu
   vm.menu = Menus.getMenu('company.campaign.menu');
-  vm.trialmenu = Menus.getMenu('company.navbar.campaign.trial.view.menu');
+  vm.trialmenu = Menus.getMenu('campaign.trial.menu');
 
   function create(item) {
     // // temporary hack
@@ -65,7 +65,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
 
     item.$save(function (response) {
       item = {};
-      $state.go('company.navbar.campaign.edit.trial', { campaignId: response.id });
+      $state.go('slug.company.navbar.campaign.edit.trial', { campaignId: response.id });
       // Clear form fields
     }, function (errorResponse) {
       vm.error = errorResponse.data.message;
@@ -77,7 +77,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       campaign.$remove({
         campaignId: campaign.id
       }, function() {
-        $state.go('company.navbar.campaign.list');
+        $state.go('slug.company.navbar.campaign.list');
       });
 
       for (var i in vm.companies) {
@@ -92,7 +92,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     vm.error = null;
     CampaignService.updateCampaign(vm.item)
       .then(function(result) {
-        $state.go('company.navbar.campaign.list');
+        $state.go('slug.company.navbar.campaign.list');
       }, function(reason) {
         vm.error = reason;
       });
@@ -102,7 +102,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     vm.item.status = 1;
     CampaignService.updateCampaign(vm.item)
       .then(function(result) {
-        $state.go('company.navbar.campaign.confirmation', { campaignId: vm.item.id });
+        $state.go('slug.company.navbar.campaign.confirmation', { campaignId: vm.item.id });
       }, function(reason) {
         vm.error = reason;
       });
@@ -116,7 +116,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       campaignId: $state.params.campaignId
     }, function (response) {
       vm.succes = true;
-      $state.go('company.navbar.campaign.list');
+      $state.go('slug.company.navbar.campaign.list');
     }, function (errorResponse) {
       vm.success = null;
       vm.error = errorResponse.data.message;
@@ -124,27 +124,17 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   }
 
   function cancel() {
-    $state.go('company.navbar.campaign.list');
+    $state.go('slug.company.navbar.campaign.list');
   }
 
   function find() {
-    if ($scope.company.company.id) {
-      makeCall();
-    } else {
-      $scope.$watch('company.company.id', function(val) {
-        if(val) makeCall();
-      });
-    }
-
-    function makeCall() {
-      CampaignService.listByCompany().query({
-        companyId: $scope.company.company.id
-      }, function(response) {
-        vm.campaigns = response;
-      }, function(err) {
-        console.log(err);
-      });
-    }
+    CampaignService.listByCompany().query({
+      companyId: company.id
+    }, function(response) {
+      vm.campaigns = response;
+    }, function(err) {
+      console.log(err);
+    });
   }
 
   function findOne() {
@@ -173,13 +163,13 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       console.log('type:', vm.item.type);
       switch(vm.item.type){
         case 'trial':
-          $state.go('company.navbar.campaign.view.trial.requests', {}, {location: 'replace'});
+          $state.go('slug.company.navbar.campaign.view.trial.requests', {}, {location: 'replace'});
           break;
         case 'contest':
-          $state.go('company.navbar.campaign.view.contest.requests', {}, {location: 'replace'});
+          $state.go('slug.company.navbar.campaign.view.contest.requests', {}, {location: 'replace'});
           break;
         default:
-          $state.go('company.navbar.campaign.list', {}, {location: 'replace'});
+          $state.go('slug.company.navbar.campaign.list', {}, {location: 'replace'});
       }
     }
   }
@@ -197,13 +187,13 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
 
     switch(vm.item.type){
       case 'trial':
-        $state.go('company.navbar.campaign.edit.trial', {}, {location: 'replace'});
+        $state.go('slug.company.navbar.campaign.edit.trial', {}, {location: 'replace'});
         break;
       case 'contest':
-        $state.go('company.navbar.campaign.edit.contest', {}, {location: 'replace'});
+        $state.go('slug.company.navbar.campaign.edit.contest', {}, {location: 'replace'});
         break;
       default:
-        $state.go('company.navbar.campaign.list', {}, {location: 'replace'});
+        $state.go('slug.company.navbar.campaign.list', {}, {location: 'replace'});
     }
   }
 

@@ -27,7 +27,7 @@
               <div>{{ request.comment || 'No reason specified' }}<a href="#"></a></div>
             </td>
             <td class="request-reach">{{ request.user.reach || '?' }}</td>
-            <td class="request-detail-link"><a ui-sref="company.navbar.campaign.trial.view.contributor({ userId: request.user.id })">Details</a></td>
+            <td class="request-detail-link"><a ui-sref="slug.company.navbar.campaign.trial.view.contributor({ userId: request.user.id })">Details</a></td>
           </tr>
         </tbody>
       </table>
@@ -39,7 +39,7 @@
         <img class="img-center" src="modules/core/client/img/icon-campaign.png">
         <h2>0 requested trials</h2>
         <p>They will come. :) Have you shared the campaign to your networks yet? If not, you know what to do.</p>
-<!--         <a ui-sref="company.navbar.product.create" class="btn btn-lg sproutup-btn-md-main orange">Add New Product</a> -->
+<!--         <a ui-sref="slug.company.navbar.product.create" class="btn btn-lg sproutup-btn-md-main orange">Add New Product</a> -->
       </div>
     </div>
   </div>

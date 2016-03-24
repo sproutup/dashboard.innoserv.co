@@ -41,6 +41,12 @@
               <h2>The company you just entered <span class="signup-company-name">Apple Inc.</span> has already existed. In order to join the team, you must use an email that matches the domain <span>@apple.com</span>.</h2>
             </div>
 
+            <!-- Company slug -->
+            <input ng-model="company.slug" type="text" id="slug" name="slug" class="form-control form-validate signup-login-input" placeholder="Pick a handle for your company" ng-pattern="/^[a-z0-9-]+$/" required>
+            <div ng-show="userForm.slug.$submitted || userForm.slug.$touched">
+              <div class="signup-login-form--error-message" ng-show="userForm.slug.$error.required"><i class="fa fa-minus-circle"></i>A company with no slug? Silly.</div>
+            </div>
+
             <button ng-disabled="userForm.$invalid" class="btn btn-lg signup-login-btn" type="submit">Continue</button>
 
           </div>

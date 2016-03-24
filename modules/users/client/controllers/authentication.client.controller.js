@@ -34,11 +34,11 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         // If there's a new company, save it, otherwise save a team object
         if ($scope.newCompany) {
           $http.post('/api/company', $scope.company).success(function (company) {
-            $state.go('company.navbar.home', { companySlug: company.slug });
+            $state.go('slug.company.navbar.home', { companySlug: company.slug });
             saveTeamObject($scope.authentication.user.id, company.id);
           }).error(function (response) {
             $scope.error = response.message;
-            $state.go('company.navbar.home');
+            $state.go('slug.company.navbar.home');
           });
         } else {
           $state.go('mycompany', { companySlug: $scope.company.slug });
