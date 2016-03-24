@@ -30,20 +30,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     $scope.signup = function () {
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
-
-        // If there's a new company, save it, otherwise save a team object
-        if ($scope.newCompany) {
-          $http.post('/api/company', $scope.company).success(function (company) {
-            $state.go('slug.company.navbar.home', { companySlug: company.slug });
-            saveTeamObject($scope.authentication.user.id, company.id);
-          }).error(function (response) {
-            $scope.error = response.message;
-            $state.go('slug.company.navbar.home');
-          });
-        } else {
-          $state.go('mycompany', { companySlug: $scope.company.slug });
-          saveTeamObject($scope.authentication.user.id, $scope.company.id);
-        }
+        // Go to create company or dashboard
       }).error(function (response) {
         $scope.error = response.message;
       });

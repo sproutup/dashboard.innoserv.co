@@ -6,83 +6,81 @@
   </div>
 </h1>
 
-<div class="campaign-list-wrapper">
-  <ul class="list-inline">
-    <li class="campaign-item-wrapper" ng-repeat="campaign in vm.campaigns | filter: {status: 1}: vm.returnMatch ">
-      <div class="header">Ongoing since {{campaign.created | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</div>
-      <div class="type-icon"><img src="modules/theme/client/img/trial.png"></div>
-      <div class="title">{{ campaign.name | limitTo: 40 }}{{ campaign.name.length < 40 ? '' : '...' }}</div>
-      <div class="action">
+<div ng-if="vm.campaigns.length > 0">
+  <div class="campaign-list-wrapper">
+    <ul class="list-inline">
+      <li class="campaign-item-wrapper" ng-repeat="campaign in vm.campaigns | filter: {status: 1}: vm.returnMatch ">
+        <div class="header">Ongoing since {{campaign.created | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</div>
+        <div class="type-icon"><img src="modules/theme/client/img/trial.png"></div>
+        <div class="title">{{ campaign.name | limitTo: 40 }}{{ campaign.name.length < 40 ? '' : '...' }}</div>
+        <div class="action">
         <button ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Report</button>
         <button ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">Edit</button>
-      </div>
-    </li>
-    <li class="campaign-item-wrapper new-campaign">
+        </div>
+      </li>
+      <li class="campaign-item-wrapper new-campaign">
       <button ui-sref="slug.company.navbar.template.select"><span>+</span>Create New Campaign</button>
-    </li>
-  </ul>
-</div>
-
-<!-- Draft campaigns -->
-<div class="campaign-list-wrapper draft">
-  <h4>Drafts</h4>
-  <div class="sproutup-table table-responsive">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Campaign</th>
-          <th>Created by</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="campaign in vm.campaigns | filter: {status: 0}: vm.returnMatch">
-          <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-edit.png"></td>
-          <td class="campaign-title">
-            <div>{{campaign.name}}</div>
-            <div class="schedule-time">Edited on Feb 18, 2016 at 5:06 pm</div>
-          </td>
-          <td>Me</td>
-          <td class="campaign-actions">
-            <button ui-sref="slug.company.navbar.campaign.edit.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">Edit Campaign</button>
-            <!-- TODO: add discard button later -->
-            <!-- <button class="btn sproutup-btn-sm minimal">Discard</button> -->
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      </li>
+    </ul>
   </div>
-</div>
 
-<!-- Complete Campaigns -->
-<div ng-show="completed > 0" class="campaign-list-wrapper past" ng-init="completed=(vm.campaigns | filter: {status: -1}: vm.returnMatch)">
-  <h4>Completed</h4>
-  <div class="sproutup-table table-responsive">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Campaign</th>
-          <th>Impressions</th>
-          <th>Engagements</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="campaign in vm.campaigns | filter: {status: -1}: vm.returnMatch">
-          <td class="campaign-type-icon"><img src="modules/theme/client/img/instagram-contest-completed.png"></td>
-          <td class="campaign-title">
-            <div>{{ campaign.name }}</div>
-            <div class="schedule-time">15 Jun 2015 - 30 Jun 2015</div>
-          </td>
-          <td class="campaign-kpi">42.3k</td>
-          <td class="campaign-kpi">11</td>
-          <td class="campaign-actions">
-            <button ui-sref="slug.company.navbar.campaign.view.trial.requests({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Details</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- Draft campaigns -->
+  <div class="campaign-list-wrapper draft">
+    <h4>Drafts</h4>
+    <div class="sproutup-table table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Campaign</th>
+            <th>Created by</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="campaign in vm.campaigns | filter: {status: 0}: vm.returnMatch">
+            <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-edit.png"></td>
+            <td class="campaign-title">
+              <div>{{campaign.name}}</div>
+              <div class="schedule-time">Edited on Feb 18, 2016 at 5:06 pm</div>
+            </td>
+            <td>Me</td>
+            <td class="campaign-actions">
+            <button ui-sref="slug.company.navbar.campaign.edit.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">Edit Campaign</button>
+              <!-- TODO: add discard button later -->
+              <!-- <button class="btn sproutup-btn-sm minimal">Discard</button> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Complete Campaigns -->
+  <div ng-show="completed > 0" class="campaign-list-wrapper past" ng-init="completed=(vm.campaigns | filter: {status: -1}: vm.returnMatch)">
+    <h4>Completed</h4>
+    <div class="sproutup-table table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Campaign</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="campaign in vm.campaigns | filter: {status: -1}: vm.returnMatch">
+            <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-completed.png"></td>
+            <td class="campaign-title">
+              <div>{{ campaign.name }}</div>
+              <div class="schedule-time">15 Jun 2015 - 30 Jun 2015</div>
+            </td>
+            <td class="campaign-actions">
+              <button ui-sref="clug.ompany.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Report</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
