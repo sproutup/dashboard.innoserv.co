@@ -3,10 +3,6 @@
 angular.module('theme').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('theme.index', {
-        url: '',
-        templateUrl: 'modules/theme/client/theme-index.view.html'
-      })
       .state('theme.components', {
         url: '/components',
         templateUrl: 'modules/theme/client/components.view.html'
