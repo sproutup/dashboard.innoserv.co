@@ -8,8 +8,8 @@
     </div>
     <div class="collapse navbar-collapse" id="sproutup-collapse-navbar">
       <ul class="nav navbar-nav navbar-item navbar-right">
-        <li><a href="#">Product</a></li>
-        <li class="sign-in"><a ui-sref="authentication.signin">Sign In</a></li>
+        <li class="sign-in" ng-if="!vm.authentication.user"><a ui-sref="authentication.signin">Sign In</a></li>
+        <li class="sign-in" ng-if="vm.authentication.user"><a ui-sref="authentication.signin">{{ vm.authentication.user.firstName }}'s Dashboard</a></li>
       </ul>
     </div>
   </div>
@@ -19,7 +19,7 @@
     <div class="col-sm-12">
       <div class="dashboard-main-tagline">Collaborate with an amazing community of <strong>product influencers</strong> and <strong>enthusiasts</strong> to grow your <strong><i>brand</i></strong> and <strong><i>products</i></strong>!!</div>
       <div class="dashboard-secondary-tagline"><a href="http://momentlens.co/" target="_blank">Moment</a>, who makes the world’s best mobile photography lenses, uses SproutUp to empower their <strong>people marketing campaigns</strong>.</div>
-      <div class="dashboard-cta">
+      <div class="dashboard-cta" ng-if="!vm.authentication.user">
         <form name="form" class="form-inline" novalidate autocomplete="off">
           <div class="form-group">
             <div class="input-group">
