@@ -3,7 +3,7 @@
     <div class="dashboard-side-panel-close">
       <button class="btn sproutup-btn-xs" href="#" ng-click="vm.closePanel()"><i class="fa fa-times"></i></button>
     </div>
-    <h1 class="dashboard-section-title" ng-init="vm.findOne()"><a href="#" ng-click="vm.closePanel()"><i class="fa fa-angle-left"></i></a>Edit <span>{{ vm.product.name }}</span></h1>
+    <h1 class="dashboard-section-title" ng-init="vm.findOne()">Edit <span>{{ vm.product.name }}</span></h1>
     <div class="create-product-wrapper">
       <div class="row">
         <form name="form" class="form-horizontal" ng-submit="vm.update(form.$valid)" novalidate>
