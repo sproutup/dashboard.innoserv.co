@@ -65,6 +65,13 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         url: '/terms',
         templateUrl: 'modules/core/client/terms.view.html'
       })
+      .state('theme', {
+        url: '/theme',
+        abstract: true,
+        template: '<ui-view/>',
+        controller: 'ThemeController',
+        controllerAs: 'vm'
+      })
       .state('slug', {
         url: '/:slug',
         controller: 'SlugController',
