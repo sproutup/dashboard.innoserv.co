@@ -34,6 +34,11 @@ angular.module('company').config(['$stateProvider',
         controllerAs: 'vm',
         data: {
           roles: ['user', 'admin']
+        },
+        resolve: {
+          item: function() {
+            return {};
+          }
         }
       })
      .state('authentication.create-company', {
@@ -41,10 +46,12 @@ angular.module('company').config(['$stateProvider',
         templateUrl: 'modules/company/client/admin/create-company.html',
         controller: 'CompanyController',
         controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        },
         resolve: {
-          item: function(SlugService) {
-            console.log('resolve: ', SlugService.getCurrent());
-            return SlugService.getCurrent();
+          item: function() {
+            return {};
           }
         }
       })
