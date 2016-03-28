@@ -284,9 +284,6 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   }
 
   function returnMatch (actual, expected) {
-    if (!expected) {
-       return true;
-    }
     return angular.equals(expected, actual);
   }
 
