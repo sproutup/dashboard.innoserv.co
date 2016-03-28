@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="sproutup-collapse-navbar">
       <ul class="nav navbar-nav navbar-item navbar-right">
         <li class="sign-in" ng-if="!vm.authentication.user"><a ui-sref="authentication.signin">Sign In</a></li>
-        <li class="sign-in" ng-if="vm.authentication.user"><a ui-sref="authentication.signin">{{ vm.authentication.user.firstName }}'s Dashboard</a></li>
+        <li class="sign-in" ng-if="vm.authentication.user"><a ui-sref="authentication.signin">My Dashboard</a></li>
       </ul>
     </div>
   </div>

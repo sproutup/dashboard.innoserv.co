@@ -13,18 +13,15 @@
         <div class="form-group">
           <label for="Name">Company Name</label>
             <input ng-model="company.company.name" type="text" id="name" name="name" class="form-control form-validate form-input" placeholder="The official name of your company" required>
-            <div ng-messages="companyForm.name.$error">
-              <div ng-message="required" class="form--error-message"><i class="fa fa-minus-circle"></i>Please provide a company name.</div>
+            <div ng-show="companyForm.name.$touched" ng-messages="companyForm.name.$error">
+              <div ng-message="required" class="form--error-message"><i class="fa fa-minus-circle"></i>Company name can't be empty.</div>
             </div>
         </div>
 
         <!-- Company tagline -->
         <div class="form-group">
           <label for="Tagline">Tagline</label>
-            <input ng-model="company.company.tagline" type="text" id="tagline" name="tagline" class="form-control form-validate form-input" placeholder="A cool tagline about your company" required>
-            <div ng-messages="companyForm.tagline.$error">
-              <div ng-message="required" class="form--error-message"><i class="fa fa-minus-circle"></i>Please provide a tagline.</div>
-            </div>
+            <input ng-model="company.company.tagline" type="text" id="tagline" name="tagline" class="form-control form-validate form-input" placeholder="A cool tagline about your company">
         </div>
 
         <!-- Profile appearance -->
@@ -39,25 +36,22 @@
         <!-- Company URL -->
         <div class="form-group">
           <label for="url">Company Website</label>
-          <input ng-model="company.company.url" type="url" id="url" name="url" class="form-control form-validate form-input" placeholder="The official website of your company">
+          <input ng-model="company.company.url" type="url" id="url" name="url" class="form-control form-validate form-input" placeholder="The official website of your company" required up-http-prefix>
+          <div ng-show="companyForm.url.$touched" ng-messages="companyForm.url.$error">
+            <div ng-message="required" class="form--error-message"><i class="fa fa-minus-circle"></i>A company without a URL? Silly.</div>
+          </div>
         </div>
 
         <!-- Company address -->
         <div class="form-group">
           <label for="vm.address">Business Address</label>
-          <input class="form-control form-input" ng-model="company.company.address" name="address" placeholder="Business address of your company" ng-autocomplete="" details="company.company.addressDetails" required>
-          <div ng-messages="companyForm.address.$error">
-            <div ng-message="required" class="form--error-message"><i class="fa fa-minus-circle"></i>Please provide an address.</div>
-          </div>
+          <input class="form-control form-input" ng-model="company.company.address" name="address" placeholder="Business address of your company" ng-autocomplete="" details="company.company.addressDetails">
         </div>
 
         <!-- Company phone number -->
         <div class="form-group">
           <label for="company.phone">Phone Number</label>
           <input type="text" ng-model="company.company.phone" name="phone" id="phone" class="form-control form-validate form-input" ng-intl-tel-input>
-          <div ng-messages="companyForm.phone.$error">
-            <div ng-message="ngIntlTelInput" class="form--error-message"><i class="fa fa-minus-circle"></i>Please use a valid phone number.</div>
-          </div>
         </div>
 
         <!-- TODO: disable Save button unless users change something -->

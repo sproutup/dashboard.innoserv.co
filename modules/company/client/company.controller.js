@@ -40,12 +40,12 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
     // Redirect after save
     company.$save(function (response) {
       //$location.path('admin/company/' + response.id);
-      // $state.go('admincompany.list');
-
       // Clear form fields
       vm.name = '';
       vm.url = '';
       vm.slug = '';
+      // go to the new company dashboard
+      $state.go('slug', {slug: response.slug});
     }, function (errorResponse) {
       console.log(errorResponse);
       vm.error = errorResponse.data.message;

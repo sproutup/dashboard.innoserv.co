@@ -72,6 +72,10 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         controller: 'ThemeController',
         controllerAs: 'vm'
       })
+      .state('theme.index', {
+        url: '',
+        templateUrl: 'modules/theme/client/theme-index.view.html'
+      })
       .state('slug', {
         url: '/:slug',
         controller: 'SlugController',
