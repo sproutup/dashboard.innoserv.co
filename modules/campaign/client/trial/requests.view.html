@@ -38,7 +38,7 @@
               </a>
             </td>
             <td class="request-name-pitch">
-              <div class="name"><a ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">{{ item.user.displayName|| 'User' }}</a></div>
+              <div class="name"><a ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">{{ item.user.displayName|| 'User' }}</a><span>Requested {{ item.created | fromNow }}</span></div>
               <div>{{ item.comment | limitTo: 140 }}{{ item.comment.length < 140 ? '' : '...' }}</div>
             </td>
             <td class="request-reach">{{ item.user.reach || '0' }}</td>
