@@ -1,3 +1,5 @@
+<!-- TODO: Add HUD for successful saving -->
+
 <div class="col-sm-3 col-profile-picture" data-ng-controller="ChangeProfilePictureController as profile">
   <div up-file-upload ng-model="user.avatar.file" on-change="profile.saveProfilePicture(user.avatar.file.id)" preview="modules/core/client/img/default-avatar.png"></div>
 </div>
@@ -15,34 +17,34 @@
         <!-- full name -->
         <div class="form-group">
           <label for="fullname">Full Name</label>
-          <input popover="Your full name" popover-trigger="focus" type="text" class="form-control form-validate form-input" placeholder="Full Name" ng-model="user.displayName" required>
+          <input type="text" id="fullname" name="fullname" class="form-control form-validate form-input" placeholder="Full Name" ng-model="user.displayName" required>
+          <div ng-messages="userForm.fullname.$error" ng-show="userForm.fullname.$touched">
+            <div class="form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>Your name cannot be empty.</div>
+          </div>
         </div>
 
         <!-- Username -->
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control form-validate form-input" data-ng-model="user.username" placeholder="Username" up-slug>
+          <input type="text" id="username" name="username" class="form-control form-validate form-input" ng-pattern="/^[a-zA-Z0-9]+$/" ng-minlength="3" data-ng-model="user.username" placeholder="Username" required up-slug>
+          <div ng-messages="userForm.username.$error" ng-show="userForm.username.$touched">
+            <div class="form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>A user without a username? Silly.</div>
+            <div class="form--error-message" ng-message="uniqueslug"><i class="fa fa-minus-circle"></i>This username has been taken.</div>
+            <div class="form--error-message" ng-message="minlength"><i class="fa fa-minus-circle"></i>Your username has to be at least 3 characters long.</div>
+            <div class="form--error-message" ng-message="pattern"><i class="fa fa-minus-circle"></i>Your username can only have letters and numbers. It can't have any spaces either.</div>
+          </div>
         </div>
 
         <!-- short bio -->
         <div class="form-group">
           <label for="bio">Bio</label>
-          <textarea uib-popover="Short bio of yourself" popover-trigger="focus" class="form-control form-input-textarea no-resize" placeholder="Write a short bio of yourself. Visible to other users and brands." rows="2" ng-model="user.description"></textarea>
+          <textarea class="form-control form-input-textarea no-resize" placeholder="Write a short bio of yourself. Visible to other users and brands." rows="2" ng-model="user.description"></textarea>
         </div>
 
-
-        <!-- TODO: disable Save button unless users change something -->
         <div class="form-group">
           <button ng-disabled="userForm.$invalid || userForm.$pristine" type="submit" id="submit" class="btn btn-lg sproutup-btn-md-main">Save changes</button>
         </div>
 
-        <!-- TODO: change to SproutUp heads-up message style -->
-        <div data-ng-show="success" class="text-center text-success">
-          <strong>Profile Saved Successfully</strong>
-        </div>
-        <div data-ng-show="error" class="text-center text-danger">
-          <strong data-ng-bind="error"></strong>
-        </div>
       </fieldset>
     </form>
 </div>
