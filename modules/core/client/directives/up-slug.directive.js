@@ -21,6 +21,11 @@ function SlugDirective($q, $timeout, $http, SlugService) {
         return $q.when();
       }
 
+      if (ctrl.$pristine) {
+        // consider pristine model valid
+        return $q.when();
+      }
+
       var def = $q.defer();
       var slug = modelValue;
 

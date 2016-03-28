@@ -3,27 +3,8 @@
 </div>
 
 <div class="col-sm-9 col-profile-info" data-ng-controller="EditProfileController">
-    <form name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin" autocomplete="off">
+    <form name="userForm" data-ng-submit="updateUserProfile()" class="signin" autocomplete="off">
       <fieldset>
-
-        <!-- Username -->
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control form-validate form-input" data-ng-model="user.username" placeholder="Username">
-        </div>
-
-        <!-- First name -->
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" class="form-control form-validate form-input" data-ng-model="user.firstName" placeholder="First Name">
-        </div>
-
-        <!-- Last name -->
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" class="form-control form-validate form-input" data-ng-model="user.lastName" placeholder="Last Name">
-        </div>
-
         <!-- TODO: send a verification email is users change email -->
         <div class="form-group">
           <label for="email">Email</label>
@@ -31,9 +12,28 @@
           <input type="email" id="email" name="email" class="form-control form-validate form-input" data-ng-model="user.email" placeholder="Email" disabled>
         </div>
 
+        <!-- full name -->
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input popover="Your full name" popover-trigger="focus" type="text" class="form-control form-validate form-input" placeholder="Full Name" ng-model="user.displayName" required>
+        </div>
+
+        <!-- Username -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control form-validate form-input" data-ng-model="user.username" placeholder="Username" up-slug>
+        </div>
+
+        <!-- short bio -->
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <textarea uib-popover="Short bio of yourself" popover-trigger="focus" class="form-control form-input-textarea no-resize" placeholder="Write a short bio of yourself. Visible to other users and brands." rows="2" ng-model="user.description"></textarea>
+        </div>
+
+
         <!-- TODO: disable Save button unless users change something -->
         <div class="form-group">
-          <button type="submit" id="submit" class="btn btn-lg sproutup-btn-md-main">Save changes</button>
+          <button ng-disabled="userForm.$invalid || userForm.$pristine" type="submit" id="submit" class="btn btn-lg sproutup-btn-md-main">Save changes</button>
         </div>
 
         <!-- TODO: change to SproutUp heads-up message style -->
