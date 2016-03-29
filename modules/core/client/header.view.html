@@ -6,7 +6,7 @@
       </div>
       <div class="nav-item-wrapper creator-user">
         <a ui-sref='slug.company.navbar.user.profile'>
-          <img ng-src="{{vm.authentication.user.avatar.file.url}}?w=72&h=72"> {{ vm.authentication.user.firstName }}
+          <img up-avatar="vm.authentication.user" width="72" height="72"> {{ vm.authentication.user.firstName }}
         </a>
       </div>
     </div>

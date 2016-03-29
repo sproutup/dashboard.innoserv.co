@@ -19,8 +19,7 @@
         <tbody>
           <tr ng-repeat="request in vm.completed">
             <td class="request-avatar"><a href="#">
-              <img ng-if="request.user.avatarUrl" class="img-center" ng-src="{{ request.user.avatarUrl }}">
-              <canvas ng-if="!request.user.avatarUrl" width="60" height="60" fontsize="28" name="{{ request.user.name }}" up-avatar></canvas>
+              <img up-avatar="request.user" width="60" height="60">
             </a></td>
             <td class="request-name-pitch">
               <div class="name"><a href="#">{{ request.user.name || 'User' }}</a></div>

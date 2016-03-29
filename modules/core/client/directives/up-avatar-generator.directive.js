@@ -4,9 +4,9 @@
 
 angular
     .module('core')
-    .directive('upAvatar', upAvatar);
+    .directive('upAvatarGenerator', upAvatarGenerator);
 
-function upAvatar() {
+function upAvatarGenerator() {
   var directive = {
     restrict: 'A',
     link: function (scope, element, attrs) {
