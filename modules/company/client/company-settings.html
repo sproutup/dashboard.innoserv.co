@@ -1,6 +1,6 @@
 <section ng-init="vm.find()">
   <div class="row select-company-wrapper">
-    <h3>You are with more than one companies. Busy guy! Please select one to see your dashboard.</h3>
+    <h3>You are with more than one company. Busy busy! Please select one to see your dashboard.</h3>
     <div class="col-sm-12">
       <a class="company-selector" ng-repeat="item in vm.companies" ng-click="vm.select(item)">
         <div class="create-campaign-banner company-profile-banner" style="background-image: url('{{ item.banner.file.url || 'https://s3.amazonaws.com/images.mentor.com/News/DSC_6084.jpg' }}');">
