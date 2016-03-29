@@ -1,4 +1,4 @@
-<h1 class="dashboard-section-title" ng-init="vm.find()"><i class="fa fa-tags"></i>Campaigns
+<h1 class="dashboard-section-title" ng-init="vm.find()"><i class="fa fa-bullhorn"></i>Campaigns
   <div class="dashboard-menu-top">
     <a class="dashboard-menu-top-item" ng-repeat="item in vm.menu.items | orderBy: 'position'" ui-sref="{{item.state}}" ng-if="item.shouldRender(company.authentication.user);" ng-switch="item.type" ng-class="{ active: company.state.includes(item.state), dropdown: item.type === 'dropdown' }" class="{{item.class}} nav-item-wrapper nav-item-main" dropdown="item.type === 'dropdown'">
       {{item.title}}
@@ -22,17 +22,17 @@
 <div ng-if="vm.campaigns.length > 0">
   <div class="campaign-list-wrapper">
     <ul class="list-inline">
-      <li class="campaign-item-wrapper" ng-repeat="campaign in vm.campaigns | filter: {status: 1}: vm.returnMatch ">
+      <li class="campaign-item-wrapper" ng-repeat="campaign in vm.campaigns | filter: {status: 1}: vm.returnMatch">
         <div class="header">Ongoing since {{campaign.created | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</div>
         <div class="type-icon"><img src="modules/theme/client/img/trial.png"></div>
         <div class="title">{{ campaign.name | limitTo: 40 }}{{ campaign.name.length < 40 ? '' : '...' }}</div>
         <div class="action">
-        <button ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Report</button>
-        <button ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">Edit</button>
+          <button ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Report</button>
+          <button ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">Edit</button>
         </div>
       </li>
       <li class="campaign-item-wrapper new-campaign">
-      <button ui-sref="slug.company.navbar.template.select"><span>+</span>Create New Campaign</button>
+        <button ui-sref="slug.company.navbar.template.select"><span>+</span>Create New Campaign</button>
       </li>
     </ul>
   </div>

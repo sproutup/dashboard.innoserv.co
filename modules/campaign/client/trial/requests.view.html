@@ -33,7 +33,7 @@
           <tr ng-repeat="item in vm.contributors | filter: vm.query as filteredItems">
             <td class="request-avatar">
               <a ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">
-                <img ng-if="item.user.avatar.fileId" class="img-center" ng-src="">
+                <img ng-if="item.user.avatar.fileId" class="img-center" ng-src="{{ item.user.avatar.file.url }}?w=72&h=72">
                 <canvas ng-if="!item.user.avatar.fileId" width="60" height="60" fontsize="18" name="{{ item.user.displayName }}" up-avatar></canvas>
               </a>
             </td>
