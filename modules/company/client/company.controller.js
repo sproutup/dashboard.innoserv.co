@@ -106,7 +106,9 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
 
   function init() {
     console.log('init company: ', vm.company);
-    $state.go('slug.company.navbar.campaign.list');
+    if($state.current.name === 'slug.company'){
+      $state.go('slug.company.navbar.campaign.list');
+    }
   }
 
   function findOne() {
