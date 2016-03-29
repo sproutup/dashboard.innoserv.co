@@ -1060,11 +1060,11 @@ button:active {
 
 .dashboard-main-tagline {
   margin: 0px auto;
-  padding: 0px 15px 40px;
+  padding: 0px 15px 60px;
   font-weight: 300;
   font-size: 25pt;
   line-height: 1.6;
-  max-width: 700px;
+  max-width: 800px;
   color: @main-text-white;
 }
 
@@ -1080,13 +1080,18 @@ button:active {
 }
 
 .dashboard-secondary-tagline {
-  margin: 0px auto;
-  padding: 0px 15px 25px;
+  position: absolute;
+  z-index: 10;
+  bottom: 60px;
+  left: 10%;
+  right: 10%;
+  margin: 0px;
+  padding: 0px 15px;
   font-weight: 300;
   font-size: 14pt;
   line-height: 1.6;
-  max-width: 960px;
   color: @main-text-white;
+  text-align: center;
 }
 
 .dashboard-secondary-tagline a {
@@ -1126,15 +1131,19 @@ button:active {
   background-color: black;
   background-color: rgba(255, 255, 255, 0.3);
   max-width: 640px;
-  padding: 30px;
+  padding: 35px 30px;
   margin: 0px auto;
+}
+
+.dashboard-cta .btn {
+  margin-bottom: 10px;
 }
 
 .dashboard-signup-input {
   border: 1px solid @form-border;
   width: 240px !important;
   height: 50px;
-  margin: 0px;
+  margin: 0px auto 10px;
   padding-left: 25px;
   border-radius: 0px;
   -webkit-box-shadow: none;
