@@ -28,14 +28,16 @@ function SlugService($http, $q, $state) {
   }
 
   function find(id) {
-    return $http({
-       method: 'GET',
-       url: '/api/slug/' + id,
-       headers: {'Content-Type': 'application/json'}
-     }).then(function(val){
-       model.item = val.data.item;
-       return val;
-     });
+    var deferred = $q.defer();
+    $http({
+      method: 'GET',
+      url: '/api/slug/' + id,
+      headers: {'Content-Type': 'application/json'}
+    }).then(function(val){
+      model.item = val.data.item;
+      deferred.resolve(val);
+    });
+    return deferred.promise;
   }
 
   function getItem() {

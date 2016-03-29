@@ -8,7 +8,6 @@ CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService
 
 function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http, company) {
   var vm = this;
-  vm.test = 'lala';
   vm.create = create;
   // vm.initTemplate = initTemplate;
   vm.remove = remove;
@@ -128,6 +127,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   }
 
   function find() {
+    console.log('campaign.find: ', company.id);
     CampaignService.listByCompany().query({
       companyId: company.id
     }, function(response) {

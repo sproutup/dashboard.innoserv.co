@@ -9,7 +9,7 @@ angular.module('company').config(['$stateProvider',
         controller: 'CompanyController',
         controllerAs: 'company',
         resolve: {
-          item: function(SlugService) {
+          item: function(slugitem, SlugService) {
             console.log('resolve: ', SlugService.getCurrent());
             return SlugService.getCurrent();
           }

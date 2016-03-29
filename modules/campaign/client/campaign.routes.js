@@ -10,7 +10,7 @@ angular.module('campaign').config(['$stateProvider',
         controller: 'CampaignController',
         controllerAs: 'vm',
         resolve: {
-          company: function(SlugService) {
+          company: function(slugitem, SlugService) {
             console.log('resolve: ', SlugService.getCurrent());
             return SlugService.getCurrent();
           }
