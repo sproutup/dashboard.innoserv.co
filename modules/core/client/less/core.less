@@ -7,8 +7,7 @@ body {
   min-width: 1024px;
 }
 
-button:focus,
-button:active {
+button:focus {
   outline: 0 !important;
   box-shadow: none !important;
 }
@@ -2192,6 +2191,8 @@ button:active {
 
 .campaign-template-item img:hover {
   -webkit-transform: scale(1.02);
+  -moz-transform: scale(1.02);
+  -o-transform: scale(1.02);
   -ms-transform: scale(1.02);
   transform: scale(1.02);
 }
@@ -4483,10 +4484,6 @@ a.company-selector {
 .intl-tel-input {
   width: 100% !important;
   margin-bottom: 8px;
-}
-
-.intl-tel-input .flag-dropdown {
-  outline: 0 !important;
 }
 
 .intl-tel-input .selected-flag {
