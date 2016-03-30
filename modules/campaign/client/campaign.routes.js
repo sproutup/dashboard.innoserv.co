@@ -51,7 +51,13 @@ angular.module('campaign').config(['$stateProvider',
         abstract: true,
         template: '<div ui-view></div>',
         controller: 'CampaignController',
-        controllerAs: 'campaign'
+        controllerAs: 'campaign',
+        resolve: {
+          company: function(slugitem, SlugService) {
+            console.log('resolve: ', SlugService.getCurrent());
+            return SlugService.getCurrent();
+          }
+        }
       })
       .state('slug.company.navbar.t.campaign.trial', {
         url: '/trial',
