@@ -32,6 +32,10 @@
         <p>Fast to setup. Launch and manage campaigns, FOR FREE.</p>
       </div>
     </div>
+    <div class="dashboard-cta" ng-if="vm.authentication.user">
+      <div class="dashboard-cta-message">Welcome back, {{ vm.authentication.user.displayName }}</div>
+      <div class="dashboard-cta-tip">"The way to get started is to quit talking and begin doing.” - Walt Disney</div>
+    </div>
   </div>
-  <div class="dashboard-secondary-tagline"><a href="http://momentlens.co/" target="_blank">Moment</a>, who makes the world’s best mobile photography lenses, run <a href="#"><strong>product launch campaign</strong></a> on SproutUp.</div>
+  <div class="dashboard-footer"><a href="http://momentlens.co/" target="_blank">Moment</a>, who makes the world’s best mobile photography lenses, run <a href="#"><strong>product launch campaign</strong></a> on SproutUp.</div>
 </div>
