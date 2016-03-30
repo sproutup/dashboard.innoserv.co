@@ -6,9 +6,9 @@
         <table class="table table-hover">
           <tbody>
             <tr ng-repeat="item in vm.team" >
-              <td class="team-member-photo"><img ng-src="{{item.profileImageURL}}"></td>
-              <td class="team-member-name">{{item.displayName}}</td>
-              <td class="team-member-email">{{item.email}}</td>
+              <td class="team-member-photo"><img up-avatar="item.user" width="60" height="60"></td>
+              <td class="team-member-name">{{item.user.displayName}}</td>
+              <td class="team-member-email">{{item.user.email}}</td>
               <!--td class="team-member-edit"><a ui-sref='slug.company.navbar.settings.team.edit({userId: item.id})'><i class="fa fa-pencil"></i></a></td-->
             </tr>
             </tbody>
