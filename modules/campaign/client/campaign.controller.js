@@ -123,8 +123,12 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     });
   }
 
-  function cancel() {
-    $state.go('slug.company.navbar.campaign.list');
+  function cancel(form) {
+    if (form.$dirty) {
+      openExitModal();
+    } else {
+      $state.go('slug.company.navbar.campaign.list');
+    }
   }
 
   function find() {
@@ -249,7 +253,6 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     }
   }
 
-
   function openModal(item) {
     var modalInstance = $modal.open({
       templateUrl: 'modules/core/client/delete-confirmation.html',
@@ -301,5 +304,22 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       }, function(reason) {
         vm.error = reason;
       });
+  }
+
+  function openExitModal() {
+    var modalInstance = $modal.open({
+      templateUrl: 'modules/core/client/exit-confirmation.html',
+      controller: 'DeleteController',
+      controllerAs: 'vm',
+      resolve: {
+        message: function() { return 'Your changes will be lost if you exit.'; }
+      }
+    });
+
+    modalInstance.result.then(function () {
+      $state.go('slug.company.navbar.campaign.list');
+    }, function () {
+      console.log('Modal dismissed at: ' + new Date());
+    });
   }
 }
