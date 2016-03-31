@@ -4,9 +4,9 @@ angular
   .module('campaign')
   .controller('CampaignController', CampaignController);
 
-CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService', '$http', 'company'];
+CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService', '$http', 'company', 'ContributorService'];
 
-function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http, company) {
+function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http, company, ContributorService) {
   var vm = this;
   vm.create = create;
   // vm.initTemplate = initTemplate;
@@ -31,6 +31,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.saveBannerPicture = saveBannerPicture;
   vm.state = $state;
   vm.ProductService = ProductService;
+  vm.ContributorService = ContributorService;
   vm.socialOptions = [
     {  title: 'YouTube',
        type: 'yt',
@@ -221,29 +222,12 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   }
 
   function findContributors() {
-    CampaignService.contributors().get({
-      campaignId: $state.params.campaignId
-    }, function(res) {
-      vm.item = res.campaign;
-      vm.contributors = res.items;
-      filterContributors();
-    }, function(err) {
-      $state.go('landing.default');
-    });
-  }
-
-  function filterContributors() {
-    vm.requested = vm.contributors.filter(function(item) {
-      return item.state === 0;
-    });
-
-    vm.approved = vm.contributors.filter(function(item) {
-      return item.state === 1;
-    });
-
-    vm.completed = vm.contributors.filter(function(item) {
-      return item.state === 10;
-    });
+    ContributorService.listByCampaign($state.params.campaignId)
+      .then(function() {
+        vm.success = true;
+      }, function(reason) {
+        vm.error = reason;
+      });
   }
 
   function findProducts() {
@@ -295,16 +279,14 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     vm.details = false;
   }
 
-  function approveRequest(request) {
-    console.log(request);
-    request.state = 1;
-    request.$update(function(response) {
-      console.log(response);
-      vm.success = true;
-    }, function (errorResponse) {
-      console.log(errorResponse);
-      vm.error = errorResponse.data.message;
-    });
+  function approveRequest(item) {
+    item.state = 1;
+    ContributorService.update(item)
+      .then(function(result) {
+        vm.success = true;
+      }, function(reason) {
+        vm.error = reason;
+      });
   }
 
   function saveBannerPicture(fileId, campaignId) {
