@@ -4,9 +4,9 @@ angular
   .module('campaign')
   .controller('CampaignController', CampaignController);
 
-CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService', '$http', 'company', 'ContributorService'];
+CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService', '$http', 'company', 'ContributorService', 'slugitem'];
 
-function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http, company, ContributorService) {
+function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http, company, ContributorService, slugitem) {
   var vm = this;
   vm.create = create;
   // vm.initTemplate = initTemplate;
@@ -49,6 +49,8 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.trialmenu = Menus.getMenu('campaign.trial.menu');
 
   function create(item) {
+    item.companyId = slugitem.data.item.id;
+
     // // temporary hack
     item.typeOfContent = [];
     for (var s = 0; s < vm.socialOptions.length; s++) {
