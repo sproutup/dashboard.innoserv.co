@@ -3,9 +3,9 @@
     <h1 class="dashboard-section-title">
       {{ vm.item.name || 'Your Campaign Title' }}
       <div class="dashboard-buttons-top">
-        <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()">Start Campaign</button>
-        <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.update()" ng-disabled="!form.$valid">Save</button>
-        <button class="btn btn-sm sproutup-btn-xs cancel" ng-click="vm.cancel(form)" href="#">Exit</button>
+        <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()" ng-disabled="!form.$valid">Start Campaign</button>
+        <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)">Save and Exit</button>
+        <!-- <button class="btn btn-sm sproutup-btn-xs cancel" ng-click="vm.cancel(form)" href="#">Exit</button> -->
       </div>
     </h1>
     <div class="create-campaign-wrapper">
@@ -31,22 +31,25 @@
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Name</p>
-              <input class="form-control form-input" ng-model="vm.item.name">
+              <input name="campaignName" class="form-validate form-control form-input" ng-model="vm.item.name" required>
             </div>
           </div>
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Tagline</p>
-              <input class="form-control form-input" ng-model="vm.item.tagline">
+              <input name="campaignTagline" class="form-validate form-control form-input" ng-model="vm.item.tagline" required>
             </div>
           </div>
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Description</p>
-              <textarea class="form-control form-input-textarea" ng-model="template.item.description" placeholder="Write here..."></textarea>
+              <textarea name="campaignDesc" class="form-validate form-control form-input-textarea" ng-model="template.item.description" placeholder="Write here..." required></textarea>
               <div class="annotation">
                 <div>Tell users more about your campaign, product or mission. <a href="#" ng-click="showExampleDesc = !showExampleDesc">See an example</a></div>
-                <blockquote class="detail" ng-if="showExampleDesc">Take the world’s best mobile photography lens with you for adventure photos and travel, or just simply capture your fun shenanigans throughout the day. Make a short vlog of your Spring Break trip. Share a photo series of street portraits in your city or your daily mundane activities...</blockquote>
+                <blockquote class="detail" ng-if="showExampleDesc">
+                  <p>Take the world’s best mobile photography lens with you for adventure photos and travel, or just simply capture your fun shenanigans throughout the day. Want some ideas to get started? Here’re a few:</p>
+                  <p>Make a short vlog of your Spring Break trip. Share a photo series of street portraits in your city or your daily mundane activities. Attend a sports event and capture the thrilling actions. Teach your little brother/grandma how to twist and capture how simple that is!</p>
+                </blockquote>
               </div>
             </div>
           </div>
@@ -63,10 +66,13 @@
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Provide instructions for users who participate your campaign.</p>
-              <textarea class="form-control form-input-textarea" ng-model="template.item.instructions" placeholder="Write here..."></textarea>
+              <textarea class="form-validate form-control form-input-textarea" ng-model="template.item.instructions" placeholder="Write here..." required></textarea>
               <div class="annotation">
                 <div>Providing clear instructions helps creators to deliver the content in the form and taste you desire. <a href="#" ng-click="showExampleInstructions = !showExampleInstructions">See an example</a></div>
-                <blockquote class="detail" ng-if="showExampleInstructions">For awesome videographers, it would be great to tell your story in a short 1-3 mins video on YouTube, or as a vlog over 4-5 days. For photographers, you may create a slideshow of your 6-8 best shots with your comments and share on SnapChat or Vine.</blockquote>
+                <blockquote class="detail" ng-if="showExampleInstructions">
+                  <p>Viewers tell us that they more enjoy watching the personal and fun side of you than the formal tech reviews. So, SproutUp trials are all about bite-size “personal storytelling” - an interesting plot with a real protagonist (friend or a family member), taking your audience on a journey or showing off interesting ways to use this awesome Moment Lens etc.</p>
+                  <p>For awesome videographers, it would be great to tell your story in a short 1-3 mins video on YouTube, or as a vlog over 4-5 days. For photographers, you may create a slideshow of your 6-8 best shots with your comments and share on SnapChat or Vine. Or you can simply do a live thing on Periscope or SnapChat! Oh well, not to mention that you are welcome to do your own creative thing too.</p>
+                </blockquote>
               </div>
             </div>
           </div>
