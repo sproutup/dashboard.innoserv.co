@@ -1995,6 +1995,10 @@ button:focus {
   margin-bottom: 25px;
 }
 
+.create-campaign-wrapper .form--error-message {
+  padding: 0px;
+}
+
 .form-input-group {
   margin-bottom: 20px;
 }
@@ -2386,12 +2390,17 @@ button:focus {
 
 .campaign-question-wrapper .annotation blockquote.detail {
   margin-top: 12px;
+  border-left: 5px solid @sproutup-grey;
+  padding: 10px 15px 0px;
+}
+
+.campaign-question-wrapper .annotation blockquote.detail p {
   font-size: 10pt;
   font-weight: 400;
   color: @main-text-lighter;
   line-height: 1.6;
-  border-left: 5px solid @sproutup-grey;
-  padding: 6px 15px;
+  margin: 0px;
+  padding-bottom: 10px;
 }
 
 .campaign-question-wrapper .annotation a {
