@@ -1,8 +1,8 @@
-<h1 class="dashboard-section-title"><i class="fa fa-bullhorn"></i>New Trial Campaign Title</h1>
+<h1 class="dashboard-section-title" ng-init="vm.findOne()"><i class="fa fa-bullhorn"></i>{{ vm.item.name }}</h1>
   <div class="empty-state-wrapper">
     <img src="modules/core/client/img/misc/confetti-ball.png">
     <h2>Hooray, you just started a campaign</h2>
-    <p>Your campaign will show up <a href="#" target="_blank">here</a> on SproutUp. And don't forget to shout it out on your social networks and attract potential content creators!</p>
+    <p>Your campaign will show up <a ng-href="{{ vm.item.url }}" target="_blank">here</a> on SproutUp. And don't forget to shout it out on your social networks and attract potential content creators!</p>
     <!-- <div class="campaign-share-action">
       <button class="btn btn-lg sproutup-btn-lg-main facebook">Share on Facebook</button>
       <button class="btn btn-lg sproutup-btn-lg-main twitter">Share on Twitter</button>
