@@ -115,6 +115,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
 
   function startCampaign () {
     vm.item.status = 1;
+    vm.item.started = new Date();
     CampaignService.updateCampaign(vm.item)
       .then(function(result) {
         $state.go('slug.company.navbar.campaign.confirmation', { campaignId: vm.item.id });
@@ -127,6 +128,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     var CampaignObj = CampaignService.campaigns();
     var campaign = new CampaignObj(vm.item);
     campaign.status = -1;
+    campaign.ended = new Date();
     campaign.$update({
       campaignId: $state.params.campaignId
     }, function (response) {

@@ -23,7 +23,7 @@
   <div class="campaign-list-wrapper">
     <ul class="list-inline">
       <li class="campaign-item-wrapper" ng-repeat="campaign in vm.campaigns | filter: {status: 1}: vm.returnMatch">
-        <div class="header">Ongoing since {{campaign.created | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</div>
+        <div class="header"><span ng-if="campaign.started">Ongoing since {{campaign.started | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</span></div>
         <div class="type-icon"><img src="modules/theme/client/img/trial.png"></div>
         <div class="title">{{ campaign.name | limitTo: 40 }}{{ campaign.name.length < 40 ? '' : '...' }}</div>
         <div class="action">
@@ -55,7 +55,7 @@
             <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-edit.png"></td>
             <td class="campaign-title">
               <div>{{campaign.name}}</div>
-              <div class="schedule-time">Edited on Feb 18, 2016 at 5:06 pm</div>
+              <div class="schedule-time" ng-if="campaign.updated">Edited on {{campaign.updated | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</div>
             </td>
             <td>Me</td>
             <td class="campaign-actions">
@@ -86,7 +86,7 @@
             <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-completed.png"></td>
             <td class="campaign-title">
               <div>{{ campaign.name }}</div>
-              <div class="schedule-time">15 Jun 2015 - 30 Jun 2015</div>
+              <div class="schedule-time" ng-if="campaign.started && campaign.ended">{{campaign.started | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}} - {{campaign.ended | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</div>
             </td>
             <td class="campaign-actions">
               <button ui-sref="clug.ompany.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Report</button>
