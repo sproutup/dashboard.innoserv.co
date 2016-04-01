@@ -1,7 +1,7 @@
 <section ng-init="vm.find()">
   <div class="row select-company-wrapper">
-    <h3>Please select a company to see your dashboard</h3>
-    <div class="col-sm-12">
+    <div class="col-sm-12" ng-if="vm.companies.$resolved && vm.companies.length > 0">
+      <h3>Please select a company to see your dashboard</h3>
       <a href="#" class="company-selector" ng-repeat="item in vm.companies" ng-click="vm.select(item)">
         <div class="create-campaign-banner company-profile-banner" style="background-image: url('modules/core/client/img/default-campaign-banner.jpg');">
           <h1 ng-bind="item.name"></h1>
