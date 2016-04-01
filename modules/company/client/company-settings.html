@@ -10,7 +10,7 @@
       </a>
     </div>
   </div>
-  <!-- <div class="alert alert-warning text-center" ng-if="vm.companies.$resolved && !vm.companies.length">
-    No companies yet, why don't you <a ui-sref="companies.create">create one</a>?
-  </div> -->
+  <div class="alert alert-warning text-center" ng-if="vm.companies.$resolved && vm.companies.length < 1">
+    No companies yet, why don't you <a ui-sref="authentication.create-company">create one</a>
+  </div>
 </section>

@@ -22,7 +22,7 @@
 
         <div class="product-trial-item--detail" ng-if="contributor.item.state === 0">
           <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Approve this request?</div>
-          <div class="product-trial-item--status-desc" ng-click="contributor.approveTrial()"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.approveRequest(vm.request)">YES to {{ contributor.item.user.displayName }}</button></div>
+          <div class="product-trial-item--status-desc" ng-click="contributor.approveTrial()"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.approveRequest(contributor.item)">YES to {{ contributor.item.user.displayName }}</button></div>
         </div>
 
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0">

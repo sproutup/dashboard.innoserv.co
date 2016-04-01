@@ -4,9 +4,9 @@ angular
   .module('campaign')
   .controller('CampaignController', CampaignController);
 
-CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService', '$http', 'company'];
+CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService', '$http', 'company', 'ContributorService', 'slugitem'];
 
-function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http, company) {
+function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http, company, ContributorService, slugitem) {
   var vm = this;
   vm.create = create;
   // vm.initTemplate = initTemplate;
@@ -31,6 +31,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.saveBannerPicture = saveBannerPicture;
   vm.state = $state;
   vm.ProductService = ProductService;
+  vm.ContributorService = ContributorService;
   vm.socialOptions = [
     {  title: 'YouTube',
        type: 'yt',
@@ -48,6 +49,8 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.trialmenu = Menus.getMenu('campaign.trial.menu');
 
   function create(item) {
+    item.companyId = slugitem.data.item.id;
+
     // // temporary hack
     item.typeOfContent = [];
     for (var s = 0; s < vm.socialOptions.length; s++) {
@@ -122,8 +125,12 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     });
   }
 
-  function cancel() {
-    $state.go('slug.company.navbar.campaign.list');
+  function cancel(form) {
+    if (form.$dirty) {
+      openExitModal();
+    } else {
+      $state.go('slug.company.navbar.campaign.list');
+    }
   }
 
   function find() {
@@ -221,29 +228,12 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   }
 
   function findContributors() {
-    CampaignService.contributors().get({
-      campaignId: $state.params.campaignId
-    }, function(res) {
-      vm.item = res.campaign;
-      vm.contributors = res.items;
-      filterContributors();
-    }, function(err) {
-      $state.go('landing.default');
-    });
-  }
-
-  function filterContributors() {
-    vm.requested = vm.contributors.filter(function(item) {
-      return item.state === 0;
-    });
-
-    vm.approved = vm.contributors.filter(function(item) {
-      return item.state === 1;
-    });
-
-    vm.completed = vm.contributors.filter(function(item) {
-      return item.state === 10;
-    });
+    ContributorService.listByCampaign($state.params.campaignId)
+      .then(function() {
+        vm.success = true;
+      }, function(reason) {
+        vm.error = reason;
+      });
   }
 
   function findProducts() {
@@ -264,7 +254,6 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
         });
     }
   }
-
 
   function openModal(item) {
     var modalInstance = $modal.open({
@@ -295,16 +284,14 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     vm.details = false;
   }
 
-  function approveRequest(request) {
-    console.log(request);
-    request.state = 1;
-    request.$update(function(response) {
-      console.log(response);
-      vm.success = true;
-    }, function (errorResponse) {
-      console.log(errorResponse);
-      vm.error = errorResponse.data.message;
-    });
+  function approveRequest(item) {
+    item.state = 1;
+    ContributorService.update(item)
+      .then(function(result) {
+        vm.success = true;
+      }, function(reason) {
+        vm.error = reason;
+      });
   }
 
   function saveBannerPicture(fileId, campaignId) {
@@ -319,5 +306,22 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       }, function(reason) {
         vm.error = reason;
       });
+  }
+
+  function openExitModal() {
+    var modalInstance = $modal.open({
+      templateUrl: 'modules/core/client/exit-confirmation.html',
+      controller: 'DeleteController',
+      controllerAs: 'vm',
+      resolve: {
+        message: function() { return 'Your changes will be lost if you exit.'; }
+      }
+    });
+
+    modalInstance.result.then(function () {
+      $state.go('slug.company.navbar.campaign.list');
+    }, function () {
+      console.log('Modal dismissed at: ' + new Date());
+    });
   }
 }

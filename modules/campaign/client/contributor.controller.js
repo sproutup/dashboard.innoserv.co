@@ -6,9 +6,9 @@
     .module('campaign')
     .controller('ContributorController', ContributorController);
 
-  ContributorController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', 'MessageService'];
+  ContributorController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', 'MessageService', 'ContributorService'];
 
-  function ContributorController($scope, $rootScope, $state, CampaignService, MessageService) {
+  function ContributorController($scope, $rootScope, $state, CampaignService, MessageService, ContributorService) {
     var vm = this;
     vm.getDetails = getDetails;
     vm.getCampaign = getCampaign;
@@ -63,7 +63,6 @@
         vm.item = response;
         vm.userId = 5;//response.userId;
         vm.campaignId = response.campaignId;
-        sortLog();
       }, function(err) {
         console.log(err);
       });
@@ -73,30 +72,14 @@
       return vm.campaignId;
     }
 
-    function sortLog() {
-      if (vm.item.log) {
-        // Find approved logs
-        vm.item.approved = vm.item.log.filter(function(item) {
-          return item.state === 1;
+    function approveRequest(item) {
+      item.state = 1;
+      ContributorService.update(item)
+        .then(function(result) {
+          vm.success = true;
+        }, function(reason) {
+          vm.error = reason;
         });
-
-        // Find completed logs
-        vm.item.completed = vm.item.log.filter(function(item) {
-          return item.state === 10 || item.state === '10';
-        });
-
-      // vm.item.approved.sort(function(a,b){
-      //   return b.created - a.created;
-      // });
-
-      // vm.item.approved.sort(function(a,b){
-      //   return b.created - a.created;
-      // });
-      }
-    }
-
-    function approveRequest(request) {
-      updateRequestState(1, request);
     }
 
     function updateRequestState(state, request) {
@@ -107,7 +90,6 @@
         var user = vm.item.user;
         vm.item = response;
         vm.item.user = user;
-        sortLog();
         if (request) {
           request.state = state;
         }
@@ -128,7 +110,6 @@
         var user = vm.item.user;
         vm.item = response;
         vm.item.user = user;
-        sortLog();
       }, function(err) {
         console.log(err);
       });
