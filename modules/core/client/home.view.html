@@ -3,13 +3,13 @@
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sproutup-collapse-navbar">Menu</button>
       <a class="navbar-brand" href="#">
-        <img class="logo" src="modules/core/client/img/logo-white.png">
+        <img class="logo" alt="logo" src="modules/core/client/img/logo-white.png"/>
       </a>
     </div>
     <div class="collapse navbar-collapse" id="sproutup-collapse-navbar">
       <ul class="nav navbar-nav navbar-item navbar-right">
         <li class="sign-in" ng-if="!vm.authentication.user"><a ui-sref="authentication.signin">Sign In</a></li>
-        <li class="sign-in" ng-if="vm.authentication.user"><a ui-sref="authentication.signin">My Dashboard</a></li>
+        <li class="sign-in" ng-if="vm.authentication.user"><a ui-sref="footer.select">My Dashboard</a></li>
       </ul>
     </div>
   </div>
