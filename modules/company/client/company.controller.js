@@ -81,8 +81,10 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   }
 
   function find() {
-    CompanyService.mycompany().query(function(data){
-      vm.companies = data;
+    vm.companies = CompanyService.mycompany().query(function(data){
+      vm.success = true;
+    }, function(err) {
+      vm.error = err;
     });
   }
 
