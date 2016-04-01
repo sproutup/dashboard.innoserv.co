@@ -15,12 +15,5 @@ angular.module('campaign').run(['Menus',
       class: '',
       roles: ['*']
     });
-
-    Menus.addMenuItem('campaign.trial.menu', {
-      title: 'Configuration',
-      state: 'slug.company.navbar.campaign.view.trial.configure',
-      class: '',
-      roles: ['*']
-    });
   }
 ]);

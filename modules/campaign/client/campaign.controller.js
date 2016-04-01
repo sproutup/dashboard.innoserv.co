@@ -32,6 +32,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.state = $state;
   vm.ProductService = ProductService;
   vm.ContributorService = ContributorService;
+  vm.openStopCampaignModal = openStopCampaignModal;
   vm.socialOptions = [
     {  title: 'YouTube',
        type: 'yt' },
@@ -124,6 +125,23 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       });
   }
 
+  function openStopCampaignModal(item) {
+    var modalInstance = $modal.open({
+      templateUrl: 'modules/campaign/client/end-campaign.html',
+      controller: 'EndCampaignController',
+      controllerAs: 'vm',
+      resolve: {
+        message: function() { return 'This campaign won\'t be shown on sproutup.co if you end it.'; }
+      }
+    });
+
+    modalInstance.result.then(function () {
+      stopCampaign();
+    }, function () {
+      console.log('Modal dismissed at: ' + new Date());
+    });
+  }
+
   function stopCampaign () {
     var CampaignObj = CampaignService.campaigns();
     var campaign = new CampaignObj(vm.item);
@@ -163,10 +181,9 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     vm.success = false;
     vm.item = {};
 
-    CampaignService.campaigns().get({
+    vm.item = CampaignService.campaigns().get({
       campaignId: $state.params.campaignId
     }, function(res) {
-      vm.item = res;
       // for each option, mark it selected if it's in the vm.item's typeOfContent
       for (var s = 0; s < vm.socialOptions.length; s++) {
         if (vm.item.typeOfContent.indexOf(vm.socialOptions[s].type) > -1) {
