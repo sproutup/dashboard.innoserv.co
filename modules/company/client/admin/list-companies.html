@@ -12,6 +12,7 @@
       <h4 class="list-group-item-heading" ng-bind="company.name"></h4>
       <p class="list-group-item-text" ng-bind="company.url"></p>
     </a>
+
   </div>
   <div class="alert alert-warning text-center" ng-if="companies.$resolved && !companies.length">
     No companies yet, why don't you <a ui-sref="companies.create">create one</a>?
