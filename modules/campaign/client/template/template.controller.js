@@ -27,12 +27,20 @@
           name: 'Video Contest'}
       ];
       vm.socialOptions = [
-        {  title: 'Twitter',
-           type: 'tw' },
+        {  title: 'YouTube',
+           type: 'yt' },
         {  title: 'Instagram',
            type: 'ig' },
-        {  title: 'YouTube',
-           type: 'yt' }
+        {  title: 'Twitter',
+           type: 'tw' },
+        {  title: 'Periscope',
+           type: 'ps' },
+        {  title: 'Vine',
+           type: 'vi' },
+        {  title: 'Snapchat',
+           type: 'sc' },
+        {  title: 'Blog',
+           type: 'bl' }
       ];
 
       if ($state.params.productId) {
@@ -53,20 +61,18 @@
           return false;
         }
 
-        // Hack for creating typeOfContent array
-        var typeOfContent = [];
-        for (var s = 0; s < vm.socialOptions.length; s++) {
-          if (vm.socialOptions[s].type) {
-            typeOfContent.push(vm.socialOptions[s].type);
-          }
-        }
-
         // Create new template
         var Template = TemplateService.template();
         var item = new Template(vm.item);
         item.companyId = $scope.company.company.id;
         item.productId = vm.productId;
-        item.typeOfContent = typeOfContent;
+        // for each social option selected, push it onto the typeOfContent array
+        item.typeOfContent = [];
+        for (var s = 0; s < vm.socialOptions.length; s++) {
+          if (vm.socialOptions[s].selected) {
+            item.typeOfContent.push(vm.socialOptions[s].type);
+          }
+        }
 
         // Redirect after save
         item.$save(function (response) {
@@ -101,22 +107,16 @@
         // }
       }
 
-      function update(isValid) {
-        // console.log(vm.item['instructions']);
-        // console.log(vm.item.instructions);
+      function update() {
         vm.error = null;
 
-        if (!isValid) {
-          vm.invalid = true;
-          $scope.$broadcast('show-errors-check-validity', 'articleForm');
-
-          return false;
-        } else {
-          vm.invalid = false;
+        // for each social option selected, push it onto the typeOfContent array
+        vm.item.typeOfContent = [];
+        for (var s = 0; s < vm.socialOptions.length; s++) {
+          if (vm.socialOptions[s].selected) {
+            vm.item.typeOfContent.push(vm.socialOptions[s].type);
+          }
         }
-
-        console.log(vm.item);
-        console.log(vm.item.tagline);
 
         vm.item.$update(function () {
           console.log(vm.item);
@@ -156,6 +156,12 @@
           vm.item.tagline = '';
           vm.item.start = '';
           vm.item.end = '';
+          // for each option, mark it selected if it's in the vm.item's typeOfContent
+          for (var s = 0; s < vm.socialOptions.length; s++) {
+            if (vm.item.typeOfContent.indexOf(vm.socialOptions[s].type) > -1) {
+             vm.socialOptions[s].selected = true;
+            }
+          }
         }, function(err) {
           $state.go('landing.default');
         });
@@ -169,6 +175,12 @@
           campaignId: $state.params.campaignId
         }, function() {
           vm.item = campaign;
+          // for each option, mark it selected if it's in the vm.item's typeOfContent
+          for (var s = 0; s < vm.socialOptions.length; s++) {
+            if (vm.item.typeOfContent.indexOf(vm.socialOptions[s].type) > -1) {
+             vm.socialOptions[s].selected = true;
+            }
+          }
           console.log(vm.item);
         }, function(err) {
           $state.go('landing.default');

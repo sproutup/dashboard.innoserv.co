@@ -43,7 +43,7 @@
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Description</p>
-              <textarea name="campaignDesc" class="form-validate form-control form-input-textarea" ng-model="template.item.description" placeholder="Write here..." required></textarea>
+              <textarea name="campaignDesc" class="form-validate form-control form-input-textarea" ng-model="vm.item.description" placeholder="Write here..." required></textarea>
               <div class="annotation">
                 <div>Tell users more about your campaign, product or mission. <a href="#" ng-click="showExampleDesc = !showExampleDesc">See an example</a></div>
                 <blockquote class="detail" ng-if="showExampleDesc">
@@ -66,7 +66,7 @@
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Provide instructions for users who participate your campaign.</p>
-              <textarea class="form-validate form-control form-input-textarea" ng-model="template.item.instructions" placeholder="Write here..." required></textarea>
+              <textarea class="form-validate form-control form-input-textarea" ng-model="vm.item.instructions" placeholder="Write here..." required></textarea>
               <div class="annotation">
                 <div>Providing clear instructions helps creators to deliver the content in the form and taste you desire. <a href="#" ng-click="showExampleInstructions = !showExampleInstructions">See an example</a></div>
                 <blockquote class="detail" ng-if="showExampleInstructions">

@@ -34,13 +34,18 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.ContributorService = ContributorService;
   vm.socialOptions = [
     {  title: 'YouTube',
-       type: 'yt',
-       selected: true },
-    {  title: 'Vine',
-       type: 'vi' },
+       type: 'yt' },
     {  title: 'Instagram',
        type: 'ig' },
-     {  title: 'Blogger',
+    {  title: 'Twitter',
+       type: 'tw' },
+    {  title: 'Periscope',
+       type: 'ps' },
+    {  title: 'Vine',
+       type: 'vi' },
+    {  title: 'Snapchat',
+       type: 'sc' },
+    {  title: 'Blog',
        type: 'bl' }
   ];
 
@@ -48,14 +53,14 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.menu = Menus.getMenu('company.campaign.menu');
   vm.trialmenu = Menus.getMenu('campaign.trial.menu');
 
-  function create(item) {
+  function create(item, socialOptions) {
     item.companyId = slugitem.data.item.id;
 
-    // // temporary hack
+    // for each social option selected, push it onto the typeOfContent array
     item.typeOfContent = [];
-    for (var s = 0; s < vm.socialOptions.length; s++) {
-      if (vm.socialOptions[s].type) {
-        item.typeOfContent.push(vm.socialOptions[s].type);
+    for (var s = 0; s < socialOptions.length; s++) {
+      if (socialOptions[s].selected) {
+        item.typeOfContent.push(socialOptions[s].type);
       }
     }
 
@@ -92,6 +97,14 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
 
   function update() {
     vm.error = null;
+    // for each social option selected, push it onto the typeOfContent array
+    vm.item.typeOfContent = [];
+    for (var s = 0; s < vm.socialOptions.length; s++) {
+      if (vm.socialOptions[s].selected) {
+        vm.item.typeOfContent.push(vm.socialOptions[s].type);
+      }
+    }
+
     CampaignService.updateCampaign(vm.item)
       .then(function(result) {
         $state.go('slug.company.navbar.campaign.list');
@@ -152,6 +165,12 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       campaignId: $state.params.campaignId
     }, function(res) {
       vm.item = res;
+      // for each option, mark it selected if it's in the vm.item's typeOfContent
+      for (var s = 0; s < vm.socialOptions.length; s++) {
+        if (vm.item.typeOfContent.indexOf(vm.socialOptions[s].type) > -1) {
+         vm.socialOptions[s].selected = true;
+        }
+      }
     }, function(err) {
       $state.go('landing.default');
     });
