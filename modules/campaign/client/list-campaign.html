@@ -81,7 +81,6 @@
           <tr>
             <th></th>
             <th>Campaign</th>
-            <th>Created by</th>
             <th></th>
           </tr>
         </thead>
@@ -92,7 +91,6 @@
               <div>{{campaign.name}}</div>
               <div class="schedule-time" ng-if="campaign.updated">Edited on {{campaign.updated | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</div>
             </td>
-            <td>Me</td>
             <td class="campaign-actions">
             <button ui-sref="slug.company.navbar.campaign.edit.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">Edit Campaign</button>
               <!-- TODO: add discard button later -->
