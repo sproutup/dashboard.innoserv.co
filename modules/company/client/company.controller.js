@@ -45,7 +45,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
       vm.url = '';
       vm.slug = '';
       // go to the new company dashboard
-      $state.go('slug', {slug: response.slug});
+      $state.go('slug.company.navbar.campaign.list', {slug: response.slug});
     }, function (errorResponse) {
       console.log(errorResponse);
       vm.error = errorResponse.data.message;
