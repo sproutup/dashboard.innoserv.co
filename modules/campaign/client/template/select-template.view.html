@@ -1,45 +1,72 @@
 <div class="mock-section" id="choose-template" ng-init="vm.find()">
   <h1 class="dashboard-section-title"><a ui-sref='slug.company.navbar.campaign.list'><i class="fa fa-angle-left"></i></a>Create New Campaign</h1>
   <div class="create-campaign-wrapper">
-    <h1>Starting a campaign in minutes with a template carefully drafted by our creative marketing experts. Yes it's that easy!</h1>
-    <div class="row campaign-template-list">
-      <div class="col-lg-3 col-xs-4 campaign-template-item" ng-repeat="item in vm.campaigns | filter: {type:'trial', status: -10}">
-        <a ui-sref='slug.company.navbar.t.campaign.trial.create({templateId: item.id, productId: vm.productId})'>
-          <img class="img-responsive" src="modules/core/client/img/campaign/template-trial.jpg">
-        </a>
-        <div class="campaign-template-item-info">
-          <div class="template-title">{{ item.name }}</div>
-          <div uib-popover="{{ item.description }}" popover-trigger="mouseenter" class="template-description"><a href="#">Learn more about this campaign</a><span><i class="fa fa-question-circle"></i></span></div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-xs-4 campaign-template-item">
-        <a href=""><img class="img-responsive" src="modules/core/client/img/campaign/coming/template-video-contest-coming.jpg"></a>
-        <div class="campaign-template-item-info">
-          <div class="template-title">Beta Test</div>
-          <div class="template-description">Test your prototype or pre-launch...<span><i class="fa fa-clock-o"></i></span></div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-xs-4 campaign-template-item">
-        <a href=""><img class="img-responsive" src="modules/core/client/img/campaign/coming/template-openidea-coming.jpg"></a>
-        <div class="campaign-template-item-info">
-          <div class="template-title">OpenIdea</div>
-          <div class="template-description">Hunt best ideas from community...<span><i class="fa fa-clock-o"></i></span></div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-xs-4 campaign-template-item">
-        <a href=""><img class="img-responsive" src="modules/core/client/img/campaign/coming/template-video-contest-coming.jpg"></a>
-        <div class="campaign-template-item-info">
-          <div class="template-title">Video Contest</div>
-          <div class="template-description">Run themed video contest...<span><i class="fa fa-clock-o"></i></span></div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-xs-4 campaign-template-item">
-        <a href=""><img class="img-responsive" src="modules/core/client/img/campaign/coming/template-instagram-contest-coming.jpg"></a>
-        <div class="campaign-template-item-info">
-          <div class="template-title">Instagram Contest</div>
-          <div class="template-description">Build awesome gallery with users...<span><i class="fa fa-clock-o"></i></span></div>
-        </div>
-      </div>
+    <h1>Start with a simple yet key question: <strong>what's your objective?</strong></h1>
+    <div class="sproutup-table campaign-template-table">
+      <table class="table table-hover">
+        <tbody>
+          <tr ng-repeat="item in vm.campaigns | filter: {type:'trial', status: -10}">
+            <td class="campaign-type-icon">
+              <img src="modules/core/client/img/campaign/trial-completed.png">
+            </td>
+            <td class="campaign-template-info">
+              <div class="campaign-template-name">{{ item.name }}</div>
+              <div class="campaign-template-description">{{ item.description }}</div>
+            </td>
+            <td class="campaign-template-action">
+              <button ui-sref='slug.company.navbar.t.campaign.trial.create({templateId: item.id, productId: vm.productId})' class="btn sproutup-btn-sm">Create Campaign</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="campaign-type-icon">
+              <img src="modules/core/client/img/campaign/beta-test.png">
+            </td>
+            <td class="campaign-template-info">
+              <div class="campaign-template-name">Mobile App Beta Test</div>
+              <div class="campaign-template-description">Perfect for individuals or companies who are building new mobile apps. Beta test your app with tech savvy users and influencers. Collect feedback in textual chats, photos or even videos. Get high quality early adopters before it appears in the app stores.</div>
+            </td>
+            <td class="campaign-template-action">
+              <button class="btn sproutup-btn-sm" disabled="">Coming Soon</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="campaign-type-icon">
+              <img src="modules/core/client/img/campaign/video-contest.png">
+            </td>
+            <td class="campaign-template-info">
+              <div class="campaign-template-name">Video Contest</div>
+              <div class="campaign-template-description">Run themed video contest. Engage your user community to share moments or experiences with your product. Attract prospective users by such personal storytelling.</div>
+            </td>
+            <td class="campaign-template-action">
+              <button class="btn sproutup-btn-sm" disabled="">Coming Soon</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="campaign-type-icon">
+              <img src="modules/core/client/img/campaign/instagram-contest.png">
+            </td>
+            <td class="campaign-template-info">
+              <div class="campaign-template-name">Instagram Contest</div>
+              <div class="campaign-template-description">A great way to build awesome product gallery with your user community and appeal future customers. Reward users for shooting and sharing creative photography on Instagram.</div>
+            </td>
+            <td class="campaign-template-action">
+              <button class="btn sproutup-btn-sm" disabled="">Coming Soon</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="campaign-type-icon">
+              <img src="modules/core/client/img/campaign/idea-contest.png">
+            </td>
+            <td class="campaign-template-info">
+              <div class="campaign-template-name">Open Idea</div>
+              <div class="campaign-template-description">Hunt best ideas from your community to help you gather authentic feedback, engage users and acquire new members.</div>
+            </td>
+            <td class="campaign-template-action">
+              <button class="btn sproutup-btn-sm" disabled="">Coming Soon</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

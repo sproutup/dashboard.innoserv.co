@@ -885,6 +885,10 @@ button:focus {
   padding-right: 5px;
 }
 
+.col-change-password .signup-login-form--error-message {
+  margin: 0px 0px;
+}
+
 .signup-login-form-header h1 {
   font-weight: 400;
   font-size: 11pt;
@@ -2211,7 +2215,7 @@ button:focus {
 .campaign-template-item {
   margin: 0px;
   padding: 10px 15px;
-  min-height: 440px;
+  min-height: 400px;
 }
 
 .campaign-template-item img {
@@ -2774,7 +2778,7 @@ button:focus {
 }
 
 .sproutup-table tbody tr td {
-  padding: 16px 15px;
+  padding: 18px 15px;
   font-weight: 400;
   font-size: 10pt;
   color: @main-text;
@@ -4050,9 +4054,16 @@ h3[class="placeholder"] {
 }
 
 .empty-state-wrapper .campaign-template-list {
-  //border-top: 1px solid @sproutup-grey;
-  margin: 0px;
-  padding: 0px;
+  border-top: 1px solid @sproutup-lightgrey;
+  margin: 35px 0px 0px;
+  padding: 20px 0px 0px;
+}
+
+.empty-state-wrapper .campaign-template-list h3 {
+  font-size: 13.5pt;
+  font-weight: 400;
+  color: @main-text-lighter;
+  margin-bottom: 25px;
 }
 
 .empty-state-wrapper img {
@@ -4060,18 +4071,12 @@ h3[class="placeholder"] {
 }
 
 .hud {
-  margin: 0px;
+  margin: 0px 0px 20px;
   padding: 20px 15px;
   font-weight: 400;
-  font-size: 12pt;
+  font-size: 11pt;
   text-align: center;
   color: white;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  z-index: 100;
-  opacity: 0.86;
 }
 
 .hud i {
@@ -4303,7 +4308,7 @@ h3[class="placeholder"] {
 }
 
 .content-stats-list {
-  padding: 40px 15px;
+  padding: 0px 15px;
 }
 
 .content-stats-list .content-title {
@@ -4752,6 +4757,32 @@ li.campaign-item-wrapper.new-campaign button span {
 }
 
 .sproutup-table .product-action {
+  text-align: right;
+}
+
+.sproutup-table.campaign-template-table .campaign-type-icon img {
+  width: 64px;
+  height: 64px;
+}
+
+.sproutup-table.campaign-template-table .campaign-template-info {
+  width: 60%;
+}
+
+.sproutup-table.campaign-template-table .campaign-template-name {
+  font-weight: 700;
+  font-size: 12.5pt;
+  color: @main-text-light;
+  padding-bottom: 5px;
+}
+
+.sproutup-table.campaign-template-table .campaign-template-description {
+  font-weight: 400;
+  font-size: 10.5pt;
+  color: @main-text-lighter;
+}
+
+.sproutup-table.campaign-template-table .campaign-template-action {
   text-align: right;
 }
 
