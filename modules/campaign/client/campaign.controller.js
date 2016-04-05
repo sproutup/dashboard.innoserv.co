@@ -131,7 +131,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       controller: 'EndCampaignController',
       controllerAs: 'vm',
       resolve: {
-        message: function() { return 'This campaign won\'t be shown on sproutup.co if you end it.'; }
+        message: function() { return 'This campaign won\'t be shown on SproutUp anymore after you end it.'; }
       }
     });
 
