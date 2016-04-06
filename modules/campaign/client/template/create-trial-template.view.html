@@ -1,35 +1,42 @@
 <h1 class="dashboard-section-title"><a ui-sref="slug.company.navbar.template.list"><i class="fa fa-angle-left"></i></a>Create New Trial Template</h1>
-<div class="create-product-wrapper" ng-init="vm.init('trial')">
+<div ng-init="vm.init('trial')">
   <div class="row">
     <form name="campaignForm" class="form-horizontal" ng-submit="vm.create(campaignForm.$valid)" novalidate>
       <fieldset class="col-sm-12 form-input-group">
         <div>
           <p class="input-group-title">Basic Information</p>
           <input type="text" class="form-control form-input" placeholder="Pick a name for your trial campaign" ng-model="vm.item.name">
-          <input type="text" class="form-control form-input" placeholder="Tagline" ng-model="vm.item.tagline" name="tagline">
-          <input type="text" class="form-control form-input" placeholder="Hashtag" ng-model="vm.item.hashtag" name="hashtag">
+          <!-- <input type="text" class="form-control form-input" placeholder="Tagline" ng-model="vm.item.tagline" name="tagline"> -->
+          <!-- <input type="text" class="form-control form-input" placeholder="Hashtag" ng-model="vm.item.hashtag" name="hashtag"> -->
         </div>
+        <br>
         <div>
           <p class="input-group-title">Description</p>
-          <textarea class="form-control form-input-textarea" placeholder="Tell users more about this product. What are the cool features? What's the story behind this product?" ng-model="vm.item.description"></textarea>
+          <textarea class="form-control form-input-textarea" placeholder="Enter description of this template" ng-model="vm.item.description"></textarea>
         </div>
+        <br>
         <div>
           <p class="input-group-title">Instructions</p>
           <textarea ng-model="vm.item.instructions" class="form-control form-input-textarea" placeholder="Let us know any instructions you have for trial users."></textarea>
         </div>
-        <div class="campaign-question-wrapper">
-          <p>Do you allow influencers to keep products after content creation?</p>
+        <br>
+        <div>
+          <p class="input-group-title">Do you allow influencers to keep products after content creation?</p>
           <up-switch optionfalse="No" optiontrue="Yep" selected="vm.item.trial.keepProduct"></up-switch>
         </div>
-        <div class="campaign-question-wrapper">
+        <br>
+        <br>
+        <!-- <div class="campaign-question-wrapper">
           <p>Do you accept requests for paid content creation?</p>
           <up-switch optionfalse="No" optiontrue="Yep" selected="vm.item.trial.paidContent"></up-switch>
+        </div> -->
+        <div>
+          <p class="input-group-title">Which social platforms would you like us to optimize your campaign for?</p>
+          <up-multi-switch options="vm.socialOptions"></up-multi-switch>
         </div>
-        <div class="campaign-question-wrapper">
-          <p>Which social platforms would you like us to optimize your campaign for?</p>
-          <up-multi-switch options="vm.socialOptions"></up-switch>
-        </div>
-        <div class="campaign-question-wrapper">
+        <br>
+        <hr>
+        <!-- <div class="campaign-question-wrapper">
           <p>How many days do you want influencrs to try the products for?</p>
           <div class="form-inline">
             <input ng-model="vm.item.trial.duration" type="text" class="form-control form-validate form-input small">
@@ -54,10 +61,10 @@
           <div class="form-inline">
             <input ng-model="vm.item.end" type="text" class="form-control form-validate form-input small" placeholder="MM/DD/YYYY" style="width: 130px;">
           </div>
-        </div>
+        </div> -->
         <div>
           <input class="btn btn-lg sproutup-btn-md-main" type="submit">
-          <a class="btn btn-lg sproutup-btn-md-main cancel" href="#" ng-click="vm.cancel()">Cancel</a>
+          <button class="btn btn-lg sproutup-btn-md-main cancel" href="#" ng-click="vm.cancel()">Cancel</button>
         </div>
       </fieldset>
     </form>
