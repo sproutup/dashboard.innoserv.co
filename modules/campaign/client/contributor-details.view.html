@@ -16,7 +16,7 @@
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Requested on {{ contributor.item.created | date }}</div>
           <div class="product-trial-item--status-desc">
             <p><span class="label label-info">Why</span>{{ contributor.item.comment }}</p>
-            <p><span class="label label-info">Sponsorship</span>I'd like to ask <strong>${{ contributor.item.bid }}</strong> for sponsored content.</p>
+            <p><span class="label label-info">Sponsorship</span>I'd like to ask <strong>{{ contributor.item.bid | currency }}</strong> for sponsored content.</p>
           </div>
         </div>
 
@@ -32,7 +32,7 @@
             <div class="name">{{ contributor.item.user.displayName }}</div>
             <div class="address">{{ contributor.item.address }}</div>
             <div class="address phone"><i class="fa fa-phone"></i>{{ contributor.item.phone }}</div>
-            <div class="address"><i class="fa fa-at"></i><a href="mailto:{{ contributor.item.user.email}}">{{ contributor.item.user.email }}</a></div>
+            <div class="address"><i class="fa fa-at"></i>{{ contributor.item.user.email }}</div>
           </div>
         </div>
 
