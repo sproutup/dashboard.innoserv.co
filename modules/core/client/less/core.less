@@ -2502,17 +2502,32 @@ button:focus {
   transition: background-color 0.2s linear;
 }
 
-.switch-wrapper .sproutup-btn-lg-main {
-  color: @main-text;
-  background-color: @sproutup-lightgrey;
+.campaign-question-wrapper .switch-wrapper .sproutup-btn-lg-main {
+  color: @main-text-lighter;
+  background-color: transparent;
   width: 100px;
-  border: 1px solid white;
+  border: 1px solid @sproutup-grey;
+  margin: 10px 2px 0px;
 }
 
-.switch-wrapper .sproutup-btn-lg-main.active {
+.campaign-question-wrapper .switch-wrapper .sproutup-btn-lg-main.active {
   color: white;
   background-color: @sproutup-blue;
-  border: 1px solid white;
+  border: 1px solid @sproutup-blue;
+  box-shadow: none;
+}
+
+.campaign-question-wrapper .switch-wrapper .sproutup-btn-lg-main:hover {
+  color: @sproutup-blue;
+  background-color: transparent;
+  width: 100px;
+  border: 1px solid @sproutup-blue;
+}
+
+.campaign-question-wrapper .switch-wrapper .sproutup-btn-lg-main.active:hover {
+  color: white;
+  background-color: @sproutup-blue;
+  border: 1px solid @sproutup-blue;
 }
 
 .campaign-question-wrapper .campaign-question-input-label.right {
@@ -3623,6 +3638,18 @@ a.sproutup-btn-lg-main {
 .sproutup-btn-md-main.trash:hover {
   background-color: @sproutup-orange-hover;
   color: white;
+}
+
+.sproutup-btn-md-main.minimal {
+  color: @main-text-lighter;
+  background-color: @sproutup-veryverylightgrey;
+  border: 1px solid @sproutup-grey;
+}
+
+.sproutup-btn-md-main.minimal:hover {
+  color: @main-text-lighter;
+  background-color: white;
+  border: 1px solid @sproutup-grey;
 }
 
 .sproutup-btn-sm,
