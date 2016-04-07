@@ -1,14 +1,12 @@
-<div data-ng-if="company.success" up-banner message-variable="company.success" fade-out="5000" class="hud success">
-  <i class="fa fa-check"></i>Saved Successfully
-</div>
-<div data-ng-if="company.error" up-banner message-variable="company.error" fade-out="5000" class="hud error">
-  <i class="fa fa-frown-o"></i><span ng-bind="company.error"></span>
-</div>
-
 <div class="col-sm-9 col-company-profile">
     <form name="companyForm" class="signin" autocomplete="off" ng-submit="company.update()">
       <fieldset>
-
+        <div data-ng-if="company.success" up-banner message-variable="company.success" fade-out="5000" class="hud success">
+          <strong>Profile Saved Successfully</strong>
+        </div>
+        <div data-ng-if="company.error" up-banner message-variable="company.error" fade-out="5000" class="hud error">
+          <strong><span ng-bind="company.error"></span></strong>
+        </div>
         <!-- Company name -->
         <div class="form-group">
           <label for="Name">Company Name</label>
