@@ -16,7 +16,8 @@
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Requested on {{ contributor.item.created | date }}</div>
           <div class="product-trial-item--status-desc">
             <p><span class="label label-info">Why</span>{{ contributor.item.comment }}</p>
-            <p><span class="label label-info">Sponsorship</span>I'd like to ask <strong>{{ contributor.item.bid | currency }}</strong> for sponsored content.</p>
+            <p ng-if="contributor.item.bid"><span class="label label-info">Sponsorship</span>I'd like to ask <strong>{{ contributor.item.bid | currency }}</strong> for sponsored content.</p>
+            <p ng-if="!contributor.item.bid"><span class="label label-info">Sponsorship</span>I'd like to create content <strong>without</strong> sponsorship.</p>
           </div>
         </div>
 
