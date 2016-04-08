@@ -103,7 +103,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
 
   function select(comp) {
     vm.authentication.setCompany(comp);
-    $state.go('slug', { slug: comp.slug });
+    $state.go('slug.company.navbar.campaign.list', { slug: comp.slug });
   }
 
   function init() {
