@@ -62,6 +62,8 @@ angular.module('company').config(['$stateProvider',
       })
       .state('slug.company.navbar.settings.profile', {
         url: '',
+        controller: 'EditCompanyController',
+        controllerAs: 'edit',
         templateUrl: 'modules/company/client/settings/edit-company-profile.html'
       })
       // for internal admin

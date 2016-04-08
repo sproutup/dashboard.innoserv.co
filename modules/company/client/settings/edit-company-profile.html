@@ -1,16 +1,16 @@
 <div class="col-sm-9 col-company-profile">
-    <form name="companyForm" class="signin" autocomplete="off" ng-submit="company.update()">
+    <form name="companyForm" class="signin" autocomplete="off" ng-submit="edit.update()">
       <fieldset>
-        <div data-ng-if="company.success" up-banner message-variable="company.success" fade-out="5000" class="hud success">
+        <div data-ng-if="edit.success" up-banner message-variable="edit.success" fade-out="5000" class="hud success">
           <strong>Profile Saved Successfully</strong>
         </div>
-        <div data-ng-if="company.error" up-banner message-variable="company.error" fade-out="5000" class="hud error">
-          <strong><span ng-bind="company.error"></span></strong>
+        <div data-ng-if="edit.error" up-banner message-variable="edit.error" fade-out="5000" class="hud error">
+          <strong><span ng-bind="edit.error"></span></strong>
         </div>
         <!-- Company name -->
         <div class="form-group">
           <label for="Name">Company Name</label>
-            <input ng-model="company.company.name" type="text" id="name" name="name" class="form-control form-validate form-input" placeholder="The official name of your company" required>
+            <input ng-model="edit.company.name" type="text" id="name" name="name" class="form-control form-validate form-input" placeholder="The official name of your company" required>
             <div ng-show="companyForm.name.$touched" ng-messages="companyForm.name.$error">
               <div ng-message="required" class="form--error-message"><i class="fa fa-minus-circle"></i>Company name can't be empty.</div>
             </div>
@@ -19,7 +19,7 @@
         <!-- Company tagline -->
         <div class="form-group">
           <label for="Tagline">Tagline</label>
-            <input ng-model="company.company.tagline" type="text" id="tagline" name="tagline" class="form-control form-validate form-input" placeholder="A cool tagline about your company">
+            <input ng-model="edit.company.tagline" type="text" id="tagline" name="tagline" class="form-control form-validate form-input" placeholder="A cool tagline about your company">
         </div>
 
         <!-- Profile appearance -->
@@ -34,7 +34,7 @@
         <!-- Company URL -->
         <div class="form-group">
           <label for="url">Company Website</label>
-          <input ng-model="company.company.url" type="url" id="url" name="url" class="form-control form-validate form-input" placeholder="The official website of your company" required up-http-prefix>
+          <input ng-model="edit.company.url" type="url" id="url" name="url" class="form-control form-validate form-input" placeholder="The official website of your company" required up-http-prefix>
           <div ng-show="companyForm.url.$touched" ng-messages="companyForm.url.$error">
             <div ng-message="required" class="form--error-message"><i class="fa fa-minus-circle"></i>A company without a URL? Silly.</div>
           </div>
@@ -42,14 +42,14 @@
 
         <!-- Company address -->
         <div class="form-group">
-          <label for="vm.address">Business Address</label>
-          <input class="form-control form-input" ng-model="company.company.address" name="address" placeholder="Business address of your company" ng-autocomplete="" details="company.company.addressDetails">
+          <label>Business Address</label>
+          <input class="form-control form-input" ng-model="edit.company.address" name="address" placeholder="Business address of your company" ng-autocomplete="" details="edit.company.addressDetails">
         </div>
 
         <!-- Company phone number -->
         <div class="form-group">
-          <label for="company.phone">Phone Number</label>
-          <input type="text" ng-model="company.company.phone" name="phone" id="phone" class="form-control form-validate form-input" ng-intl-tel-input>
+          <label>Phone Number</label>
+          <input type="text" ng-model="edit.company.phone" name="phone" id="phone" class="form-control form-validate form-input" ng-intl-tel-input>
         </div>
 
         <!-- TODO: disable Save button unless users change something -->
