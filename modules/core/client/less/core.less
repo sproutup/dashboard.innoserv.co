@@ -3768,6 +3768,16 @@ a.sproutup-btn-lg-main {
   color: white;
 }
 
+.sproutup-btn-sm.salmon {
+  background-color: @sproutup-salmon;
+  color: white;
+}
+
+.sproutup-btn-sm.salmon:hover {
+  background-color: @sproutup-salmon-hover;
+  color: white;
+}
+
 .sproutup-btn-sm.minimal {
   color: @main-text-lighter;
   background-color: @sproutup-veryverylightgrey;
@@ -4817,6 +4827,57 @@ li.campaign-item-wrapper.new-campaign button span {
 
 .sproutup-table.campaign-template-table .campaign-template-action {
   text-align: right;
+}
+
+.modal-open .modal {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.modal-footer .btn {
+  margin: 0px;
+}
+
+.modal {
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  -webkit-transform: translate3d(0, 0, 0);
+  background-color: #f5f5f5;
+  background-color: rgba(0,0,0,0.4);
+  opacity: 0;
+}
+
+.modal-sm {
+  width: 320px;
+}
+
+.modal-content {
+  border-radius: 0px;
+  margin-top: 80px;
+  padding: 10px 20px;
+}
+
+.modal-title {
+    font-weight: 700;
+    font-size: 13.5pt;
+    color: @main-text-light;
+}
+
+.modal-body {
+  font-weight: 400;
+  font-size: 11.5pt;
+  color: @main-text-light;
+}
+
+.modal-footer {
+    padding: 20px 5px 10px;
+    margin: 0px;
 }
 
 @media (max-width:767px) {
