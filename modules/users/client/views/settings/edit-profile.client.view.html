@@ -6,11 +6,16 @@
 
 <div class="col-sm-9 col-profile-info" data-ng-controller="EditProfileController">
     <form name="userForm" data-ng-submit="updateUserProfile()" class="signin" autocomplete="off">
+      <div data-ng-show="success" class="hud success">
+         <strong>Profile Saved Successfully</strong>
+      </div>
+      <div data-ng-show="error" class="hud error">
+        <strong data-ng-bind="error"></strong>
+      </div>
       <fieldset>
         <!-- TODO: send a verification email is users change email -->
         <div class="form-group">
           <label for="email">Email</label>
-<!--           <div><a href="" ng-click="emailConfirmation()" ng-if="!user.emailConfirmed">Send another email confirmation</a></div> -->
           <input type="email" id="email" name="email" class="form-control form-validate form-input" data-ng-model="user.email" placeholder="Email" disabled>
         </div>
 

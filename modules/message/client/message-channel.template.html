@@ -1,6 +1,6 @@
 <div class="conversation-wrapper">
   <div class="message-header">
-    <p ng-hide="vm.empty">Your conversation with <strong>{{vm.conversation.channel.ref.company.name}}</strong> about <strong><a ui-sref="slug.company.navbar.campaign.view.trial.requests({ campaignId: vm.conversation.channel.refId })">{{vm.conversation.channel.ref.name}}</strong></a></p>
+    <p ng-hide="vm.empty">Your conversation about <strong><a ui-sref="slug.company.navbar.campaign.view.trial.requests({ campaignId: vm.conversation.channel.refId })">{{vm.conversation.channel.ref.name}}</strong></a></p>
     <p ng-show="vm.empty">You haven't started a conversation</p>
   </div>
   <div class="message-body" scroll-glue-bottom="true" >

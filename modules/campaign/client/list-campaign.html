@@ -57,7 +57,7 @@
 <div ng-if="vm.campaigns.length > 0">
   <div class="campaign-list-wrapper">
     <ul class="list-inline">
-      <li class="campaign-item-wrapper" ng-repeat="campaign in vm.campaigns | filter: {status: 1}: vm.returnMatch">
+      <li class="campaign-item-wrapper" ng-repeat="campaign in vm.campaigns | orderBy: '-started' | filter: {status: 1}: vm.returnMatch">
         <div class="header"><span ng-if="campaign.started">Ongoing since {{campaign.started | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</span></div>
         <div class="type-icon"><img src="modules/theme/client/img/trial.png"></div>
         <div class="title">{{ campaign.name | limitTo: 40 }}{{ campaign.name.length < 40 ? '' : '...' }}</div>
@@ -85,7 +85,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="campaign in vm.campaigns | filter: {status: 0}: vm.returnMatch">
+          <tr ng-repeat="campaign in vm.campaigns | orderBy: '-updated' | filter: {status: 0}: vm.returnMatch">
             <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-edit.png"></td>
             <td class="campaign-title">
               <div>{{campaign.name}}</div>
@@ -115,7 +115,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="campaign in vm.campaigns | filter: {status: -1}: vm.returnMatch as filteredItems">
+          <tr ng-repeat="campaign in vm.campaigns | orderBy: '-ended' | filter: {status: -1}: vm.returnMatch as filteredItems">
             <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-completed.png"></td>
             <td class="campaign-title">
               <div>{{ campaign.name }}</div>

@@ -40,7 +40,7 @@ angular.module('users').controller('PasswordController', ['$scope', '$http', '$l
         Authentication.user = response;
 
         // And redirect to the index page
-        $state.go('mycompany');
+        $state.go('footer.select');
       }).error(function (response) {
         $scope.error = response.message;
       });
