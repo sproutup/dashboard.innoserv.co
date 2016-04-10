@@ -7,6 +7,14 @@
         <div data-ng-if="edit.error" up-banner message-variable="edit.error" fade-out="5000" class="hud error">
           <strong><span ng-bind="edit.error"></span></strong>
         </div>
+
+        <!-- Company logo -->
+        <div class="form-group">
+          <label for="">Your Logo</label>
+          <div class="form-secondary-label">Your logo shows up on your SproutUp campaigns and profile. For the best visual quality, the recommended size is 240 x 240 pixels.</div>
+          <div up-file-upload ng-model="company.company.logo.file" on-change="company.saveLogo(company.company.logo.file.id, company.company.id)" preview="modules/core/client/img/default-campaign-banner.jpg"></div>
+        </div>
+
         <!-- Company name -->
         <div class="form-group">
           <label for="Name">Company Name</label>
@@ -25,7 +33,7 @@
         <!-- Profile appearance -->
         <div class="form-group">
           <label for="">Profile Appearance</label>
-          <div class="form-secondary-label">Upload an awesome photo to showcase your company. For the best visual quality, the recommended size is 2400 x 1200 pixels.</div>
+          <div class="form-secondary-label">Upload an awesome profile appearance picture to showcase your company. For the best visual quality, the recommended size is 2400 x 1200 pixels.</div>
           <div>
             <div class="company-banner" up-file-upload ng-model="company.company.banner.file" on-change="company.saveBannerPicture(company.company.banner.file.id, company.company.id)" preview="modules/core/client/img/default-campaign-banner.jpg"></div>
           </div>
