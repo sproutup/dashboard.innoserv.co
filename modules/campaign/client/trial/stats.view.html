@@ -1,4 +1,4 @@
-<div class="row dashboard-body-wrapper" ng-init="vm.findContent()">
+<div class="row dashboard-body-wrapper" ng-init="vm.findContent()" ng-show="vm.content.$resolved">
   <div class="content-stats-list">
     <div class="empty-state-wrapper" ng-if="!vm.content.length">
       <img class="img-center" src="https://s3-us-west-2.amazonaws.com/sproutup-assets/no-content.gif">
@@ -24,7 +24,7 @@
             <td ng-if="item.media=='url'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/url.png"></td>
             <td>
               <div class="content-title" ng-bind="item.title"></div>
-              <div class="content-subline"><a class="content-author" href="#" ng-bind="item.user.name"></a>&#183;<a class="content-view-link" ui-sref="slug.company.navbar.campaign.view.trial.stats.details({contentId:item.id})" ng-click="vm.contentItem = null">View Content</a></div>
+              <div class="content-subline"><a class="content-author" href="#" ng-bind="item.user.displayName"></a>&#183;<a class="content-view-link" ui-sref="slug.company.navbar.campaign.view.trial.stats.details({contentId:item.id})" ng-click="vm.contentItem = null">View Content</a></div>
             </td>
             <td class="request-reach" ng-bind="item.impressions"></td>
             <td class="request-reach" ng-bind="item.engagements"></td>

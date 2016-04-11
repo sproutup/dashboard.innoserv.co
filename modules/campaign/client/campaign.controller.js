@@ -246,10 +246,10 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     vm.success = false;
     vm.content = {};
 
-    CampaignService.content().query({
+    vm.content = CampaignService.content().query({
       campaignId: $state.params.campaignId
     }, function(res) {
-      vm.content = res;
+      vm.success = true;
     }, function(err) {
       $state.go('landing.default');
     });
