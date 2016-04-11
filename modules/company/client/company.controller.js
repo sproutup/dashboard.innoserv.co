@@ -20,6 +20,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   vm.findByStateParam = findByStateParam;
   vm.authentication = Authentication;
   vm.saveBannerPicture = saveBannerPicture;
+  vm.saveLogo = saveLogo;
   vm.state = $state;
   vm.company = item;
 
@@ -140,5 +141,20 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
       }, function(reason) {
         vm.error = reason;
       });
+  }
+
+  function saveLogo(fileId, companyId) {
+    var CompanyObj = CompanyService.company();
+    var company = new CompanyObj ();
+    company.logo = { fileId: fileId };
+    company.id = companyId;
+
+    CompanyService.updateCompany(company)
+    .then(function(result) {
+      console.log(result);
+      vm.succes = true;
+    }, function(reason) {
+      vm.error = reason;
+    });
   }
 }

@@ -8,17 +8,21 @@
       <fieldset>
         <div class="signup-login-form" show-errors>
           <!-- Company Name -->
+          <label>Company Name</label>
           <input type="text" ng-model="vm.name" id="name" name="name" class="form-control form-validate signup-login-input" placeholder="Which company do you work for?" required>
           <div ng-messages="companyForm.name.$error" ng-show="companyForm.name.$submitted || companyForm.name.$touched">
             <div class="signup-login-form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>We thought a company name is essential for business software.</div>
           </div>
           <!-- Company URL -->
+          <label>Company Website URL</label>
           <input type="url" ng-model="vm.url" id="url" name="url" class="form-control form-validate signup-login-input" placeholder="Official website of your company" required up-http-prefix>
           <div ng-messages="companyForm.url.$error" ng-show="companyForm.url.$submitted || companyForm.url.$touched">
             <div class="signup-login-form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>A company with no website? Silly.</div>
           </div>
           <!-- Company Name -->
-          <input type="text" ng-model="vm.slug" ng-model-options="{ debounce: 250 }" ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" id="slug" name="slug" class="form-control form-validate signup-login-input" placeholder="Choose a handle for your company" required up-slug>
+          <label>Company "Username"</label>
+          <div class="sub-label">A unique handle (i.e. identifier) of your company. It's used to access your company's dashboard, like <strong>https://dashboard.sproutup.co/apple</strong>.</div>
+          <input type="text" ng-model="vm.slug" ng-model-options="{ debounce: 250 }" ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" id="slug" name="slug" class="form-control form-validate signup-login-input" placeholder="Choose a &quot;username&quot; for your company" required up-slug>
           <div ng-messages="companyForm.slug.$error" ng-show="companyForm.$submitted || companyForm.slug.$touched">
             <div class="signup-login-form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>Please choose a handle.</div>
             <div class="signup-login-form--error-message" ng-message="uniqueslug"><i class="fa fa-minus-circle"></i>This handle has been taken.</div>
