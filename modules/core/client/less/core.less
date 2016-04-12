@@ -4863,6 +4863,10 @@ li.campaign-item-wrapper.new-campaign button span {
   left: 0;
   overflow-y: auto;
   -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
   background-color: #f5f5f5;
   background-color: rgba(0,0,0,0.4);
   opacity: 0;
@@ -4903,11 +4907,8 @@ li.campaign-item-wrapper.new-campaign button span {
   font-size: 11pt;
 }
 
-.signup-login-form .sub-label{
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 0px;
-  margin-bottom: 9px;
+.signup-login-form .sub-label {
+  margin: 0px 5% 9px;
   color: @main-text-verylight;
   font-size: 9.5pt;
   font-weight: 400;
