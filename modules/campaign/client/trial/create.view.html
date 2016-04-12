@@ -3,7 +3,7 @@
     <h1 class="dashboard-section-title">
       Create New Campaign
       <div class="dashboard-buttons-top">
-        <button class="btn sproutup-btn-xs" href="#" type="submit" ng-click="campaign.create(template.item, template.socialOptions)" ng-disabled="!form.$valid">Create</button>
+        <button class="btn sproutup-btn-xs" href="#" type="submit" ng-click="campaign.create(template.item, template.socialOptions)" ng-disabled="!form.$valid">Create Campaign</button>
         <button class="btn sproutup-btn-xs cancel" ng-click="campaign.cancel(form)" href="#">Cancel</button>
       </div>
     </h1>
@@ -125,5 +125,10 @@
       <a class="btn btn-lg sproutup-btn-md-main cancel" href="#" ng-click="vm.cancel()">Cancel</a>
     </div> -->
   </form>
+  <hr>
+  <div class="dashboard-buttons-top">
+    <button class="btn sproutup-btn-xs" href="#" type="submit" ng-click="campaign.create(template.item, template.socialOptions)" ng-disabled="!form.$valid">Create Campaign</button>
+    <button class="btn sproutup-btn-xs cancel" ng-click="campaign.cancel(form)" href="#">Cancel</button>
+  </div>
 </div>
 <div ui-view></div>

@@ -135,5 +135,12 @@
       <a class="btn btn-lg sproutup-btn-md-main cancel" href="#" ng-click="vm.cancel()">Cancel</a>
     </div> -->
   </form>
+  <hr>
+  <div class="dashboard-buttons-top">
+    <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()" ng-disabled="!form.$valid" ng-if="vm.item.$resolved && vm.item.status !== 1">Start Campaign</button>
+    <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.openStopCampaignModal()" ng-if="vm.item.$resolved && vm.item.status === 1">End Campaign</button>
+    <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)">Save and Exit</button>
+    <!-- <button class="btn btn-sm sproutup-btn-xs cancel" ng-click="vm.cancel(form)" href="#">Exit</button> -->
+  </div>
 </div>
 <div ui-view></div>
