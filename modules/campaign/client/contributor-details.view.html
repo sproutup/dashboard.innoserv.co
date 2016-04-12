@@ -13,7 +13,7 @@
       <h4>Product Trial</h4>
       <div class="dashboard-side-panel-section-body">
         <div class="product-trial-item--detail">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Requested on {{ contributor.item.created | date }}</div>
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Requested on {{ contributor.item.created | date:'MMM dd, yyyy' }}</div>
           <div class="product-trial-item--status-desc">
             <p><span class="label label-info">Why</span>{{ contributor.item.comment }}</p>
             <p ng-if="contributor.item.bid"><span class="label label-info">Sponsorship</span>I'd like to ask <strong>{{ contributor.item.bid | currency }}</strong> for sponsored content.</p>
@@ -27,7 +27,7 @@
         </div>
 
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Approved on {{ contributor.item.approved[0].created | date }}</div>
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Approved on {{ contributor.item.log[0].created | date:'MMM dd, yyyy' }}</div>
           <div class="product-trial-item--status-desc" ng-if="!contributor.item.trial.shippingState"><span class="label label-info">Shipping</span>Please ship product as soon as you can.</div>
           <div class="product-trial-item--shipping">
             <div class="name">{{ contributor.item.user.displayName }}</div>
