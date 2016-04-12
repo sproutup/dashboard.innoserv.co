@@ -49,11 +49,14 @@
           <div class="product-trial-item--status-desc">Awesome! {{ contributor.item.user.displayName }} must be very excited now about the product!</div>
         </div>
 
-        <div class="product-trial-item--detail" ng-if="contributor.item.state === 10">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Completed on {{ contributor.item.completed[0].created | date }}</div>
+        <div class="product-trial-item--detail" ng-if="contributor.item.content.length > 0">
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Content Live</div>
+          <div ng-repeat="content in contributor.item.content">
+            <up-media item="content" ng-if="content.ref"></up-media>
+          </div>
         </div>
 
-        <div class="product-trial-item--detail" ng-if="contributor.item.state === 10 && contributor.item.bid > 0">
+        <div class="product-trial-item--detail" ng-if="contributor.item.content.length > 0">
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Make payment with Square Cash&trade;</div>
           <div class="product-trial-item--status-desc">
             <p>{{ contributor.item.user.displayName }} has submitted content for this campaign. If everything looks great, please pay the sponsorship at your earliest convenience.</p>
