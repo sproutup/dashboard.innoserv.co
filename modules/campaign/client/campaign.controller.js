@@ -33,6 +33,9 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.ProductService = ProductService;
   vm.ContributorService = ContributorService;
   vm.openStopCampaignModal = openStopCampaignModal;
+  vm.greaterThan = greaterThan;
+  vm.filterRequested = filterRequested;
+  vm.filterApproved = filterApproved;
   vm.socialOptions = [
     {  title: 'YouTube',
        type: 'yt' },
@@ -361,5 +364,24 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     }, function () {
       console.log('Modal dismissed at: ' + new Date());
     });
+  }
+
+  function greaterThan(property, value) {
+    return function(item){
+      return item[property] > value;
+    }
+  }
+
+  function filterRequested() {
+    console.log('here');
+    vm.query = {};
+    vm.query.state = 0;
+    vm.filtering = 'requested';
+  }
+
+  function filterApproved() {
+    console.log('yo');
+    vm.query = vm.greaterThan('state', 0);
+    vm.filtering = 'approved';
   }
 }

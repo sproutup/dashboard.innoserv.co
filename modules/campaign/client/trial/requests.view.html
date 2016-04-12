@@ -1,9 +1,9 @@
-<div class="row dashboard-body-wrapper" ng-init="vm.query.state = 0">
+<div class="row dashboard-body-wrapper" ng-init="vm.filterRequested()">
   <div class="col-sm-2">
     <div class="list-group">
-      <a href="#" ng-click="vm.query.state = 0"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 0 }">Requests</div></a>
+      <a href="#" ng-click="vm.filterRequested()"><div class="list-group-item" ng-class="{ 'current': vm.filtering === 'requested' }">Requests</div></a>
       <!-- <a href="#"><div class="list-group-item">In Talk</div></a> -->
-      <a href="#" ng-click="vm.query.state = 1"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 1 }">Yes List</div></a>
+      <a href="#" ng-click="vm.filterApproved()"><div class="list-group-item" ng-class="{ 'current': vm.filtering === 'approved' }">Yes List</div></a>
       <!-- <a href="#" ng-click="vm.query.state = 10"><div class="list-group-item" ng-class="{ 'current': vm.query.state === 10 }">Completed</div></a> -->
     </div>
   </div>
@@ -42,8 +42,10 @@
             </td>
             <td class="request-reach">{{ item.user.reach || '0' }}</td>
             <td>
-              <span ng-if="item.state == 0" class="label label-request-status pending">Requested</span>
-              <span ng-if="item.state == 1 " class="label label-request-status completed">Approved</span>
+              <span ng-if="item.state === 0" class="label label-request-status pending">Requested</span>
+              <span ng-if="item.state === 1 && item.trial.shippingState !== 1" class="label label-request-status not-shipped">Not shipped</span>
+              <span ng-if="item.state === 1 && item.trial.shippingState === 1" class="label label-request-status shipped">Shipped</span>
+              <span ng-if="item.state === 2" class="label label-request-status completed">Content live</span>
             </td>
           </tr>
         </tbody>
