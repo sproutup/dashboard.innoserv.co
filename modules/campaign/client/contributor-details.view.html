@@ -32,7 +32,7 @@
           <div class="product-trial-item--shipping" ng-if="!contributor.item.trial.shippingState">
             <div class="name">{{ contributor.item.user.displayName }}</div>
             <div class="address">{{ contributor.item.address }}</div>
-            <div class="address phone"><i class="fa fa-phone"></i>{{ contributor.item.phone }}</div>
+            <div class="address phone"><i class="fa fa-phone"></i>{{ contributor.item.phone | tel }}</div>
             <div class="address"><i class="fa fa-at"></i>{{ contributor.item.user.email }}</div>
           </div>
         </div>
@@ -49,7 +49,7 @@
           <div class="product-trial-item--shipping" ng-if="showShippingAddress">
             <div class="name">{{ contributor.item.user.displayName }}</div>
             <div class="address">{{ contributor.item.address }}</div>
-            <div class="address phone"><i class="fa fa-phone"></i>{{ contributor.item.phone }}</div>
+            <div class="address phone"><i class="fa fa-phone"></i>{{ contributor.item.phone | tel }}</div>
             <div class="address"><i class="fa fa-at"></i>{{ contributor.item.user.email }}</div>
           </div>
         </div>
