@@ -5,8 +5,7 @@
     </div>
     <!-- panel header -->
     <div class="dashboard-side-panel-header">
-      <p>{{ contributor.item.user.name || 'User' }}<sup class="label label-influencer">Influencer</sup></p>
-      <button class="btn sproutup-btn-sm aqua" ng-click="contributor.messaging = true"><i class="fa fa-commenting"></i>Send message</button>
+      <p>{{ vm.contentItem.title | limitTo: 24 }}{{ vm.contentItem.title.length < 24 ? '' : '...' }}</p>
     </div>
 
     <up-media item="vm.contentItem" ng-if="vm.contentItem.ref"></up-media>

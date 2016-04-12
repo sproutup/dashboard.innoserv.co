@@ -49,18 +49,18 @@
           <div class="product-trial-item--status-desc">Awesome! {{ contributor.item.user.displayName }} must be very excited now about the product!</div>
         </div>
 
-
         <div class="product-trial-item--detail" ng-if="contributor.item.state === 10">
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Completed on {{ contributor.item.completed[0].created | date }}</div>
-          <!-- <div class="product-trial-item--status-desc">Hooray, Kevin the Tech Ninja has posted a video! <a href="#">Check it out!</a></div> -->
         </div>
-<!--         <div class="product-trial-item--detail">
-          <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Have you received the product back?</div>
+
+        <div class="product-trial-item--detail" ng-if="contributor.item.state === 10 && contributor.item.bid > 0">
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Make payment with Square Cash&trade;</div>
           <div class="product-trial-item--status-desc">
-            <button class="btn sproutup-btn-sm aqua">YES!</button>
-            <button class="btn sproutup-btn-sm grey">No. Send a reminder.</button>
+            <p>{{ contributor.item.user.displayName }} has submitted content for this campaign. If everything looks great, please pay the sponsorship at your earliest convenience.</p>
+            <a ng-if="contributor.item.user.cashtag" class="btn sproutup-btn-sm minimal" href="https://cash.me/{{ contributor.item.user.cashtag }}/{{ contributor.item.bid }}" target="_blank">Pay {{ contributor.item.bid | currency }} to {{ contributor.item.user.displayName }}</a>
+            <p ng-if="!contributor.item.user.cashtag"><span class="label label-alert">Missing Payment Method</span>{{ contributor.item.user.displayName }} has not entered the payment information (i.e. the Square Cashtag). Please resolve this issue by messaging or emailing the user.</p>
           </div>
-        </div> -->
+        </div>
       </div>
     </div>
 

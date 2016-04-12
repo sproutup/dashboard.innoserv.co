@@ -3255,6 +3255,11 @@ input:-ms-input-placeholder {
     color: @sproutup-green;
 }
 
+.product-trial-item--status.current a {
+  color: @sproutup-green;
+  text-decoration: underline;
+}
+
 .product-trial-item--status.future {
     color: @sproutup-green;
     opacity: 0.7;
@@ -3281,6 +3286,12 @@ input:-ms-input-placeholder {
 .product-trial-item--status-desc .label-info {
   color: @sproutup-green;
   border: 1px solid @sproutup-green;
+  background-color: transparent;
+}
+
+.product-trial-item--status-desc .label-alert {
+  color: @sproutup-salmon;
+  border: 1px solid @sproutup-salmon;
   background-color: transparent;
 }
 
@@ -3672,6 +3683,10 @@ a.sproutup-btn-lg-main {
   -o-transition: all .2s ease-in-out;
   -ms-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
+}
+
+a.sproutup-btn-sm {
+  padding-top: 10px;
 }
 
 .sproutup-btn-sm i {
