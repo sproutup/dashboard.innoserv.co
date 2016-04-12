@@ -118,6 +118,13 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   }
 
   function startCampaign () {
+    // for each social option selected, push it onto the typeOfContent array
+    vm.item.typeOfContent = [];
+    for (var s = 0; s < vm.socialOptions.length; s++) {
+      if (vm.socialOptions[s].selected) {
+        vm.item.typeOfContent.push(vm.socialOptions[s].type);
+      }
+    }
     vm.item.status = 1;
     vm.item.started = new Date();
     CampaignService.updateCampaign(vm.item)
