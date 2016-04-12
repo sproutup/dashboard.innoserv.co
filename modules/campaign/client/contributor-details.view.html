@@ -29,7 +29,7 @@
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0">
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Approved on {{ contributor.item.log[0].created | date:'MMM dd, yyyy' }}</div>
           <div class="product-trial-item--status-desc" ng-if="!contributor.item.trial.shippingState"><span class="label label-info">Shipping</span>Please ship product as soon as you can.</div>
-          <div class="product-trial-item--shipping">
+          <div class="product-trial-item--shipping" ng-if="!contributor.item.trial.shippingState">
             <div class="name">{{ contributor.item.user.displayName }}</div>
             <div class="address">{{ contributor.item.address }}</div>
             <div class="address phone"><i class="fa fa-phone"></i>{{ contributor.item.phone }}</div>
@@ -37,29 +37,43 @@
           </div>
         </div>
 
-        <div class="product-trial-item--detail" ng-if="contributor.item.state > 0">
-          <div class="product-trial-item--detail" ng-if="!contributor.item.trial.shippingState">
+        <div class="product-trial-item--detail" ng-if="contributor.item.state > 0 && !contributor.item.trial.shippingState">
+          <div class="product-trial-item--detail">
             <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Have you shipped the product?</div>
             <div class="product-trial-item--status-desc"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.productShipped()">YES! En route.</button></div>
           </div>
         </div>
 
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0 && contributor.item.trial.shippingState">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped</div>
-          <div class="product-trial-item--status-desc">Awesome! {{ contributor.item.user.displayName }} must be very excited now about the product!</div>
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped<span><a href="#" ng-click="showShippingAddress = !showShippingAddress">Show shipping address</a></span></div>
+          <div class="product-trial-item--shipping" ng-if="showShippingAddress">
+            <div class="name">{{ contributor.item.user.displayName }}</div>
+            <div class="address">{{ contributor.item.address }}</div>
+            <div class="address phone"><i class="fa fa-phone"></i>{{ contributor.item.phone }}</div>
+            <div class="address"><i class="fa fa-at"></i>{{ contributor.item.user.email }}</div>
+          </div>
+        </div>
+
+        <div class="product-trial-item--detail" ng-if="contributor.item.state > 0 && !contributor.item.content.length">
+          <div class="product-trial-item--detail">
+            <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Content not live yet</div>
+          </div>
         </div>
 
         <div class="product-trial-item--detail" ng-if="contributor.item.content.length > 0">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Content Live</div>
-          <div ng-repeat="content in contributor.item.content">
-            <up-media item="content" ng-if="content.ref"></up-media>
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Content live</div>
+          <div class="product-trial-item--status-desc">
+            <p>{{ contributor.item.user.displayName }} has published {{ contributor.item.content.length }} content</p>
+            <div ng-repeat="content in contributor.item.content">
+              <up-media item="content" ng-if="content.ref"></up-media>
+            </div>
           </div>
         </div>
 
         <div class="product-trial-item--detail" ng-if="contributor.item.content.length > 0">
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Make payment with Square Cash&trade;</div>
           <div class="product-trial-item--status-desc">
-            <p>{{ contributor.item.user.displayName }} has submitted content for this campaign. If everything looks great, please pay the sponsorship at your earliest convenience.</p>
+            <p>{{ contributor.item.user.displayName }} has submitted content for this campaign. If everything looks great, please pay the agreed sponsorship at your earliest convenience.</p>
             <a ng-if="contributor.item.user.cashtag" class="btn sproutup-btn-sm minimal" href="https://cash.me/{{ contributor.item.user.cashtag }}/{{ contributor.item.bid }}" target="_blank">Pay {{ contributor.item.bid | currency }} to {{ contributor.item.user.displayName }}</a>
             <p ng-if="!contributor.item.user.cashtag"><span class="label label-alert">Missing Payment Method</span>{{ contributor.item.user.displayName }} has not entered the payment information (i.e. the Square Cashtag). Please resolve this issue by messaging or emailing the user.</p>
           </div>
