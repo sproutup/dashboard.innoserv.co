@@ -4712,13 +4712,31 @@ li.campaign-item-wrapper.new-campaign button span {
   position: absolute;
   width: 100%;
   top: 0px;
-  background-color: @sproutup-dark-grey;
+  //background-color: @sproutup-dark-grey;
   color: @main-text-white;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 9pt;
   height: 110px;
   padding-top: 30px;
   line-height: 1.6;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size: cover;
+}
+
+.campaign-item-wrapper .header::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  content: "";
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.5)); /* Standard syntax */
+}
+
+.campaign-item-wrapper .header span {
+  z-index: 10;
+  position: relative;
 }
 
 .campaign-item-wrapper .type-icon {
