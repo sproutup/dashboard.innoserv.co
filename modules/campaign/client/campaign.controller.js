@@ -369,7 +369,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   function greaterThan(property, value) {
     return function(item){
       return item[property] > value;
-    }
+    };
   }
 
   function filterRequested() {
