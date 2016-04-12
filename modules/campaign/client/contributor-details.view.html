@@ -64,7 +64,7 @@
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Content live</div>
           <div class="product-trial-item--status-desc">
             <p>{{ contributor.item.user.displayName }} has published {{ contributor.item.content.length }} content</p>
-            <div ng-repeat="content in contributor.item.content">
+            <div ng-repeat="content in contributor.item.content | orderBy: '-created'">
               <up-media item="content" ng-if="content.ref"></up-media>
             </div>
           </div>

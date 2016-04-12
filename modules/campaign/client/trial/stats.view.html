@@ -17,14 +17,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="item in vm.content">
+          <tr ng-repeat="item in vm.content | orderBy: '-created'">
             <td ng-if="item.media=='yt'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/youtube.png"></td>
             <td ng-if="item.media=='tw'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/twitter.png"></td>
             <td ng-if="item.media=='pi'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/pinterest.png"></td>
             <td ng-if="item.media=='url'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/url.png"></td>
             <td>
               <div class="content-title" ng-bind="item.title"></div>
-              <div class="content-subline"><span class="content-author" ng-bind="item.user.displayName"></span>&#183;<a class="content-view-link" ui-sref="slug.company.navbar.campaign.view.trial.stats.details({contentId:item.id})" ng-click="vm.contentItem = null">View Content</a></div>
+              <div class="content-subline">
+                <span class="content-author" ng-bind="item.user.displayName"></span>&#183;
+                <span class="content-timestamp" ng-bind="item.created | date"></span>&#183;
+                <a class="content-view-link" ui-sref="slug.company.navbar.campaign.view.trial.stats.details({contentId:item.id})" ng-click="vm.contentItem = null">View Content</a>
+              </div>
             </td>
             <td class="request-reach" ng-bind="item.impressions"></td>
             <td class="request-reach" ng-bind="item.engagements"></td>
