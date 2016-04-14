@@ -4,9 +4,9 @@
       {{ vm.item.name || 'Your Campaign Title' }}
       <div class="dashboard-buttons-top">
         <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()" ng-disabled="!form.$valid" ng-if="vm.item.$resolved && vm.item.status !== 1">Start Campaign</button>
+        <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-if="vm.item.$resolved && vm.item.status !== 1">Save and Exit</button>
         <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.openStopCampaignModal()" ng-if="vm.item.$resolved && vm.item.status === 1">End Campaign</button>
-        <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)">Save and Exit</button>
-        <!-- <button class="btn btn-sm sproutup-btn-xs cancel" ng-click="vm.cancel(form)" href="#">Exit</button> -->
+        <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-disabled="!form.$valid" ng-if="vm.item.$resolved && vm.item.status === 1">Update Campaign</button>
       </div>
     </h1>
     <div class="create-campaign-wrapper">
@@ -15,36 +15,39 @@
         <p class="sub-header">An awesome banner photo makes your campaign outstanding. For the best visual quality, the recommended size is 2000 x 800 pixels.</span>
       </div>
       <div class="create-campaign-banner" up-file-upload ng-model="vm.item.banner.file" on-change="vm.saveBannerPicture(vm.item.banner.file.id, vm.item.id)" preview="modules/core/client/img/default-campaign-banner.jpg"></div>
-      <!-- banner area -->
-      <!--div class="create-campaign-banner" style="background-image: url('modules/core/client/img/default-campaign-banner.jpg');">
-        <h1><a href="#">Campaign Title</a><span><a href="#">Inspirations</a></span></h1>
-        <h2><a href="#">Short description</a><span><a href="#">Inspirations</a></span></h2>
-        <h3><a href="#"><i class="fa fa-camera"></i>An awesome banner does a lot</a></h3>
-      </div-->
       <!-- editing a component -->
       <div class="new-campaign-component todo">
-        <div class="row new-campaign-component-header todo">
+        <div class="row new-campaign-component-header" ng-class="{ todo: !form.campaignName.$valid || !form.campaignTagline.$valid || !form.campaignDesc.$valid, done: form.campaignName.$valid && form.campaignTagline.$valid && form.campaignDesc.$valid }">
           <div class="col-sm-6">
-            <p>Campaign details</p>
+            <p><i ng-if="form.campaignName.$valid && form.campaignTagline.$valid && form.campaignDesc.$valid" class="fa fa-check-circle"></i>Campaign details</p>
           </div>
         </div>
         <div class="row new-campaign-component-content">
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Name</p>
-              <input name="campaignName" class="form-validate form-control form-input" ng-model="vm.item.name" required>
+              <input name="campaignName" class="form-validate form-control form-input" ng-model="vm.item.name" ng-model-options="{ updateOn: 'blur' }" required placeholder="Give your campaign a title">
+              <div ng-messages="form.campaignName.$error" ng-show="form.campaignName.$touched">
+                <div class="message error" ng-message="required">A campaign without a title? Silly.</div>
+              </div>
             </div>
           </div>
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Tagline</p>
-              <input name="campaignTagline" class="form-validate form-control form-input" ng-model="vm.item.tagline" required>
+              <input name="campaignTagline" class="form-validate form-control form-input" ng-model="vm.item.tagline" ng-model-options="{ updateOn: 'blur' }" required placeholder="Give your campaign a short tagline">
+              <div ng-messages="form.campaignTagline.$error" ng-show="form.campaignTagline.$touched">
+                <div class="message error" ng-message="required">A tagline is also required. People talk about it!</div>
+              </div>
             </div>
           </div>
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Description</p>
-              <textarea name="campaignDesc" class="form-validate form-control form-input-textarea" ng-model="vm.item.description" placeholder="Write here..." required></textarea>
+              <textarea name="campaignDesc" class="form-validate form-control form-input-textarea" ng-model="vm.item.description" ng-model-options="{ updateOn: 'blur' }" placeholder="Write here..." required></textarea>
+              <div ng-messages="form.campaignDesc.$error" ng-show="form.campaignDesc.$touched">
+                <div class="message error" ng-message="required">Please let people know what your campaign is about.</div>
+              </div>
               <div class="annotation">
                 <div>Tell users more about your campaign, product or mission. <a href="#" ng-click="showExampleDesc = !showExampleDesc">See an example</a></div>
                 <blockquote class="detail" ng-if="showExampleDesc">
@@ -58,16 +61,19 @@
       </div>
       <!-- editing a component -->
       <div class="new-campaign-component todo">
-        <div class="row new-campaign-component-header todo">
+        <div class="row new-campaign-component-header" ng-class="{ todo: !form.campaignInstructions.$valid, done: form.campaignInstructions.$valid }">
           <div class="col-sm-6">
-            <p>Campaign instructions</p>
+            <p><i ng-if="form.campaignInstructions.$valid" class="fa fa-check-circle"></i>Campaign instructions</p>
           </div>
         </div>
         <div class="row new-campaign-component-content">
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Provide instructions for users who participate your campaign.</p>
-              <textarea class="form-validate form-control form-input-textarea" ng-model="vm.item.instructions" placeholder="Write here..." required></textarea>
+              <textarea name="campaignInstructions" class="form-validate form-control form-input-textarea" ng-model="vm.item.instructions" ng-model-options="{ updateOn: 'blur' }" placeholder="Write here..." required></textarea>
+              <div ng-messages="form.campaignInstructions.$error" ng-show="form.campaignInstructions.$touched">
+                <div class="message error" ng-message="required">Please provide proper instructions to the content creators.</div>
+              </div>
               <div class="annotation">
                 <div>Providing clear instructions helps creators to deliver the content in the form and taste you desire. <a href="#" ng-click="showExampleInstructions = !showExampleInstructions">See an example</a></div>
                 <blockquote class="detail" ng-if="showExampleInstructions">
@@ -80,9 +86,9 @@
         </div>
       </div>
       <div class="new-campaign-component todo">
-        <div class="row new-campaign-component-header todo">
+        <div class="row new-campaign-component-header" ng-class="{ todo: !vm.socialOptions[0].selected && !vm.socialOptions[1].selected && !vm.socialOptions[2].selected && !vm.socialOptions[3].selected && !vm.socialOptions[4].selected && !vm.socialOptions[5].selected && !vm.socialOptions[6].selected, done: vm.socialOptions[0].selected || vm.socialOptions[1].selected || vm.socialOptions[2].selected || vm.socialOptions[3].selected || vm.socialOptions[4].selected || vm.socialOptions[5].selected || vm.socialOptions[6].selected }">
           <div class="col-sm-6">
-            <p>Content</p>
+            <p><i ng-if="vm.socialOptions[0].selected || vm.socialOptions[1].selected || vm.socialOptions[2].selected || vm.socialOptions[3].selected || vm.socialOptions[4].selected || vm.socialOptions[5].selected || vm.socialOptions[6].selected" class="fa fa-check-circle"></i>Content</p>
           </div>
         </div>
         <div class="row new-campaign-component-content">
@@ -95,9 +101,9 @@
         </div>
       </div>
       <div class="new-campaign-component">
-        <div class="row new-campaign-component-header todo" ng-init="vm.findProducts()">
+        <div class="row new-campaign-component-header" ng-class="{ todo: !form.campaignProduct.$valid, done: form.campaignProduct.$valid }" ng-init="vm.findProducts()">
           <div class="col-sm-6">
-            <p>Choose a product</p>
+            <p><i ng-if="form.campaignProduct.$valid" class="fa fa-check-circle"></i>Choose a product</p>
           </div>
         </div>
         <div class="row new-campaign-component-content" ng-if="vm.ProductService.model.products">
@@ -106,7 +112,7 @@
               <p>Please choose or add a new product that you'd like to promote in your campaign</p>
               <div class="campaign-choose-product">
                 <div ng-repeat="product in vm.ProductService.model.products">
-                  <input type="radio" id="{{ product.id }}" ng-model="vm.item.productId" value="{{ product.id }}">
+                  <input name="campaignProduct" type="radio" id="{{ product.id }}" ng-model="vm.item.productId" value="{{ product.id }}" required>
                   <label for="{{ product.id }}"><span></span>{{ product.name }}</label>
                 </div>
                 <button class="btn sproutup-btn-md-main minimal" ui-sref="slug.company.navbar.campaign.edit.trial.create-product">Add new product</a>
@@ -116,9 +122,9 @@
         </div>
       </div>
       <div class="new-campaign-component todo">
-        <div class="row new-campaign-component-header todo">
+        <div class="row new-campaign-component-header done">
           <div class="col-sm-6">
-            <p>Trial setup</p>
+            <p><i class="fa fa-check-circle"></i>Trial setup</p>
           </div>
         </div>
         <div class="row new-campaign-component-content">
@@ -138,9 +144,9 @@
   <hr>
   <div class="dashboard-buttons-top">
     <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()" ng-disabled="!form.$valid" ng-if="vm.item.$resolved && vm.item.status !== 1">Start Campaign</button>
+    <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-if="vm.item.$resolved && vm.item.status !== 1">Save and Exit</button>
     <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.openStopCampaignModal()" ng-if="vm.item.$resolved && vm.item.status === 1">End Campaign</button>
-    <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)">Save and Exit</button>
-    <!-- <button class="btn btn-sm sproutup-btn-xs cancel" ng-click="vm.cancel(form)" href="#">Exit</button> -->
+    <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-disabled="!form.$valid" ng-if="vm.item.$resolved && vm.item.status === 1">Update Campaign</button>
   </div>
 </div>
 <div ui-view></div>

@@ -23,13 +23,16 @@
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Name</p>
-              <input class="form-control form-input" ng-model="template.item.name">
+              <input name="campaignName" class="form-validate form-control form-input" ng-model="template.item.name" required placeholder="Give your campaign a title">
+              <div ng-messages="form.campaignName.$error">
+                <div class="message error" ng-message="required">Please give your new campaign a name before you save the draft.</div>
+              </div>
             </div>
           </div>
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Tagline</p>
-              <input class="form-control form-input" ng-model="template.item.tagline">
+              <input class="form-control form-input" ng-model="template.item.tagline" required placeholder="Give your campaign a short tagline">
             </div>
           </div>
           <div class="col-sm-12">
