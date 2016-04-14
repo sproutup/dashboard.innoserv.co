@@ -32,7 +32,7 @@
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Tagline</p>
-              <input class="form-control form-input" ng-model="template.item.tagline" required placeholder="Give your campaign a short tagline">
+              <input class="form-control form-input" ng-model="template.item.tagline" placeholder="Give your campaign a short tagline">
             </div>
           </div>
           <div class="col-sm-12">
@@ -130,7 +130,7 @@
   </form>
   <hr>
   <div class="dashboard-buttons-top">
-    <button class="btn sproutup-btn-xs" href="#" type="submit" ng-click="campaign.create(template.item, template.socialOptions)" ng-disabled="!form.$valid">Create Campaign</button>
+    <button class="btn sproutup-btn-xs" href="#" type="submit" ng-click="campaign.create(template.item, template.socialOptions)" ng-disabled="!form.$valid">Save Campaign</button>
     <button class="btn sproutup-btn-xs cancel" ng-click="campaign.cancel(form)" href="#">Cancel</button>
   </div>
 </div>
