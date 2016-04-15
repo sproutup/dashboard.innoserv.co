@@ -94,7 +94,9 @@ function FileController($scope, $state, FileService, $location, Authentication, 
   }
 
   function upload(file){
+    // This handles if ngf-select is calling to clear the file value
     if (!file) {
+      console.log('no file');
       return;
     }
 
