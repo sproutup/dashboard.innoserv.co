@@ -2288,12 +2288,12 @@ button:focus {
   margin: 0px;
 }
 
-.new-campaign-component.todo .new-campaign-component-header p i {
-  opacity: 0.55;
+.new-campaign-component-header p i {
+  margin-right: 25px;
 }
 
 .new-campaign-component-header.done {
-  background-color: @sproutup-green;
+  background-color: @sproutup-green-hover;
 }
 
 .new-campaign-component-header.todo {
@@ -4939,6 +4939,22 @@ li.campaign-item-wrapper.new-campaign button span {
   color: @main-text-verylight;
   font-size: 9.5pt;
   font-weight: 400;
+}
+
+.campaign-question-wrapper .message {
+  padding: 5px 0px 15px;
+  font-size: 10pt;
+  font-weight: 700;
+  text-align: left;
+  background-color: transparent;
+}
+
+.campaign-question-wrapper .message.success {
+  color: @sproutup-green;
+}
+
+.campaign-question-wrapper .message.error {
+  color: @sproutup-salmon;
 }
 
 @media (max-width:767px) {
