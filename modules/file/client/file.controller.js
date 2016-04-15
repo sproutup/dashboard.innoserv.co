@@ -94,7 +94,12 @@ function FileController($scope, $state, FileService, $location, Authentication, 
   }
 
   function upload(file){
-    console.log('file: ', file);
+    // This handles if ngf-select is calling to clear the file value
+    if (!file) {
+      console.log('no file');
+      return;
+    }
+
     vm.file = file;
     generateThumb(file);
     FileService.authenticate(file).then(function (result) {
@@ -132,8 +137,8 @@ function FileController($scope, $state, FileService, $location, Authentication, 
             // todo handle error
         },
         function (progress) {
-            console.log('progress: ', progress);
-            file.progress = progress.progress;
+          console.log('progress: ', progress);
+          file.progress = progress.progress;
         }
       );
     });
