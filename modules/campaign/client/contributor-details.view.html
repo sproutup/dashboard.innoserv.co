@@ -10,7 +10,7 @@
 
     <!-- section: trial status management -->
     <div class="dashboard-side-panel-section">
-      <h4>Product Trial</h4>
+      <h4>Request</h4>
       <div class="dashboard-side-panel-section-body">
         <div class="product-trial-item--detail">
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Requested on {{ contributor.item.created | date:'MMM dd, yyyy' }}</div>
@@ -83,8 +83,8 @@
 
     <div class="dashboard-side-panel-section">
       <h4>Messages</h4>
-      <div class="dashboard-side-panel-section-body">
-        <up-message-channel channel="contributor.channelId" on-start="campaign.startChannel()" ng-init="contributor.findChannel()"/>
+      <div class="dashboard-side-panel-section-body" ng-init="contributor.findChannel()">
+        <up-message-channel channel="contributor.channelId" on-start="contributor.startChannel()"/>
       </div>
     </div>
 
