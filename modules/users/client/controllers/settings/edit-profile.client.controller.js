@@ -5,6 +5,7 @@ angular.module('users').controller('EditProfileController', ['$scope', '$http', 
     var vm = this;
     vm.user = {};
 
+    vm.user.id = Authentication.user.id;
     vm.user.displayName = Authentication.user.displayName;
     vm.user.email = Authentication.user.email;
     vm.user.username = Authentication.user.username;
@@ -15,7 +16,7 @@ angular.module('users').controller('EditProfileController', ['$scope', '$http', 
     // Update a user profile
     $scope.updateUserProfile = function (isValid) {
       $scope.success = $scope.error = null;
-      var user = new Users($scope.user);
+      var user = new Users(vm.user);
 
       user.$update(function (response) {
         $scope.success = true;
