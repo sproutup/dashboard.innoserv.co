@@ -8,6 +8,32 @@
       <p>{{ contributor.item.user.displayName }}</p>
     </div>
 
+    <!-- section: reach -->
+    <div class="dashboard-side-panel-section">
+      <h4>Social Reach<span class="total-reach">203,943</span></h4>
+      <div class="dashboard-side-panel-section-body">
+        <div class="dashboard-side-panel-fineprint">Social Reach indicates the potential impressions, referral clicks and leads that this user can contribute.</div>
+        <div class="dashboard-side-panel-fineprint" ng-if="contributor.item.user.providers.length === 1 && contributor.item.user.providers[0].provider === 'password'">However, this user has not connected to any social network accounts. Thus, we cannot get any social reach data.</div>
+        <div class="sproutup-table">
+          <table class="table table-hover">
+            <tbody>
+              <tr ng-repeat="provider in contributor.item.user.providers" ng-if="provider.provider!== 'password'">
+                <td ng-if="provider.provider === 'facebook'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/facebook.png"></td>
+                <td ng-if="provider.provider === 'twitter'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/twitter.png"></td>
+                <td ng-if="provider.provider === 'instagram'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/instagram.png"></td>
+                <td ng-if="provider.provider === 'google'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/youtube.png"></td>
+                <td ng-if="provider.provider === 'facebook'"><a href="" target="_blank">Facebook</a></td>
+                <td ng-if="provider.provider === 'twitter'"><a href="" target="_blank">Twitter</a></td>
+                <td ng-if="provider.provider === 'instagram'"><a href="" target="_blank">Instagram</a></td>
+                <td ng-if="provider.provider === 'google'"><a href="" target="_blank">YouTube</a></td>
+                <td class="request-reach">67,392</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <!-- section: trial status management -->
     <div class="dashboard-side-panel-section">
       <h4>Request</h4>
