@@ -23,7 +23,7 @@
 
         <div class="product-trial-item--detail" ng-if="contributor.item.state === 0">
           <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Approve this request?</div>
-          <div class="product-trial-item--status-desc" ng-click="contributor.approveTrial()"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.approveRequest(contributor.item)">YES to {{ contributor.item.user.displayName }}</button></div>
+          <div class="product-trial-item--status-desc"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.approveRequest(contributor.item)">YES to {{ contributor.item.user.displayName }}</button></div>
         </div>
 
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0 && contributor.item.trial.shippingState">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped<span><a href="#" ng-click="showShippingAddress = !showShippingAddress">Show shipping address</a></span></div>
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped on {{ contributor.item.trial.shippingDate | date: 'MMM dd, yyyy' }}<span><a href="#" ng-click="showShippingAddress = !showShippingAddress">Show shipping address</a></span></div>
           <div class="product-trial-item--shipping" ng-if="showShippingAddress">
             <div class="name">{{ contributor.item.user.displayName }}</div>
             <div class="address">{{ contributor.item.address }}</div>

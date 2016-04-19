@@ -103,10 +103,11 @@
     }
 
     function updateShippingState(state) {
+      var now = new Date();
       CampaignService.contribution().update({
         userId: $state.params.userId,
         campaignId: $state.params.campaignId
-      }, { trial: { shippingState: state } }, function(response) {
+      }, { trial: { shippingState: state, shippingDate: now } }, function(response) {
         var user = vm.item.user;
         vm.item = response;
         vm.item.user = user;
