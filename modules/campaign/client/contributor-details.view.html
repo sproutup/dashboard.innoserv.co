@@ -22,10 +22,22 @@
                 <td ng-if="provider.provider === 'twitter'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/twitter.png"></td>
                 <td ng-if="provider.provider === 'instagram'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/instagram.png"></td>
                 <td ng-if="provider.provider === 'google'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/youtube.png"></td>
-                <td ng-if="provider.provider === 'facebook'"><a href="" target="_blank">Facebook</a></td>
-                <td ng-if="provider.provider === 'twitter'"><a href="" target="_blank">Twitter</a></td>
-                <td ng-if="provider.provider === 'instagram'"><a href="" target="_blank">Instagram</a></td>
-                <td ng-if="provider.provider === 'google'"><a href="" target="_blank">YouTube</a></td>
+                <td ng-if="provider.provider === 'facebook'">
+                  <a ng-href="{{ 'https://facebook.com/' + provider.id }}" target="_blank">Facebook</a>
+                  <div class="social-network-reach-desc">Reach is the number of friends on Facebook.</div>
+                </td>
+                <td ng-if="provider.provider === 'twitter'">
+                  <a ng-href="{{ 'https://twitter.com/' + provider.screen_name }}" target="_blank">Twitter</a>
+                  <div class="social-network-reach-desc">Reach is the number of followers on Twitter.</div>
+                </td>
+                <td ng-if="provider.provider === 'instagram'">
+                  <a ng-href="{{ 'https://instagram.com/' + provider.username }}" target="_blank">Instagram</a>
+                  <div class="social-network-reach-desc">Reach is the number of followers on Instagram.</div>
+                </td>
+                <td ng-if="provider.provider === 'google'">
+                  <a ng-href="{{ 'https://plus.google.com/u/0/' + provider.id }}" target="_blank">YouTube</a>
+                  <div class="social-network-reach-desc">Reach is the number of subscribers on the YouTube channel.</div>
+                </td>
                 <td class="request-reach">67,392</td>
               </tr>
             </tbody>
