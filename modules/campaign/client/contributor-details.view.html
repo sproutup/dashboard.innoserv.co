@@ -109,11 +109,13 @@
         </div>
 
         <div class="product-trial-item--detail" ng-if="contributor.item.content.length > 0">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Make payment with Square Cash&trade;</div>
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Make payment with Square Cash&trade; or PayPal&trade;</div>
           <div class="product-trial-item--status-desc">
-            <p>{{ contributor.item.user.displayName }} has submitted content for this campaign. If everything looks great, please pay the agreed sponsorship at your earliest convenience.</p>
-            <a ng-if="contributor.item.user.cashtag" class="btn sproutup-btn-sm minimal" href="https://cash.me/{{ contributor.item.user.cashtag }}/{{ contributor.item.bid }}" target="_blank">Pay {{ contributor.item.bid | currency }} to {{ contributor.item.user.displayName }}</a>
-            <p ng-if="!contributor.item.user.cashtag"><span class="label label-alert">Missing Payment Method</span>{{ contributor.item.user.displayName }} has not entered the payment information (i.e. the Square Cashtag). Please resolve this issue by messaging or emailing the user.</p>
+            <p>{{ contributor.item.user.displayName }} has submitted content for this campaign. If everything looks great, please pay the agreed sponsorship (<strong>{{ contributor.item.bid | currency }}</strong>) at your earliest convenience.</p>
+            <p><strong ng-if="contributor.item.user.cashtag && contributor.item.user.paypalme">Choose a preferred method to pay.</strong></p>
+            <a ng-if="contributor.item.user.cashtag" class="btn sproutup-btn-md-main squarecash" href="https://cash.me/{{ contributor.item.user.cashtag }}/{{ contributor.item.bid }}" target="_blank">Pay with Square Cash</a>
+            <a ng-if="contributor.item.user.paypalme" class="btn sproutup-btn-md-main paypal" href="https://www.paypal.me/{{ contributor.item.user.paypalme }}/{{ contributor.item.bid }}" target="_blank">Pay with PayPal</a>
+            <p ng-if="!contributor.item.user.cashtag && !contributor.item.user.paypalme"><span class="label label-alert">Missing Payment Method</span>{{ contributor.item.user.displayName }} has not entered any payment information (Square Cash or PayPal.Me). Please resolve this issue by messaging or emailing the user.</p>
           </div>
         </div>
       </div>
