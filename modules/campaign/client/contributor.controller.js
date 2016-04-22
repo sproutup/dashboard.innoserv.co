@@ -21,14 +21,12 @@
 
     function findChannel(){
       console.log('find channel by ref: ', $state.params.campaignId);
+      var channelKey = $state.params.campaignId + ':' + $state.params.userId;
       var myChannelRef = MessageService.myChannelRef();
-      var item = new myChannelRef({
-        userId: $state.params.userId
-      });
+      var item = new myChannelRef();
       // Use save to post a request. we are not really saving anything
-      item.$save({refId: $state.params.campaignId}, function (channel) {
+      item.$save({id: channelKey}, function (channel) {
         if(channel.id){
-          console.log('channel found: ', channel.id);
           vm.channelId = channel.id;
         }
       }, function (errorResponse) {
@@ -38,7 +36,6 @@
     }
 
     function startChannel(){
-      console.log('start channel by ref: ', $state.params.campaignId);
       var campaignChannel = MessageService.campaignChannel();
       var item = new campaignChannel({
         userId: $state.params.userId
@@ -46,7 +43,6 @@
       // Use save to post a request. we are not really saving anything
       item.$save({campaignId: $state.params.campaignId}, function (channel) {
         if(channel.id){
-          console.log('channel created: ', channel.id);
           vm.channelId = channel.id;
         }
       }, function (errorResponse) {
