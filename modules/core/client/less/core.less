@@ -1963,7 +1963,8 @@ button:focus {
 }
 
 .create-product-wrapper .product-campaign a {
-  color: @main-text-lighter;
+  color: @sproutup-blue;
+  font-weight: 700;
 }
 
 .create-product-wrapper .product-campaign a i {
@@ -2008,11 +2009,19 @@ button:focus {
 }
 
 .input-group-title {
-  color: @sproutup-blue;
-  font-weight: 400;
-  font-size: 11pt;
+  color: @main-text-lighter;
+  font-weight: 700;
+  font-size: 10.5pt;
   margin: 0px;
   padding: 0px 0px 10px;
+}
+
+.input-group-subtitle {
+  color: @main-text-verylight;
+  font-weight: 400;
+  font-size: 9.5pt;
+  margin: 0px;
+  padding: 0px 0px 14px;
 }
 
 .campaign-type-selector {
@@ -3175,8 +3184,14 @@ input:-ms-input-placeholder {
 
 .dashboard-side-panel-section-body .sproutup-table .social-network-icon img {
   border-radius: 100px;
-  width: 28px;
-  height: 28px;
+  width: 35px;
+  height: 35px;
+}
+
+.dashboard-side-panel-section-body .sproutup-table .social-network-reach-desc {
+  padding-top: 2px;
+  font-size: 9pt;
+  color: @main-text-lighter;
 }
 
 .content-stats-list .sproutup-table .social-network-icon img {
@@ -3209,8 +3224,12 @@ input:-ms-input-placeholder {
   text-align: right;
 }
 
+.dashboard-side-panel-section-body .sproutup-table .request-reach-head {
+  text-align: right;
+}
+
 .dashboard-side-panel-section-body .sproutup-table .request-reach {
-  font-size: 13pt;
+  font-size: 12pt;
   font-weight: 700;
   color: @main-text-lighter;
   text-align: right;
@@ -3305,7 +3324,9 @@ input:-ms-input-placeholder {
   margin-right: 5px;
 }
 
-.product-trial-item--status-desc .btn {
+.product-trial-item--status-desc .btn,
+.product-trial-item--status-desc .btn:active,
+.product-trial-item--status-desc .btn:focus {
   margin: 5px 0px;
 }
 
@@ -3611,6 +3632,14 @@ a.sproutup-btn-lg-main {
   transition: all .2s ease-in-out;
 }
 
+a.sproutup-btn-md-main,
+a.sproutup-btn-md-main:active,
+a.sproutup-btn-md-main:focus {
+  padding-top: 12px;
+  outline: 0px;
+  box-shadow: 0;
+}
+
 .sproutup-btn-md-main:hover {
   color: white;
   background-color: @sproutup-blue-hover;
@@ -3668,6 +3697,30 @@ a.sproutup-btn-lg-main {
   color: @main-text-lighter;
   background-color: white;
   border: 1px solid @sproutup-grey;
+}
+
+.sproutup-btn-md-main.paypal {
+  background-color: @paypal-blue;
+  color: white;
+  width: 240px;
+}
+
+.sproutup-btn-md-main.paypal:hover {
+  background-color: @paypal-blue-hover;
+  color: white;
+  width: 240px;
+}
+
+.sproutup-btn-md-main.squarecash {
+  background-color: @sproutup-green;
+  color: white;
+  width: 240px;
+}
+
+.sproutup-btn-md-main.squarecash:hover {
+  background-color: @sproutup-green-hover;
+  color: white;
+  width: 240px;
 }
 
 .sproutup-btn-sm,

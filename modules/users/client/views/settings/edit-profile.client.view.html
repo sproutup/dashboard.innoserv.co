@@ -4,7 +4,7 @@
   <div up-file-upload ng-model="user.avatar.file" on-change="profile.saveProfilePicture(user.avatar.file.id)" preview="modules/core/client/img/default-avatar.png"></div>
 </div>
 
-<div class="col-sm-9 col-profile-info" data-ng-controller="EditProfileController">
+<div class="col-sm-9 col-profile-info" data-ng-controller="EditProfileController as vm">
     <form name="userForm" data-ng-submit="updateUserProfile()" class="signin" autocomplete="off">
       <div data-ng-show="success" class="hud success">
          <strong>Profile Saved Successfully</strong>
@@ -16,13 +16,13 @@
         <!-- TODO: send a verification email is users change email -->
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" class="form-control form-validate form-input" data-ng-model="user.email" placeholder="Email" disabled>
+          <input type="email" id="email" name="email" class="form-control form-validate form-input" data-ng-model="vm.user.email" placeholder="Email" disabled>
         </div>
 
         <!-- full name -->
         <div class="form-group">
           <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" name="fullname" class="form-control form-validate form-input" placeholder="Full Name" ng-model="user.displayName" required>
+          <input type="text" id="fullname" name="fullname" class="form-control form-validate form-input" placeholder="Full Name" ng-model="vm.user.displayName" required>
           <div ng-messages="userForm.fullname.$error" ng-show="userForm.fullname.$touched">
             <div class="form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>Your name cannot be empty.</div>
           </div>
@@ -31,7 +31,7 @@
         <!-- Username -->
         <div class="form-group">
           <label for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control form-validate form-input" ng-pattern="/^[a-zA-Z0-9]+$/" ng-minlength="3" data-ng-model="user.username" placeholder="Username" required up-slug>
+          <input type="text" id="username" name="username" class="form-control form-validate form-input" ng-pattern="/^[a-zA-Z0-9]+$/" ng-minlength="3" data-ng-model="vm.user.username" placeholder="Username" required up-slug>
           <div ng-messages="userForm.username.$error" ng-show="userForm.username.$touched">
             <div class="form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>A user without a username? Silly.</div>
             <div class="form--error-message" ng-message="uniqueslug"><i class="fa fa-minus-circle"></i>This username has been taken.</div>
@@ -43,7 +43,7 @@
         <!-- short bio -->
         <div class="form-group">
           <label for="bio">Bio</label>
-          <textarea class="form-control form-input-textarea no-resize" placeholder="Write a short bio of yourself. Visible to other users and brands." rows="2" ng-model="user.description"></textarea>
+          <textarea class="form-control form-input-textarea no-resize" placeholder="Write a short bio of yourself. Visible to other users and brands." rows="2" ng-model="vm.user.description"></textarea>
         </div>
 
         <div class="form-group">

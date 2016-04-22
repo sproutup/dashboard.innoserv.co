@@ -31,7 +31,7 @@ function SlugService($http, $q, $state) {
     var deferred = $q.defer();
     $http({
       method: 'GET',
-      url: '/api/slug/' + id,
+      url: '/api/me/slug/' + id,
       headers: {'Content-Type': 'application/json'}
     }).then(function(val){
       model.item = val.data.item;

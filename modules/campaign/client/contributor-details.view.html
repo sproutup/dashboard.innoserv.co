@@ -8,9 +8,47 @@
       <p>{{ contributor.item.user.displayName }}</p>
     </div>
 
+    <!-- section: reach -->
+    <div class="dashboard-side-panel-section">
+      <h4>Social Reach<span class="total-reach">203,943</span></h4>
+      <div class="dashboard-side-panel-section-body">
+        <div class="dashboard-side-panel-fineprint">Social Reach indicates the potential impressions, referral clicks and leads that this user can contribute.</div>
+        <div class="dashboard-side-panel-fineprint" ng-if="contributor.item.user.providers.length === 1 && contributor.item.user.providers[0].provider === 'password'">However, this user has not connected to any social network accounts. Thus, we cannot get any social reach data.</div>
+        <div class="sproutup-table">
+          <table class="table table-hover">
+            <tbody>
+              <tr ng-repeat="provider in contributor.item.user.providers" ng-if="provider.provider!== 'password'">
+                <td ng-if="provider.provider === 'facebook'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/facebook.png"></td>
+                <td ng-if="provider.provider === 'twitter'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/twitter.png"></td>
+                <td ng-if="provider.provider === 'instagram'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/instagram.png"></td>
+                <td ng-if="provider.provider === 'google'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/youtube.png"></td>
+                <td ng-if="provider.provider === 'facebook'">
+                  <a ng-href="{{ 'https://facebook.com/' + provider.id }}" target="_blank">Facebook</a>
+                  <div class="social-network-reach-desc">Reach is the number of friends on Facebook.</div>
+                </td>
+                <td ng-if="provider.provider === 'twitter'">
+                  <a ng-href="{{ 'https://twitter.com/' + provider.screen_name }}" target="_blank">Twitter</a>
+                  <div class="social-network-reach-desc">Reach is the number of followers on Twitter.</div>
+                </td>
+                <td ng-if="provider.provider === 'instagram'">
+                  <a ng-href="{{ 'https://instagram.com/' + provider.username }}" target="_blank">Instagram</a>
+                  <div class="social-network-reach-desc">Reach is the number of followers on Instagram.</div>
+                </td>
+                <td ng-if="provider.provider === 'google'">
+                  <a ng-href="{{ 'https://plus.google.com/u/0/' + provider.id }}" target="_blank">YouTube</a>
+                  <div class="social-network-reach-desc">Reach is the number of subscribers on the YouTube channel.</div>
+                </td>
+                <td class="request-reach">67,392</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <!-- section: trial status management -->
     <div class="dashboard-side-panel-section">
-      <h4>Product Trial</h4>
+      <h4>Request</h4>
       <div class="dashboard-side-panel-section-body">
         <div class="product-trial-item--detail">
           <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Requested on {{ contributor.item.created | date:'MMM dd, yyyy' }}</div>
@@ -23,7 +61,7 @@
 
         <div class="product-trial-item--detail" ng-if="contributor.item.state === 0">
           <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Approve this request?</div>
-          <div class="product-trial-item--status-desc" ng-click="contributor.approveTrial()"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.approveRequest(contributor.item)">YES to {{ contributor.item.user.displayName }}</button></div>
+          <div class="product-trial-item--status-desc"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.approveRequest(contributor.item)">YES to {{ contributor.item.user.displayName }}</button></div>
         </div>
 
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0">
@@ -45,7 +83,7 @@
         </div>
 
         <div class="product-trial-item--detail" ng-if="contributor.item.state > 0 && contributor.item.trial.shippingState">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped<span><a href="#" ng-click="showShippingAddress = !showShippingAddress">Show shipping address</a></span></div>
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Product shipped on {{ contributor.item.trial.shippingDate | date: 'MMM dd, yyyy' }}<span><a href="#" ng-click="showShippingAddress = !showShippingAddress">Show shipping address</a></span></div>
           <div class="product-trial-item--shipping" ng-if="showShippingAddress">
             <div class="name">{{ contributor.item.user.displayName }}</div>
             <div class="address">{{ contributor.item.address }}</div>
@@ -71,11 +109,13 @@
         </div>
 
         <div class="product-trial-item--detail" ng-if="contributor.item.content.length > 0">
-          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Make payment with Square Cash&trade;</div>
+          <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Make payment</div>
           <div class="product-trial-item--status-desc">
-            <p>{{ contributor.item.user.displayName }} has submitted content for this campaign. If everything looks great, please pay the agreed sponsorship at your earliest convenience.</p>
-            <a ng-if="contributor.item.user.cashtag" class="btn sproutup-btn-sm minimal" href="https://cash.me/{{ contributor.item.user.cashtag }}/{{ contributor.item.bid }}" target="_blank">Pay {{ contributor.item.bid | currency }} to {{ contributor.item.user.displayName }}</a>
-            <p ng-if="!contributor.item.user.cashtag"><span class="label label-alert">Missing Payment Method</span>{{ contributor.item.user.displayName }} has not entered the payment information (i.e. the Square Cashtag). Please resolve this issue by messaging or emailing the user.</p>
+            <p>{{ contributor.item.user.displayName }} has submitted content for this campaign. If everything looks great, please pay the agreed sponsorship (<strong>{{ contributor.item.bid | currency }}</strong>) at your earliest convenience.</p>
+            <p><strong ng-if="contributor.item.user.cashtag && contributor.item.user.paypalme">{{ contributor.item.user.displayName }} provided both Square Cash and PayPal.Me accounts. Please choose one method to pay.</strong></p>
+            <a ng-if="contributor.item.user.cashtag" class="btn sproutup-btn-md-main squarecash" href="https://cash.me/{{ contributor.item.user.cashtag }}/{{ contributor.item.bid }}" target="_blank">Pay with Square Cash</a>
+            <a ng-if="contributor.item.user.paypalme" class="btn sproutup-btn-md-main paypal" href="https://www.paypal.me/{{ contributor.item.user.paypalme }}/{{ contributor.item.bid }}" target="_blank">Pay with PayPal</a>
+            <p ng-if="!contributor.item.user.cashtag && !contributor.item.user.paypalme"><span class="label label-alert">Missing Payment Method</span>{{ contributor.item.user.displayName }} has not entered any payment method. Please resolve this issue by messaging or emailing the user.</p>
           </div>
         </div>
       </div>
