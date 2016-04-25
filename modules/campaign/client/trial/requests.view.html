@@ -30,7 +30,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="item in vm.ContributorService.model.contributors | orderBy: ['state', '-trial.shippingState'] | filter: vm.query as filteredItems">
+          <tr ng-repeat="item in vm.ContributorService.model.contributors | orderBy: ['state', '-trial.shippingState', '-created'] | filter: vm.query as filteredItems">
             <td class="request-avatar">
               <a ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">
                 <img up-avatar="item.user" width="72" height="72">
