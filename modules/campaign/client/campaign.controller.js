@@ -190,16 +190,19 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   function findOne() {
     vm.success = false;
     vm.item = {};
+    vm.item.typeOfContent = [];
 
     vm.item = CampaignService.campaigns().get({
       campaignId: $state.params.campaignId
     }, function(res) {
       // for each option, mark it selected if it's in the vm.item's typeOfContent
-      for (var s = 0; s < vm.socialOptions.length; s++) {
-        if (vm.item.typeOfContent.indexOf(vm.socialOptions[s].type) > -1) {
-         vm.socialOptions[s].selected = true;
+      //if(!vm.socialOptions) {
+        for (var s = 0; s < vm.socialOptions.length; s++) {
+          if (vm.item.typeOfContent && vm.item.typeOfContent.indexOf(vm.socialOptions[s].type) > -1) {
+           vm.socialOptions[s].selected = true;
+          }
         }
-      }
+      //}
     }, function(err) {
       $state.go('landing.default');
     });
