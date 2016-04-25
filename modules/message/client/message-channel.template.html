@@ -1,8 +1,5 @@
 <div class="conversation-wrapper">
-  <div class="message-header">
-    <p ng-hide="vm.empty">Your messages</p>
-    <p ng-show="vm.empty">You haven't started a conversation</p>
-  </div>
+  <div class="message-header"></div>
   <div class="message-body" scroll-glue-bottom="true" >
     <div ng-show="vm.empty" class="empty-state">If you have questions about this request, feel free to message the user.</div>
     <div ng-if="!vm.empty && vm.messages.length === 0">
