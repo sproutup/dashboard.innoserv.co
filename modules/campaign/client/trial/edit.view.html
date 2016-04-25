@@ -3,7 +3,7 @@
     <h1 class="dashboard-section-title">
       {{ vm.item.name || 'Your Campaign Title' }}
       <div class="dashboard-buttons-top">
-        <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()" ng-disabled="!form.$valid" ng-if="vm.item.$resolved && vm.item.status !== 1">Start Campaign</button>
+        <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()" ng-disabled="!form.$valid || (!vm.socialOptions[0].selected && !vm.socialOptions[1].selected && !vm.socialOptions[2].selected && !vm.socialOptions[3].selected && !vm.socialOptions[4].selected && !vm.socialOptions[5].selected && !vm.socialOptions[6].selected) || ( vm.ProductService.model.products.length === 0 )" ng-if="vm.item.$resolved && vm.item.status !== 1">Start Campaign</button>
         <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-if="vm.item.$resolved && vm.item.status !== 1">Save and Exit</button>
         <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.openStopCampaignModal()" ng-if="vm.item.$resolved && vm.item.status === 1">End Campaign</button>
         <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-disabled="!form.$valid" ng-if="vm.item.$resolved && vm.item.status === 1">Update Campaign</button>
@@ -143,7 +143,7 @@
   </form>
   <hr>
   <div class="dashboard-buttons-top">
-    <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()" ng-disabled="!form.$valid" ng-if="vm.item.$resolved && vm.item.status !== 1">Start Campaign</button>
+    <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()" ng-disabled="!form.$valid || (!vm.socialOptions[0].selected && !vm.socialOptions[1].selected && !vm.socialOptions[2].selected && !vm.socialOptions[3].selected && !vm.socialOptions[4].selected && !vm.socialOptions[5].selected && !vm.socialOptions[6].selected) || ( vm.ProductService.model.products.length === 0 )" ng-if="vm.item.$resolved && vm.item.status !== 1">Start Campaign</button>
     <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-if="vm.item.$resolved && vm.item.status !== 1">Save and Exit</button>
     <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.openStopCampaignModal()" ng-if="vm.item.$resolved && vm.item.status === 1">End Campaign</button>
     <button class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-disabled="!form.$valid" ng-if="vm.item.$resolved && vm.item.status === 1">Update Campaign</button>

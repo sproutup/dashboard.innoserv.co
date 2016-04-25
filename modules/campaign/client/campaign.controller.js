@@ -195,9 +195,11 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       campaignId: $state.params.campaignId
     }, function(res) {
       // for each option, mark it selected if it's in the vm.item's typeOfContent
-      for (var s = 0; s < vm.socialOptions.length; s++) {
-        if (vm.item.typeOfContent.indexOf(vm.socialOptions[s].type) > -1) {
-         vm.socialOptions[s].selected = true;
+      if(!vm.socialOptions) {
+        for (var s = 0; s < vm.socialOptions.length; s++) {
+          if (vm.item.typeOfContent.indexOf(vm.socialOptions[s].type) > -1) {
+           vm.socialOptions[s].selected = true;
+          }
         }
       }
     }, function(err) {
