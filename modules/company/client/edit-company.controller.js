@@ -8,15 +8,16 @@ EditCompanyController.$inject = ['$scope', 'CompanyService', 'item'];
 
 function EditCompanyController($scope, CompanyService, item) {
   var vm = this;
-  vm.oldCompany = item;
-  vm.company = {
-    id: vm.oldCompany.id,
-    name: vm.oldCompany.name,
-    tagline: vm.oldCompany.tagline,
-    url: vm.oldCompany.url,
-    address: vm.oldCompany.address,
-    phone: vm.oldCompany.phone
-  };
+  // vm.oldCompany = item;
+  // vm.company = {
+  //   id: vm.oldCompany.id,
+  //   name: vm.oldCompany.name,
+  //   tagline: vm.oldCompany.tagline,
+  //   url: vm.oldCompany.url,
+  //   address: vm.oldCompany.address,
+  //   phone: vm.oldCompany.phone
+  // };
+  vm.company = item;
   vm.update = update;
 
   function update() {
