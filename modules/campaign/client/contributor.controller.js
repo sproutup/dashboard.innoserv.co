@@ -18,6 +18,7 @@
     vm.campaignId = null;
     vm.findChannel = findChannel;
     vm.startChannel = startChannel;
+    vm.loadDetailsFinish = false;
 
     function findChannel(){
       console.log('find channel by ref: ', $state.params.campaignId);
@@ -56,6 +57,7 @@
         userId: $state.params.userId,
         campaignId: $state.params.campaignId
       }, function(response) {
+        vm.loadDetailsFinish = true;
         vm.item = response;
         vm.userId = 5;//response.userId;
         vm.campaignId = response.campaignId;
