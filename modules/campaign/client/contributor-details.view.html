@@ -49,7 +49,11 @@
                     <a ng-href="{{ service.url }}" target="_blank">Google+</a>
                     <div class="social-network-reach-desc">Reach is the number of followers on Google Plus.</div>
                   </td>
-                  <td class="request-reach">{{ service.metrics.followers | number }}</td>
+                  <td ng-if="service.service === 'facebook'" class="request-reach">{{ service.metrics.followers | number }}</td>
+                  <td ng-if="service.service === 'twitter'" class="request-reach">{{ service.metrics.followers | number }}</td>
+                  <td ng-if="service.service === 'instagram'" class="request-reach">{{ service.metrics.followers | number }}</td>
+                  <td ng-if="service.service === 'youtube'" class="request-reach">{{ service.metrics.followers | number }}</td>
+                  <td ng-if="service.service === 'googleplus'" class="request-reach">{{ service.metrics.followers | number }}</td>
                 </tr>
               </tbody>
             </table>
