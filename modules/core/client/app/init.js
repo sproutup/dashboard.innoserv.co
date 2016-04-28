@@ -3,14 +3,6 @@
 //Start by defining the main module and adding the module dependencies
 angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfiguration.applicationModuleVendorDependencies);
 
-// TODO: configure angular-intercom
-angular.module(ApplicationConfiguration.applicationModuleName).config(['$intercomProvider',
-  function ($intercomProvider, k5fk8et7) {
-    $intercomProvider.appID(k5fk8et7);
-    $intercomProvider.asyncLoading(true);
-  }
-]);
-
 // Angulartics
 angular.module(ApplicationConfiguration.applicationModuleName).config(['$analyticsProvider',
   function ($analyticsProvider) {
@@ -72,7 +64,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
     /* jshint ignore:start */
     if (Authentication.user && Authentication.user.id) {
       Intercom('boot', {
-        app_id: 'g60vwitq',
+        app_id: 'nwdbju9h',
         email: Authentication.user.email,
         name: Authentication.user.displayName,
         user_id: Authentication.user.id
