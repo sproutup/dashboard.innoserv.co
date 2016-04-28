@@ -71,7 +71,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
       });
     } else {
       window.Intercom('boot', {
-       app_id: 'g60vwitq',
+       app_id: 'nwdbju9h',
        email: 'Guest',
        name: 'Guest'
       });
