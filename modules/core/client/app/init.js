@@ -68,6 +68,23 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
         });
       }
     }
+
+    /* jshint ignore:start */
+    if (Authentication.user && Authentication.user.id) {
+      Intercom('boot', {
+        app_id: 'g60vwitq',
+        email: Authentication.user.email,
+        name: Authentication.user.displayName,
+        user_id: Authentication.user.id
+      });
+    } else {
+      window.Intercom('boot', {
+       app_id: 'g60vwitq',
+       email: 'Guest',
+       name: 'Guest'
+      });
+    }
+    /* jshint ignore:end */
   });
 
   $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
