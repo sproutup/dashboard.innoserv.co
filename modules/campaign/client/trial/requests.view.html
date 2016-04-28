@@ -30,7 +30,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="item in vm.ContributorService.model.contributors | orderBy: ['state', '-trial.shippingState', '-created'] | filter: vm.query as filteredItems">
+          <tr ng-repeat="item in vm.ContributorService.model.contributors | orderBy: ['-user.services.followers', 'state', '-trial.shippingState', '-created'] | filter: vm.query as filteredItems">
             <td class="request-avatar">
               <a ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">
                 <img up-avatar="item.user" width="72" height="72">
@@ -40,7 +40,7 @@
               <div class="name"><a ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">{{ item.user.displayName|| 'User' }}</a><span>Requested {{ item.created | fromNow }}</span></div>
               <div>{{ item.comment | limitTo: 140 }}{{ item.comment.length < 140 ? '' : '...' }}</div>
             </td>
-            <td class="request-reach">{{ item.user.reach || '0' }}</td>
+            <td class="request-reach">{{ item.user.services.followers || '0' }}</td>
             <td>
               <span ng-if="item.state === 0" class="label label-request-status pending">Requested</span>
               <span ng-if="item.state === 1 && item.trial.shippingState !== 1" class="label label-request-status not-shipped">Not shipped</span>
