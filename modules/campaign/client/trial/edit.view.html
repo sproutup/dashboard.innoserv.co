@@ -33,6 +33,24 @@
             </div>
           </div>
           <div class="col-sm-12">
+            <div class="campaign-question-wrapper" ng-if="vm.item.status < 1">
+              <p>Hashtag</p>
+              <input name="hashtag" class="form-validate form-control form-input" ng-model="vm.item.hashtag" ng-model-options="{ debounce: 250 }" required placeholder="Choose a hashtag" ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" required up-slug>
+              <div ng-messages="form.hashtag.$error" ng-show="form.$submitted || form.hashtag.$touched">
+                <div class="message error" ng-message="required">Please choose a handle.</div>
+                <div class="message error" ng-message="uniqueslug">This handle has been taken.</div>
+                <div class="message error" ng-message="minlength">Your handle has to be at least 3 characters long.</div>
+                <div class="message error" ng-message="pattern">Your handle can only have letters and numbers. It can't have any spaces either.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12" ng-if="vm.item.status > 0">
+            <div class="campaign-question-wrapper">
+              <p>Hashtag</p>
+              <input name="hashtag" class="form-validate form-control form-input" ng-model="vm.item.hashtag" readonly>
+            </div>
+          </div>
+          <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Tagline</p>
               <input name="campaignTagline" class="form-validate form-control form-input" ng-model="vm.item.tagline" ng-model-options="{ updateOn: 'blur' }" required placeholder="Give your campaign a short tagline">
