@@ -24,7 +24,7 @@
             <div class="campaign-question-wrapper">
               <p>Name</p>
               <input name="campaignName" class="form-validate form-control form-input" ng-model="template.item.name" required placeholder="Give your campaign a title">
-              <div ng-messages="form.campaignName.$error" ng-show="form.$submitted || form.campaignName.$touched">
+              <div ng-messages="form.campaignName.$error">
                 <div class="message error" ng-message="required">Please give your new campaign a name before you save the draft.</div>
               </div>
             </div>
