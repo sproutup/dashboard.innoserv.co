@@ -31,20 +31,23 @@
           </div>
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
-              <p>Hashtag</p>
-              <input class="form-validate form-control form-input" ng-model="template.item.hashtag" name="hashtag" placeholder="Choose a hashtag" ng-model-options="{ debounce: 250 }" ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" required up-slug>
-              <div ng-messages="form.hashtag.$error" ng-show="form.$submitted || form.hashtag.$touched">
-                <div class="message error" ng-message="required">Please choose a handle.</div>
-                <div class="message error" ng-message="uniqueslug">This handle has been taken.</div>
-                <div class="message error" ng-message="minlength">Your handle has to be at least 3 characters long.</div>
-                <div class="message error" ng-message="pattern">Your handle can only have letters and numbers. It can't have any spaces either.</div>
-              </div>
+              <p>Tagline</p>
+              <input class="form-control form-input" ng-model="template.item.tagline" placeholder="Give your campaign a short tagline">
             </div>
           </div>
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
-              <p>Tagline</p>
-              <input class="form-control form-input" ng-model="template.item.tagline" placeholder="Give your campaign a short tagline">
+              <p>Hashtag</p>
+              <input class="form-validate form-control form-input" ng-model="template.item.hashtag" name="hashtag" placeholder="Give your campaign a unique, interesting hashtag" ng-model-options="{ updateOn: 'blur' }" ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" up-slug>
+              <div ng-messages="form.hashtag.$error" ng-show="form.$submitted || form.hashtag.$touched">
+                <div class="message error" ng-message="required">Please enter a hashtag for your campaign.</div>
+                <div class="message error" ng-message="uniqueslug">This hashtag has been taken.</div>
+                <div class="message error" ng-message="minlength">Your hashtag has to be at least 3 characters long.</div>
+                <div class="message error" ng-message="pattern">Your hashtag can only have letters and numbers. It can't have any spaces either.</div>
+              </div>
+              <div class="annotation">
+                <div>Create an inspiring and memorable hashtag. It is used to create referral links for content creators to embed and share in content (e.g. sproutup.co/<strong>FindWhatMatters</strong>/kevin). We also share it across social media.</div>
+              </div>
             </div>
           </div>
           <div class="col-sm-12">
