@@ -24,8 +24,20 @@
             <div class="campaign-question-wrapper">
               <p>Name</p>
               <input name="campaignName" class="form-validate form-control form-input" ng-model="template.item.name" required placeholder="Give your campaign a title">
-              <div ng-messages="form.campaignName.$error">
+              <div ng-messages="form.campaignName.$error" ng-show="form.$submitted || form.campaignName.$touched">
                 <div class="message error" ng-message="required">Please give your new campaign a name before you save the draft.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="campaign-question-wrapper">
+              <p>Hashtag</p>
+              <input class="form-validate form-control form-input" ng-model="template.item.hashtag" name="hashtag" placeholder="Choose a hashtag" ng-model-options="{ debounce: 250 }" ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" required up-slug>
+              <div ng-messages="form.hashtag.$error" ng-show="form.$submitted || form.hashtag.$touched">
+                <div class="message error" ng-message="required">Please choose a handle.</div>
+                <div class="message error" ng-message="uniqueslug">This handle has been taken.</div>
+                <div class="message error" ng-message="minlength">Your handle has to be at least 3 characters long.</div>
+                <div class="message error" ng-message="pattern">Your handle can only have letters and numbers. It can't have any spaces either.</div>
               </div>
             </div>
           </div>
