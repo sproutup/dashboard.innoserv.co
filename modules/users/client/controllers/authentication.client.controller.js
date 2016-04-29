@@ -40,7 +40,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         }
         $state.go($state.previous.state.name || 'footer.select', $state.previous.params);
         console.log('Update Intercom');
-        Intercom('update', {
+        window.Intercom('update', {
           email: Authentication.user.email,
           name: Authentication.user.displayName,
           user_id: Authentication.user.id,
