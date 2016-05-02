@@ -63,8 +63,8 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
 
     /* jshint ignore:start */
     if (Authentication.user && Authentication.user.id) {
-      console.log('Start Intercom');
-      console.log('Intercom with logged-in user: ', Authentication.user.displayName, Authentication.user.id);
+      // console.log('Start Intercom');
+      // console.log('Intercom with logged-in user: ', Authentication.user.displayName, Authentication.user.id);
       Intercom('boot', {
         app_id: 'nwdbju9h',
         email: Authentication.user.email,
@@ -73,8 +73,8 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
         application: 'SproutUp Dashboard'
       });
     } else {
-      console.log('Start Intercom');
-      console.log('Intercom with logged-out user');
+      // console.log('Start Intercom');
+      // console.log('Intercom with logged-out user');
       window.Intercom('boot', {
        app_id: 'nwdbju9h',
        email: 'Guest',
