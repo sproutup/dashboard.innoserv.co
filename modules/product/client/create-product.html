@@ -14,20 +14,20 @@
               <div ng-show="form.$submitted || form.name.$touched" ng-messages="form.name.$error">
                 <div class="form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>Product name is required.</div>
               </div>
+              <input type="url" name="url" class="form-validate form-control form-input" placeholder="Link to your product page" ng-model="vm.url" required up-http-prefix/>
+              <div ng-show="form.$submitted || form.url.$touched" ng-messages="form.url.$error">
+                <div class="form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>A product link is required.</div>
+              </div>
               <input type="text" class="form-control form-input" placeholder="Tagline for this product (Optional)" ng-model="vm.tagline" />
             </div>
             <div class="col-sm-12 form-input-group">
               <p class="input-group-title">Product Video URL</p>
+              <p class="input-group-subtitle">The video will be displayed on your campaign page.</p>
               <input type="url" name="video" class="form-validate form-control form-input" placeholder="Must be a valid YouTube or Vimeo link" ng-model="vm.video" up-valid-video required up-http-prefix/>
               <div ng-show="form.$submitted || form.video.$touched" ng-messages="form.video.$error">
                 <div class="form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>Video is required.</div>
                 <div class="form--error-message" ng-message="validVideo"><i class="fa fa-minus-circle"></i>Please use a link to a YouTube or Vimeo video.</div>
               </div>
-            </div>
-            <div class="col-sm-12 form-input-group">
-              <p class="input-group-title">Product Shopping Page URL</p>
-              <p class="input-group-subtitle">If you enter a link, an <strong>"I Want One"</strong> button will be displayed on your campaign page. It takes potential buyers to your product shopping page.</p>
-              <input type="url" name="url" class="form-control form-input" placeholder="Link to your product shopping page (Optional)" ng-model="vm.url" up-http-prefix/>
             </div>
             <div class="col-sm-12 form-input-group">
               <p class="input-group-title">Description</p>
