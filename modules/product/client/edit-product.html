@@ -38,7 +38,11 @@
             </div>
             <div class="col-sm-12 form-input-group" ng-if="vm.campaignInit && vm.campaigns.length > 0">
               <p class="input-group-title">Related Campaigns</p>
-              <p class="product-campaign" ng-repeat="campaign in vm.campaigns"><a ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })"><i class="fa fa-arrow-circle-o-right"></i>{{ campaign.name }}</a></p>
+              <p class="product-campaign" ng-repeat="campaign in vm.campaigns">
+                <a ng-show="campaign.status > 0" ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })"><i class="fa fa-arrow-circle-o-right"></i>{{ campaign.name }}</a>
+                <a ng-show="campaign.status === 0" ui-sref="slug.company.navbar.campaign.edit.default({ campaignId: campaign.id })"><i class="fa fa-arrow-circle-o-right"></i>{{ campaign.name }}<span class="label label-default">Draft</span></a>
+                <a ng-show="campaign.status === -1" ui-sref="slug.company.navbar.campaign.edit.default({ campaignId: campaign.id })"><i class="fa fa-arrow-circle-o-right"></i>{{ campaign.name }}<span class="label label-default">Ended</span></a>
+              </p>
             </div>
             <div class="col-sm-12 form-input-group" ng-init="vm.findCampaigns()">
               <button class="btn btn-lg sproutup-btn-md-main" type="submit" ng-disabled="form.$invalid">Save</button>
