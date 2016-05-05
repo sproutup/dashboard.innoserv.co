@@ -116,7 +116,8 @@
           <div class="product-trial-item--detail" ng-if="contributor.item.content.length > 0">
             <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Content live</div>
             <div class="product-trial-item--status-desc">
-              <p>{{ contributor.item.user.displayName }} has published {{ contributor.item.content.length }} content</p>
+              <p ng-if="contributor.item.content.length === 1">{{ contributor.item.user.displayName }} has published 1 piece of content</p>
+              <p ng-if="contributor.item.content.length > 1">{{ contributor.item.user.displayName }} has published {{ contributor.item.content.length }} pieces of content</p>
               <div ng-repeat="content in contributor.item.content | orderBy: '-created'">
                 <up-media item="content" ng-if="content.ref"></up-media>
               </div>
