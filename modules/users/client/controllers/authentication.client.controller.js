@@ -39,12 +39,10 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
           $state.previous.state.name = null;
         }
         $state.go($state.previous.state.name || 'footer.select', $state.previous.params);
-        console.log('Update Intercom');
         window.Intercom('update', {
           email: Authentication.user.email,
           name: Authentication.user.displayName,
-          user_id: Authentication.user.id,
-          application: 'Dashboard'
+          user_id: Authentication.user.id
         });
       }).error(function (response) {
         $scope.error = response.message;

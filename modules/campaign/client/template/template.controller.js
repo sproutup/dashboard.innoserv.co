@@ -158,7 +158,7 @@
           vm.item.end = '';
           // for each option, mark it selected if it's in the vm.item's typeOfContent
           for (var s = 0; s < vm.socialOptions.length; s++) {
-            if (vm.item.typeOfContent.indexOf(vm.socialOptions[s].type) > -1) {
+            if (vm.item.typeOfContent && vm.item.typeOfContent.indexOf(vm.socialOptions[s].type) > -1) {
              vm.socialOptions[s].selected = true;
             }
           }

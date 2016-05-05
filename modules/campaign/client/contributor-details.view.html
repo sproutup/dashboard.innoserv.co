@@ -16,10 +16,16 @@
 
       <!-- section: reach -->
       <div class="dashboard-side-panel-section">
-        <h4>Social Reach<span class="total-reach">{{ contributor.item.user.services.followers | number }}</span></h4>
-        <div class="dashboard-side-panel-section-body">
-          <div class="dashboard-side-panel-fineprint">Social Reach indicates the potential impressions, referral clicks and leads that this user can contribute.</div>
-          <div class="dashboard-side-panel-fineprint" ng-if="contributor.item.user.services.length === 0">However, this user has not connected to any social network accounts. Thus, we cannot get any social reach data.</div>
+        <h4>
+          Social Reach
+          <span class="total-reach">{{ contributor.item.user.services.followers | number }}</span>
+          <span class="show-hide-control">
+            <a href="" ng-init="showReachTable = true" ng-click="showReachTable = !showReachTable"><i class="fa" ng-class="{'fa-angle-down': !showReachTable, 'fa-angle-up': showReachTable}"></i></a>
+          </span>
+        </h4>
+        <div class="dashboard-side-panel-section-body" ng-show="showReachTable">
+          <div class="dashboard-side-panel-fineprint" ng-if="contributor.item.user.services.length !== 0">Social Reach indicates the potential impressions, referral clicks and leads that this user can contribute.</div>
+          <div class="dashboard-side-panel-fineprint" ng-if="contributor.item.user.services.length === 0">This user has not connected to any social network accounts. Thus, we cannot get any social reach data.</div>
           <div class="sproutup-table">
             <table class="table table-hover">
               <tbody>
@@ -58,6 +64,19 @@
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+
+      <!-- section: short bio -->
+      <div class="dashboard-side-panel-section" ng-if="contributor.item.user.description">
+        <h4>
+          Short Bio
+          <span class="show-hide-control">
+            <a href="" ng-init="showBio = true" ng-click="showBio = !showBio"><i class="fa" ng-class="{'fa-angle-down': !showBio, 'fa-angle-up': showBio}"></i></a>
+          </span>
+        </h4>
+        <div class="dashboard-side-panel-section-body" ng-show="showBio">
+          <div class="dashboard-side-panel-paragraph">{{ contributor.item.user.description }}</div>
         </div>
       </div>
 
@@ -141,14 +160,6 @@
         <h4>Messages</h4>
         <div class="dashboard-side-panel-section-body">
           <up-message-channel channel="contributor.channelId" on-start="contributor.startChannel()" ng-init="contributor.findChannel()"/>
-        </div>
-      </div>
-
-      <!-- section: short bio -->
-      <div class="dashboard-side-panel-section" ng-if="contributor.item.user.description">
-        <h4>Short Bio</h4>
-        <div class="dashboard-side-panel-section-body">
-          <div class="dashboard-side-panel-paragraph">{{ contributor.item.user.description }}</div>
         </div>
       </div>
 

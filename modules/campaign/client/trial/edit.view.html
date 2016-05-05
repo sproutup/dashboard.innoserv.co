@@ -1,4 +1,4 @@
-<div class="mock-section" id="create-trial-campaign">
+<div class="edit-campaign-wrapper" id="create-trial-campaign">
   <form name="form" class="css-form" novalidate>
     <h1 class="dashboard-section-title">
       {{ vm.item.name || 'Your Campaign Title' }}
@@ -17,7 +17,7 @@
       <div class="create-campaign-banner" up-file-upload ng-model="vm.item.banner.file" on-change="vm.saveBannerPicture(vm.item.banner.file.id, vm.item.id)" preview="modules/core/client/img/default-campaign-banner.jpg"></div>
       <!-- editing a component -->
       <div class="new-campaign-component todo">
-        <div class="row new-campaign-component-header" ng-class="{ todo: !form.campaignName.$valid || !form.campaignTagline.$valid || !form.campaignDesc.$valid, done: form.campaignName.$valid && form.campaignTagline.$valid && form.campaignDesc.$valid }">
+        <div class="row new-campaign-component-header" ng-class="{ todo: !form.campaignName.$valid || !form.campaignTagline.$valid || !form.campaignDesc.$valid || !form.hashtag.$valid, done: form.campaignName.$valid && form.campaignTagline.$valid && form.campaignDesc.$valid && form.hashtag.$valid }">
           <div class="col-sm-6">
             <p><i ng-if="form.campaignName.$valid && form.campaignTagline.$valid && form.campaignDesc.$valid" class="fa fa-check-circle"></i>Campaign details</p>
           </div>
@@ -33,14 +33,26 @@
             </div>
           </div>
           <div class="col-sm-12">
+            <div class="campaign-question-wrapper">
+              <p>Tagline</p>
+              <input name="campaignTagline" class="form-validate form-control form-input" ng-model="vm.item.tagline" ng-model-options="{ updateOn: 'blur' }" required placeholder="Give your campaign a short tagline">
+              <div ng-messages="form.campaignTagline.$error" ng-show="form.campaignTagline.$touched">
+                <div class="message error" ng-message="required">A tagline is also required. People talk about it!</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
             <div class="campaign-question-wrapper" ng-if="vm.item.status < 1">
-              <p>Hashtag</p>
-              <input name="hashtag" class="form-validate form-control form-input" ng-model="vm.item.hashtag" ng-model-options="{ debounce: 250 }" required placeholder="Choose a hashtag" ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" required up-slug>
+              <p>Campaign Hashtag</p>
+              <input name="hashtag" class="form-validate form-control form-input" ng-model="vm.item.hashtag" ng-model-options="{ updateOn: 'blur' }" required placeholder="Give your campaign a unique, interesting hashtag" ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" required up-slug>
               <div ng-messages="form.hashtag.$error" ng-show="form.$submitted || form.hashtag.$touched">
-                <div class="message error" ng-message="required">Please choose a handle.</div>
-                <div class="message error" ng-message="uniqueslug">This handle has been taken.</div>
-                <div class="message error" ng-message="minlength">Your handle has to be at least 3 characters long.</div>
-                <div class="message error" ng-message="pattern">Your handle can only have letters and numbers. It can't have any spaces either.</div>
+                <div class="message error" ng-message="required">Please enter a hashtag for your campaign.</div>
+                <div class="message error" ng-message="uniqueslug">This hashtag has been taken.</div>
+                <div class="message error" ng-message="minlength">Your hashtag has to be at least 3 characters long.</div>
+                <div class="message error" ng-message="pattern">Your hashtag can only have letters and numbers. It can't have any spaces either.</div>
+              </div>
+              <div class="annotation">
+                <div>Create an inspiring and memorable hashtag. It is used to create referral links for content creators to embed and share in content (e.g. sproutup.co/<strong>FindWhatMatters</strong>/kevin). We also share it across social media.</div>
               </div>
             </div>
           </div>
@@ -49,14 +61,8 @@
               <p>Hashtag</p>
               <input name="hashtag" class="form-validate form-control form-input" ng-model="vm.item.hashtag" readonly>
             </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="campaign-question-wrapper">
-              <p>Tagline</p>
-              <input name="campaignTagline" class="form-validate form-control form-input" ng-model="vm.item.tagline" ng-model-options="{ updateOn: 'blur' }" required placeholder="Give your campaign a short tagline">
-              <div ng-messages="form.campaignTagline.$error" ng-show="form.campaignTagline.$touched">
-                <div class="message error" ng-message="required">A tagline is also required. People talk about it!</div>
-              </div>
+            <div class="annotation">
+              <div>Create an inspiring and memorable hashtag. It is used to create referral links for content creators to embed and share in content (e.g. sproutup.co/<strong>FindWhatMatters</strong>/kevin). We also share it across social media.</div>
             </div>
           </div>
           <div class="col-sm-12">
@@ -142,13 +148,14 @@
       <div class="new-campaign-component todo">
         <div class="row new-campaign-component-header done">
           <div class="col-sm-6">
-            <p><i class="fa fa-check-circle"></i>Trial setup</p>
+            <p><i class="fa fa-check-circle"></i>Trial product setup</p>
           </div>
         </div>
         <div class="row new-campaign-component-content">
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p class="input-group-title">Do you allow influencers to keep products after content creation?</p>
+              <div class="input-group-subtitle">Many brands let influencers keep products, but it's up to you. Please consider factors such as the product's price, and the cost of shipping the products back. Please note that the shipping is handled by you and the influencers.</div>
               <up-switch optionfalse="No" optiontrue="Yep" selected="vm.item.trial.keepProduct"></up-switch>
             </div>
           </div>
