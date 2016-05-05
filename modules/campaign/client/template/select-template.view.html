@@ -14,7 +14,7 @@
               <div class="campaign-template-description">{{ item.description }}</div>
             </td>
             <td class="campaign-template-action">
-              <button ui-sref='slug.company.navbar.t.campaign.trial.create({templateId: item.id, productId: vm.productId})' class="btn sproutup-btn-sm">Create Campaign</button>
+              <button analytics-on="click" analytics-event="Start New Campaign" analytics-template="{{ item.name }}" ui-sref='slug.company.navbar.t.campaign.trial.create({templateId: item.id, productId: vm.productId})' class="btn sproutup-btn-sm">Create Campaign</button>
             </td>
           </tr>
           <tr>
