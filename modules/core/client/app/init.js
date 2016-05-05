@@ -66,18 +66,18 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
       // console.log('Start Intercom');
       // console.log('Intercom with logged-in user: ', Authentication.user.displayName, Authentication.user.id);
       Intercom('boot', {
-        app_id: 'nwdbju9h',
+        app_id: 'g60vwitq',
         email: Authentication.user.email,
         name: Authentication.user.displayName,
         user_id: Authentication.user.id,
-        application: 'SproutUp Dashboard'
+        application: 'Dashboard'
       });
     } else {
       // console.log('Start Intercom');
       // console.log('Intercom with logged-out user');
       window.Intercom('boot', {
-       app_id: 'nwdbju9h',
-       application: 'SproutUp Dashboard'
+       app_id: 'g60vwitq',
+       application: 'Dashboard'
       });
     }
     /* jshint ignore:end */
