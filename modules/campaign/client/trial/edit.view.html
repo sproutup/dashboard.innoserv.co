@@ -19,14 +19,14 @@
       <div class="new-campaign-component todo">
         <div class="row new-campaign-component-header" ng-class="{ todo: !form.campaignName.$valid || !form.campaignTagline.$valid || !form.campaignDesc.$valid || !form.hashtag.$valid, done: form.campaignName.$valid && form.campaignTagline.$valid && form.campaignDesc.$valid && form.hashtag.$valid }">
           <div class="col-sm-6">
-            <p><i ng-if="form.campaignName.$valid && form.campaignTagline.$valid && form.campaignDesc.$valid" class="fa fa-check-circle"></i>Campaign details</p>
+            <p><i ng-if="form.campaignName.$valid && form.campaignTagline.$valid && form.campaignDesc.$valid" class="fa fa-check-circle"></i>Tell us about your Campaign</p>
           </div>
         </div>
         <div class="row new-campaign-component-content">
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
               <p>Name</p>
-              <input name="campaignName" class="form-validate form-control form-input" ng-model="vm.item.name" ng-model-options="{ updateOn: 'blur' }" required placeholder="Give your campaign a title">
+              <input name="campaignName" class="form-validate form-control form-input" ng-model="vm.item.name" ng-model-options="{ updateOn: 'blur' }" required placeholder="Give your campaign a catchy name">
               <div ng-messages="form.campaignName.$error" ng-show="form.campaignName.$touched">
                 <div class="message error" ng-message="required">A campaign without a title? Silly.</div>
               </div>
@@ -44,7 +44,7 @@
           <div class="col-sm-12">
             <div class="campaign-question-wrapper" ng-if="vm.item.status < 1">
               <p>Campaign Hashtag</p>
-              <input name="hashtag" class="form-validate form-control form-input" ng-model="vm.item.hashtag" ng-model-options="{ updateOn: 'blur' }" required placeholder="Give your campaign a unique, interesting hashtag" ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" required up-slug>
+              <input name="hashtag" class="form-validate form-control form-input" ng-model="vm.item.hashtag" ng-model-options="{ updateOn: 'blur' }" required placeholder="Give your campaign a unique, eye-catching hashtag" ng-pattern="/^[a-zA-Z0-9-]+$/" ng-minlength="3" required up-slug>
               <div ng-messages="form.hashtag.$error" ng-show="form.$submitted || form.hashtag.$touched">
                 <div class="message error" ng-message="required">Please enter a hashtag for your campaign.</div>
                 <div class="message error" ng-message="uniqueslug">This hashtag has been taken.</div>
@@ -52,7 +52,7 @@
                 <div class="message error" ng-message="pattern">Your hashtag can only have letters and numbers. It can't have any spaces either.</div>
               </div>
               <div class="annotation">
-                <div>Create an inspiring and memorable hashtag. It is used to create referral links for content creators to embed and share in content (e.g. sproutup.co/<strong>FindWhatMatters</strong>/kevin). We also share it across social media.</div>
+                <div>Create an inspiring and memorable hashtag. It's how people discover and learn about your campaign. (e.g. https://sproutup.co/<strong>FindWhatMatters</strong>).</div>
               </div>
             </div>
           </div>
@@ -73,10 +73,11 @@
                 <div class="message error" ng-message="required">Please let people know what your campaign is about.</div>
               </div>
               <div class="annotation">
-                <div>Tell users more about your campaign, product or mission. <a href="#" ng-click="showExampleDesc = !showExampleDesc">See an example</a></div>
+                <div>In 120 words or less, tell people about your campaign, product or mission. Make it attractive to the the most creative influencers out there. Want an idea to get started? <a href="#" ng-click="showExampleDesc = !showExampleDesc">See an example</a></div>
                 <blockquote class="detail" ng-if="showExampleDesc">
-                  <p>Take the world’s best mobile photography lens with you for adventure photos and travel, or just simply capture your fun shenanigans throughout the day. Want some ideas to get started? Here’re a few:</p>
-                  <p>Make a short vlog of your Spring Break trip. Share a photo series of street portraits in your city or your daily mundane activities. Attend a sports event and capture the thrilling actions. Teach your little brother/grandma how to twist and capture how simple that is!</p>
+                  <p>Moment lens is the world’s best glass for your phone.</p>
+                  <p>But don’t take our word for it. Try it for yourself, yes, you — the cool mobile photographer who simply can’t keep the phone inside the pocket!</p>
+                  <p>Take Moment with you on your adventures and travel, or capture your fun shenanigans throughout the day. Stick the lens to any model of your phone, and you’ll realize it has turned into a much better camera.</p>
                 </blockquote>
               </div>
             </div>
@@ -93,16 +94,15 @@
         <div class="row new-campaign-component-content">
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
-              <p>Provide instructions for users who participate your campaign.</p>
+              <p>What do you want users to do?</p>
               <textarea name="campaignInstructions" class="form-validate form-control form-input-textarea" ng-model="vm.item.instructions" ng-model-options="{ updateOn: 'blur' }" placeholder="Write here..." required></textarea>
               <div ng-messages="form.campaignInstructions.$error" ng-show="form.campaignInstructions.$touched">
                 <div class="message error" ng-message="required">Please provide proper instructions to the content creators.</div>
               </div>
               <div class="annotation">
-                <div>Providing clear instructions helps creators to deliver the content in the form and taste you desire. <a href="#" ng-click="showExampleInstructions = !showExampleInstructions">See an example</a></div>
+                <div>In 80 words or less, provide a specific ask to avoid generic reviews. Specify product features, use cases or a mission to help creators anchor their content. Additionally, you can instruct the kind of content to deliver for each type of channel. Or specify the types of people you want to participate in this campaign, such as music lovers, comedians and travelers. <a href="#" ng-click="showExampleInstructions = !showExampleInstructions">See an example</a></div>
                 <blockquote class="detail" ng-if="showExampleInstructions">
-                  <p>Viewers tell us that they more enjoy watching the personal and fun side of you than the formal tech reviews. So, SproutUp trials are all about bite-size “personal storytelling” - an interesting plot with a real protagonist (friend or a family member), taking your audience on a journey or showing off interesting ways to use this awesome Moment Lens etc.</p>
-                  <p>For awesome videographers, it would be great to tell your story in a short 1-3 mins video on YouTube, or as a vlog over 4-5 days. For photographers, you may create a slideshow of your 6-8 best shots with your comments and share on SnapChat or Vine. Or you can simply do a live thing on Periscope or SnapChat! Oh well, not to mention that you are welcome to do your own creative thing too.</p>
+                  <p>Create a YouTube video (between 1-2 minutes) to show us how you use Moment lens to capture the beauty and grandeur of nature. Consider making a mini-vlog on your spring break trip, or showcasing a photo montage of your tropical adventure — be sure to tag #BigWorldTinyPeople. Or make an Instagram portfolio with the shots captured on Moment Lens. Get creative using Instagram filters and annotation/drawing tools</p>
                 </blockquote>
               </div>
             </div>
@@ -154,7 +154,7 @@
         <div class="row new-campaign-component-content">
           <div class="col-sm-12">
             <div class="campaign-question-wrapper">
-              <p class="input-group-title">Do you allow influencers to keep products after content creation?</p>
+              <p class="input-group-title">Will you let content creators keep the product?</p>
               <div class="input-group-subtitle">Many brands let influencers keep products, but it's up to you. Please consider factors such as the product's price, and the cost of shipping the products back. Please note that the shipping is handled by you and the influencers.</div>
               <up-switch optionfalse="No" optiontrue="Yep" selected="vm.item.trial.keepProduct"></up-switch>
             </div>
