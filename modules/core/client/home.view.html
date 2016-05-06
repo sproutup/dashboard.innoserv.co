@@ -38,7 +38,7 @@
       <div class="dashboard-cta-tip">"The way to get started is to quit talking and begin doing.” - Walt Disney</div>
     </div>
   </div>
-  <div class="dashboard-footer">Brands like <a href="http://momentlens.co/" target="_blank">Moment Lens</a> launch campaigns to partner with impactful influencers who share user stories of their own.</div>
+  <div class="dashboard-footer">Brands like <a href="http://momentlens.co/" target="_blank">Moment Lens</a> launch campaign to put their product in the hands of YouTubers and let incredible videos unfold.</div>
 </div>
 <div class="dashboard-hiw">
   <div class="row dashboard-hiw-section">
@@ -95,6 +95,25 @@
     </div>
     <div class="col-sm-6">
       <img class="img-responsive" src="https://s3-us-west-2.amazonaws.com/sproutup-assets/home/analytics.png">
+    </div>
+  </div>
+</div>
+
+<div class="dashboard-hiw b">
+  <div class="row dashboard-hiw-section">
+    <div class="col-sm-12">
+      <h2>Ready to start your first campaign?</h2>
+      <div ng-if="!vm.authentication.user">
+        <form name="form" class="form-inline" novalidate autocomplete="off">
+          <input name="email" type="email" class="form-control dashboard-signup-input" placeholder="Your email account" ng-model="vm.email" ng-model-options="{ debounce: 250 }" unique-email required>
+          <button analytics-on="click" analytics-event="Get Started" type="submit" ng-disabled="form.$invalid" class="btn btn-lg sproutup-btn-lg-main orange" ng-click="vm.getStarted()">
+            <span ng-hide="vm.company">Yes</span>
+          </button>
+          <div ng-show="form.email.$error.uniqueemail" class="dashboard-signup-error">
+            <p>&#x1F613; This email is already taken!</p>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
