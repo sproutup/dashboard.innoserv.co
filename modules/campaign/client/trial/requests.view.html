@@ -27,6 +27,7 @@
             <th></th>
             <th><a href="#" uib-popover="Reach measures the user's audience size and the potential impact of their content." popover-trigger="mouseenter">Reach</a></th>
             <th>Status</th>
+            <th ng-if="vm.user.roles.indexOf('admin') > -1">Recommended</th>
           </tr>
         </thead>
         <tbody>
@@ -46,6 +47,11 @@
               <span ng-if="item.state === 1 && item.trial.shippingState !== 1" class="label label-request-status not-shipped">Not shipped</span>
               <span ng-if="item.state === 1 && item.trial.shippingState === 1" class="label label-request-status shipped">Shipped</span>
               <span ng-if="item.state === 2" class="label label-request-status completed">Content live</span>
+            </td>
+            <td ng-if="vm.user.roles.indexOf('admin') > -1">
+              <span>{{item.recommended}}</span>
+              <button ng-click="vm.recommend(item)">Yes</button>
+              <button ng-click="vm.dontRecommend(item)">No</button>
             </td>
           </tr>
         </tbody>

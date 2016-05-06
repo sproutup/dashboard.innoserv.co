@@ -17,7 +17,8 @@ function ContributorService($resource, $q, $state) {
     listByCampaign: listByCampaign,
     findOne: findOne,
     update: update,
-    remove: remove
+    remove: remove,
+    contributorResource: contributorResource
   };
 
   return service;

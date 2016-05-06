@@ -36,6 +36,9 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.greaterThan = greaterThan;
   vm.filterRequested = filterRequested;
   vm.filterApproved = filterApproved;
+  vm.recommend = recommend;
+  vm.dontRecommend = dontRecommend;
+  vm.user = Authentication.user;
   vm.socialOptions = [
     {  title: 'YouTube',
        type: 'yt' },
@@ -393,5 +396,27 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     console.log('yo');
     vm.query = vm.greaterThan('state', 0);
     vm.filtering = 'approved';
+  }
+
+  function recommend(item) {
+    item.recommended = true;
+    updateRecommended(item);
+  }
+
+  function dontRecommend(item) {
+    item.recommended = false;
+    updateRecommended(item);
+  }
+
+  function updateRecommended(item) {
+    var ContributorObj = ContributorService.contributorResource();
+    var contributor = new ContributorObj(item);
+
+    ContributorService.update(contributor)
+      .then(function(result) {
+        vm.succes = true;
+      }, function(reason) {
+        vm.error = reason;
+      });
   }
 }
