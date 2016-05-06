@@ -28,6 +28,7 @@
             <th><a href="#" uib-popover="Reach measures the user's audience size and the potential impact of their content." popover-trigger="mouseenter">Reach</a></th>
             <th>Status</th>
             <th ng-if="vm.user.roles.indexOf('admin') > -1">Recommended</th>
+            <th ng-if="vm.user.roles.indexOf('admin') > -1">Note</th>
           </tr>
         </thead>
         <tbody>
@@ -50,8 +51,12 @@
             </td>
             <td ng-if="vm.user.roles.indexOf('admin') > -1">
               <span>{{item.recommended}}</span>
-              <button ng-click="vm.recommend(item)">Yes</button>
-              <button ng-click="vm.dontRecommend(item)">No</button>
+              <button ng-click="item.recommended = true">Yes</button>
+              <button ng-click="item.recommended = false">No</button>
+            </td>
+            <td ng-if="vm.user.roles.indexOf('admin') > -1">
+              <textarea ng-model="item.note"></textarea>
+              <button ng-click="vm.updateRecommended(item)">Save</button>
             </td>
           </tr>
         </tbody>

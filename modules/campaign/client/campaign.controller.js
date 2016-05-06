@@ -36,8 +36,9 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.greaterThan = greaterThan;
   vm.filterRequested = filterRequested;
   vm.filterApproved = filterApproved;
-  vm.recommend = recommend;
-  vm.dontRecommend = dontRecommend;
+  vm.recommended = recommended;
+  vm.notRecommended = notRecommended;
+  vm.updateRecommended = updateRecommended;
   vm.user = Authentication.user;
   vm.socialOptions = [
     {  title: 'YouTube',
@@ -398,12 +399,12 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     vm.filtering = 'approved';
   }
 
-  function recommend(item) {
+  function recommended(item) {
     item.recommended = true;
     updateRecommended(item);
   }
 
-  function dontRecommend(item) {
+  function notRecommended(item) {
     item.recommended = false;
     updateRecommended(item);
   }
@@ -414,7 +415,8 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
 
     ContributorService.update(contributor)
       .then(function(result) {
-        vm.succes = true;
+        console.log(result);
+        vm.success = true;
       }, function(reason) {
         vm.error = reason;
       });

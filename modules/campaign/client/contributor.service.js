@@ -33,7 +33,6 @@ function ContributorService($resource, $q, $state) {
     }, function(response) {
       defer.resolve(response);
       for (var i in model.contributors) {
-        console.log((model.contributors[i].id === item.id));
         if (model.contributors[i].id === item.id) {
           model.contributors[i] = item;
         }
