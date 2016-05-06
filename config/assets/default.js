@@ -30,6 +30,7 @@ module.exports = {
         'public/lib/spin.js/spin.min.js',
         'public/lib/angular-spinner/angular-spinner.min.js',
         'public/lib/angulartics/dist/angulartics.min.js',
+        'public/lib/angulartics/src/angulartics-intercom.js',
         'public/lib/angulartics-mixpanel/dist/angulartics-mixpanel.min.js',
         'public/lib/angulartics-google-analytics/dist/angulartics-google-analytics.min.js',
         'public/lib/intl-tel-input/build/js/intlTelInput.min.js',
