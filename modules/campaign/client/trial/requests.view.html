@@ -50,13 +50,15 @@
               <span ng-if="item.state === 2" class="label label-request-status completed">Content live</span>
             </td>
             <td ng-if="vm.user.roles.indexOf('admin') > -1">
-              <span>{{item.recommended}}</span>
-              <button ng-click="item.recommended = true">Yes</button>
-              <button ng-click="item.recommended = false">No</button>
+              <span ng-if="item.recommended === 1">recommended</span>
+              <span ng-if="item.recommended === -1">not recommended</span>
+              <span ng-if="!item.recommended">Nothing Decided</span>
+              <button ng-click="item.recommended = 1">Yes</button>
+              <button ng-click="item.recommended = -1">No</button>
             </td>
             <td ng-if="vm.user.roles.indexOf('admin') > -1">
               <textarea ng-model="item.note"></textarea>
-              <button ng-click="vm.updateRecommended(item)">Save</button>
+              <button ng-click="vm.updateContributor(item)">Save</button>
             </td>
           </tr>
         </tbody>
