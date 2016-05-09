@@ -40,7 +40,7 @@
   </div>
 
   <!-- Draft campaigns -->
-  <div class="campaign-list-wrapper draft">
+  <div class="campaign-list-wrapper draft" ng-show="filteredDrafts.length > 0">
     <h4>Drafts</h4>
     <div class="sproutup-table table-responsive">
       <table class="table table-hover">
@@ -52,7 +52,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="campaign in vm.campaigns | orderBy: '-updated' | filter: {status: 0}: vm.returnMatch">
+          <tr ng-repeat="campaign in vm.campaigns | orderBy: '-updated' | filter: {status: 0}: vm.returnMatch as filteredDrafts">
             <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-edit.png"></td>
             <td class="campaign-title">
               <div>{{campaign.name}}</div>
