@@ -75,7 +75,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
     } else {
       // console.log('Start Intercom');
       // console.log('Intercom with logged-out user');
-      window.Intercom('boot', {
+      Intercom('boot', {
        app_id: 'g60vwitq',
        application: 'Dashboard'
       });
