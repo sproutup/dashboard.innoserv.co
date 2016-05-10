@@ -96,8 +96,13 @@
       });
     }
 
-    function productShipped() {
-      updateShippingState(1);
+    function productShipped(item) {
+      if (item && !item.trial) {
+        item.trial = {};
+      }
+
+      item.trial.shippingState = 1;
+      ContributorService.update(item);
     }
 
     function updateShippingState(state) {
