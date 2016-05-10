@@ -114,6 +114,13 @@
           </div>
         </form>
       </div>
+      <div ng-if="vm.authentication.user">
+        <form name="form" class="form-inline">
+          <button type="submit" class="btn btn-lg sproutup-btn-lg-main orange" ui-sref="footer.select">
+            <span>Yes</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
