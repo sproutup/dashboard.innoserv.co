@@ -28,10 +28,11 @@ function HomeController($scope, $state, CompanyService, $http, Authentication, S
     Authentication.emailSentTo = vm.email;
 
     $http.post('/api/auth/join', vm.credentials).success(function (response) {
+      var url = response.data[':url'] ? response.data[':url'][0] : null;
       if (vm.company) {
-        $state.go('footer.company.landing.confirmation', { companySlug: vm.company.slug, url: response.data[':url'][0] });
+        $state.go('footer.company.landing.confirmation', { companySlug: vm.company.slug, url: url });
       } else {
-        $state.go('footer.landing.confirmation', {url: response.data[':url'][0]});
+        $state.go('footer.landing.confirmation', {url: url});
       }
     }).error(function (response) {
       $scope.error = response.message;
