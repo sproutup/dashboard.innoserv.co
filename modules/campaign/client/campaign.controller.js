@@ -36,6 +36,8 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.greaterThan = greaterThan;
   vm.filterRequested = filterRequested;
   vm.filterApproved = filterApproved;
+  vm.updateContributor = updateContributor;
+  vm.user = Authentication.user;
   vm.socialOptions = [
     {  title: 'YouTube',
        type: 'yt' },
@@ -393,5 +395,18 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     console.log('yo');
     vm.query = vm.greaterThan('state', 0);
     vm.filtering = 'approved';
+  }
+
+  function updateContributor(item) {
+    var ContributorObj = ContributorService.contributorResource();
+    var contributor = new ContributorObj(item);
+
+    ContributorService.update(contributor)
+      .then(function(result) {
+        console.log(result);
+        vm.success = true;
+      }, function(reason) {
+        vm.error = reason;
+      });
   }
 }
