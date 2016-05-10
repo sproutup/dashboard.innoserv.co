@@ -15,7 +15,6 @@ function EmailDirective($q, $timeout, $http) {
   return directive;
 
   function linkFunc(scope, el, attr, ctrl) {
-    console.log('attr:', attr.uniqueEmail);
     ctrl.$asyncValidators.uniqueemail = function(modelValue, viewValue) {
       if (ctrl.$isEmpty(modelValue)) {
         // consider empty model valid
@@ -25,13 +24,13 @@ function EmailDirective($q, $timeout, $http) {
       var def = $q.defer();
       var email = modelValue;
 
-      if(attr.uniqueEmail) {
-        console.log('email domain: ', attr.uniqueEmail);
-        email = email + '@' + attr.uniqueEmail;
-      }
-      else{
-        scope.vm.domain = email.substring(email.lastIndexOf('@')+1, email.length);
-      }
+//      if(attr.uniqueEmail) {
+//        console.log('email domain: ', attr.uniqueEmail);
+//        email = email + '@' + attr.uniqueEmail;
+//      }
+//      else{
+//        scope.vm.domain = email.substring(email.lastIndexOf('@')+1, email.length);
+//      }
 
       $http.post('/api/auth/validate/email', {email: email}).success(function (response) {
         if(response.result === 1){
