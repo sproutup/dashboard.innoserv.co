@@ -44,12 +44,12 @@
         <div class="type-icon"><img src="modules/theme/client/img/trial.png"></div>
         <div class="title">{{ campaign.name | limitTo: 40 }}{{ campaign.name.length < 40 ? '' : '...' }}</div>
         <div class="action">
-          <button ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Activities</button>
-          <button ui-sref="slug.company.navbar.campaign.edit.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">Edit</button>
+          <button analytics-on="click" analytics-event="View Active Campaign Activities" analytics-campaignName="{{ campaign.name }}" analytics-campaignId="{{ campaign.id }}" analytics-campaignHashtag="{{ campaign.hashtag }}" ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Activities</button>
+          <button analytics-on="click" analytics-event="Edit Active Campaign" analytics-campaignName="{{ campaign.name }}" analytics-campaignId="{{ campaign.id }}" analytics-campaignHashtag="{{ campaign.hashtag }}" ui-sref="slug.company.navbar.campaign.edit.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">Edit</button>
         </div>
       </li>
       <li class="campaign-item-wrapper new-campaign">
-        <button analytics-on="click" analytics-event="Start New Campaign" ui-sref="slug.company.navbar.template.select"><span>+</span>Start New Campaign</button>
+        <button analytics-on="click" analytics-event="Create New Campaign" ui-sref="slug.company.navbar.template.select"><span>+</span>Start New Campaign</button>
       </li>
     </ul>
   </div>
@@ -74,7 +74,7 @@
               <div class="schedule-time" ng-if="campaign.updated">Edited on {{campaign.updated | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</div>
             </td>
             <td class="campaign-actions">
-            <button ui-sref="slug.company.navbar.campaign.edit.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">Edit Campaign</button>
+            <button analytics-on="click" analytics-event="Edit Draft Campagin" analytics-campaignName="{{ campaign.name }}" analytics-campaignId="{{ campaign.id }}" analytics-campaignHashtag="{{ campaign.hashtag }}" ui-sref="slug.company.navbar.campaign.edit.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">Edit Campaign</button>
               <!-- TODO: add discard button later -->
               <!-- <button class="btn sproutup-btn-sm minimal">Discard</button> -->
             </td>
@@ -104,7 +104,7 @@
               <div class="schedule-time" ng-if="campaign.started && campaign.ended">{{campaign.started | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}} - {{campaign.ended | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</div>
             </td>
             <td class="campaign-actions">
-              <button ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Report</button>
+              <button analytics-on="click" analytics-event="View Completed Campaign Activities" analytics-campaignName="{{ campaign.name }}" analytics-campaignId="{{ campaign.id }}" analytics-campaignHashtag="{{ campaign.hashtag }}" ui-sref="slug.company.navbar.campaign.view.default({ campaignId: campaign.id })" class="btn sproutup-btn-sm minimal">View Report</button>
             </td>
           </tr>
         </tbody>

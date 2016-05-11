@@ -32,15 +32,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="item in vm.ContributorService.model.contributors | orderBy: ['state', '-trial.shippingState', '-user.services.followers', '-created'] | filter: vm.query as filteredItems">
+          <tr ng-repeat="item in vm.ContributorService.model.contributors | orderBy: ['state', '-trial.shippingState', 'recommended', '-user.services.followers', '-created'] | filter: vm.query as filteredItems">
             <td class="request-avatar">
-              <a ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">
+              <a analytics-on="click" analytics-event="View Request Detail" analytics-username="{{ item.user.username }}" analytics-userId="{{ item.userId }}" ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">
                 <img up-avatar="item.user" width="72" height="72">
               </a>
             </td>
             <td class="request-name-pitch">
-              <div class="name"><a ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">{{ item.user.displayName|| 'User' }}</a><span>Requested {{ item.created | fromNow }}</span></div>
+              <div class="name"><a analytics-on="click" analytics-event="View Request Detail" analytics-username="{{ item.user.username }}" analytics-userId="{{ item.userId }}" ui-sref="slug.company.navbar.campaign.view.trial.requests.contributor({ userId: item.userId })">{{ item.user.displayName|| 'User' }}</a><span>Requested {{ item.created | fromNow }}</span></div>
               <div class="pitch">{{ item.comment | limitTo: 140 }}{{ item.comment.length < 140 ? '' : '...' }} <a ng-show="item.comment.length > 140" href="" uib-popover="{{ item.comment }}" popover-placement="top-left" popover-trigger="mouseenter">more</a></div>
+              <div class="recommended" ng-show="item.recommended && item.recommended === 1"><a href="" uib-popover="{{ item.note }}" popover-placement="bottom-left" popover-trigger="mouseenter"><span>Recommended</span></a></div>
             </td>
             <td class="request-reach">{{ item.user.services.followers || '0' }}</td>
             <td>
