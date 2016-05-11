@@ -112,7 +112,7 @@
           <div class="product-trial-item--detail" ng-if="contributor.item.state > 0 && !contributor.item.trial.shippingState">
             <div class="product-trial-item--detail">
               <div class="product-trial-item--status reminder"><i class="fa fa-question-circle"></i>Have you shipped the product?</div>
-              <div class="product-trial-item--status-desc"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.productShipped()">YES! En route.</button></div>
+              <div class="product-trial-item--status-desc"><button class="btn sproutup-btn-sm aqua" ng-click="contributor.productShipped(contributor.item)">YES! En route.</button></div>
             </div>
           </div>
 
