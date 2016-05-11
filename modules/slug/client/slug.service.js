@@ -36,6 +36,9 @@ function SlugService($http, $q, $state) {
     }).then(function(val){
       model.item = val.data.item;
       deferred.resolve(val);
+    }).catch(function(err) {
+      $state.go('footer.not-found', {}, {location: 'replace'});
+      deferred.reject(err);
     });
     return deferred.promise;
   }
