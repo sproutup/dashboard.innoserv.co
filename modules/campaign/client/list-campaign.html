@@ -37,7 +37,7 @@
 <div ng-if="vm.campaigns.length > 0">
   <div class="campaign-list-wrapper">
     <ul class="list-inline">
-      <li class="campaign-item-wrapper" ng-repeat="campaign in vm.campaigns | orderBy: '-started' | filter: {status: 1}: vm.returnMatch">
+      <li class="campaign-item-wrapper" ng-repeat="campaign in vm.campaigns | orderBy: '-started' | filter: {status: 1}: vm.atLeast">
         <div class="header" ng-style="{'background-image': 'url({{ campaign.banner.file.url || 'modules/core/client/img/default-campaign-banner.jpg' }})'}">
           <span ng-if="campaign.started">Ongoing since {{campaign.started | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</span>
         </div>
