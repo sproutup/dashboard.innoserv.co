@@ -39,7 +39,8 @@
     <ul class="list-inline">
       <li class="campaign-item-wrapper" ng-repeat="campaign in vm.campaigns | orderBy: '-started' | filter: {status: 1}: vm.atLeast">
         <div class="header" ng-style="{'background-image': 'url({{ campaign.banner.file.url || 'modules/core/client/img/default-campaign-banner.jpg' }})'}">
-          <span ng-if="campaign.started">Ongoing since {{campaign.started | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</span>
+          <span ng-if="campaign.status === 10">Ongoing since {{campaign.started | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</span>
+          <span ng-if="campaign.status === 1">SproutUp is reviewing it</span>
         </div>
         <div class="type-icon"><img src="modules/theme/client/img/trial.png"></div>
         <div class="title">{{ campaign.name | limitTo: 40 }}{{ campaign.name.length < 40 ? '' : '...' }}</div>
