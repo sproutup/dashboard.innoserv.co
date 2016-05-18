@@ -3,8 +3,8 @@
 module.exports = {
   app: {
     title: 'SproutUp Dashboard for Brands',
-    description: 'We help build brand awareness around your new products',
-    keywords: 'brand, influencer marketing, campaign, marketing, content creator, content marketing, analytics',
+    description: 'We help build brand awareness around your new products. Work with the right influential content creators to consistently produce engaging content with personality, taste and variety.',
+    keywords: 'marketing, influencer marketing, branding, campaign, influencer, content creator, content marketing, analytics',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
   server: {
