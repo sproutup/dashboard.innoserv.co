@@ -1074,9 +1074,9 @@ button:focus {
   margin: 0px auto;
   padding: 25px 15px;
   font-weight: 300;
-  font-size: 25pt;
+  font-size: 26pt;
   line-height: 1.6;
-  max-width: 800px;
+  max-width: 960px;
   color: @main-text-white;
 }
 
@@ -1095,9 +1095,9 @@ button:focus {
   margin: 0px auto;
   padding: 0px 15px 60px;
   font-weight: 300;
-  font-size: 14pt;
+  font-size: 16pt;
   line-height: 1.6;
-  max-width: 900px;
+  max-width: 1024px;
   color: @main-text-white;
 }
 
@@ -5110,6 +5110,12 @@ li.campaign-item-wrapper.new-campaign button span {
   padding: 50px 20px;
 }
 
+.dashboard-hiw-section.title-only {
+  padding: 40px 20px;
+  border-top: 1px dashed @sproutup-grey;
+  border-bottom: 1px dashed @sproutup-grey;
+}
+
 .dashboard-hiw-section .col-sm-6 {
   padding: 0px 20px;
 }
@@ -5119,23 +5125,48 @@ li.campaign-item-wrapper.new-campaign button span {
   color: @sproutup-orange;
   margin: 0px;
   padding: 0px 0px 30px;
+  line-height: 1.4;
+}
+
+.dashboard-hiw-section.title-only h1 {
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  color: @main-text-verylight;
+  font-weight: 300;
+}
+
+.dashboard-hiw-section h1.center {
+  text-align: center;
+  padding: 0px 0px 40px;
 }
 
 .dashboard-hiw-section h2 {
   text-align: center;
-  font-size: 22pt;
+  font-size: 18pt;
   color: @main-text-light;
   margin: 0px;
-  padding: 0px 0px 40px;
+  padding: 0px 0px 30px;
 }
 
 .dashboard-hiw-section p {
-  font-size: 11.5pt;
+  font-size: 12pt;
   font-weight: 400;
   color: @main-text-light;
   line-height: 1.7;
   padding: 0px 0px 20px;
   margin: 0px;
+}
+
+.dashboard-hiw-section p.center {
+  text-align: center;
+  padding: 0px 0px 10px;
+  font-size: 13pt;
+}
+
+.dashboard-hiw-section p.center strong {
+  color: @sproutup-orange;
+  font-size: 15pt;
 }
 
 .dashboard-hiw-section form {
