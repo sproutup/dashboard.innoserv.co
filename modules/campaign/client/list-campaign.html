@@ -67,7 +67,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="campaign in vm.campaigns | orderBy: '-updated' | filter: {status: 0}: vm.returnMatch as filteredDrafts">
+          <tr ng-repeat="campaign in vm.campaigns | orderBy: '-updated' | filter: {status: 0}: vm.returnDrafts as filteredDrafts">
             <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-edit.png"></td>
             <td class="campaign-title">
               <div>{{campaign.name}}</div>
@@ -97,7 +97,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="campaign in vm.campaigns | orderBy: '-ended' | filter: {status: -1}: vm.returnMatch as filteredItems">
+          <tr ng-repeat="campaign in vm.campaigns | orderBy: '-ended' | filter: {status: -5}: vm.returnMatch as filteredItems">
             <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-completed.png"></td>
             <td class="campaign-title">
               <div>{{ campaign.name }}</div>

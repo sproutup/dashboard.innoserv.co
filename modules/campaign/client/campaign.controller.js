@@ -23,6 +23,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.startCampaign = startCampaign;
   vm.stopCampaign = stopCampaign;
   vm.returnMatch = returnMatch;
+  vm.returnDrafts = returnDrafts;
   vm.atLeast = atLeast;
   vm.viewDetails = viewDetails;
   vm.closeDetails = closeDetails;
@@ -35,6 +36,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.ContributorService = ContributorService;
   vm.openStopCampaignModal = openStopCampaignModal;
   vm.openApproveCampaignModal = openApproveCampaignModal;
+  vm.openDisapproveCampaignModal = openDisapproveCampaignModal;
   vm.greaterThan = greaterThan;
   vm.filterRequested = filterRequested;
   vm.filterApproved = filterApproved;
@@ -158,7 +160,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   function stopCampaign () {
     var CampaignObj = CampaignService.campaigns();
     var campaign = new CampaignObj(vm.item);
-    campaign.status = -1;
+    campaign.status = -5;
     campaign.ended = new Date();
     campaign.$update({
       campaignId: $state.params.campaignId
@@ -170,7 +172,6 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       vm.error = errorResponse.data.message;
     });
   }
-
 
   function openApproveCampaignModal(item) {
     var modalInstance = $modal.open({
@@ -195,6 +196,40 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     var campaign = new CampaignObj(vm.item);
     campaign.status = 10;
     campaign.started = new Date();
+    campaign.$update({
+      campaignId: $state.params.campaignId
+    }, function (response) {
+      vm.succes = true;
+      $state.go('slug.company.navbar.campaign.list');
+    }, function (errorResponse) {
+      vm.success = null;
+      vm.error = errorResponse.data.message;
+    });
+  }
+
+  function openDisapproveCampaignModal(item) {
+    var modalInstance = $modal.open({
+      templateUrl: 'modules/campaign/client/disapprove-campaign.html',
+      // We're using the endCampaignController because all we're doing in there is confirming or dismissing
+      controller: 'EndCampaignController',
+      controllerAs: 'vm',
+      resolve: {
+        message: function() { return 'This campaign will be disapproved.'; }
+      }
+    });
+
+    modalInstance.result.then(function () {
+      disapproveCampaign();
+    }, function () {
+      console.log('Modal dismissed at: ' + new Date());
+    });
+  }
+
+  function disapproveCampaign () {
+    var CampaignObj = CampaignService.campaigns();
+    var campaign = new CampaignObj(vm.item);
+    campaign.disapproved = new Date();
+    campaign.status = -1;
     campaign.$update({
       campaignId: $state.params.campaignId
     }, function (response) {
@@ -363,6 +398,14 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
 
   function returnMatch (actual, expected) {
     return angular.equals(expected, actual);
+  }
+
+  function returnDrafts (actual, expected) {
+    if (actual === 0 || actual === -1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   function atLeast (actual, expected) {
