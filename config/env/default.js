@@ -2,9 +2,9 @@
 
 module.exports = {
   app: {
-    title: 'creator.sproutup.co',
-    description: 'Creator Server',
-    keywords: 'dynamodb, mysql, redis, express, angularjs, node.js, bookshelf, passport',
+    title: 'SproutUp Dashboard for Brands',
+    description: 'We help build brand awareness around your new products',
+    keywords: 'brand, influencer marketing, campaign, marketing, content creator, content marketing, analytics',
     googleAnalyticsTrackingID: process.env.GOOGLE_ANALYTICS_TRACKING_ID || 'GOOGLE_ANALYTICS_TRACKING_ID'
   },
   server: {
@@ -42,5 +42,5 @@ module.exports = {
   // for obsecurity reasons
   sessionKey: 'sessionId',
   sessionCollection: 'sessions',
-  logo: 'modules/core/img/brand/logo.png',
+  logo: 'modules/core/client/img/team-banner.jpg',
   favicon: 'modules/core/client/img/brand/favicon-96x96.png'};
