@@ -71,7 +71,7 @@
           <tr ng-repeat="campaign in vm.campaigns | orderBy: '-updated' | filter: {status: 0}: vm.returnDrafts as filteredDrafts">
             <td class="campaign-type-icon"><img src="modules/theme/client/img/trial-edit.png"></td>
             <td class="campaign-title">
-              <div>{{campaign.name}}</div>
+              <div>{{campaign.name}}<sup ng-show="campaign.disapproved" class="label label-info">Not approved yet</sup></div>
               <div class="schedule-time" ng-if="campaign.updated">Edited on {{campaign.updated | amUtc | amLocal | amDateFormat:'MMM DD, YYYY'}}</div>
             </td>
             <td class="campaign-actions">

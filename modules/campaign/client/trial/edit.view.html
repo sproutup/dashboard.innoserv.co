@@ -4,33 +4,35 @@
       {{ vm.item.name || 'Your Campaign Title' }}
       <div class="dashboard-buttons-top">
         <button analytics-on="click" analytics-event="Launch Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()" ng-disabled="!form.$valid || (!vm.socialOptions[0].selected && !vm.socialOptions[1].selected && !vm.socialOptions[2].selected && !vm.socialOptions[3].selected && !vm.socialOptions[4].selected && !vm.socialOptions[5].selected && !vm.socialOptions[6].selected) || ( vm.ProductService.model.products.length === 0 )" ng-if="vm.item.$resolved && vm.item.status > -2 && vm.item.status < 1">Start Campaign</button>
-        <button analytics-on="click" analytics-event="Save Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-if="vm.item.$resolved && vm.item.status !== 1">Save and Exit</button>
+        <button analytics-on="click" analytics-event="Save Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-if="vm.item.$resolved && (vm.item.status === 0 || vm.item.status === -1)">Save and Exit</button>
         <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.openDisapproveCampaignModal()" ng-if="vm.user.roles.indexOf('admin') > -1 && vm.item.$resolved && vm.item.status === 1">Disapprove</button>
         <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.openApproveCampaignModal()" ng-if="vm.user.roles.indexOf('admin') > -1 && vm.item.$resolved && vm.item.status === 1">Approve</button>
         <button analytics-on="click" analytics-event="End Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs" ng-click="vm.openStopCampaignModal()" ng-if="vm.item.$resolved && vm.item.status > 0">End Campaign</button>
-        <button analytics-on="click" analytics-event="Update Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-disabled="!form.$valid || (!vm.socialOptions[0].selected && !vm.socialOptions[1].selected && !vm.socialOptions[2].selected && !vm.socialOptions[3].selected && !vm.socialOptions[4].selected && !vm.socialOptions[5].selected && !vm.socialOptions[6].selected) || ( vm.ProductService.model.products.length === 0 )" ng-if="vm.item.$resolved && vm.item.status === 1">Update Campaign</button>
+        <button analytics-on="click" analytics-event="Update Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-disabled="!form.$valid || (!vm.socialOptions[0].selected && !vm.socialOptions[1].selected && !vm.socialOptions[2].selected && !vm.socialOptions[3].selected && !vm.socialOptions[4].selected && !vm.socialOptions[5].selected && !vm.socialOptions[6].selected) || ( vm.ProductService.model.products.length === 0 )" ng-if="vm.item.$resolved && (vm.item.status === 10 || vm.item.status === 1)">Update Campaign</button>
       </div>
     </h1>
-    <div class="create-campaign-wrapper" ng-if="(vm.user.roles.indexOf('admin') > 0 && vm.item.status < 3) || (vm.item.status === -1 && vm.item.disapprovedNote)">
-      <div class="row new-campaign-component-header banner">
-        <div class="col-sm-12">
-          <p>Note</p>
-        </div>
-      </div>
+    <div class="create-campaign-wrapper" ng-if="vm.user.roles.indexOf('admin') > -1 && vm.item.status < 3">
       <div class="row new-campaign-component-content">
         <div class="col-sm-12">
           <div class="campaign-question-wrapper">
             <p>Things to improve before going live:</p>
             <textarea name="campaignInstructions" class="form-validate form-control form-input-textarea" ng-model="vm.item.disapprovedNote" ng-model-options="{ updateOn: 'blur' }" placeholder="Write here..." ng-if="vm.user.roles.indexOf('admin') > -1"></textarea>
-            <div ng-if="vm.user.roles.indexOf('admin') < 0">{{ vm.item.disapprovedNote }}</div>
           </div>
         </div>
       </div>
     </div>
     <div class="create-campaign-wrapper">
-      <div class="new-campaign-component-header banner">
-        <p>Campaign Banner Photo</p>
-        <p class="sub-header">An awesome banner photo makes your campaign outstanding. For the best visual quality, the recommended size is 1500 x 500 pixels.</span>
+      <div class="row new-campaign-component-header disapprove-note" ng-if="vm.item.status === -1 && vm.item.disapprovedNote">
+        <div class="col-sm-12">
+          <p>Things to improve before going live:</p>
+          <p class="sub-header">{{ vm.item.disapprovedNote }}</p>
+        </div>
+      </div>
+      <div class="row new-campaign-component-header banner">
+        <div class="col-sm-12">
+          <p>Campaign Banner Photo</p>
+          <p class="sub-header">An awesome banner photo makes your campaign outstanding. For the best visual quality, the recommended size is 1500 x 500 pixels.</p>
+        </div>
       </div>
       <div class="create-campaign-banner" up-file-upload ng-model="vm.item.banner.file" on-change="vm.saveBannerPicture(vm.item.banner.file.id, vm.item.id)" preview="modules/core/client/img/default-campaign-banner.jpg"></div>
       <!-- editing a component -->
@@ -183,11 +185,11 @@
     <h2>By creating and starting a campaign, I agree to SproutUp's <a ui-sref="terms" target="_blank">Terms of Service</a> and <a ui-sref="privacy" target="_blank">Privacy Policy</a>.
       <div class="dashboard-buttons-top">
         <button analytics-on="click" analytics-event="Launch Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs" ng-click="vm.startCampaign()" ng-disabled="!form.$valid || (!vm.socialOptions[0].selected && !vm.socialOptions[1].selected && !vm.socialOptions[2].selected && !vm.socialOptions[3].selected && !vm.socialOptions[4].selected && !vm.socialOptions[5].selected && !vm.socialOptions[6].selected) || ( vm.ProductService.model.products.length === 0 )" ng-if="vm.item.$resolved && vm.item.status > -2 && vm.item.status < 1">Start Campaign</button>
-        <button analytics-on="click" analytics-event="Save Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-if="vm.item.$resolved && vm.item.status !== 1">Save and Exit</button>
+        <button analytics-on="click" analytics-event="Save Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-if="vm.item.$resolved && (vm.item.status === 0 || vm.item.status === -1)">Save and Exit</button>
         <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.openDisapproveCampaignModal()" ng-if="vm.user.roles.indexOf('admin') > -1 && vm.item.$resolved && vm.item.status === 1">Disapprove</button>
         <button class="btn btn-sm sproutup-btn-xs" ng-click="vm.openApproveCampaignModal()" ng-if="vm.user.roles.indexOf('admin') > -1 && vm.item.$resolved && vm.item.status === 1">Approve</button>
         <button analytics-on="click" analytics-event="End Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs" ng-click="vm.openStopCampaignModal()" ng-if="vm.item.$resolved && vm.item.status > 0">End Campaign</button>
-        <button analytics-on="click" analytics-event="Update Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-disabled="!form.$valid || (!vm.socialOptions[0].selected && !vm.socialOptions[1].selected && !vm.socialOptions[2].selected && !vm.socialOptions[3].selected && !vm.socialOptions[4].selected && !vm.socialOptions[5].selected && !vm.socialOptions[6].selected) || ( vm.ProductService.model.products.length === 0 )" ng-if="vm.item.$resolved && vm.item.status === 1">Update Campaign</button>
+        <button analytics-on="click" analytics-event="Update Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-disabled="!form.$valid || (!vm.socialOptions[0].selected && !vm.socialOptions[1].selected && !vm.socialOptions[2].selected && !vm.socialOptions[3].selected && !vm.socialOptions[4].selected && !vm.socialOptions[5].selected && !vm.socialOptions[6].selected) || ( vm.ProductService.model.products.length === 0 )" ng-if="vm.item.$resolved && (vm.item.status === 10 || vm.item.status === 1)">Update Campaign</button>
       </div>
     </h2>
   </form>
