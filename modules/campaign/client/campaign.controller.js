@@ -140,7 +140,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
       });
   }
 
-  function openStopCampaignModal(item) {
+  function openStopCampaignModal() {
     var modalInstance = $modal.open({
       templateUrl: 'modules/campaign/client/end-campaign.html',
       controller: 'EndCampaignController',
@@ -173,7 +173,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     });
   }
 
-  function openApproveCampaignModal(item) {
+  function openApproveCampaignModal() {
     var modalInstance = $modal.open({
       templateUrl: 'modules/campaign/client/approve-campaign.html',
       // We're using the endCampaignController because all we're doing in there is confirming or dismissing
@@ -207,7 +207,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     });
   }
 
-  function openDisapproveCampaignModal(item) {
+  function openDisapproveCampaignModal() {
     var modalInstance = $modal.open({
       templateUrl: 'modules/campaign/client/disapprove-campaign.html',
       // We're using the endCampaignController because all we're doing in there is confirming or dismissing
