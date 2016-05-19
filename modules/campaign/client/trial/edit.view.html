@@ -21,7 +21,7 @@
         <div class="col-sm-12">
           <div class="campaign-question-wrapper">
             <p>Things to improve before going live:</p>
-            <textarea name="campaignInstructions" class="form-validate form-control form-input-textarea" ng-model="vm.item.disapprovedNote" ng-model-options="{ updateOn: 'blur' }" placeholder="Write here..." required ng-if="vm.user.roles.indexOf('admin') > -1"></textarea>
+            <textarea name="campaignInstructions" class="form-validate form-control form-input-textarea" ng-model="vm.item.disapprovedNote" ng-model-options="{ updateOn: 'blur' }" placeholder="Write here..." ng-if="vm.user.roles.indexOf('admin') > -1"></textarea>
             <div ng-if="vm.user.roles.indexOf('admin') < 0">{{ vm.item.disapprovedNote }}</div>
           </div>
         </div>
