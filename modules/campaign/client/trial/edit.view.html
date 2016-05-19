@@ -11,6 +11,22 @@
         <button analytics-on="click" analytics-event="Update Campaign" analytics-campaignName="{{ vm.item.name }}" analytics-campaignId="{{ vm.item.id }}" analytics-campaignHashtag="{{ vm.item.hashtag }}" class="btn btn-sm sproutup-btn-xs minimal" ng-click="vm.update(form)" ng-disabled="!form.$valid || (!vm.socialOptions[0].selected && !vm.socialOptions[1].selected && !vm.socialOptions[2].selected && !vm.socialOptions[3].selected && !vm.socialOptions[4].selected && !vm.socialOptions[5].selected && !vm.socialOptions[6].selected) || ( vm.ProductService.model.products.length === 0 )" ng-if="vm.item.$resolved && vm.item.status === 1">Update Campaign</button>
       </div>
     </h1>
+    <div class="create-campaign-wrapper" ng-if="(vm.user.roles.indexOf('admin') > 0 && vm.item.status < 3) || (vm.item.status === -1 && vm.item.disapprovedNote)">
+      <div class="row new-campaign-component-header banner">
+        <div class="col-sm-12">
+          <p>Note</p>
+        </div>
+      </div>
+      <div class="row new-campaign-component-content">
+        <div class="col-sm-12">
+          <div class="campaign-question-wrapper">
+            <p>Things to improve before going live:</p>
+            <textarea name="campaignInstructions" class="form-validate form-control form-input-textarea" ng-model="vm.item.disapprovedNote" ng-model-options="{ updateOn: 'blur' }" placeholder="Write here..." required ng-if="vm.user.roles.indexOf('admin') > -1"></textarea>
+            <div ng-if="vm.user.roles.indexOf('admin') < 0">{{ vm.item.disapprovedNote }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="create-campaign-wrapper">
       <div class="new-campaign-component-header banner">
         <p>Campaign Banner Photo</p>
