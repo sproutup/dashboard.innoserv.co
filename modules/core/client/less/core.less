@@ -4,6 +4,9 @@ body {
   letter-spacing: 0.2pt;
   font-size: 14px !important;
   font-family: "lato", Helvetica, Arial, sans-serif;
+}
+
+.dashboard-body {
   min-width: 1024px;
 }
 
@@ -1102,13 +1105,10 @@ button:focus {
 }
 
 .dashboard-footer {
-  position: absolute;
+  position: relative;
   z-index: 10;
-  bottom: 60px;
-  left: 10%;
-  right: 10%;
   margin: 0px;
-  padding: 0px 15px;
+  padding: 80px 15px 40px;
   font-weight: 300;
   font-size: 12pt;
   line-height: 1.6;
@@ -5201,5 +5201,9 @@ li.campaign-item-wrapper.new-campaign button span {
 @media (max-width:767px) {
   .logo {
     width: 100px;
+  }
+
+  .dashboard-cta {
+    margin: 0px 25px;
   }
 }
