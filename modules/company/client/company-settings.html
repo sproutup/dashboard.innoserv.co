@@ -1,6 +1,19 @@
 <section ng-init="vm.find()">
   <div class="row select-company-wrapper">
     <div class="col-sm-12" ng-if="vm.companies.$resolved && vm.companies.length > 0">
+      <h3>You have pending invitation. Click "Join" to start collaborating with your teammates.</h3>
+      <div class="create-campaign-banner company-profile-banner" style="background-image: url('http://www.fullspectrumcomputers.com/wp-content/uploads/2012/07/banner_apple2-980x360.jpg');">
+        <div class="row">
+          <div class="col-sm-6">
+            <h1>Apple</h1>
+            <h2>https://www.apple.com</h2>
+          </div>
+          <div class="col-sm-6 accept-invite">
+            <button class="btn sproutup-btn-lg-main">Join</button>
+          </div>
+        </div>
+      </div>
+      <hr>
       <h3>Please select a company to see your dashboard</h3>
       <a href="#" class="company-selector" ng-repeat="item in vm.companies" ng-click="vm.select(item)">
         <div class="create-campaign-banner company-profile-banner" ng-style="{'background-image': 'url({{ item.banner.file.url || 'modules/core/client/img/default-campaign-banner.jpg' }})'}">
