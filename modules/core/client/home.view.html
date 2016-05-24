@@ -1,21 +1,18 @@
 <nav class="navbar" role="navigation">
   <div class="navbar-content">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sproutup-collapse-navbar">Menu</button>
       <a class="navbar-brand" ui-sref="footer.home">
         <img class="logo" alt="logo" src="modules/core/client/img/logo-white.png"/>
       </a>
     </div>
-    <div class="collapse navbar-collapse" id="sproutup-collapse-navbar">
-      <ul class="nav navbar-nav navbar-item navbar-right">
-        <li class="sign-in" ng-if="!vm.authentication.user"><a ui-sref="authentication.signin">Sign In</a></li>
-        <li class="sign-in" ng-if="vm.authentication.user"><a ui-sref="footer.select">My Dashboard</a></li>
-      </ul>
-    </div>
+    <ul class="nav navbar-nav navbar-item navbar-right">
+      <li class="sign-in" ng-if="!vm.authentication.user"><a ui-sref="authentication.signin">Sign In</a></li>
+      <li class="sign-in" ng-if="vm.authentication.user"><a ui-sref="footer.select">My Dashboard</a></li>
+    </ul>
   </div>
 </nav>
 <div class="dashboard-product-banner" ng-init="" style="background-image: url('https://s3-us-west-2.amazonaws.com/sproutup-assets/banner-moment-lens.jpg');">
-  <div class="dashboard-product-info-wrapper">
+  <div class="row dashboard-product-info-wrapper">
     <div class="dashboard-main-tagline">We help build <strong><i>brand awareness</i></strong> around your new products</div>
     <div class="dashboard-secondary-tagline">Work with the right influential content creators to consistently produce engaging content with personality, taste and variety.</div>
     <div class="dashboard-cta" ng-if="!vm.authentication.user">
