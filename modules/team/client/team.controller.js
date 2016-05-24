@@ -6,9 +6,9 @@
     .module('team')
     .controller('TeamController', TeamController);
 
-    TeamController.$inject = ['$scope', 'TeamService', '$state', '$location', 'Authentication', 'Menus'];
+    TeamController.$inject = ['$scope', 'TeamService', '$state', '$location', 'Authentication', 'Menus', '$http'];
 
-    function TeamController($scope, TeamService, $state, $location, Authentication, Menus) {
+    function TeamController($scope, TeamService, $state, $location, Authentication, Menus, $http) {
         var vm = this;
         vm.success = false;
         vm.create = create;
@@ -17,6 +17,7 @@
         vm.find = find;
         vm.findOne = findOne;
         vm.authentication = Authentication;
+        vm.sendInvite = sendInvite;
 
         console.log('team controller loaded');
         // Get the topbar menu
@@ -117,6 +118,21 @@
             vm.team = data;
           }, function(err) {
             $state.go('landing.default');
+          });
+        }
+
+        function sendInvite() {
+          // Make sure the invitee isn't already on the team
+          for (var i in vm.team) {
+            if (vm.team[i].user && vm.team[i].user.email === vm.invitee) {
+              vm.inviteError = { exists: true };
+              return;
+            }
+          }
+
+          $http.post('/api/auth/invite', {invitee: vm.invitee, companyId: $scope.company.company.id}).success(function (response) {
+            vm.inviteSuccess = true;
+            vm.inviteError = false;
           });
         }
    }

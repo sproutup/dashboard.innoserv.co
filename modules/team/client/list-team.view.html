@@ -1,5 +1,18 @@
 <section ng-init="vm.find()">
   <div class="dashboard-body-wrapper team-member">
+    <div data-ng-if="vm.inviteSuccess" class="hud success" up-banner message-variable="vm.inviteSuccess" fade-out="5000">
+      <i class="fa fa-check"></i>Invite sent
+    </div>
+    <div data-ng-if="vm.inviteError" up-banner message-variable="vm.inviteError" fade-out="5000" class="hud error">
+      <span data-ng-bind="error"></span>
+      <span ng-if="vm.inviteError.exists">This email is already associated with a team member.</span>
+    </div>
+    <div class="row">
+      <form name="invite" class="col-sm-12 dashboard-call-for-action">
+        <input class="form-control form-input" placeholder="Invite a team member by email" type="email" ng-model="vm.invitee" required>
+        <button class="btn btn-lg sproutup-btn-sm orange" ng-disabled="!invite.$valid" ng-click="vm.sendInvite()"><i class="fa fa-plus-circle"></i>Invite New Member</button>
+      </form>
+    </div>
     <div class="team-member-table-wrapper">
       <p class="sproutup-table-header">Current members<!--a ui-sref="slug.company.navbar.settings.team.create"><i class="fa fa-user-plus"></i>Invite New Members</a--></p>
       <div class="sproutup-table table-responsive">
