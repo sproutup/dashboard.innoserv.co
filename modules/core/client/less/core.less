@@ -61,14 +61,6 @@ button:focus {
   padding: 10px 12px !important;
 }
 
-
-.navbar-item li a:active,
-.navbar-item li a:visited,
-.navbar-item li a:focus {
-  color: @sproutup-lightgrey;
-  background: transparent;
-}
-
 .navbar-item li a:hover {
   border-radius: 4px;
   background-color: black;
@@ -97,6 +89,10 @@ button:focus {
   margin: 15px 0px;
   color: @sproutup-lightgrey;
   padding: 9px 15px;
+}
+
+.navbar-toggleMenu {
+  margin-top: 60px;
 }
 
 .mock-section {
@@ -1214,7 +1210,7 @@ button:focus {
   font-weight: 400;
   font-size: 11pt;
   color: @main-text-white;
-  line-height: 1.5;
+  line-height: 1.7;
   margin: 0px;
   padding: 0px;
 }
@@ -5225,5 +5221,12 @@ li.campaign-item-wrapper.new-campaign button span {
 
   .dashboard-cta {
     margin: 0px 25px;
+  }
+
+  .dropdown-menu li a {
+    padding: 10px 20px;
+    font-weight: 400;
+    font-size: 11pt;
+    color: @main-text-light;
   }
 }
