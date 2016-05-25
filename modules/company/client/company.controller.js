@@ -14,6 +14,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   vm.update = update;
   vm.init = init;
   vm.find = find;
+  vm.findAll = findAll;
   vm.select = select;
   vm.findOne = findOne;
   vm.findMyCompany = findMyCompany;
@@ -78,6 +79,15 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
 
   function find() {
     vm.companies = CompanyService.mycompany().query(function(data){
+      vm.success = true;
+    }, function(err) {
+      vm.error = err;
+    });
+  }
+
+  // Find all companies you're a part of, plus companies you're invited to
+  function findAll() {
+    vm.companies = CompanyService.myCompanyAll().query(function(data){
       vm.success = true;
     }, function(err) {
       vm.error = err;

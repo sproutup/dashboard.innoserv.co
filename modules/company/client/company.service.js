@@ -11,6 +11,7 @@ function CompanyService($resource, $q) {
     company: company,
     companyBySlug: companyBySlug,
     mycompany: mycompany,
+    myCompanyAll: myCompanyAll,
     updateCompany: updateCompany
   };
 
@@ -27,6 +28,10 @@ function CompanyService($resource, $q) {
 
   function mycompany () {
     return $resource('/api/my/company/:companyId', { companyId:'@id' }, { 'update': { method:'PUT' }, 'query': { method:'GET', isArray:true } } );
+  }
+
+  function myCompanyAll () {
+    return $resource('/api/my/company/all', { companyId:'@id' }, { 'update': { method:'PUT' }, 'query': { method:'GET', isArray:true } } );
   }
 
   function updateCompany(company) {
