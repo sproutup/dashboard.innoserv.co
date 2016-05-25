@@ -26,7 +26,13 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
         $state.go('authentication.create-company');
-        // Go to create company or dashboard
+      });
+    };
+
+    $scope.inviteSignup = function () {
+      $http.post('/api/auth/invite/signup', $scope.credentials).success(function (response) {
+        $scope.authentication.user = response;
+        $state.go('footer.select');
       }).error(function (response) {
         $scope.error = response.message;
       });
@@ -73,13 +79,22 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       $scope.company = {};
 
       $http.post('/api/auth/verifyToken', credentials).success(function (response) {
-        if (response[1]) {
-          $scope.company.id = response[1];
-          $scope.company.name = response[2];
-          $scope.company.slug = response[3];
-          $scope.companyInit = true;
-        }
         $scope.credentials.email = response[0];
+      }).error(function (errorResponse) {
+        $scope.error = errorResponse.message;
+      });
+    };
+
+
+    $scope.verifyInviteToken = function() {
+      var credentials = {
+        token: $state.params.token
+      };
+      $scope.company = {};
+
+      $http.post('/api/auth/verifyInviteToken', credentials).success(function (response) {
+        $scope.credentials.email = response[0];
+        $scope.credentials.token = $state.params.token;
       }).error(function (errorResponse) {
         $scope.error = errorResponse.message;
       });
