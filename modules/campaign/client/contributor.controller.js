@@ -100,7 +100,9 @@
       if (item && !item.trial) {
          item.trial = {};
       }
+      var now = Date.now();
       item.trial.shippingState = 1;
+      item.trial.shippingDate = now;
       ContributorService.update(item);
     }
 
