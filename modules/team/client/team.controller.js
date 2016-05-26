@@ -6,9 +6,9 @@
     .module('team')
     .controller('TeamController', TeamController);
 
-    TeamController.$inject = ['$scope', 'TeamService', '$state', '$location', 'Authentication', 'Menus', '$http'];
+    TeamController.$inject = ['$scope', 'TeamService', '$state', '$location', 'Authentication', 'Menus', '$http', '$uibModal'];
 
-    function TeamController($scope, TeamService, $state, $location, Authentication, Menus, $http) {
+    function TeamController($scope, TeamService, $state, $location, Authentication, Menus, $http, $modal) {
         var vm = this;
         vm.success = false;
         vm.create = create;
@@ -18,6 +18,8 @@
         vm.findOne = findOne;
         vm.authentication = Authentication;
         vm.sendInvite = sendInvite;
+        vm.openLeaveModal = openLeaveModal;
+        vm.user = Authentication.user;
 
         console.log('team controller loaded');
         // Get the topbar menu
@@ -133,6 +135,29 @@
           $http.post('/api/auth/invite', {invitee: vm.invitee, companyId: $scope.company.company.id}).success(function (response) {
             vm.inviteSuccess = true;
             vm.inviteError = false;
+          });
+        }
+
+        function openLeaveModal() {
+          var modalInstance = $modal.open({
+            templateUrl: 'modules/team/client/leave-confirmation.html',
+            controller: 'DeleteController',
+            controllerAs: 'vm',
+            resolve: {
+              message: function() { return 'You are about to leave the team and you will not have access to this company\'s dashboard.'; }
+            }
+          });
+
+          modalInstance.result.then(function () {
+            leaveTeam();
+          }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+          });
+        }
+
+        function leaveTeam() {
+          $http.post('/api/team/leave', { companyId: $scope.company.company.id }).success(function(response) {
+            $state.go('footer.select');
           });
         }
    }
