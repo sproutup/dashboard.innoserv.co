@@ -22,7 +22,7 @@
               <td class="team-member-photo"><img up-avatar="item.user" width="60" height="60"></td>
               <td class="team-member-name">{{item.user.displayName}}</td>
               <td class="team-member-email">{{item.user.email}}</td>
-              <td class="team-member-email"><button class="btn" ng-click="vm.openLeaveModal()" ng-if="item.user.id === vm.user.id">Leave</button></td>
+              <td class="team-member-edit"><button class="btn sproutup-btn-sm minimal" ng-click="vm.openLeaveModal()" ng-if="item.user.id === vm.user.id">Leave</button></td>
               <!--td class="team-member-edit"><a ui-sref='slug.company.navbar.settings.team.edit({userId: item.id})'><i class="fa fa-pencil"></i></a></td-->
             </tr>
             </tbody>
