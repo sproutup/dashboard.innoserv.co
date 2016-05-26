@@ -4,9 +4,9 @@ angular
   .module('company')
   .controller('CompanyController', CompanyController);
 
-CompanyController.$inject = ['$scope', 'CompanyService', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'item'];
+CompanyController.$inject = ['$scope', 'CompanyService', 'TrialService', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'item', '$http'];
 
-function CompanyController($scope, CompanyService, TrialService, $state, CampaignService, $location, Authentication, Menus, item) {
+function CompanyController($scope, CompanyService, TrialService, $state, CampaignService, $location, Authentication, Menus, item, $http) {
   var vm = this;
   vm.success = false;
   vm.create = create;
@@ -14,6 +14,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   vm.update = update;
   vm.init = init;
   vm.find = find;
+  vm.findCompanies = findCompanies;
   vm.findAll = findAll;
   vm.select = select;
   vm.findOne = findOne;
@@ -24,6 +25,7 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   vm.saveLogo = saveLogo;
   vm.state = $state;
   vm.company = item;
+  vm.join = join;
 
   // Get the topbar menu
   vm.menu = Menus.getMenu('company.settings.menu');
@@ -78,7 +80,8 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   }
 
   function find() {
-    vm.companies = CompanyService.mycompany().query(function(data){
+    vm.query = CompanyService.mycompany().query(function(data){
+      vm.companies = data;
       vm.success = true;
     }, function(err) {
       vm.error = err;
@@ -86,8 +89,19 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
   }
 
   // Find all companies you're a part of, plus companies you're invited to
+  function findCompanies() {
+    if (Authentication.user && Authentication.user.roles.indexOf('admin') > -1) {
+      find();
+    } else {
+      findAll();
+    }
+  }
+
+  // Find all companies you're a part of, plus companies you're invited to
   function findAll() {
-    vm.companies = CompanyService.myCompanyAll().query(function(data){
+    vm.query = CompanyService.myCompanyAll().get(function(data){
+      vm.companies = data.companies;
+      vm.invitations = data.invitations;
       vm.success = true;
     }, function(err) {
       vm.error = err;
@@ -165,6 +179,13 @@ function CompanyController($scope, CompanyService, TrialService, $state, Campaig
       vm.succes = true;
     }, function(reason) {
       vm.error = reason;
+    });
+  }
+
+  function join(company) {
+    $http.post('/api/auth/useInvite', { companyId: company.id }).success(function (response) {
+      vm.authentication.setCompany(company);
+      $state.go('slug.company.navbar.campaign.list', { slug: company.slug });
     });
   }
 }
