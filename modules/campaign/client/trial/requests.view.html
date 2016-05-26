@@ -8,8 +8,10 @@
     </div>
   </div>
   <div class="col-sm-10">
-    <input ng-model="vm.query.$" class="form-control form-input" placeholder="Search requests"/>
-    <button class="btn sproutup-btn-sm minimal">Check New Requests</button>
+    <div class="search-area">
+      <input ng-model="vm.query.$" class="form-control form-input" placeholder="Search requests"/>
+      <button class="btn sproutup-btn-sm minimal">Check New Requests</button>
+    </div>
     <hr>
     <!-- Requests -->
     <div ng-if="filteredItems.length < 1">
