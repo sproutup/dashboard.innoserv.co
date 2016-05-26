@@ -25,16 +25,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     $scope.signup = function () {
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
-        $state.go('authentication.create-company');
-      });
-    };
-
-    $scope.inviteSignup = function () {
-      $http.post('/api/auth/invite/signup', $scope.credentials).success(function (response) {
-        $scope.authentication.user = response;
         $state.go('footer.select');
-      }).error(function (response) {
-        $scope.error = response.message;
       });
     };
 
