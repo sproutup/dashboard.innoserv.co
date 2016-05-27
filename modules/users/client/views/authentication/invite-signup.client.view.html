@@ -5,9 +5,9 @@
       </div>
       <hr>
   </div>
-  <div class="row text-center content" ng-if="error">
-    <h3>{{error}}</h3>
-    <span><a ui-sref="footer.home">Go Home</a></span>
+  <div class="signup-login-header" ng-if="error">
+    <h1>{{error}}</h1>
+    <h2><span><a ui-sref="footer.home">Go Home</a></h2>
   </div>
   <div ng-if="credentials.email">
     <div class="signup-login-header">
