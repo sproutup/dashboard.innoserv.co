@@ -351,9 +351,11 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     });
   }
 
-  function findContributors() {
-    ContributorService.listByCampaign($state.params.campaignId)
+  function findContributors(refreshing) {
+    vm.fetchingRequests = true;
+    ContributorService.listByCampaign($state.params.campaignId, refreshing)
       .then(function() {
+        vm.fetchingRequests = false;
         vm.success = true;
       }, function(reason) {
         vm.error = reason;

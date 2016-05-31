@@ -67,11 +67,11 @@ function ContributorService($resource, $q, $state) {
     return promise;
   }
 
-  function listByCampaign(campaignId) {
+  function listByCampaign(campaignId, refresh) {
     var defer = $q.defer();
     var promise = defer.promise;
 
-    if (model.contributors.length > 0 && campaignId === model.campaignId) {
+    if (model.contributors.length > 0 && campaignId === model.campaignId && !refresh) {
       defer.resolve(model.contributors);
       return promise;
     }
