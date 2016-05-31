@@ -88,7 +88,10 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider', '$urlMatc
         abstract: true,
         template: '<ui-view/>',
         controller: 'ThemeController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          roles: ['admin']
+        }
       })
       .state('theme.index', {
         url: '',
