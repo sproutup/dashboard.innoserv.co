@@ -26,7 +26,7 @@
 
       <div class="nav-section" ng-if="vm.authentication.user">
         <div class="nav-item-wrapper nav-item-main">
-          <a href="/api/auth/signout" target="_self">Log out</a>
+          <a ng-click="vm.signout()" target="_self">Log out</a>
         </div>
       </div>
 

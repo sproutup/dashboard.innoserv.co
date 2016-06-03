@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication',
-  function ($scope, $state, $http, $location, $window, Authentication) {
+angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', '$analytics',
+  function ($scope, $state, $http, $location, $window, Authentication, $analytics) {
     $scope.authentication = Authentication;
     $scope.credentials = {};
 
@@ -27,6 +27,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         $scope.authentication.user = response;
         $state.go('footer.select');
+        $analytics.setAlias($scope.authentication.user.id);
+        $analytics.setUserPropertiesOnce({ name: $scope.authentication.user.displayName });
       });
     };
 
@@ -42,6 +44,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
           name: Authentication.user.displayName,
           user_id: Authentication.user.id
         });
+        $analytics.setUsername($scope.authentication.user.id);
+        $analytics.setUserPropertiesOnce({ name: $scope.authentication.user.displayName });
       }).error(function (response) {
         $scope.error = response.message;
       });
