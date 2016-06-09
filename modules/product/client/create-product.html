@@ -18,11 +18,11 @@
               <div ng-show="form.$submitted || form.url.$touched" ng-messages="form.url.$error">
                 <div class="form--error-message" ng-message="required"><i class="fa fa-minus-circle"></i>A product link is required.</div>
               </div>
-              <input type="text" class="form-control form-input" placeholder="Tagline for this product (Optional)" ng-model="vm.tagline" />
+              <input type="text" class="form-control form-input" placeholder="Tagline for this product (optional)" ng-model="vm.tagline" />
             </div>
             <div class="col-sm-12 form-input-group">
-              <p class="input-group-title">Product Video URL (Optional)</p>
-              <p class="input-group-subtitle">The video will be displayed on your campaign page.</p>
+              <p class="input-group-title">Product Video URL</p>
+              <p class="input-group-subtitle">The video will be displayed on your campaign page (optional but strongly recommended).</p>
               <input type="url" name="video" class="form-validate form-control form-input" placeholder="Must be a valid YouTube or Vimeo link" ng-model="vm.video" up-valid-video up-http-prefix/>
               <div ng-show="form.$submitted || form.video.$touched" ng-messages="form.video.$error">
                 <div class="form--error-message" ng-message="validVideo"><i class="fa fa-minus-circle"></i>Please use a link to a YouTube or Vimeo video.</div>
