@@ -12,11 +12,20 @@ function HomeController($scope, $state, CompanyService, $http, Authentication, S
   vm.authentication = Authentication;
   vm.getStarted = getStarted;
   vm.gotoMyCompany = gotoMyCompany;
+  vm.signout = signout;
   vm.item = null;
   vm.init = true;
 
   function gotoMyCompany() {
     $state.go('mycompany');
+  }
+
+  function signout() {
+    window.mixpanel.cookie.clear();
+    window.mixpanel.init('GARBAGE');
+      setTimeout(function() {
+      window.location.pathname = '/api/auth/signout';
+    }, 0);
   }
 
   function getStarted() {

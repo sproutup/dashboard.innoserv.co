@@ -18,6 +18,7 @@
         <li class="sign-in"><a href="https://beta.sproutup.co">For Content Creators</a></li>
         <li class="sign-in" ng-if="!vm.authentication.user"><a ui-sref="authentication.signin">Sign In</a></li>
         <li class="sign-in" ng-if="vm.authentication.user"><a ui-sref="footer.select">My Dashboard</a></li>
+        <li class="sign-in" ng-if="vm.authentication.user"><a href="" ng-click="vm.signout()" target="_self">Log out</a></li>
       </ul>
     </div>
   </div>
