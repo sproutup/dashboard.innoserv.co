@@ -12,8 +12,10 @@
             <th></th>
             <th>Content</th>
             <th><a href="#" uib-popover="The number of times users viewed this content." popover-trigger="mouseenter">Impressions</a></th>
-            <th><a href="#" uib-popover="The number of times users clicked the referral link embedded in this content." popover-trigger="mouseenter">Referral Clicks</a></th>
-            <th><a href="#" uib-popover="The number of leads this content has generated to date." popover-trigger="mouseenter">Leads</a></th>
+            <th><a href="#" uib-popover="The number of times users liked this content." popover-trigger="mouseenter">Likes</a></th>
+            <th><a href="#" uib-popover="The number of times users shared this content" popover-trigger="mouseenter">Shares</a></th>
+            <th><a href="#" uib-popover="The number of times users shared this content" popover-trigger="mouseenter">Comments</a></th>
+            <th><a href="#" uib-popover="The number of times users shared this content" popover-trigger="mouseenter">Avg. Duration</a></th>
           </tr>
         </thead>
         <tbody>
@@ -30,9 +32,11 @@
                 <a class="content-view-link" ui-sref="slug.company.navbar.campaign.view.trial.stats.details({contentId:item.id})" ng-click="vm.contentItem = null">View Content</a>
               </div>
             </td>
-            <td class="request-reach" ng-bind="item.impressions"></td>
-            <td class="request-reach" ng-bind="item.engagements"></td>
-            <td class="request-reach" ng-bind="item.shares"></td>
+            <td class="request-reach" ng-bind="item.metrics.views.value"></td>
+            <td class="request-reach" ng-bind="item.metrics.likes.value"></td>
+            <td class="request-reach" ng-bind="item.metrics.shares.value"></td>
+            <td class="request-reach" ng-bind="item.metrics.comments.value"></td>
+            <td class="request-reach" ng-bind="item.metrics.averageViewDuration.value"></td>
           </tr>
         </tbody>
       </table>
