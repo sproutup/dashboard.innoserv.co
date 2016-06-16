@@ -11,11 +11,11 @@
           <tr>
             <th></th>
             <th>Content</th>
-            <th><a href="#" uib-popover="The number of times users viewed this content." popover-trigger="mouseenter">Impressions</a></th>
-            <th><a href="#" uib-popover="The number of times users liked this content." popover-trigger="mouseenter">Likes</a></th>
-            <th><a href="#" uib-popover="The number of times users shared this content" popover-trigger="mouseenter">Shares</a></th>
-            <th><a href="#" uib-popover="The number of times users shared this content" popover-trigger="mouseenter">Comments</a></th>
-            <th><a href="#" uib-popover="The number of times users shared this content" popover-trigger="mouseenter">Avg. Duration</a></th>
+            <th><a href="#" uib-popover="The number of times users viewed this video." popover-trigger="mouseenter">Impressions</a></th>
+            <th><a href="#" uib-popover="The number of times users liked this video." popover-trigger="mouseenter">Likes</a></th>
+            <th><a href="#" uib-popover="The number of times users shared this video" popover-trigger="mouseenter">Shares</a></th>
+            <th><a href="#" uib-popover="The number of times users commented this video" popover-trigger="mouseenter">Comments</a></th>
+            <th><a href="#" uib-popover="The average duration users watched this video" popover-trigger="mouseenter">Avg. Duration</a></th>
           </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@
             <td ng-if="item.media=='tw'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/twitter.png"></td>
             <td ng-if="item.media=='pi'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/pinterest.png"></td>
             <td ng-if="item.media=='url'" class="social-network-icon"><img class="img-center" src="modules/core/client/img/social/url.png"></td>
-            <td>
+            <td class="content">
               <div class="content-title" ng-bind="item.title"></div>
               <div class="content-subline">
                 <span class="content-author" ng-bind="item.user.displayName"></span>&#183;
