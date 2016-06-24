@@ -48,7 +48,7 @@
                     <div class="social-network-reach-desc">Reach is the number of followers on Instagram.</div>
                   </td>
                   <td ng-if="service.service === 'youtube'">
-                    <a ng-href="{{ service.url }}" target="_blank">YouTube</a>
+                    <a ng-href="{{ 'https://youtube.com/channel/' + service.identifier }}" target="_blank">YouTube</a>
                     <div class="social-network-reach-desc">Reach is the number of subscribers on the YouTube channel.</div>
                   </td>
                   <td ng-if="service.service === 'googleplus'">
