@@ -25,9 +25,9 @@
     "ng-videosharing-embed": "0.3.4",
     "spin.js": "2.3.2",
     "angular-scroll-glue": "2.0.6",
-    "angulartics": "~1.1.2",
-    "angulartics-google-analytics": "~0.2.0",
-    "angulartics-mixpanel": "",
+    "angulartics": "1.1.2",
+    "angulartics-google-analytics": "0.2.0",
+    "angulartics-mixpanel": "0.1.2",
     "ng-intl-tel-input": "",
     "ngAutocomplete": "1.0.0",
     "angular-intercom": "2.1.1"
