@@ -445,6 +445,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     CampaignService.updateCampaign(campaign)
       .then(function(result) {
         vm.succes = true;
+        vm.item.banner.fileId = fileId;
       }, function(reason) {
         vm.error = reason;
       });
