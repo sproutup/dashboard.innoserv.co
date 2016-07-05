@@ -143,7 +143,7 @@
             </div>
           </div>
 
-          <div class="product-trial-item--detail" ng-if="contributor.item.content.length > 0">
+          <div class="product-trial-item--detail" ng-if="contributor.item.content.length > 0 && contributor.item.bid ">
             <div class="product-trial-item--status current"><i class="fa fa-check-circle"></i>Make payment</div>
             <div class="product-trial-item--status-desc">
               <p>{{ contributor.item.user.displayName }} has submitted content for this campaign. If everything looks great, please pay the agreed sponsorship (<strong>{{ contributor.item.bid | currency }}</strong>) at your earliest convenience.</p>
