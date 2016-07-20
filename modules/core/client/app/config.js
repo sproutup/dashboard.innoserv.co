@@ -24,6 +24,7 @@ var ApplicationConfiguration = (function () {
     'angulartics.intercom',
     'ngIntlTelInput',
     'ngAutocomplete',
+    'ngLodash',
     'ngIntercom'
   ];
 

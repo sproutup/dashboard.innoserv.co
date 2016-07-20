@@ -4,9 +4,9 @@ angular
   .module('campaign')
   .controller('CampaignController', CampaignController);
 
-CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService', '$http', 'company', 'ContributorService', 'slugitem'];
+CampaignController.$inject = ['$scope', '$rootScope', '$state', 'CampaignService', '$location', 'Authentication', 'Menus', 'ProductService', '$uibModal', 'ContentService', '$http', 'company', 'ContributorService', 'slugitem', 'lodash'];
 
-function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http, company, ContributorService, slugitem) {
+function CampaignController($scope, $rootScope, $state, CampaignService, $location, Authentication, Menus, ProductService, $modal, ContentService, $http, company, ContributorService, slugitem, _) {
   var vm = this;
   vm.create = create;
   // vm.initTemplate = initTemplate;
@@ -42,6 +42,8 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.filterApproved = filterApproved;
   vm.updateContributor = updateContributor;
   vm.user = Authentication.user;
+  vm.totalFollowers = 0;
+  vm.totalViews = 0;
   vm.socialOptions = [
     {  title: 'YouTube',
        type: 'yt' },
@@ -354,8 +356,11 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   function findContributors(refreshing) {
     vm.fetchingRequests = true;
     ContributorService.listByCampaign($state.params.campaignId, refreshing)
-      .then(function() {
+      .then(function(result) {
         vm.fetchingRequests = false;
+	vm.totalFollowers = _.reduce(result.items, function(sum, n){ 
+          return sum + (n.user.services.followers ? n.user.services.followers : 0);
+	}, 0);
         vm.success = true;
       }, function(reason) {
         vm.error = reason;
