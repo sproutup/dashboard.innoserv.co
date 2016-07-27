@@ -14,7 +14,8 @@ function CampaignService($resource, $q) {
     content: content,
     contributors: contributors,
     contribution: contribution,
-    updateCampaign: updateCampaign
+    updateCampaign: updateCampaign,
+    metricQueryViews: metricQueryViews
   };
 
   return service;
@@ -41,6 +42,10 @@ function CampaignService($resource, $q) {
 
   function contribution () {
      return $resource('/api/user/:userId/campaign/:campaignId', { userId:'@userId', campaignId:'@id' }, { 'update': {method:'PUT'}, 'query': {method:'GET', isArray:true} } );
+  }
+
+  function metricQueryViews (metric) {
+    return $resource('/api/metric/query', { metric: metric, campaignId:'@id' }, { 'update': {method:'PUT'}, 'query': {method:'POST', isArray:false} } );
   }
 
   function updateCampaign(campaign) {

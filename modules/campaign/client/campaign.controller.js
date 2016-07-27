@@ -18,6 +18,7 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
   vm.redirect = redirect;
   vm.redirectToEdit = redirectToEdit;
   vm.findContent = findContent;
+  vm.metricQueryViews = metricQueryViews;
   vm.findOneContent = findOneContent;
   vm.openModal = openModal;
   vm.startCampaign = startCampaign;
@@ -334,10 +335,54 @@ function CampaignController($scope, $rootScope, $state, CampaignService, $locati
     vm.success = false;
     vm.content = {};
 
+    metricQueryViews();
+
     vm.content = CampaignService.content().query({
       campaignId: $state.params.campaignId
     }, function(res) {
       vm.success = true;
+    }, function(err) {
+      $state.go('landing.default');
+    });
+  }
+
+  function metricQueryViews() {
+    vm.totalViews = 0;
+
+    vm.content = CampaignService.metricQueryViews('views').query({
+      campaignId: $state.params.campaignId
+    }, function(res) {
+      vm.viewsPerDay = res;
+      vm.totalViews = res.views_per_day.buckets[res.views_per_day.buckets.length-1].cumulative.value;
+      vm.labels = _.map(res.views_per_day.buckets, function(n){
+        return n.key_as_string;
+      });
+      vm.series = ['Series A'];
+      vm.data = [_.map(res.views_per_day.buckets, function(n){
+        return n.cumulative.value;
+      })];
+      vm.onClick = function (points, evt) {
+        console.log(points, evt);
+      };
+      vm.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+      vm.optionsxx = {
+      scales: {
+        yAxes: [
+          {
+          id: 'y-axis-1',
+          type: 'linear',
+          display: true,
+          position: 'left'
+          },
+          {
+          id: 'y-axis-2',
+          type: 'linear',
+          display: true,
+          position: 'right'
+          }
+        ]
+      }
+      };
     }, function(err) {
       $state.go('landing.default');
     });
