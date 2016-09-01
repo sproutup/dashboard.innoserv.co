@@ -89,6 +89,7 @@
             <div class="product-trial-item--status-desc">
               <p><span class="label label-info">Pitch</span>{{ contributor.item.comment }}</p>
               <p ng-if="contributor.item.bid"><span class="label label-info">Payment</span>I'd like to ask <strong>{{ contributor.item.bid | currency }}</strong> for content creation.</p>
+	      <p ng-if="contributor.item.bid"><span class="label label-info">Suggested</span>price range <strong>{{ contributor.price.low | currency }} - {{ contributor.price.high | currency }}</strong></p>
               <p ng-if="!contributor.item.bid"><span class="label label-info">Payment</span>I'd like to create content <strong>without</strong> sponsorship.</p>
             </div>
           </div>

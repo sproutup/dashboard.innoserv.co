@@ -19,6 +19,10 @@
     vm.findChannel = findChannel;
     vm.startChannel = startChannel;
     vm.loadDetailsFinish = false;
+    vm.price = {
+      low: 0,
+      high: 100
+    };
 
     function findChannel(){
       console.log('find channel by ref: ', $state.params.campaignId);
@@ -61,6 +65,18 @@
         vm.item = response;
         vm.userId = 5;//response.userId;
         vm.campaignId = response.campaignId;
+	if(vm.item.user.services.youtube && vm.item.user.services.youtube.metrics.followers < 100000){
+	  vm.price.low = (vm.item.user.services.youtube.metrics.viewCount / vm.item.user.services.youtube.metrics.videoCount) * 0.01;
+	  vm.price.high = (vm.item.user.services.youtube.metrics.viewCount / vm.item.user.services.youtube.metrics.videoCount) * 0.04;
+	}
+	else if(vm.item.user.services.youtube && vm.item.user.services.youtube.metrics.followers > 900000){
+	  vm.price.low = (vm.item.user.services.youtube.metrics.viewCount / vm.item.user.services.youtube.metrics.videoCount) * 0.06;
+	  vm.price.high = (vm.item.user.services.youtube.metrics.viewCount / vm.item.user.services.youtube.metrics.videoCount) * 0.10;
+	}
+	else if(vm.item.user.services.youtube){
+	  vm.price.low = (vm.item.user.services.youtube.metrics.viewCount / vm.item.user.services.youtube.metrics.videoCount) * 0.03;
+	  vm.price.high = (vm.item.user.services.youtube.metrics.viewCount / vm.item.user.services.youtube.metrics.videoCount) * 0.07;
+	}
       }, function(err) {
         console.log(err);
       });
